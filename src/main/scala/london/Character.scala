@@ -1,0 +1,4 @@
+package london
+
+class Character {
+}
