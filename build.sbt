@@ -1,3 +1,5 @@
+import com.typesafe.sbt.SbtStartScript
+
 name := "clayman"
 
 version := "2.0-SNAPSHOT"
@@ -9,3 +11,5 @@ resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/release
 libraryDependencies ++= Seq (
 	"org.scalatest" % "scalatest_2.10" % "1.9.1" % "test"
 )
+
+seq(SbtStartScript.startScriptForClassesSettings: _*)
