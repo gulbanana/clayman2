@@ -2,7 +2,8 @@ import jobs._
 
 object Clayman {
   val jobs = Map(
-    "grind" -> grind
+    "grind" -> grind,
+    "login" -> login
   )
   
   def main(args: Array[String]) {
