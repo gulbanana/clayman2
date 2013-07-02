@@ -28,7 +28,7 @@ class Character(username: String, password: String) {
   }
   
   def logout() {
-    http.client.shutdown()
+    http.dispose()
     println("Logged out.")
   }
   

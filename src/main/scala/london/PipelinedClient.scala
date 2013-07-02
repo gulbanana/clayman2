@@ -5,8 +5,8 @@ import dispatch._, Defaults._
 import com.ning.http.client._
 
 class PipelinedClient {
-  val client = dispatch.Http
-  val cookies = mutable.Set[Cookie]()
+  private val client = dispatch.Http
+  private val cookies = mutable.Set[Cookie]()
   
   //synchronous dispatch extensions - sadly, clay men have no Future[T]  
   def command(builder: RequestBuilder) {
@@ -38,5 +38,9 @@ class PipelinedClient {
       else
         throw StatusCode(status.getStatusCode)
     }
+  }
+  
+  def dispose() {
+    client.shutdown()
   }
 }
