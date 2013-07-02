@@ -27,9 +27,14 @@ class Character(username: String, password: String) {
     println("--> Onwards!")        
   }
   
+  def logout() {
+    http.client.shutdown()
+    println("Logged out.")
+  }
+  
   private def login() {
     http.command(site / "Auth" / "EmailLogin" << Map("emailAddress" -> username, "password" -> password))
-    println("Entered the Neath.")
+    println("Logged in.")
   }
   
   private def updateStatus() {
