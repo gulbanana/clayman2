@@ -10,8 +10,8 @@ resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/release
 
 libraryDependencies ++= Seq (
   "org.scalatest" %% "scalatest" % "1.9.1" % "test", 
-  "net.databinder.dispatch" %% "dispatch-core" % "0.10.1",
-  "net.databinder.dispatch" %% "dispatch-tagsoup" % "0.10.1"
+  "net.databinder.dispatch" %% "dispatch-tagsoup" % "0.10.1",
+  "ch.qos.logback" % "logback-classic" % "1.0.9"
 )
 
 seq(SbtStartScript.startScriptForClassesSettings: _*)
