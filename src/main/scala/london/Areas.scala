@@ -15,7 +15,6 @@ object Areas {
   val Court = Area(26, "The Empress' Court")
   val HouseOfChimes = Area(34, "The House of Chimes")
   
-  
   private val byID = Map(
     2 -> Lodgings,
     4 -> LadybonesRoad,
@@ -29,5 +28,6 @@ object Areas {
     26 -> Court,
     34 -> HouseOfChimes
   )
+  
   def apply(id: Int) = byID(id)
 }
