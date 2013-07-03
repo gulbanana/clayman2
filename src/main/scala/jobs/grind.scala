@@ -1,11 +1,14 @@
 package jobs
+import common.{grind => g}
 
 object grind extends Job {
-  def apply(implicit c: london.Character) { 
-    common.with_buffer { implicit c => 
-      c.actions -= 1
-      
-      common.grind.jade()
+  def apply() { 
+    common.with_character { implicit c =>
+      common.with_buffer { 
+        c.actions -= 1
+        
+        g.jade()
+      }
     }
   }
 }

@@ -1,4 +1,5 @@
 import jobs._
+import com.ning.http.client.AsyncHttpClientConfig
 
 object Clayman {
   val jobs = Map(
@@ -7,8 +8,14 @@ object Clayman {
   )
   
   def main(args: Array[String]) {
-    common.with_character { c =>
-  	  jobs(args(0))(c)
-    }
+    //init Dispatch
+    val config = new AsyncHttpClientConfig.Builder()
+    config.setFollowRedirects(true)
+  
+    //run selected job
+    jobs(args(0))()
+    
+    //dispose Dispatch
+    dispatch.Http.shutdown()
   }
 }

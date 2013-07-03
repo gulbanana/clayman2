@@ -4,7 +4,7 @@ import dispatch._, Defaults._
 
 class Character(username: String, password: String) {
   private def site = url("http://fallenlondon.storynexus.com")
-  private val http = new PipelinedClient()
+  private val http = new Session()
   
   var actions = 17
   var actionCap = 20
@@ -27,14 +27,9 @@ class Character(username: String, password: String) {
     println("--> Onwards!")        
   }
   
-  def logout() {
-    http.dispose()
-    println("Logged out.")
-  }
-  
   private def login() {
     http.command(site / "Auth" / "EmailLogin" << Map("emailAddress" -> username, "password" -> password))
-    println("Logged in.")
+    println("Entered the Neath.")
   }
   
   private def updateStatus() {
