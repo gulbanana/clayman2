@@ -7,9 +7,14 @@ class Status {
   var actionCap = 10
   var description = ""
   var items = Map[String, Int]()
-  var location = Areas.ShutteredPalace
+  var location:Areas.Area = null
   var name = ""
   var title = ""
+    
+  var watchful = 0
+  var shadowy = 0
+  var dangerous = 0
+  var persuasive = 0
     
   var itemIDs = Map[String, Int]()
   var eventIDs = Map[String, Int]()
@@ -39,11 +44,105 @@ class Status {
   }
   
   def updateEffects(soup: Document) = {
-    //val scripts = soup.select("script")
-    //println(soup)
+    /*
+        update_script = soup.find_all('script')[1].string
+        match = re.search(r'setActionsLevel\((\d+)', update_script)
+        self.actions = int(match.group(1))
+
+        effects = soup.find('div', class_='quality_update_box').find_all('p')
+        for tag in effects:
+            content = ''.join(tag.strings)
+            if not 'You succeeded' in content:
+                print('    {0}'.format(content))
+
+            inner_match = re.match(r'(.+) has (increased|dropped) to (\d+)', content)
+            if inner_match:
+                qname, qval = inner_match.group(1,3)
+                self.qualities[qname] = int(qval)
+
+            inner_match = re.match(r'An occurrence! Your \'(.+)\' quality is now (\d+)', content)
+            if inner_match:
+                qname, qval = inner_match.group(1,2)
+                self.qualities[qname] = int(qval)
+
+            inner_match = re.match(r'(.+) has been reset', content)
+            if inner_match:
+                qname = inner_match.group(1)
+                self.qualities[qname] = 0
+
+            inner_match = re.match(r'You\'ve (gained|lost) (\d+) x (.+) \(new total (\d+)\)', content)
+            if inner_match:
+                iname, ival = inner_match.group(3,4)
+                self.items[iname] = int(ival)
+
+            inner_match = re.match(r'You now have (\d+) x (.+)', content)
+            if inner_match:
+                iname, ival = inner_match.group(2,1)
+                self.items[iname] = int(ival)
+
+            inner_match = re.match(r'You no longer have any of this: \'(.+)\'', content)
+            if inner_match:
+                iname = inner_match.group(1)
+                self.items[iname] = 0
+     */
   }
   
   def updateStatus(outerSoup: Document, innerSoup: Document) = {
+    val actionPattern = """(\d+)/(\d+)""".r
+    val actionPattern(current, max) = outerSoup.select("span.actions_remaining").text
+    actions = current.toInt
+    actionCap = max.toInt
+
+    val areaPattern = """(?s).*CurrentArea\((\d+),.*""".r
+    val areaPattern(areaID) = outerSoup.select("div#currentAreaSection > script").first.data
+    location = Areas(areaID.toInt)
     
+    def getStat(id: Int) = {
+      var level = outerSoup.select("span#infoBarQLevel"+id).text
+      var bonus = outerSoup.select("span#infoBarBonusPenalty"+id).text
+      
+      println(bonus)
+      if (bonus != "")
+        level.toInt + bonus.toInt
+      else
+        level.toInt
+    }
+    
+    watchful = getStat(209)
+    shadowy = getStat(210)
+    dangerous = getStat(211)
+    persuasive = getStat(212)
+    /*
+    self.qualities = defaultdict(int)
+    quals = inner_soup.find('div', class_='you_bottom_lhs')
+    for quality in [q.string for q in quals('strong') if q.string]:
+        matches = re.search(r'(.*) (\d+)', quality.string)
+        if matches:
+            name = matches.group(1)
+            quantity = int(matches.group(2))
+            self.qualities[name] = int(quantity)
+
+    self._items_by_id = dict()
+    self.items = defaultdict(int)
+    equipment = inner_soup.find('div', id='inventory')
+    possessions = inner_soup.find('div', class_='you_bottom_rhs')
+    for item in [possession for possession in  possessions('li') if len(possession.a.contents) > 0]:
+        tooltip = item.a['title']
+        matches = re.search(r'>(\d+) x (.*?)<', tooltip)
+        name = matches.group(2)
+        quantity = int(matches.group(1))
+
+        imagediv = item('div')[1]['id']
+        match = re.search(r'infoBarQImage(\d+)', imagediv)
+        id = match.group(1)
+
+        self._items_by_id[name] = Quality(id, name, quantity)
+        self.items[name] = quantity
+
+    heading = inner_soup.find('div', class_='redesign_heading')
+    self.name = heading.h1.a.string
+    self.description = ' '.join(heading.p.stripped_strings)
+    print('{0}: {1}.'.format(self.name, self.description))
+    */
   }
 }
