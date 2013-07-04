@@ -1,5 +1,5 @@
 package london
-import scala.xml._
+import org.jsoup.nodes._
 import dispatch._, Defaults._
 
 class Character(username: String, password: String) {
@@ -43,17 +43,17 @@ class Character(username: String, password: String) {
     println("Welcome to %s, delicious friend!".format(location.name))
   }
   
-  private def parse_branches(soup: NodeSeq) = {
-    val divs = soup \\ "div" filter {_.attribute("class").map(_.text == "storylet").getOrElse(false)}
-    //println(divs)
+  private def parse_branches(soup: Document) = {
+    val divs = soup.select("div.storylet")
+    println(divs)
   }
   
-  private def parseEffects(soup: NodeSeq) = {
-    val scripts = soup \\ "script"
+  private def parseEffects(soup: Document) = {
+    val scripts = soup.select("script")
     println(scripts)
   }
   
-  private def parseStatus(outerSoup: NodeSeq, innerSoup: NodeSeq) = {
+  private def parseStatus(outerSoup: Document, innerSoup: Document) = {
     
   }
 }

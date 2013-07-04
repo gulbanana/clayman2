@@ -11,6 +11,7 @@ class Session {
   def command(builder: RequestBuilder) {
     for(cookie <- cookies)
       builder.addCookie(cookie)
+      
     val request = Http(builder)
     
     val response = request()
@@ -21,7 +22,7 @@ class Session {
   def query(builder: RequestBuilder) = {
     for(cookie <- cookies)
       builder.addCookie(cookie)
-    val request = Http(builder > as.tagsoup.NodeSeq)
+    val request = Http(builder > as.jsoup.Document)
     
     request()
   }
