@@ -4,10 +4,10 @@ import common.{grind => g}
 
 object grind extends OneManJob {
   def apply(implicit c: Character) { 
-    common.with_buffer { 
-      c.actions -= 1
+    common.with_buffer { implicit c: Character =>  
+      //c.actions -= 1
       
-      g.jade()
+      g.quarter_jade()
     }
   }
 }

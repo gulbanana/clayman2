@@ -3,14 +3,14 @@ import com.ning.http.client.AsyncHttpClientConfig
 
 object Clayman {
   val jobs = Map(
+    "login" -> login,
     "grind" -> grind,
-    "login" -> login
+    "court" -> court
   )
   
   def main(args: Array[String]) {
-    //init Dispatch
-    val config = new AsyncHttpClientConfig.Builder()
-    config.setFollowRedirects(true)
+    //asynchttpclient does not support relative redirects. but, maybe someday it will.
+    //dispatch.Http.configure(_ setFollowRedirects(true)) 
   
     //run selected job
     jobs(args(0))()

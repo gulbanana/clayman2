@@ -22,7 +22,7 @@ class Session {
   def query(builder: RequestBuilder) = {
     for(cookie <- cookies)
       builder.addCookie(cookie)
-    val request = Http(builder > as.jsoup.Document)
+    val request = Http.configure(_ setFollowRedirects(true))(builder OK as.jsoup.Document)
     
     request()
   }
