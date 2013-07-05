@@ -35,28 +35,35 @@ class Character(username: String, password: String) {
   }
   
   // MANAGE OPPORTUNITY DECK: draw x, discard 
-  def drawOpportunities() = ???
+  def drawOpportunities() {
+    parser updateOpportunities http.query(site / "Storylet" / "DrawOpportunities")
+  }
   
-  def discardOpportunity(opportunity: String) = ???
+  def discardOpportunity(opportunity: String) {
+    parser updateOpportunities http.query(site / "Storylet" / "DiscardSometimesCard" <<? Map("eventid" -> parser.opportunityIDs(opportunity).toString))
+    println ("Discarded \"%s\"".format(opportunity))
+  }
   
   // BEGIN STORYLETS: opportunities, items, or area-based 
-  def opportunityAvailable(opportunity: String) = parser.opportunityIDs.keySet.contains(opportunity)
-  def playOpportunity(opportunity: String) = ???
+  def opportunities = parser.opportunityIDs.keySet
+  def playOpportunity(opportunity: String) {
+    parser updateBranches http.query(site / "Storylet" / "Begin" << Map("eventid" -> parser.opportunityIDs(opportunity).toString))
+    println("\"%s\"".format(parser.title))
+  }
   
-  def itemAvailable(item: String) = parser.itemIDs.keySet.contains(item)
   def useItem(item: String) {
     parser updateBranches http.query(site / "Storylet" / "UseQuality" << Map("qualityId" -> parser.itemIDs(item).toString))
     println("\"%s\"".format(parser.title))
   }
   
-  def storyAvailable(storylet: String) = parser.eventIDs.keySet.contains(storylet)
-  def beginStory(storylet: String) {
+  def storylets = parser.eventIDs.keySet
+  def beginStorylet(storylet: String) {
     parser updateBranches http.query(site / "Storylet" / "Begin" << Map("eventid" -> parser.eventIDs(storylet).toString))
     println("\"%s\"".format(parser.title))
   }
   
   // IN STORYLETS: choose a branch, onwards, or back
-  def branchAvailable(branch: String) = parser.branchIDs.keySet.contains(branch)
+  def branches = parser.branchIDs.keySet
   def chooseBranch(branch: String) {
     val soup = http.query(site / "Storylet" / "ChooseBranch" << Map("branchid" -> parser.branchIDs(branch).toString,
                                                                               "secondChances" -> "false"))

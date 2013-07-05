@@ -5,7 +5,7 @@ object grind {
   //+28 soul (0.56E)
   def ladybones_souls()(implicit c: Character) {
     c.travel(Areas.LadybonesRoad)
-    c.beginStory("Track down a Spirifer")
+    c.beginStorylet("Track down a Spirifer")
     c.chooseBranch("Watch from the rooftops")
     c.onwards()
   }
@@ -14,7 +14,7 @@ object grind {
   //failure: 2cp scandal
   def quarter_jade()(implicit c: Character) {
     c.travel(Areas.ForgottenQuarter)
-    c.beginStory("A tour of the quarter")
+    c.beginStorylet("A tour of the quarter")
     c.chooseBranch("The exploitation of knowledge")
     c.onwards()
   }
@@ -24,7 +24,7 @@ object grind {
   //max persuasive 85
   def palace_wines()(implicit c: Character) {
     c.travel(Areas.ShutteredPalace)
-    c.beginStory("The Antiquarian Footman")
+    c.beginStorylet("The Antiquarian Footman")
     c.chooseBranch("Offer the fellow a partnership")
     c.onwards()
   }  
@@ -34,7 +34,7 @@ object grind {
   //+65 glim (0.65E)
   def wolfstack_glim()(implicit c: Character) {
     c.travel(Areas.WolfstackDocks)
-    c.beginStory("Intercept a shipment of Clay Men")
+    c.beginStorylet("Intercept a shipment of Clay Men")
     c.chooseBranch("Scuttle the boat")
     c.onwards()
   }
@@ -42,7 +42,7 @@ object grind {
   //+65 glim (0.65E)
   def wolfstack_silk()(implicit c: Character) {
     c.travel(Areas.WolfstackDocks)
-    c.beginStory("Eyes and spiders")
+    c.beginStorylet("Eyes and spiders")
     c.chooseBranch("Wait for a scream and pursue")
     c.onwards()
   }
