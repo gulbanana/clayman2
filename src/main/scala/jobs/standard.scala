@@ -1,12 +1,12 @@
 package jobs
 import london._
-import common.{grind => g}
+import common._
 
-object grind extends OneManJob {
+object standard extends OneManJob {
   def apply(implicit c: Character) = common.repeat { implicit c: Character =>  
       //c.actions -= 1
       
-      g.quarter_jade()
+      grind.quarter_jade()
     }
   
 }

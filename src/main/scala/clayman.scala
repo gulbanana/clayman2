@@ -6,8 +6,8 @@ object Clayman {
   def main(args: Array[String]) {  
     //locate and run a job
     val mirror = reflect.runtimeMirror(getClass().getClassLoader())
-    val jobSymbol = mirror.staticModule("jobs."+args(0))
-    val job = mirror.reflectModule(jobSymbol).instance.asInstanceOf[Job]
+    val jobName = mirror.staticModule("jobs."+args(0))
+    val job = mirror.reflectModule(jobName).instance.asInstanceOf[Job]
     job()
     
     //dispose Dispatch
