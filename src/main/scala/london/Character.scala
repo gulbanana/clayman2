@@ -6,19 +6,25 @@ class Character(username: String, password: String) {
   private val http = new Session()
   private val parser = new Status()
   
-  def actions = parser.actions
-  def actionCap = parser.actionCap
-  def description = parser.description
-  def items = parser.items
-  def location = parser.location
-  def name = parser.name
-  
   http.command(site / "Auth" / "EmailLogin" << Map("emailAddress" -> username, "password" -> password))
   println("Entered the Neath.")
+  
   parser updateStatus(http.query(site / "Gap" / "Load" <<? Map("content" -> "/Me")), http.query(site / "Me"))
-  println("An unknown gentleman.")
+  println("%s: %s.".format(parser.name, parser.description))
+  
   parser updateBranches http.query(site / "Storylet" / "In")
   println("Welcome to %s, delicious friend!".format(location.name))
+  
+  def name = parser.name
+  def actions = parser.actions
+  def actionCap = parser.actionCap
+  def location = parser.location
+  def watchful = parser.watchful
+  def shadowy = parser.shadowy
+  def dangerous = parser.dangerous
+  def persuasive = parser.persuasive
+  def items = parser.items
+  def qualities = parser.qualities
   
   def travel(area: Areas.Area) {
     if (parser.updateLocation(area)) {

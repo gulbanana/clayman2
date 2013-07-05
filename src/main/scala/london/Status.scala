@@ -3,22 +3,27 @@ import collection.JavaConversions._
 import org.jsoup.nodes._
 
 class Status {
+  var name = ""
+  var description = ""
+  
   var actions = 0
   var actionCap = 10
-  var description = ""
-  var items = Map[String, Int]()
+  
   var location:Areas.Area = null
-  var name = ""
-  var title = ""
-    
+  
   var watchful = 0
   var shadowy = 0
   var dangerous = 0
   var persuasive = 0
-    
-  var itemIDs = Map[String, Int]()
+  
+  var items = Map[String, Int]()
+  var qualities = Map[String, Int]()
+  
+  var title = ""
+  
   var eventIDs = Map[String, Int]()
   var branchIDs = Map[String, Int]()
+  var itemIDs = Map[String, Int]()
   
   def updateLocation(area: Areas.Area) =  if (location != area) {
     location = area
@@ -88,15 +93,18 @@ class Status {
   }
   
   def updateStatus(outerSoup: Document, innerSoup: Document) = {
+    //Actions: nested spans in the outer HTML 
     val actionPattern = """(\d+)/(\d+)""".r
     val actionPattern(current, max) = outerSoup.select("span.actions_remaining").text
     actions = current.toInt
     actionCap = max.toInt
 
+    //Location: part of a script tag which highlights that area on the map 
     val areaPattern = """(?s).*CurrentArea\((\d+),.*""".r
     val areaPattern(areaID) = outerSoup.select("div#currentAreaSection > script").first.data
     location = Areas(areaID.toInt)
     
+    //Main stats: outer HTML, in a set of span pairs
     def getStat(id: Int) = {
       var level = outerSoup.select("span#infoBarQLevel"+id).text
       var bonus = outerSoup.select("span#infoBarBonusPenalty"+id).text
@@ -111,37 +119,28 @@ class Status {
     shadowy = getStat(210)
     dangerous = getStat(211)
     persuasive = getStat(212)
-    /*
-    self.qualities = defaultdict(int)
-    quals = inner_soup.find('div', class_='you_bottom_lhs')
-    for quality in [q.string for q in quals('strong') if q.string]:
-        matches = re.search(r'(.*) (\d+)', quality.string)
-        if matches:
-            name = matches.group(1)
-            quantity = int(matches.group(2))
-            self.qualities[name] = int(quantity)
+    
+    //Non-item qualities: <strong> tags in you_bottom_lhs div
+    val qualityPattern = """(.*) (\d+) .*""".r
+    qualities = (for (quality <- innerSoup.select("div.you_bottom_lhs strong") if quality.text().matches(qualityPattern.toString)) yield {
+      val qualityPattern(name, quantity) = quality.text()
+      name -> quantity.toInt
+    }).toMap.withDefaultValue(0)
+    
+    //Carried item qualities: the link-containing slots of you_bottom_rhs div
+    val tooltipPattern = """<strong>(\d+) x (.*?)<.*""".r
+    val imagePattern = """infoBarQImage(\d*)""".r
+    val possessions = for (item <- innerSoup.select("div.you_bottom_rhs li > a.tooltip")) yield {
+      val tooltipPattern(quantity, name) = item.attr("title") 
+      val imagePattern(id) = item.select("div").last.attr("id")
+      (name, id.toInt, quantity.toInt)
+    }
 
-    self._items_by_id = dict()
-    self.items = defaultdict(int)
-    equipment = inner_soup.find('div', id='inventory')
-    possessions = inner_soup.find('div', class_='you_bottom_rhs')
-    for item in [possession for possession in  possessions('li') if len(possession.a.contents) > 0]:
-        tooltip = item.a['title']
-        matches = re.search(r'>(\d+) x (.*?)<', tooltip)
-        name = matches.group(2)
-        quantity = int(matches.group(1))
-
-        imagediv = item('div')[1]['id']
-        match = re.search(r'infoBarQImage(\d+)', imagediv)
-        id = match.group(1)
-
-        self._items_by_id[name] = Quality(id, name, quantity)
-        self.items[name] = quantity
-
-    heading = inner_soup.find('div', class_='redesign_heading')
-    self.name = heading.h1.a.string
-    self.description = ' '.join(heading.p.stripped_strings)
-    print('{0}: {1}.'.format(self.name, self.description))
-    */
+    itemIDs = possessions.map(i => i._1 -> i._2).toMap
+    items = possessions.map(i => i._1 -> i._3).toMap.withDefaultValue(0)
+    
+    //Name and description: at the start of the /Me page in redesign_heading div
+    name = innerSoup.select("div.redesign_heading > h1 > a").first.text
+    description = innerSoup.select("div.redesign_heading > p").first.text
   }
 }

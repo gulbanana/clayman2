@@ -7,7 +7,7 @@ import com.ning.http.client._
 //synchronous cookie jar - sadly, clay men have no Future[T]
 class Session {
   private val cookies = mutable.Set[Cookie]()
-  val client = Http.configure (_ 
+  private val client = Http.configure (_ 
     setFollowRedirects(true)
     setAllowPoolingConnection(true)
     setConnectionsPool(Http.client.getConfig().getConnectionsPool())
