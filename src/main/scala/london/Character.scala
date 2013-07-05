@@ -38,11 +38,13 @@ class Character(username: String, password: String) {
     println("\"%s\"".format(parser.title))
   }
   
+  def storyAvailable(storylet: String) = parser.eventIDs.keySet.contains(storylet)
   def beginStory(storylet: String) {
     parser updateBranches http.query(site / "Storylet" / "Begin" << Map("eventid" -> parser.eventIDs(storylet).toString))
     println("\"%s\"".format(parser.title))
   }
   
+  def branchAvailable(branch: String) = parser.branchIDs.keySet.contains(branch)
   def chooseBranch(branch: String) {
     val soup = http.query(site / "Storylet" / "ChooseBranch" << Map("branchid" -> parser.branchIDs(branch).toString,
                                                                               "secondChances" -> "false"))

@@ -53,17 +53,19 @@ class Status {
 
   private val successPattern = """You succeeded in a (.+) challenge!.*""".r
   private val failurePattern = """(.+) (\d+) failed in a challenge!.*""".r
-  
-  private val qualityModPattern = """(.+) has (increased|dropped) to (\d+)!""".r
-  private val qualitySetPattern = """(.+) has been reset: a conclusion, or a new beginning?""".r
-  private val qualityClearPattern = """An occurrence! Your '(.+)' quality is now (\d+)!""".r
-  private val qualityChangingPattern = """(.+) is (increasing|decreasing)...""".r
-  private val qualityNoChangePattern = """(.+) hasn't changed, because it's higher than (\d+)""".r
-    
+
   private val itemModPattern = """You've (gained|lost) (\d+) x (.+) \(new total (\d+)\).""".r
   private val itemSetPattern = """You now have (\d+) x (.+).""".r
   private val itemSetPattern2 = """You now have (\d+) of this: '(.+)'.""".r
   private val itemClearPattern = """You no longer have any of this: '(.+)'.""".r
+  
+  private val qualityModPattern = """(.+) has (increased|dropped) to (\d+)!""".r
+  private val qualitySetPattern = """An occurrence! Your '(.+)' quality is now (\d+)!""".r
+  private val qualityClearPattern = """(.+) has been reset: a conclusion, or a new beginning?""".r
+  private val qualityChangingPattern = """(.+) is (increasing|decreasing)...""".r
+  private val qualityNoChangePattern = """(.+) hasn't changed, because it's higher than (\d+)""".r
+    
+  private val newVenturePattern = """(.+) shows your progress in the venture.""".r
   
   def updateEffects(soup: Document) = {
     val updateScript = soup.select("script")(1).data
@@ -76,17 +78,21 @@ class Status {
       println("    %s".format(effect))
         
       effect match {
-        case qualityModPattern(qname, qdir, qval) => qualities = qualities.updated(qname, qval.toInt)
-        case qualitySetPattern(qname, qval) => qualities = qualities.updated(qname, qval.toInt)
-        case qualityClearPattern(qname) => qualities = qualities.updated(qname, 0)
+        case successPattern(qname) => ()
+        case failurePattern(qname, qval) => ()
+        
         case itemModPattern(idir, imod, iname, ival) => items = items.updated(iname, ival.toInt)
         case itemSetPattern(iname, ival) => items = items.updated(iname, ival.toInt)
         case itemSetPattern2(iname, ival) => items = items.updated(iname, ival.toInt)
         case itemClearPattern(iname) => items = items.updated(iname, 0)
+        
+        case qualityModPattern(qname, qdir, qval) => qualities = qualities.updated(qname, qval.toInt)
+        case qualitySetPattern(qname, qval) => qualities = qualities.updated(qname, qval.toInt)
+        case qualityClearPattern(qname) => qualities = qualities.updated(qname, 0)
         case qualityChangingPattern(qname, qdir) => ()
         case qualityNoChangePattern(qname, qmax) => ()
-        case successPattern(qname) => ()
-        case failurePattern(qname, qval) => ()
+        
+        case newVenturePattern(qname) => qualities = qualities.updated(qname, 1)
       }
     }
   }
