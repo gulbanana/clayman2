@@ -25,6 +25,7 @@ class Status {
   var eventIDs = Map[String, Int]()
   var branchIDs = Map[String, Int]()
   var itemIDs = Map[String, Int]()
+  var equipmentIDs = Map[String, Int]()
   
   def updateLocation(area: Areas.Area) =  if (location != area) {
     location = area

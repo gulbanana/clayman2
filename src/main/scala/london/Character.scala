@@ -26,12 +26,20 @@ class Character(username: String, password: String) {
   def items = parser.items
   def qualities = parser.qualities
   
-  // MANAGE STATUS: change location
+  // MANAGE STATUS: change location, equipment
   def travel(area: Areas.Area) {
     if (parser.updateLocation(area)) {
       parser updateBranches http.query(site / "Map" / "Move" << Map("areaid" -> area.id.toString))
       println("Welcome to %s, delicious friend!".format(area.name))      
     } 
+  }
+  
+  def equip(item: String) {
+    println(http.query(site / "Me" / "AdoptThing" << Map("id" -> parser.equipmentIDs(item).toString)))
+  }
+  
+  def unequip(item: String) {
+    println(http.query(site / "Me" / "UnadoptThing" << Map("id" -> parser.equipmentIDs(item).toString)))
   }
   
   // MANAGE OPPORTUNITY DECK: draw x, discard 
