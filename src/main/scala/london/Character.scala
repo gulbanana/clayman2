@@ -26,6 +26,7 @@ class Character(username: String, password: String) {
   def items = parser.items
   def qualities = parser.qualities
   
+  // MANAGE STATUS: change location
   def travel(area: Areas.Area) {
     if (parser.updateLocation(area)) {
       parser updateBranches http.query(site / "Map" / "Move" << Map("areaid" -> area.id.toString))
@@ -33,6 +34,16 @@ class Character(username: String, password: String) {
     } 
   }
   
+  // MANAGE OPPORTUNITY DECK: draw x, discard 
+  def drawOpportunities() = ???
+  
+  def discardOpportunity(opportunity: String) = ???
+  
+  // BEGIN STORYLETS: opportunities, items, or area-based 
+  def opportunityAvailable(opportunity: String) = parser.opportunityIDs.keySet.contains(opportunity)
+  def playOpportunity(opportunity: String) = ???
+  
+  def itemAvailable(item: String) = parser.itemIDs.keySet.contains(item)
   def useItem(item: String) {
     parser updateBranches http.query(site / "Storylet" / "UseQuality" << Map("qualityId" -> parser.itemIDs(item).toString))
     println("\"%s\"".format(parser.title))
@@ -44,6 +55,7 @@ class Character(username: String, password: String) {
     println("\"%s\"".format(parser.title))
   }
   
+  // IN STORYLETS: choose a branch, onwards, or back
   def branchAvailable(branch: String) = parser.branchIDs.keySet.contains(branch)
   def chooseBranch(branch: String) {
     val soup = http.query(site / "Storylet" / "ChooseBranch" << Map("branchid" -> parser.branchIDs(branch).toString,

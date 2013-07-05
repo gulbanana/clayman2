@@ -1,6 +1,6 @@
 package london
 import collection.JavaConversions._
-import org.jsoup.nodes._
+import org.jsoup.Jsoup, org.jsoup.nodes._
 
 class Status {
   var name = ""
@@ -21,6 +21,7 @@ class Status {
   
   var title = ""
   
+  var opportunityIDs = Map[String, Int]()
   var eventIDs = Map[String, Int]()
   var branchIDs = Map[String, Int]()
   var itemIDs = Map[String, Int]()
@@ -34,6 +35,12 @@ class Status {
   
   def updateBranches(soup: Document) = {
     title = soup.select("h3").text
+    
+    opportunityIDs = (for (opportunity <- soup.select("ul#cards > li:not(.card_deck)")) yield {
+      val key = Jsoup.parseBodyFragment(opportunity.select("a.tooltip").attr("title")).select("strong").text.trim
+      val id = opportunity.select("input[type=image]").attr("onclick").drop(11).dropRight(2).toInt
+      key -> id
+    }).toMap
     
     eventIDs = (for (storylet <- soup.select("div.storylet") if storylet.children.size > 1) yield {
       val key = storylet.select(".storylet_rhs > h2").text
