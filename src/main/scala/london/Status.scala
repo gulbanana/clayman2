@@ -47,49 +47,48 @@ class Status {
       key -> id
     }).toMap    
   }
+
+  private val areaPattern = """(?s).*updatePageAfterStoryletChoice\((\d+),.*""".r
+  private val actionPattern = """(?s).*setActionsLevel\((\d+),.*""".r
+
+  private val successPattern = """You succeeded in a (.+) challenge!.*""".r
+  private val failurePattern = """(.+) (\d+) failed in a challenge!.*""".r
+  
+  private val qualityModPattern = """(.+) has (increased|dropped) to (\d+)!""".r
+  private val qualitySetPattern = """(.+) has been reset: a conclusion, or a new beginning?""".r
+  private val qualityClearPattern = """An occurrence! Your '(.+)' quality is now (\d+)!""".r
+  private val qualityChangingPattern = """(.+) is (increasing|decreasing)...""".r
+  private val qualityNoChangePattern = """(.+) hasn't changed, because it's higher than (\d+)""".r
+    
+  private val itemModPattern = """You've (gained|lost) (\d+) x (.+) \(new total (\d+)\).""".r
+  private val itemSetPattern = """You now have (\d+) x (.+).""".r
+  private val itemSetPattern2 = """You now have (\d+) of this: '(.+)'.""".r
+  private val itemClearPattern = """You no longer have any of this: '(.+)'.""".r
   
   def updateEffects(soup: Document) = {
-    /*
-        update_script = soup.find_all('script')[1].string
-        match = re.search(r'setActionsLevel\((\d+)', update_script)
-        self.actions = int(match.group(1))
+    val updateScript = soup.select("script")(1).data
+    val areaPattern(newArea) = updateScript 
+    val actionPattern(newActions) = updateScript
+    location = Areas(newArea.toInt)
+    actions = newActions.toInt
 
-        effects = soup.find('div', class_='quality_update_box').find_all('p')
-        for tag in effects:
-            content = ''.join(tag.strings)
-            if not 'You succeeded' in content:
-                print('    {0}'.format(content))
-
-            inner_match = re.match(r'(.+) has (increased|dropped) to (\d+)', content)
-            if inner_match:
-                qname, qval = inner_match.group(1,3)
-                self.qualities[qname] = int(qval)
-
-            inner_match = re.match(r'An occurrence! Your \'(.+)\' quality is now (\d+)', content)
-            if inner_match:
-                qname, qval = inner_match.group(1,2)
-                self.qualities[qname] = int(qval)
-
-            inner_match = re.match(r'(.+) has been reset', content)
-            if inner_match:
-                qname = inner_match.group(1)
-                self.qualities[qname] = 0
-
-            inner_match = re.match(r'You\'ve (gained|lost) (\d+) x (.+) \(new total (\d+)\)', content)
-            if inner_match:
-                iname, ival = inner_match.group(3,4)
-                self.items[iname] = int(ival)
-
-            inner_match = re.match(r'You now have (\d+) x (.+)', content)
-            if inner_match:
-                iname, ival = inner_match.group(2,1)
-                self.items[iname] = int(ival)
-
-            inner_match = re.match(r'You no longer have any of this: \'(.+)\'', content)
-            if inner_match:
-                iname = inner_match.group(1)
-                self.items[iname] = 0
-     */
+    for (effect <- soup.select("div.quality_update_box p").map(_.text)) {
+      println("    %s".format(effect))
+        
+      effect match {
+        case qualityModPattern(qname, qdir, qval) => qualities = qualities.updated(qname, qval.toInt)
+        case qualitySetPattern(qname, qval) => qualities = qualities.updated(qname, qval.toInt)
+        case qualityClearPattern(qname) => qualities = qualities.updated(qname, 0)
+        case itemModPattern(idir, imod, iname, ival) => items = items.updated(iname, ival.toInt)
+        case itemSetPattern(iname, ival) => items = items.updated(iname, ival.toInt)
+        case itemSetPattern2(iname, ival) => items = items.updated(iname, ival.toInt)
+        case itemClearPattern(iname) => items = items.updated(iname, 0)
+        case qualityChangingPattern(qname, qdir) => ()
+        case qualityNoChangePattern(qname, qmax) => ()
+        case successPattern(qname) => ()
+        case failurePattern(qname, qval) => ()
+      }
+    }
   }
   
   def updateStatus(outerSoup: Document, innerSoup: Document) = {

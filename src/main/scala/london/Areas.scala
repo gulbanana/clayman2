@@ -4,6 +4,7 @@ object Areas {
   case class Area(id: Int, name: String)
   
   val Lodgings = Area(2, "your Lodgings")
+  val WolfstackDocks = Area(3, "Wolfstack Docks")
   val LadybonesRoad = Area(4, "Ladybones Road")
   val WatchmakersHill = Area(5, "Watchmaker's Hill")
   val Veilgarden = Area(6, "Veilgarden")
@@ -17,6 +18,7 @@ object Areas {
   
   private val byID = Map(
     2 -> Lodgings,
+    3 -> WolfstackDocks,
     4 -> LadybonesRoad,
     5 -> WatchmakersHill,
     6 -> Veilgarden,

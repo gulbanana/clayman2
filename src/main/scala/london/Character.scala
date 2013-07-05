@@ -44,9 +44,10 @@ class Character(username: String, password: String) {
   }
   
   def chooseBranch(branch: String) {
-    parser updateEffects http.query(site / "Storylet" / "ChooseBranch" << Map("branchid" -> parser.branchIDs(branch).toString,
+    val soup = http.query(site / "Storylet" / "ChooseBranch" << Map("branchid" -> parser.branchIDs(branch).toString,
                                                                               "secondChances" -> "false"))
-    println("--> %s".format(parser.title))
+    println("--> %s".format(branch))
+    parser updateEffects soup
   }
   
   def chooseBranch() {
