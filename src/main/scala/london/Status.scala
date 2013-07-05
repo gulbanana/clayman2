@@ -101,7 +101,6 @@ class Status {
       var level = outerSoup.select("span#infoBarQLevel"+id).text
       var bonus = outerSoup.select("span#infoBarBonusPenalty"+id).text
       
-      println(bonus)
       if (bonus != "")
         level.toInt + bonus.toInt
       else

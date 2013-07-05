@@ -6,7 +6,7 @@ package object common {
     f(c)
   }
   
-  def with_buffer(f: => Unit)(implicit c: Character) {
+  def repeat(f: => Unit)(implicit c: Character) {
     val buffer = c.actionCap - 4
     while (c.actions > buffer)
       f
