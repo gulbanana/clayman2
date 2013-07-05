@@ -6,7 +6,5 @@ trait Job {
 
 trait OneManJob extends Job {
   def apply(implicit c: london.Character)
-  def apply() {
-    common.with_character(apply(_))
-  }
+  def apply() = common.with_character(apply(_))
 }

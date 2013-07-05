@@ -29,18 +29,18 @@ class Character(username: String, password: String) {
   
   def useItem(item: String) {
     parser updateBranches http.query(site / "Storylet" / "UseQuality" << Map("qualityId" -> parser.itemIDs(item).toString))
-    println("'%s'".format(parser.title))
+    println("\"%s\"".format(parser.title))
   }
   
   def beginStory(storylet: String) {
     parser updateBranches http.query(site / "Storylet" / "Begin" << Map("eventid" -> parser.eventIDs(storylet).toString))
-    println("'%s'".format(parser.title))
+    println("\"%s\"".format(parser.title))
   }
   
   def chooseBranch(branch: String) {
     parser updateEffects http.query(site / "Storylet" / "ChooseBranch" << Map("branchid" -> parser.branchIDs(branch).toString,
                                                                               "secondChances" -> "false"))
-    println("--> '%s'".format(parser.title))
+    println("--> %s".format(parser.title))
   }
   
   def chooseBranch() {

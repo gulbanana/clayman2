@@ -1,10 +1,7 @@
 import london._
 
 package object common {
-  def with_character(f: Character => Unit) {
-    val c = new Character(settings.Username, settings.Password)
-    f(c)
-  }
+  def with_character(f: Character => Unit) = f(new Character(settings.Username, settings.Password))
   
   def repeat(f: => Unit)(implicit c: Character) {
     val buffer = c.actionCap - 4

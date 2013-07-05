@@ -1,9 +1,14 @@
 package jobs
-import london.Character
+import london._
+import common._
 
-//this job does nothing but log in, as a test
+//just a test job
 object login extends OneManJob {
   def apply(implicit c: Character) {
+    println("%d actions available.".format(c.actions))
+    
+    grind.palace_wines()
+    
     println("%d actions available.".format(c.actions))
   }
 }

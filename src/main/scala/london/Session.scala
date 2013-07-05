@@ -7,12 +7,17 @@ import com.ning.http.client._
 //synchronous cookie jar - sadly, clay men have no Future[T]
 class Session {
   private val cookies = mutable.Set[Cookie]()
+  val client = Http.configure (_ 
+    setFollowRedirects(true)
+    setAllowPoolingConnection(true)
+    setConnectionsPool(Http.client.getConfig().getConnectionsPool())
+  )
   
   def command(builder: RequestBuilder) {
     for(cookie <- cookies)
       builder.addCookie(cookie)
       
-    val request = Http(builder)
+    val request = Http(builder) //don't follow redirects here, because we need the cookie
     
     val response = request()
     for (cookie <- response.getCookies())
@@ -22,7 +27,7 @@ class Session {
   def query(builder: RequestBuilder) = {
     for(cookie <- cookies)
       builder.addCookie(cookie)
-    val request = Http.configure(_ setFollowRedirects(true))(builder OK as.jsoup.Document)
+    val request = client(builder OK as.jsoup.Document)
     
     request()
   }
