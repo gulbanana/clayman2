@@ -111,6 +111,8 @@ class Status {
         case newVenturePattern(qname) => qualities = qualities.updated(qname, 1)
         
         case travelPattern(aname) => () //XXX make this do a thing - but maybe unnecessary, b/c of javascript
+        
+        case unknown:String => println("Effect NOT MATCHED: " + unknown)
       }
     }
   }
