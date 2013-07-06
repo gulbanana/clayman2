@@ -75,7 +75,7 @@ class Status {
   private val qualityModPattern2 = """(.+) has (increased|dropped) to (\d+) - (.+)!""".r
   private val qualitySetPattern = """An occurrence! Your '(.+)' quality is now (\d+)!""".r
   private val qualityClearPattern = """(.+) has been reset: a conclusion, or a new beginning?""".r
-  private val qualityChangingPattern = """(.+) is (increasing|decreasing)...""".r
+  private val qualityChangingPattern = """(.+) is (increasing|dropping)...""".r
   private val qualityNoChangePattern = """(.+) hasn't changed, because it's higher than (\d+)""".r
     
   private val newVenturePattern = """(.+) shows your progress in the venture.""".r
