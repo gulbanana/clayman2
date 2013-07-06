@@ -4,8 +4,8 @@ import scala.collection.JavaConversions._
 import dispatch._, Defaults._
 import com.ning.http.client._
 
-//synchronous cookie jar - sadly, clay men have no Future[T]
-class Session {
+//synchronous - sadly, clay men have no Future[T]
+class Session(cookieJar: String) {
   private val cookies = mutable.Set[Cookie]()
   private val client = Http.configure (_ 
     setFollowRedirects(true)

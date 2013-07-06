@@ -3,18 +3,24 @@ import dispatch._, Defaults._
 
 class Character(username: String, password: String) {
   private def site = url("http://fallenlondon.storynexus.com")
-  private val http = new Session()
+  private val http = new Session(username)
   private val parser = new Status()
   
-  http.command(site / "Auth" / "EmailLogin" << Map("emailAddress" -> username, "password" -> password))
-  println("Entered the Neath.")
+  //Attempt to reuse a cookied session
+  private var loginSoup = http.query(site / "Gap" / "Load" <<? Map("content" -> "/Me"))
+  if (loginSoup.select("div#mainContentViaAjax").size != 1) {
+    http.command(site / "Auth" / "EmailLogin" << Map("emailAddress" -> username, "password" -> password))
+    println("Entered the Neath.")
+    loginSoup = http.query(site / "Gap" / "Load" <<? Map("content" -> "/Me"))
+  }
   
-  parser updateStatus(http.query(site / "Gap" / "Load" <<? Map("content" -> "/Me")), http.query(site / "Me"))
+  parser updateStatus(loginSoup, http.query(site / "Me"))
   println("%s: %s.".format(parser.name, parser.description))
   
   parser updateBranches http.query(site / "Storylet" / "In")
   println("Welcome to %s, delicious friend!".format(location.name))
   
+  //Public API
   def name = parser.name
   def actions = parser.actions
   def actionCap = parser.actionCap
