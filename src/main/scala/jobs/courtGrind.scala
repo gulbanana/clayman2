@@ -5,8 +5,35 @@ import common._
 //hang around the court grinding
 object courtGrind extends OneManJob {
   def apply(implicit c: Character) = repeat {
+    wearCourtOutfit(c)
+    
+    if (c.location != Areas.Court)
+      getToCourt(c)
+    else
+      atCourt(c)
+  }
+  
+  private def wearCourtOutfit(implicit c: Character) {
+    
+  }
+  
+  private def getToCourt(implicit c: Character) {
+    if (c.qualities("Connected: the Duchess") < 10)
+      connected.the_duchess()
+      
+    else {
+      c.travel(Areas.ShutteredPalace)
+      c.beginStorylet("Spend a few days at Court")
+      c.chooseBranch("A word from the Duchess")
+    }
+  }
+  
+  private def atCourt(implicit c: Character) {
+    if (opportunities.can_act())
+      opportunities.act_once()
+      
     //use up Fascinating, if available
-    if (c.qualities("Scandal") > 0 && c.qualities("Fascinating...") >= 4)
+    else if (c.qualities("Scandal") > 0 && c.qualities("Fascinating...") >= 4)
       court.fix_scandal()
     else if (c.qualities("Wounds") > 0 && c.qualities("Fascinating...") >= 5)
       court.fix_wounds()

@@ -72,12 +72,15 @@ class Status {
   private val itemClearPattern = """You no longer have any of this: '(.+)'.""".r
   
   private val qualityModPattern = """(.+) has (increased|dropped) to (\d+)!""".r
+  private val qualityModPattern2 = """(.+) has (increased|dropped) to (\d+) - (.+)!""".r
   private val qualitySetPattern = """An occurrence! Your '(.+)' quality is now (\d+)!""".r
   private val qualityClearPattern = """(.+) has been reset: a conclusion, or a new beginning?""".r
   private val qualityChangingPattern = """(.+) is (increasing|decreasing)...""".r
   private val qualityNoChangePattern = """(.+) hasn't changed, because it's higher than (\d+)""".r
     
   private val newVenturePattern = """(.+) shows your progress in the venture.""".r
+  
+  private val travelPattern = """You have moved to a new area: (.+)""".r
   
   def updateEffects(soup: Document) = {
     val updateScript = soup.select("script")(1).data
@@ -99,12 +102,15 @@ class Status {
         case itemClearPattern(iname) => items = items.updated(iname, 0)
         
         case qualityModPattern(qname, qdir, qval) => qualities = qualities.updated(qname, qval.toInt)
+        case qualityModPattern2(qname, qdir, qval, qdesc) => qualities = qualities.updated(qname, qval.toInt)
         case qualitySetPattern(qname, qval) => qualities = qualities.updated(qname, qval.toInt)
         case qualityClearPattern(qname) => qualities = qualities.updated(qname, 0)
         case qualityChangingPattern(qname, qdir) => ()
         case qualityNoChangePattern(qname, qmax) => ()
         
         case newVenturePattern(qname) => qualities = qualities.updated(qname, 1)
+        
+        case travelPattern(aname) => () //XXX make this do a thing - but maybe unnecessary, b/c of javascript
       }
     }
   }
@@ -127,7 +133,7 @@ class Status {
       var bonus = outerSoup.select("span#infoBarBonusPenalty"+id).text
       
       if (bonus != "")
-        level.toInt + bonus.toInt
+        level.toInt + bonus.replace("+", "").toInt
       else
         level.toInt
     }
