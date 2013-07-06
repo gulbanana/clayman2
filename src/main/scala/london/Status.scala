@@ -45,7 +45,7 @@ class Status {
   def updateBranches(soup: Document) = {
     title = soup.select("h3").text
     
-    eventIDs = (for (storylet <- soup.select("div.storylet") if storylet.children.size > 1) yield {
+    eventIDs = (for (storylet <- soup.select("div.storylet") if storylet.children.size > 1 && storylet.select("input").size > 0) yield {
       val key = storylet.select(".storylet_rhs > h2").text
       val id = storylet.select("input").attr("onclick").drop(11).dropRight(2).toInt
       key -> id
@@ -74,13 +74,17 @@ class Status {
   private val qualityModPattern = """(.+) has (increased|dropped) to (\d+)!""".r
   private val qualityModPattern2 = """(.+) has (increased|dropped) to (\d+) - (.+)!""".r
   private val qualitySetPattern = """An occurrence! Your '(.+)' quality is now (\d+)!""".r
-  private val qualityClearPattern = """(.+) has been reset: a conclusion, or a new beginning?""".r
+  private val qualityClearPattern = """You've lost a quality: (.+).""".r
   private val qualityChangingPattern = """(.+) is (increasing|dropping)...""".r
   private val qualityNoChangePattern = """(.+) hasn't changed, because it's higher than (\d+)""".r
     
-  private val newVenturePattern = """(.+) shows your progress in the venture.""".r
+  private val beginVenturePattern = """(.+) shows your progress in the venture.""".r
+  private val endVenturePattern = """(.+) has been reset: a conclusion, or a new beginning?""".r
   
   private val travelPattern = """You have moved to a new area: (.+)""".r
+  
+  //ways of the neath:
+  //A bat zips past, not far overhead.
   
   def updateEffects(soup: Document) = {
     val updateScript = soup.select("script")(1).data
@@ -108,7 +112,8 @@ class Status {
         case qualityChangingPattern(qname, qdir) => ()
         case qualityNoChangePattern(qname, qmax) => ()
         
-        case newVenturePattern(qname) => qualities = qualities.updated(qname, 1)
+        case beginVenturePattern(qname) => qualities = qualities.updated(qname, 1)
+        case endVenturePattern(qname) => qualities = qualities.updated(qname, 0)
         
         case travelPattern(aname) => () //XXX make this do a thing - but maybe unnecessary, b/c of javascript
         
