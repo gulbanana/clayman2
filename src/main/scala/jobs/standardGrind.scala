@@ -4,7 +4,11 @@ import common._
 
 object standardGrind extends OneManJob {
   def apply(implicit c: Character) = repeat {
-    grind.quarter_jade()
+    if (opportunities.can_act())
+      opportunities.act_once()
+      
+    else
+      grind.quarter_jade()
   }
   
 /*

@@ -2,11 +2,63 @@ package common
 import london._
 
 object opportunities {
-  //Help a spy distract an inconvenient tail //discard- best reward is 36 jade
-      //discard: Undertakings
-    //discard: The notable citizen //max reward is 83 whispered secrets, not good enough
-  //discard: A meeting of cats  //max reward is 24 clues
+  //auto-discard these, unless they are playable
+  private val blacklist = Set(
+    //useless if they aren't useful
+    "Pass the Cat: a wriggling delivery", //the only benefit is -scandal, which i might not need
+    "Wanted: Reminders of Brighter Days", //it's not worth keeping around on the off-chance of saving an action
+      
+    //always useless
+    "Help a spy distract an inconvenient tail", //best reward is 36 jade
+    "A meeting of cats", //best reward is 24 clues
+    "The notable citizen", //best reward is 83 whispered secrets and it can't be made scandal-safe
+    "Shroom-hopping: a quaint sport of the lower classes", //best reward is 18 '82
+    "What profit?" //i don't want to sell my soul! at least not cheaply
+  )
   
-  def can_act()(implicit c: Character) = false
-  def act_once()(implicit c: Character) = ???
+  //auto-play these if conditions are met
+  private val playlist = Map[String, Character=>Boolean](
+    "Pass the Cat: a wriggling delivery" -> {c => c.qualities("Scandal") > 0},
+    "Wanted: Reminders of Brighter Days" -> {c => c.items("Incendiary Gossip") >= 25},
+    "Altars and alms-houses: the Church" -> {c => c.qualities("Connected: The Church") >= 20 || c.items("Rostygold") >= 10}
+  ).withDefaultValue {c:Character => false}
+  
+  private val takeAdvantage = Map[String, Character=>Unit](
+    "Pass the Cat: a wriggling delivery" -> { c => 
+      c.chooseBranch("An elaborate strategy")
+      c.onwards()
+    },
+    "Wanted: Reminders of Brighter Days" -> { c => 
+      c.chooseBranch("The tiniest of classified advertisements")
+      c.onwards()
+    },
+    "Altars and alms-houses: the Church" -> { c =>
+      if (c.qualities("Connected: The Church") >= 20)
+        c.chooseBranch("Attend a private lecture given by the Bishop of Southwark")
+      else 
+        c.chooseBranch("Attend a church fête on the south bank of the River")
+      c.onwards()
+    }
+  )
+  
+  //grind through discards as far as possible, then return whether any are playable
+  def can_act()(implicit c: Character) = {
+    do {
+      if (c.opportunities.size < 3)
+        c.drawOpportunities()
+      for (opportunity <- c.opportunities if (!playlist(opportunity)(c) && blacklist.contains(opportunity)))
+        c.discardOpportunity(opportunity)
+    } while(c.opportunities.size < 3)
+      
+    c.opportunities.map(playlist(_)(c)).reduce(_ || _)
+  }
+
+  //play one of the playable, then grind through discards again
+  def act_once()(implicit c: Character) {
+    val opportunity = c.opportunities.filter(playlist(_)(c)).head
+    c.playOpportunity(opportunity)
+    takeAdvantage(opportunity)(c)
+    
+    can_act()
+  }
 }

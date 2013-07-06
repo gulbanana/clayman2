@@ -5,19 +5,17 @@ import common._
 //hang around the court grinding
 object courtGrind extends OneManJob {
   def apply(implicit c: Character) = repeat {
-    wearCourtOutfit(c)
-    
-    if (c.location != Areas.Court)
+    if (opportunities.can_act())
+      opportunities.act_once()
+    else if (c.location != Areas.Court)
       getToCourt(c)
     else
       atCourt(c)
   }
   
-  private def wearCourtOutfit(implicit c: Character) {
-    
-  }
-  
   private def getToCourt(implicit c: Character) {
+    wearCourtOutfit(c)
+    
     if (c.qualities("Connected: the Duchess") < 10)
       connected.the_duchess()
       
@@ -29,11 +27,10 @@ object courtGrind extends OneManJob {
   }
   
   private def atCourt(implicit c: Character) {
-    if (opportunities.can_act())
-      opportunities.act_once()
-      
+    wearCourtOutfit(c)
+    
     //use up Fascinating, if available
-    else if (c.qualities("Scandal") > 0 && c.qualities("Fascinating...") >= 4)
+    if (c.qualities("Scandal") > 0 && c.qualities("Fascinating...") >= 4)
       court.fix_scandal()
     else if (c.qualities("Wounds") > 0 && c.qualities("Fascinating...") >= 5)
       court.fix_wounds()
@@ -53,5 +50,9 @@ object courtGrind extends OneManJob {
     //safe money fallback
     else
       court.grind_jade()
+  }
+  
+  private def wearCourtOutfit(implicit c: Character) {
+    
   }
 }
