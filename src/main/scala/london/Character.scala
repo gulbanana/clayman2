@@ -19,12 +19,16 @@ class Character(username: String, password: String) {
   def actions = parser.actions
   def actionCap = parser.actionCap
   def location = parser.location
+  
   def watchful = parser.watchful
   def shadowy = parser.shadowy
   def dangerous = parser.dangerous
   def persuasive = parser.persuasive
+  
   def items = parser.items
   def qualities = parser.qualities
+  def opportunities = parser.opportunityIDs.keySet
+  def storylets = parser.eventIDs.keySet
   
   // MANAGE STATUS: change location, equipment
   def travel(area: Areas.Area) {
@@ -53,7 +57,6 @@ class Character(username: String, password: String) {
   }
   
   // BEGIN STORYLETS: opportunities, items, or area-based 
-  def opportunities = parser.opportunityIDs.keySet
   def playOpportunity(opportunity: String) {
     parser updateBranches http.query(site / "Storylet" / "Begin" << Map("eventid" -> parser.opportunityIDs(opportunity).toString))
     println("\"%s\"".format(parser.title))
@@ -64,7 +67,7 @@ class Character(username: String, password: String) {
     println("\"%s\"".format(parser.title))
   }
   
-  def storylets = parser.eventIDs.keySet
+  
   def beginStorylet(storylet: String) {
     parser updateBranches http.query(site / "Storylet" / "Begin" << Map("eventid" -> parser.eventIDs(storylet).toString))
     println("\"%s\"".format(parser.title))
