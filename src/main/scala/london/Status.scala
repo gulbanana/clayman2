@@ -2,6 +2,8 @@ package london
 import collection.JavaConversions._
 import org.jsoup.Jsoup, org.jsoup.nodes._
 
+case class Item(id: Int, name: String, quantity: Int)
+
 class Status {
   var name = ""
   var description = ""
@@ -9,15 +11,17 @@ class Status {
   var actions = 0
   var actionCap = 10
   
-  var location:Areas.Area = null
+  var location:Area = null
   
   var watchful = 0
   var shadowy = 0
   var dangerous = 0
   var persuasive = 0
   
-  var items = Map[String, Int]()
   var qualities = Map[String, Int]()
+  var items = Map[String, Int]()
+  var equipped = Seq[Item]()
+  var unequipped = Seq[Item]()
   
   var title = ""
   
@@ -25,7 +29,6 @@ class Status {
   var eventIDs = Map[String, Int]()
   var branchIDs = Map[String, Int]()
   var itemIDs = Map[String, Int]()
-  var equipmentIDs = Map[String, Int]()
 
   private val areaPattern = """(?s).*updatePageAfterStoryletChoice\((\d+),.*""".r
   private val actionPattern = """(?s).*setActionsLevel\((\d+),.*""".r
@@ -101,21 +104,15 @@ class Status {
     val areaPattern(areaID) = outerSoup.select("div#currentAreaSection > script").first.data
     location = Areas(areaID.toInt)
     
-    //Main stats: outer HTML, in a set of span pairs
-    def getStat(id: Int) = {
-      var level = outerSoup.select("span#infoBarQLevel"+id).text
-      var bonus = outerSoup.select("span#infoBarBonusPenalty"+id).text
-      
-      if (bonus != "")
-        level.toInt + bonus.replace("+", "").toInt
-      else
-        level.toInt
-    }
+    //Main stats: outer HTML, in a set of span pairs  
+    watchful = extractStat(outerSoup, 209)
+    shadowy = extractStat(outerSoup, 210)
+    dangerous = extractStat(outerSoup, 211)
+    persuasive = extractStat(outerSoup, 212)
     
-    watchful = getStat(209)
-    shadowy = getStat(210)
-    dangerous = getStat(211)
-    persuasive = getStat(212)
+    //Name and description: at the start of the /Me page in redesign_heading div
+    name = innerSoup.select("div.redesign_heading > h1 > a").first.text
+    description = innerSoup.select("div.redesign_heading > p").first.text
     
     //Non-item qualities: <strong> tags in you_bottom_lhs div
     val qualityPattern = """(.*) (\d+) .*""".r
@@ -124,24 +121,21 @@ class Status {
       name -> quantity.toInt
     }).toMap.withDefaultValue(0)
     
-    //Carried item qualities: the link-containing slots of you_bottom_rhs div
-    val tooltipPattern = """<strong>(\d+) x (.*?)<.*""".r
-    val imagePattern = """infoBarQImage(\d*)""".r
-    val possessions = for (item <- innerSoup.select("div.you_bottom_rhs li > a.tooltip")) yield {
-      val tooltipPattern(quantity, name) = item.attr("title") 
-      val imagePattern(id) = item.select("div").last.attr("id")
-      (name, id.toInt, quantity.toInt)
-    }
-
-    itemIDs = possessions.map(i => i._1 -> i._2).toMap
-    items = possessions.map(i => i._1 -> i._3).toMap.withDefaultValue(0)
+    //item qualities: the link-containing slots in various divs 
+    updateEquipment(innerSoup) //used standalone for tracking
+    val carried = extractItems(innerSoup.select("div.you_bottom_rhs li > a.tooltip"))
+    val possessions = carried ++ unequipped ++ equipped
     
-    //Name and description: at the start of the /Me page in redesign_heading div
-    name = innerSoup.select("div.redesign_heading > h1 > a").first.text
-    description = innerSoup.select("div.redesign_heading > p").first.text
+    itemIDs = possessions.map(i => i.name -> i.id).toMap
+    items = possessions.map(i => i.name -> i.quantity).toMap.withDefaultValue(0)
   }
   
-  def updateLocation(area: Areas.Area) =  if (location != area) {
+  def updateEquipment(soup: Document) {
+    unequipped = extractItems(soup.select("div.you_mid_rhs li > a.tooltip"))
+    equipped = extractItems(soup.select("div.you_mid_mid li > a.tooltip"))
+  }
+  
+  def updateLocation(area: Area) =  if (location != area) {
     location = area
     true
   } else {
@@ -159,7 +153,7 @@ class Status {
   def updateBranches(soup: Document) = {
     title = soup.select("h3").text
     
-    eventIDs = (for (storylet <- soup.select("div.storylet") if storylet.children.size > 1 && storylet.select("input").size > 0) yield {
+    eventIDs = (for (storylet <- soup.select("div.storylet") if storylet.children.size > 1 && !storylet.select("input").isEmpty) yield {
       val key = storylet.select(".storylet_rhs > h2").text
       val id = storylet.select("input").attr("onclick").drop(11).dropRight(2).toInt
       try {
@@ -176,5 +170,23 @@ class Status {
     }).toMap    
     
     updateOpportunities(soup)
+  }
+  
+  val tooltipPattern = """<strong>(\d+) x (.*?)<.*""".r
+  val imagePattern = """infoBarQImage(\d*)""".r
+  private def extractItems(elements: Seq[Element]) = for (item <- elements) yield {
+    val tooltipPattern(quantity, name) = item.attr("title") 
+    val imagePattern(id) = item.select("div").last.attr("id")
+    Item(id.toInt, name, quantity.toInt)
+  }
+  
+  private def extractStat(soup: Document, id: Int) = {
+    var level = soup.select("span#infoBarQLevel"+id).text
+    var bonus = soup.select("span#infoBarBonusPenalty"+id).text
+    
+    if (bonus != "")
+      level.toInt + bonus.replace("+", "").toInt
+    else
+      level.toInt
   }
 }

@@ -8,9 +8,9 @@ class Character(username: String, password: String) {
   
   //Attempt to reuse a cookied session
   private var loginSoup = http.query(site / "Gap" / "Load" <<? Map("content" -> "/Me"))
-  if (loginSoup.select("div#mainContentViaAjax").size != 1) {
+  if (loginSoup.select("div#mainContentViaAjax").isEmpty) {
     http.command(site / "Auth" / "EmailLogin" << Map("emailAddress" -> username, "password" -> password))
-    println("Entered the Neath.")
+    println("Logged in.")
     loginSoup = http.query(site / "Gap" / "Load" <<? Map("content" -> "/Me"))
   }
   
@@ -37,19 +37,19 @@ class Character(username: String, password: String) {
   def storylets = parser.eventIDs.keySet
   
   // MANAGE STATUS: change location, equipment
-  def travel(area: Areas.Area) {
-    if (parser.updateLocation(area)) {
-      parser updateBranches http.query(site / "Map" / "Move" << Map("areaid" -> area.id.toString))
-      println("Welcome to %s, delicious friend!".format(area.name))      
-    } 
+  def travel(area: Area) = if (parser.updateLocation(area)) {
+    parser updateBranches http.query(site / "Map" / "Move" << Map("areaid" -> area.id.toString))
+    println("Welcome to %s, delicious friend!".format(area.name))      
   }
   
-  def equip(item: String) {
-    println(http.query(site / "Me" / "AdoptThing" << Map("id" -> parser.equipmentIDs(item).toString)))
+  def equip(item: String) = if (parser.unequipped.exists(_.name==item)) {
+    parser updateEquipment http.query(site / "Me" / "AdoptThing" << Map("id" -> parser.itemIDs(item).toString))    
+    println("Equipped %s.".format(item))
   }
   
-  def unequip(item: String) {
-    println(http.query(site / "Me" / "UnadoptThing" << Map("id" -> parser.equipmentIDs(item).toString)))
+  def unequip(item: String) = if (parser.equipped.exists(_.name==item)) {
+    parser updateEquipment http.query(site / "Me" / "UnadoptThing" << Map("id" -> parser.itemIDs(item).toString))
+    println("Unequipped %s.".format(item))
   }
   
   // MANAGE OPPORTUNITY DECK: draw x, discard 
@@ -89,7 +89,7 @@ class Character(username: String, password: String) {
   }
   
   def chooseBranch() {
-    if (parser.branchIDs.size != 1) throw new Exception("More than one branch is available")
+    if (parser.branchIDs.size != 1) throw new Exception("Requires exactly one branch. There are %d branches available.".format(parser.branchIDs.size))
     chooseBranch(parser.branchIDs.head._1)
   }
   

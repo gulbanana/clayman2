@@ -14,7 +14,7 @@ object courtGrind extends OneManJob {
   }
   
   private def getToCourt(implicit c: Character) {
-    wearCourtOutfit(c)
+    gear.persuasive()
     
     if (c.qualities("Connected: the Duchess") < 10)
       connected.the_duchess()
@@ -28,7 +28,7 @@ object courtGrind extends OneManJob {
   }
   
   private def atCourt(implicit c: Character) {
-    wearCourtOutfit(c)
+    gear.persuasive()
     
     //use up Fascinating, if available
     if (c.qualities("Scandal") > 0 && c.qualities("Fascinating...") >= 4)

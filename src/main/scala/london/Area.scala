@@ -1,8 +1,8 @@
 package london
 
+case class Area(id: Int, name: String)
+
 object Areas {
-  case class Area(id: Int, name: String)
-  
   val Lodgings = Area(2, "your Lodgings")
   val WolfstackDocks = Area(3, "Wolfstack Docks")
   val LadybonesRoad = Area(4, "Ladybones Road")

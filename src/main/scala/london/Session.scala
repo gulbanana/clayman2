@@ -20,7 +20,7 @@ class Session(cookieTin: String) {
   private val tin = Paths.get("%s.tin".format(cookieTin))
   private val cookies = loadCookies().getOrElse(mutable.Set[Cookie]())
   
-  private def saveCookies(cs: Iterable[Cookie]) = {
+  private def saveCookies(cs: Iterable[Cookie]) {
     Files.deleteIfExists(tin)
     
     val writer = new ObjectOutputStream(new FileOutputStream(tin.toFile()))

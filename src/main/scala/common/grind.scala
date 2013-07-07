@@ -39,21 +39,27 @@ object grind {
     c.onwards()
   } 
   
-  //XXX there are better wolfstack storylets, these are just the kindofsafe ones for dangerous 69
-  
-  //+65 glim (0.65E)
+  //+70 glim (0.70E)
   def wolfstack_glim()(implicit c: Character) {
     c.travel(Areas.WolfstackDocks)
-    c.beginStorylet("Intercept a shipment of Clay Men")
-    c.chooseBranch("Scuttle the boat")
+    c.beginStorylet("A ship in the night")
+    c.chooseBranch()
     c.onwards()
   }
   
-  //+65 glim (0.65E)
+  //+65 silk (0.65E)
   def wolfstack_silk()(implicit c: Character) {
     c.travel(Areas.WolfstackDocks)
     c.beginStorylet("Eyes and spiders")
     c.chooseBranch("Wait for a scream and pursue")
+    c.onwards()
+  }
+  
+  //+42 silk, 14 clues (0.70E)
+  def wolfstack_silk_clues()(implicit c: Character) {
+    c.travel(Areas.WolfstackDocks)
+    c.beginStorylet("The spiders' crypt")
+    c.chooseBranch("Laughing in the fangs of fear")
     c.onwards()
   }
   
