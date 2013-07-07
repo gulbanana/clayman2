@@ -26,43 +26,6 @@ class Status {
   var branchIDs = Map[String, Int]()
   var itemIDs = Map[String, Int]()
   var equipmentIDs = Map[String, Int]()
-  
-  def updateLocation(area: Areas.Area) =  if (location != area) {
-    location = area
-    true
-  } else {
-    false
-  }
-  
-  def updateOpportunities(soup: Document) = {
-    opportunityIDs = (for (opportunity <- soup.select("ul#cards > li:not(.card_deck) a")) yield {
-      val key = Jsoup.parseBodyFragment(opportunity.attr("title")).select("strong").text.trim
-      val id = opportunity.select("input[type=image]").attr("onclick").drop(11).dropRight(2).toInt
-      key -> id
-    }).toMap
-  }
-  
-  def updateBranches(soup: Document) = {
-    title = soup.select("h3").text
-    
-    eventIDs = (for (storylet <- soup.select("div.storylet") if storylet.children.size > 1 && storylet.select("input").size > 0) yield {
-      val key = storylet.select(".storylet_rhs > h2").text
-      val id = storylet.select("input").attr("onclick").drop(11).dropRight(2).toInt
-      try {
-        key -> id
-      } catch {
-        case e:Throwable => println("at time of exception, storylet soup: ", storylet); throw e
-      }
-    }).toMap
-    
-    branchIDs = (for (branch <- soup.select("div.storylet > form")) yield {
-      val key = branch.select(".storylet_rhs > h5").text
-      val id = branch.attr("onsubmit").drop(64).split(',').head.toInt
-      key -> id
-    }).toMap    
-    
-    updateOpportunities(soup)
-  }
 
   private val areaPattern = """(?s).*updatePageAfterStoryletChoice\((\d+),.*""".r
   private val actionPattern = """(?s).*setActionsLevel\((\d+),.*""".r
@@ -176,5 +139,42 @@ class Status {
     //Name and description: at the start of the /Me page in redesign_heading div
     name = innerSoup.select("div.redesign_heading > h1 > a").first.text
     description = innerSoup.select("div.redesign_heading > p").first.text
+  }
+  
+  def updateLocation(area: Areas.Area) =  if (location != area) {
+    location = area
+    true
+  } else {
+    false
+  }
+  
+  def updateOpportunities(soup: Document) = {
+    opportunityIDs = (for (opportunity <- soup.select("ul#cards > li:not(.card_deck) a")) yield {
+      val key = Jsoup.parseBodyFragment(opportunity.attr("title")).select("strong").text.trim
+      val id = opportunity.select("input[type=image]").attr("onclick").drop(11).dropRight(2).toInt
+      key -> id
+    }).toMap
+  }
+  
+  def updateBranches(soup: Document) = {
+    title = soup.select("h3").text
+    
+    eventIDs = (for (storylet <- soup.select("div.storylet") if storylet.children.size > 1 && storylet.select("input").size > 0) yield {
+      val key = storylet.select(".storylet_rhs > h2").text
+      val id = storylet.select("input").attr("onclick").drop(11).dropRight(2).toInt
+      try {
+        key -> id
+      } catch {
+        case e:Throwable => println("at time of exception, storylet soup: ", storylet); throw e
+      }
+    }).toMap
+    
+    branchIDs = (for (branch <- soup.select("div.storylet > form")) yield {
+      val key = branch.select(".storylet_rhs > h5").text
+      val id = branch.attr("onsubmit").drop(64).split(',').head.toInt
+      key -> id
+    }).toMap    
+    
+    updateOpportunities(soup)
   }
 }
