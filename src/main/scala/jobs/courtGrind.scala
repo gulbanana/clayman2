@@ -23,6 +23,7 @@ object courtGrind extends OneManJob {
       c.travel(Areas.ShutteredPalace)
       c.beginStorylet("Spend a few days at Court")
       c.chooseBranch("A word from the Duchess")
+      c.onwards()
     }
   }
   

@@ -49,6 +49,7 @@ object court {
     } else {
       c.beginStorylet("Disporting with the servantry")
       c.chooseBranch("Catch the eye of a butler")
+      c.onwards()
     }
   }
   
@@ -59,6 +60,7 @@ object court {
     } else {
       c.beginStorylet("Disporting with the servantry")
       c.chooseBranch("Make overtures to a cook")
+      c.onwards()
     }
   }
 }
