@@ -45,12 +45,12 @@ class Character(username: String, password: String) {
   
   def equip(item: String) = if (parser.unequipped.exists(_.name==item)) {
     parser updateEquipment http.query(site / "Me" / "AdoptThing" << Map("id" -> parser.itemIDs(item).toString))    
-    println("Equipped %s.".format(item))
+    println("Equipped [%s].".format(item))
   }
   
   def unequip(item: String) = if (parser.equipped.exists(_.name==item)) {
     parser updateEquipment http.query(site / "Me" / "UnadoptThing" << Map("id" -> parser.itemIDs(item).toString))
-    println("Unequipped %s.".format(item))
+    println("Unequipped [%s].".format(item))
   }
   
   // MANAGE OPPORTUNITY DECK: draw x, discard 
