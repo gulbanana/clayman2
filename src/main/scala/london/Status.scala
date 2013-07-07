@@ -48,7 +48,11 @@ class Status {
     eventIDs = (for (storylet <- soup.select("div.storylet") if storylet.children.size > 1 && storylet.select("input").size > 0) yield {
       val key = storylet.select(".storylet_rhs > h2").text
       val id = storylet.select("input").attr("onclick").drop(11).dropRight(2).toInt
-      key -> id
+      try {
+        key -> id
+      } catch {
+        case e => println("at time of exception, storylet soup: ", storylet); throw e
+      }
     }).toMap
     
     branchIDs = (for (branch <- soup.select("div.storylet > form")) yield {
