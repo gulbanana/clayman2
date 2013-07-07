@@ -9,11 +9,13 @@ object opportunities {
     "Wanted: Reminders of Brighter Days", //it's not worth keeping around on the off-chance of saving an action
       
     //always useless
-    "Help a spy distract an inconvenient tail", //best reward is 36 jade
-    "A meeting of cats", //best reward is 24 clues
-    "The notable citizen", //best reward is 83 whispered secrets and it can't be made scandal-safe
-    "Shroom-hopping: a quaint sport of the lower classes", //best reward is 18 '82
-    "What profit?" //i don't want to sell my soul! at least not cheaply
+    "Help a spy distract an inconvenient tail",             //best reward is 36 jade
+    "A meeting of cats",                                    //best reward is 24 clues
+    "The notable citizen",                                  //best reward is 83 whispered secrets and it can't be made scandal-safe
+    "Shroom-hopping: a quaint sport of the lower classes",  //best reward is 18 '82
+    "What profit?",                                         //i don't want to sell my soul! at least not cheaply
+    "The tenor's minder",                                   //reward low, dangerous range too small
+    "A runaway horse!"                                      //reward low, dangerous range too small
   )
   
   //auto-play these if conditions are met
