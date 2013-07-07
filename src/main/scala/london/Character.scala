@@ -25,6 +25,7 @@ class Character(username: String, password: String) {
   def actions = parser.actions
   def actionCap = parser.actionCap
   def location = parser.location
+  def deck = parser.deck
   
   def watchful = parser.watchful
   def shadowy = parser.shadowy

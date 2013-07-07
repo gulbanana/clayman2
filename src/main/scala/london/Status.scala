@@ -13,6 +13,8 @@ class Status {
   
   var location:Area = null
   
+  var deck = 0
+  
   var watchful = 0
   var shadowy = 0
   var dangerous = 0
@@ -142,12 +144,19 @@ class Status {
     false
   }
   
+  val emptyDeckPattern = """(?s).*No cards waiting.*""".r
+  val deckPattern = """(?s).*(\d+) cards? waiting.*""".r
   def updateOpportunities(soup: Document) = {
     opportunityIDs = (for (opportunity <- soup.select("ul#cards > li:not(.card_deck) a")) yield {
       val key = Jsoup.parseBodyFragment(opportunity.attr("title")).select("strong").text.trim
       val id = opportunity.select("input[type=image]").attr("onclick").drop(11).dropRight(2).toInt
       key -> id
     }).toMap
+    
+    soup.select("li.card_deck").text match {
+      case emptyDeckPattern() => deck = 0
+      case deckPattern(cards) => deck = cards.toInt
+    }
   }
   
   def updateBranches(soup: Document) = {

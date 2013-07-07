@@ -5,10 +5,9 @@ import common._
 //hang around the court grinding
 object courtGrind extends OneManJob {
   def apply(implicit c: Character) = repeat {
-    if (opportunities.can_act())
-      opportunities.act_once()
-    else if (c.location != Areas.Court)
+    if (c.location != Areas.Court)
       getToCourt(c)
+      
     else
       atCourt(c)
   }

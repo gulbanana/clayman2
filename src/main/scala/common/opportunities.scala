@@ -15,7 +15,8 @@ object opportunities {
     "Shroom-hopping: a quaint sport of the lower classes",  //best reward is 18 '82
     "What profit?",                                         //i don't want to sell my soul! at least not cheaply
     "The tenor's minder",                                   //reward low, dangerous range too small
-    "A runaway horse!"                                      //reward low, dangerous range too small
+    "A runaway horse!",                                     //reward low, dangerous range too small
+    "Romance and practicality"                              //best reward: 36 whispered secrets
   )
   
   //auto-play these if conditions are met
@@ -42,25 +43,24 @@ object opportunities {
       c.onwards()
     }
   )
-  
-  //grind through discards as far as possible, then return whether any are playable
-  def can_act()(implicit c: Character) = {
-    do {
-      if (c.opportunities.size < 3)
-        c.drawOpportunities()
-      for (opportunity <- c.opportunities if (!playlist(opportunity)(c) && blacklist.contains(opportunity)))
-        c.discardOpportunity(opportunity)
-    } while(c.opportunities.size < 3)
-      
-    c.opportunities.map(playlist(_)(c)).reduce(_ || _)
-  }
 
-  //play one of the playable, then grind through discards again
+  //grind through discards as far as possible
+  def mill()(implicit c: Character) = do {
+    if (c.opportunities.size < 3 && c.deck > 0) //avoid sending a useless ajax
+      c.drawOpportunities()
+    for (opportunity <- c.opportunities if (!playlist(opportunity)(c) && blacklist.contains(opportunity)))
+      c.discardOpportunity(opportunity)
+  } while(c.opportunities.size < 3 && c.deck > 0)
+  
+  //return whether any are playable
+  def can_act()(implicit c: Character) = c.opportunities.map(playlist(_)(c)).reduce(_ || _)
+
+  //play one of the playable ones
   def act_once()(implicit c: Character) {
     val opportunity = c.opportunities.filter(playlist(_)(c)).head
     c.playOpportunity(opportunity)
     takeAdvantage(opportunity)(c)
     
-    can_act()
+    mill() //optimisation - don't wait for the next mill to free up the timer
   }
 }
