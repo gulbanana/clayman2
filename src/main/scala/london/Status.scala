@@ -51,7 +51,7 @@ class Status {
       try {
         key -> id
       } catch {
-        case e => println("at time of exception, storylet soup: ", storylet); throw e
+        case e:Throwable => println("at time of exception, storylet soup: ", storylet); throw e
       }
     }).toMap
     
