@@ -144,7 +144,6 @@ class Status {
     false
   }
   
-  val emptyDeckPattern = """(?s).*No cards waiting.*""".r
   val deckPattern = """(?s).*(\d+) cards? waiting.*""".r
   def updateOpportunities(soup: Document) = {
     opportunityIDs = (for (opportunity <- soup.select("ul#cards > li:not(.card_deck) a")) yield {
@@ -154,8 +153,8 @@ class Status {
     }).toMap
     
     soup.select("li.card_deck").text match {
-      case emptyDeckPattern() => deck = 0
       case deckPattern(cards) => deck = cards.toInt
+      case _ => deck = 0
     }
   }
   
