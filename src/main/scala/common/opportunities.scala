@@ -24,8 +24,9 @@ object opportunities {
   private val playlist = Map[String, Character=>Boolean](
     "Pass the Cat: a wriggling delivery" -> {c => c.qualities("Scandal") > 0},
     "Wanted: Reminders of Brighter Days" -> {c => c.items("Incendiary Gossip") >= 25},
-    "Altars and alms-houses: the Church" -> {c => c.qualities("Connected: The Church") >= 20 || c.items("Rostygold") >= 10}
-  ).withDefaultValue {c:Character => false}
+    "Altars and alms-houses: the Church" -> {c => c.qualities("Connected: The Church") >= 20 || c.items("Rostygold") >= 10},
+    "Mr Wines is holding a sale!" -> {c => c.items("Romantic Notion") >= 80}
+  ) withDefaultValue {c:Character => false}
   
   private val takeAdvantage = Map[String, Character=>Unit](
     "Pass the Cat: a wriggling delivery" -> { c => 
@@ -41,6 +42,10 @@ object opportunities {
         c.chooseBranch("Attend a private lecture given by the Bishop of Southwark")
       else 
         c.chooseBranch("Attend a church fête on the south bank of the River")
+      c.onwards()
+    },
+    "Mr Wines is holding a sale!" -> { c => 
+      c.chooseBranch("A discount for purchase in bulk")
       c.onwards()
     }
   )
