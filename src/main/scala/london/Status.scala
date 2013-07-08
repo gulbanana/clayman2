@@ -161,10 +161,17 @@ class Status {
   def updateBranches(soup: Document) = {
     title = soup.select("h3").text
     
-    eventIDs = (for (storylet <- soup.select("div.storylet") if storylet.children.size > 1 && !storylet.select("input").isEmpty) yield {
-      val key = storylet.select(".storylet_rhs > h2").text
-      val id = storylet.select("input").attr("onclick").drop(11).dropRight(2).toInt
+    //disabled: <input type="button" onclick="return false;" class="standard_btn greyed" style="float: right; min-width: 80px!important;" value="Locked"> 
+    //enabled: <input name="" type="button" value="GO" class="standard_btn " onclick="beginEvent(14648);" style="min-width:80px!important;">
+    eventIDs = (for (
+      storylet <- soup.select("div.storylet") 
+      if storylet.children.size > 1 
+      && !storylet.select("input[value]").isEmpty
+      && storylet.select("input").attr("value") != "Locked"
+    ) yield {
       try {
+        val key = storylet.select(".storylet_rhs > h2").text
+        val id = storylet.select("input").attr("onclick").drop(11).dropRight(2).toInt
         key -> id
       } catch {
         case e:Throwable => println("at time of exception, storylet soup: ", storylet); throw e
