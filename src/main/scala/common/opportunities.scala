@@ -16,7 +16,8 @@ object opportunities {
     "What profit?",                                         //i don't want to sell my soul! at least not cheaply
     "The tenor's minder",                                   //reward low, dangerous range too small
     "A runaway horse!",                                     //reward low, dangerous range too small
-    "Romance and practicality"                              //best reward: 36 whispered secrets
+    "Romance and practicality",                             //best reward: 36 whispered secrets
+    "Stark villainy"										//best reward: like 30 rostygold
   )
   
   //auto-play these if conditions are met
