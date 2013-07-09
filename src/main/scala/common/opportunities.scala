@@ -25,29 +25,21 @@ object opportunities {
     "Pass the Cat: a wriggling delivery" -> {c => c.qualities("Scandal") > 0},
     "Wanted: Reminders of Brighter Days" -> {c => c.items("Incendiary Gossip") >= 25},
     "Altars and alms-houses: the Church" -> {c => c.qualities("Connected: The Church") >= 20 || c.items("Rostygold") >= 10},
-    "Mr Wines is holding a sale!" -> {c => c.items("Romantic Notion") >= 80}
+    "Mr Wines is holding a sale!" -> {c => c.items("Romantic Notion") >= 80},
+    "Lies below the palace" -> {c => c.qualities("Nightmares") < 7} //okish rumour grind- +18 proscribed. reconsider later
   ) withDefaultValue {c:Character => false}
   
   private val takeAdvantage = Map[String, Character=>Unit](
-    "Pass the Cat: a wriggling delivery" -> { c => 
-      c.chooseBranch("An elaborate strategy")
-      c.onwards()
-    },
-    "Wanted: Reminders of Brighter Days" -> { c => 
-      c.chooseBranch("The tiniest of classified advertisements")
-      c.onwards()
-    },
+    "Pass the Cat: a wriggling delivery" -> { c => c.chooseBranch("An elaborate strategy") },
+    "Wanted: Reminders of Brighter Days" -> { c => c.chooseBranch("The tiniest of classified advertisements") },
     "Altars and alms-houses: the Church" -> { c =>
       if (c.qualities("Connected: The Church") >= 20)
         c.chooseBranch("Attend a private lecture given by the Bishop of Southwark")
       else 
         c.chooseBranch("Attend a church fête on the south bank of the River")
-      c.onwards()
     },
-    "Mr Wines is holding a sale!" -> { c => 
-      c.chooseBranch("A discount for purchase in bulk")
-      c.onwards()
-    }
+    "Mr Wines is holding a sale!" -> { c => c.chooseBranch("A discount for purchase in bulk") },
+    "Lies below the palace" -> { c=> c.chooseBranch() }
   )
 
   //grind through discards as far as possible
@@ -64,8 +56,10 @@ object opportunities {
   //play one of the playable ones
   def act_once()(implicit c: Character) {
     val opportunity = c.opportunities.filter(playlist(_)(c)).head
+    
     c.playOpportunity(opportunity)
     takeAdvantage(opportunity)(c)
+    c.onwards()
     
     mill() //optimisation - don't wait for the next mill to free up the timer
   }
