@@ -60,7 +60,7 @@ class Character(username: String, password: String) {
   
   def discardOpportunity(opportunity: String) {
     parser updateOpportunities http.query(site / "Storylet" / "DiscardSometimesCard" <<? Map("eventid" -> parser.opportunityIDs(opportunity).toString))
-    println ("Discarded \"%s\"".format(opportunity))
+    println ("Discarded \"%s\".".format(opportunity))
   }
   
   // BEGIN STORYLETS: opportunities, items, or area-based 
