@@ -6,5 +6,5 @@ It's like [Clay Man](http://github.com/gulbanana/clayman) but written in a bette
 ## Quick Start
 
 ```bash
-> java Clayman
+> sbt "run login"
 ```
