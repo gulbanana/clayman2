@@ -7,18 +7,19 @@ object opportunities {
     //useless if they aren't useful
     "Pass the Cat: a wriggling delivery", //the only benefit is -scandal, which i might not need
     "Wanted: Reminders of Brighter Days", //it's not worth keeping around on the off-chance of saving an action
+    "The Ambassador's ball",              //might not be in the range to play it - only gives a confident smile
       
     //always useless
-    "Help a spy distract an inconvenient tail",             //best reward is 36 jade
-    "A meeting of cats",                                    //best reward is 24 clues
-    "The notable citizen",                                  //best reward is 83 whispered secrets and it can't be made scandal-safe
-    "Shroom-hopping: a quaint sport of the lower classes",  //best reward is 18 '82
+    "Help a spy distract an inconvenient tail",             //best reward: 36 jade
+    "A meeting of cats",                                    //best reward: 24 clues
+    "The notable citizen",                                  //best reward: 83 whispered secrets and it can't be made scandal-safe
+    "Shroom-hopping: a quaint sport of the lower classes",  //best reward: 18 '82
     "What profit?",                                         //i don't want to sell my soul! at least not cheaply
     "The tenor's minder",                                   //reward low, dangerous range too small
     "A runaway horse!",                                     //reward low, dangerous range too small
     "Romance and practicality",                             //best reward: 36 whispered secrets
-    "Stark villainy",										//best reward: like 30 rostygold
-    "The Ambassador's ball"									//might not be in the range to play it - only gives a confident smile
+    "Stark villainy",                   										//best reward: like 30 rostygold
+    "The marriage of inconvenience"                         //best reward: 50 secrets
   )
   
   //auto-play these if conditions are met
