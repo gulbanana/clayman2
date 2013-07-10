@@ -4,9 +4,17 @@ import london._
 object court {
   //+83 whispered secrets, +fascinating
   //failure: -fascinating
-  def grind_secrets()(implicit c: Character) {
+  def grind_mysteries()(implicit c: Character) {
     c.beginStorylet("Attend to matters of romance")
     c.chooseBranch("Attend courtly functions")
+    c.onwards()
+  }
+  
+  //+4 morelways, +fascinating
+  //failure: -fascinating
+  def grind_wines()(implicit c: Character) {
+    c.beginStorylet("Attend to matters of romance")
+    c.chooseBranch("Perform artistically")
     c.onwards()
   }
   
@@ -42,10 +50,18 @@ object court {
     c.onwards()
   }
   
+  //+20 proscribed material, +2 honey, making waves
+  //failure: ?cp scandal
+  def grind_rumour()(implicit c: Character) {
+    c.beginStorylet("The life of the mind")
+    c.chooseBranch("Discuss politics at a salon")
+    c.onwards()
+  }
+  
   //-2cp
   def fix_scandal()(implicit c: Character) {
     if (!c.storylets.contains("Disporting with the servantry")) {
-      grind_secrets()
+      grind_mysteries()
     } else {
       c.beginStorylet("Disporting with the servantry")
       c.chooseBranch("Catch the eye of a butler")
@@ -56,7 +72,7 @@ object court {
   //-2 to -3 cp
   def fix_wounds()(implicit c: Character) {
     if (!c.storylets.contains("Disporting with the servantry")) {
-      grind_secrets()
+      grind_mysteries()
     } else {
       c.beginStorylet("Disporting with the servantry")
       c.chooseBranch("Make overtures to a cook")
