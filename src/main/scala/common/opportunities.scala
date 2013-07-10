@@ -29,6 +29,7 @@ object opportunities {
     "Mr Wines is holding a sale!" -> { c => c.items("Romantic Notion") >= 80 },
     "Lies below the Palace" -> { c => c.qualities("Nightmares") < 7 }, //okish Watchful/rumour grind- +18 proscribed. reconsider later
     "The Tower of Sparrows" -> { c => true },
+    "The Tower of Sleeping Giants" -> { c => true },
     "The Ambassador's ball" -> { c => c.persuasive > 80 && c.persuasive < 119 }
   ) withDefaultValue {c:Character => false}
   
@@ -44,6 +45,12 @@ object opportunities {
     "Mr Wines is holding a sale!" -> { c => c.chooseBranch("A discount for purchase in bulk") },
     "Lies below the Palace" -> { c=> c.chooseBranch() },
     "The Tower of Sparrows" -> { c => c.chooseBranch("Settle down to a game of cards") },
+    "The Tower of Sleeping Giants" -> { c =>
+      if (c.items("An Infernal Contract") < 100)
+        c.chooseBranch("The owner")
+      else 
+        c.chooseBranch("Examine the stock") 
+    },
     "The Ambassador's ball" -> { c => c.chooseBranch("Making a point of not making a point") }
   )
 
