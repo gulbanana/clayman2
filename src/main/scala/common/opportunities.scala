@@ -17,7 +17,8 @@ object opportunities {
     "The tenor's minder",                                   //reward low, dangerous range too small
     "A runaway horse!",                                     //reward low, dangerous range too small
     "Romance and practicality",                             //best reward: 36 whispered secrets
-    "Stark villainy"										//best reward: like 30 rostygold
+    "Stark villainy",										//best reward: like 30 rostygold
+    "The Ambassador's ball"									//might not be in the range to play it - only gives a confident smile
   )
   
   //auto-play these if conditions are met
@@ -27,7 +28,8 @@ object opportunities {
     "Altars and alms-houses: the Church" -> { c => c.qualities("Connected: The Church") >= 20 || c.items("Rostygold") >= 10 },
     "Mr Wines is holding a sale!" -> { c => c.items("Romantic Notion") >= 80 },
     "Lies below the Palace" -> { c => c.qualities("Nightmares") < 7 }, //okish Watchful/rumour grind- +18 proscribed. reconsider later
-    "The Tower of Sparrows" -> { c => true }
+    "The Tower of Sparrows" -> { c => true },
+    "The Ambassador's ball" -> { c => c.persuasive > 80 && c.persuasive < 119 }
   ) withDefaultValue {c:Character => false}
   
   private val takeAdvantage = Map[String, Character=>Unit](
@@ -41,7 +43,8 @@ object opportunities {
     },
     "Mr Wines is holding a sale!" -> { c => c.chooseBranch("A discount for purchase in bulk") },
     "Lies below the Palace" -> { c=> c.chooseBranch() },
-    "The Tower of Sparrows" -> { c => c.chooseBranch("Settle down to a game of cards") }
+    "The Tower of Sparrows" -> { c => c.chooseBranch("Settle down to a game of cards") },
+    "The Ambassador's ball" -> { c => c.chooseBranch("Making a point of not making a point") }
   )
 
   //grind through discards as far as possible

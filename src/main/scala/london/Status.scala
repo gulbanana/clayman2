@@ -95,7 +95,7 @@ class Status {
   }
   
   def updateStatus(outerSoup: Document, innerSoup: Document) = {
-    //Actions: nested spans in the outer HTML 
+    //Actions: nested spans in the outer HTML
     val actionPattern = """(\d+)/(\d+)""".r
     val actionPattern(current, max) = outerSoup.select("span.actions_remaining").text
     actions = current.toInt
@@ -169,13 +169,9 @@ class Status {
       && !storylet.select("input[value]").isEmpty
       && storylet.select("input").attr("value") != "Locked"
     ) yield {
-      try {
-        val key = storylet.select(".storylet_rhs > h2").text
-        val id = storylet.select("input").attr("onclick").drop(11).dropRight(2).toInt
-        key -> id
-      } catch {
-        case e:Throwable => println("at time of exception, storylet soup: ", storylet); throw e
-      }
+      val key = storylet.select(".storylet_rhs > h2").text
+      val id = storylet.select("input").attr("onclick").drop(11).dropRight(2).toInt
+      key -> id
     }).toMap
     
     branchIDs = (for (branch <- soup.select("div.storylet > form")) yield {
