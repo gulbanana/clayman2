@@ -22,11 +22,12 @@ object opportunities {
   
   //auto-play these if conditions are met
   private val playlist = Map[String, Character=>Boolean](
-    "Pass the Cat: a wriggling delivery" -> {c => c.qualities("Scandal") > 0},
-    "Wanted: Reminders of Brighter Days" -> {c => c.items("Incendiary Gossip") >= 25},
-    "Altars and alms-houses: the Church" -> {c => c.qualities("Connected: The Church") >= 20 || c.items("Rostygold") >= 10},
-    "Mr Wines is holding a sale!" -> {c => c.items("Romantic Notion") >= 80},
-    "Lies below the palace" -> {c => c.qualities("Nightmares") < 7} //okish rumour grind- +18 proscribed. reconsider later
+    "Pass the Cat: a wriggling delivery" -> { c => c.qualities("Scandal") > 0 },
+    "Wanted: Reminders of Brighter Days" -> { c => c.items("Incendiary Gossip") >= 25 },
+    "Altars and alms-houses: the Church" -> { c => c.qualities("Connected: The Church") >= 20 || c.items("Rostygold") >= 10 },
+    "Mr Wines is holding a sale!" -> { c => c.items("Romantic Notion") >= 80 },
+    "Lies below the palace" -> { c => c.qualities("Nightmares") < 7 }, //okish Watchful/rumour grind- +18 proscribed. reconsider later
+    "The Tower of Sparrows" -> { c => true }
   ) withDefaultValue {c:Character => false}
   
   private val takeAdvantage = Map[String, Character=>Unit](
@@ -39,7 +40,8 @@ object opportunities {
         c.chooseBranch("Attend a church fête on the south bank of the River")
     },
     "Mr Wines is holding a sale!" -> { c => c.chooseBranch("A discount for purchase in bulk") },
-    "Lies below the palace" -> { c=> c.chooseBranch() }
+    "Lies below the palace" -> { c=> c.chooseBranch() },
+    "The Tower of Sparrows" -> { c => c.chooseBranch("Settle down to a game of cards") }
   )
 
   //grind through discards as far as possible
