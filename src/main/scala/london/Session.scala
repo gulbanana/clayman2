@@ -41,9 +41,10 @@ class Session(cookieTin: String) {
   }
   
   def command(builder: RequestBuilder) {
-    val request = Http(builder) //don't follow redirects here, because we need the cookie
-    
+    val request = Http(builder) //don't follow redirects here, because we need the cookie    
     val response = request()
+    
+    cookies.clear()
     for (cookie <- response.getCookies()) 
       cookies += cookie
       
