@@ -8,9 +8,6 @@ package object common extends Did {
     
     val buffer = c.actionCap - 4
     while (c.actions > buffer)
-      if (opportunities.can_act())
-        opportunities.act_once()
-      else
-        f
+      if (!opportunities.act()) f
   }
 }

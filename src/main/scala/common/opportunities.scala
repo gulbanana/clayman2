@@ -62,18 +62,13 @@ object opportunities {
     for (opportunity <- c.opportunities if (!playlist(opportunity)(c) && blacklist.contains(opportunity)))
       c.discardOpportunity(opportunity)
   } while(c.opportunities.size < 3 && c.deck > 0)
-  
-  //return whether any are playable
-  def can_act()(implicit c: Character) = c.opportunities.map(playlist(_)(c)).reduce(_ || _)
 
-  //play one of the playable ones
-  def act_once()(implicit c: Character) {
+  //if any are playable, play one
+  def act()(implicit c: Character) = did (c.opportunities.map(playlist(_)(c)).reduce(_ || _)) {
     val opportunity = c.opportunities.filter(playlist(_)(c)).head
     
     c.playOpportunity(opportunity)
     takeAdvantage(opportunity)(c)
     c.onwards()
-    
-    mill() //optimisation - don't wait for the next mill to free up the timer
   }
 }
