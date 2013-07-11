@@ -8,17 +8,20 @@ class Character(username: String, password: String) {
   
   //Attempt to reuse a cookied session
   private var loginSoup = http.query(site / "Gap" / "Load" <<? Map("content" -> "/Me"))
+  private var newLogin = false
   if (loginSoup.select("div#mainContentViaAjax").isEmpty) {
     http.command(site / "Auth" / "EmailLogin" << Map("emailAddress" -> username, "password" -> password))
-    println("Logged in.")
+    newLogin = true
     loginSoup = http.query(site / "Gap" / "Load" <<? Map("content" -> "/Me"))
   }
   
   parser updateStatus(loginSoup, http.query(site / "Me"))
-  println("%s: %s.".format(parser.name, parser.description))
+  if (newLogin)
+    println("%s: %s.".format(parser.name, parser.description))
   
   parser updateBranches http.query(site / "Storylet" / "In")
-  println("Welcome to %s, delicious friend!".format(location.name))
+  if (newLogin)
+    println("Welcome to %s, delicious friend!".format(location.name))
   
   //Public API
   def name = parser.name
