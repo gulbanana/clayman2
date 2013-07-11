@@ -7,9 +7,9 @@ object courtGrind extends OneManJob {
   def apply(implicit c: Character): Unit = repeat {
     gear.persuasive()
     
-    if (getToCourt) return
-    if (reduceMenaces) return
-    if (gainFascinating) return
+    if (!getToCourt)
+    if (!reduceMenaces)
+    if (!gainFascinating)
     grind
   }
   
