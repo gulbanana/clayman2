@@ -118,9 +118,9 @@ class Status {
     description = innerSoup.select("div.redesign_heading > p").first.text
     
     //Non-item qualities: <strong> tags in you_bottom_lhs div
-    val qualityPattern = """(.*) (\d+) .*""".r
-    qualities = (for (quality <- innerSoup.select("div.you_bottom_lhs strong") if quality.text().matches(qualityPattern.toString)) yield {
-      val qualityPattern(name, quantity) = quality.text()
+    val qualityPattern = """(.*) (\d+).*""".r
+    qualities = (for (quality <- innerSoup.select("div.you_bottom_lhs strong") if quality.text.matches(qualityPattern.toString)) yield {
+      val qualityPattern(name, quantity) = quality.text
       name -> quantity.toInt
     }).toMap.withDefaultValue(0)
     
