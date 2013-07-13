@@ -7,10 +7,7 @@ object courtGrind extends OneManJob {
   def apply(implicit c: Character): Unit = repeat {
     gear.persuasive()
     
-    if (!getToCourt)
-    if (!reduceMenaces)
-    if (!gainFascinating)
-    grind
+    getToCourt || reduceMenaces || gainFascinating || grind
   }
   
   private def getToCourt(implicit c: Character) = did (c.location != Areas.Court) {  
