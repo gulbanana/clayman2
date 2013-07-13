@@ -31,7 +31,8 @@ object opportunities {
     "Lies below the Palace" -> { c => c.qualities("Nightmares") < 7 }, //okish Watchful/rumour grind- +18 proscribed. reconsider later
     "The Tower of Sparrows" -> { c => true },
     "The Tower of Sleeping Giants" -> { c => true },
-    "The Ambassador's ball" -> { c => c.persuasive > 80 && c.persuasive < 119 }
+    "The Ambassador's ball" -> { c => c.persuasive > 80 && c.persuasive < 119 },
+    "Going gentle" -> { c => true}
   ) withDefaultValue {c:Character => false}
   
   private val takeAdvantage = Map[String, Character=>Unit](
@@ -52,7 +53,13 @@ object opportunities {
       else 
         c.chooseBranch("Examine the stock") 
     },
-    "The Ambassador's ball" -> { c => c.chooseBranch("Making a point of not making a point") }
+    "The Ambassador's ball" -> { c => c.chooseBranch("Making a point of not making a point") },
+    "Going gentle" -> { implicit c =>
+      c.perhapsNot()
+      gear.dangerous()
+      c.playOpportunity("Going gentle")
+      c.chooseBranch("Break him out!")
+    }
   )
 
   //grind through discards as far as possible
