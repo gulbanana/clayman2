@@ -10,7 +10,7 @@ object fidgetingWriter extends OneManJob {
     cashout4 || gamble4 || gamble3 || gamble2 || gamble1
   }
   
-  //Tale of Terror -> Sense of DŽjˆ Vu
+  //Tale of Terror -> Sense of Dï¿½jï¿½ Vu
   private def gamble1(implicit c: Character) = did (c.items("Tale of Terror") > 0) {
     c.useItem("Tale of Terror")
     c.chooseBranch("There's something familiar about this tale...")	//"pretty good" odds
@@ -18,16 +18,16 @@ object fidgetingWriter extends OneManJob {
     //xxx gain TOT
   }
 
-  //Sense of DŽjˆ Vu -> Extraordinary Implication (2.5E)
-  private def cashout1(implicit c: Character) = did (c.items("Sense of DŽjˆ Vu") > 0) {
-    c.useItem("Sense of DŽjˆ Vu")
+  //Sense of DÃ©jÃ  Vuâ€Ž -> Extraordinary Implication (2.5E)
+  private def cashout1(implicit c: Character) = did (c.items("Sense of DÃ©jÃ  Vuâ€Ž") > 0) {
+    c.useItem("Sense of DÃ©jÃ  Vuâ€Ž")
     c.chooseBranch("Put the thought aside")
   }
   
-  //Sense of DŽjˆ Vu + Vision of the Surface (0.5E) -> Glimpse of Something Larger
-  private def gamble2(implicit c: Character) = did (c.items("Sense of DŽjˆ Vu") > 0) {
+  //Sense of DÃ©jÃ  Vuâ€Ž + Vision of the Surface (0.5E) -> Glimpse of Something Larger
+  private def gamble2(implicit c: Character) = did (c.items("Sense of DÃ©jÃ  Vuâ€Ž") > 0) {
     if (c.items("Vision of the Surface") > 0) {
-      c.useItem("Sense of DŽjˆ Vu")
+      c.useItem("Sense of DÃ©jÃ  Vuâ€Ž")
       c.chooseBranch("Track down the Fidgeting Writer")	//"pretty good" odds
     } else {
       //XXX gain visions
