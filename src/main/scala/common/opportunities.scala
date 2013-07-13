@@ -2,6 +2,9 @@ package common
 import london._
 
 object opportunities {
+  case class Playable(test: Character=>Boolean, act: Character=>Unit) 
+  object Unplayable extends Playable(_ => false, null)
+  
   //auto-discard these, unless they are playable
   private val blacklist = Set(
     //useless if they aren't useful
@@ -23,59 +26,59 @@ object opportunities {
   )
   
   //auto-play these if conditions are met
-  private val playlist = Map[String, Character=>Boolean](
-    "Pass the Cat: a wriggling delivery" -> { c => c.qualities("Scandal") > 0 },
-    "Wanted: Reminders of Brighter Days" -> { c => c.items("Incendiary Gossip") >= 25 },
-    "Altars and alms-houses: the Church" -> { c => c.qualities("Connected: The Church") >= 20 || c.items("Rostygold") >= 10 },
-    "Mr Wines is holding a sale!" -> { c => c.items("Romantic Notion") >= 80 },
-    "Lies below the Palace" -> { c => c.qualities("Nightmares") < 7 }, //okish Watchful/rumour grind- +18 proscribed. reconsider later
-    "The Tower of Sparrows" -> { c => true },
-    "The Tower of Sleeping Giants" -> { c => true },
-    "The Ambassador's ball" -> { c => c.persuasive > 80 && c.persuasive < 119 },
-    "Going gentle" -> { c => true}
-  ) withDefaultValue {c:Character => false}
-  
-  private val takeAdvantage = Map[String, Character=>Unit](
-    "Pass the Cat: a wriggling delivery" -> { c => c.chooseBranch("An elaborate strategy") },
-    "Wanted: Reminders of Brighter Days" -> { c => c.chooseBranch("The tiniest of classified advertisements") },
-    "Altars and alms-houses: the Church" -> { c =>
-      if (c.qualities("Connected: The Church") >= 20)
-        c.chooseBranch("Attend a private lecture given by the Bishop of Southwark")
-      else 
-        c.chooseBranch("Attend a church fête on the south bank of the River")
-    },
-    "Mr Wines is holding a sale!" -> { c => c.chooseBranch("A discount for purchase in bulk") },
-    "Lies below the Palace" -> { c=> c.chooseBranch() },
-    "The Tower of Sparrows" -> { c => c.chooseBranch("Settle down to a game of cards") },
-    "The Tower of Sleeping Giants" -> { c =>
+  private val playlist = Map[String, Playable](
+    //Lodgings
+    "The Tower of Sparrows" -> Playable(_ => true, _.chooseBranch("Settle down to a game of cards")),
+    "The Tower of Sleeping Giants" -> Playable(_ => true, { c =>
       if (c.items("An Infernal Contract") < 100)
         c.chooseBranch("The owner")
       else 
         c.chooseBranch("Examine the stock") 
-    },
-    "The Ambassador's ball" -> { c => c.chooseBranch("Making a point of not making a point") },
-    "Going gentle" -> { implicit c =>
+    }),
+    "The Lofty Tower" -> Unplayable,
+    
+    //Connections
+    "Altars and alms-houses: the Church" -> Playable(c => c.qualities("Connected: The Church") >= 20 || c.items("Rostygold") >= 10, { c =>
+      if (c.qualities("Connected: The Church") >= 20)
+        c.chooseBranch("Attend a private lecture given by the Bishop of Southwark")
+      else 
+        c.chooseBranch("Attend a church fête on the south bank of the River")
+    }),
+    "The Demi-Monde: Bohemians" -> Playable(_.qualities("Connected: Bohemian") >= 3, _.chooseBranch("Take tea with a Reclusive Novelist")),
+    "Bandages and Dust: The Tomb-Colonies" -> Playable(_.qualities("Connected: The Tomb-Coloniees") >= 3, { implicit c =>
+      c.perhapsNot()
+      gear.dangerous()
+      c.chooseBranch("Spar with a Black Ribbon Duellist")
+    }),
+    
+    //Misc
+    "Pass the Cat: a wriggling delivery" -> Playable(_.qualities("Scandal") > 0, _.chooseBranch("An elaborate strategy")),
+    "Wanted: Reminders of Brighter Days" -> Playable(_.items("Incendiary Gossip") >= 25, _.chooseBranch("The tiniest of classified advertisements")),
+    "Mr Wines is holding a sale!" -> Playable(_.items("Romantic Notion") >= 80, _.chooseBranch("A discount for purchase in bulk")),
+    "Lies below the Palace" -> Playable(_.qualities("Nightmares") < 7, _.chooseBranch()), //okish Watchful/rumour grind- +18 proscribed. reconsider later
+    "The Ambassador's ball" -> Playable(c => c.persuasive > 80 && c.persuasive < 119, _.chooseBranch("Making a point of not making a point")),
+    "Going gentle" -> Playable(_ => true, { implicit c =>   //grinds dangerous and tomb-colonies
       c.perhapsNot()
       gear.dangerous()
       c.playOpportunity("Going gentle")
       c.chooseBranch("Break him out!")
-    }
-  )
+    })
+  ) withDefaultValue Unplayable
 
   //grind through discards as far as possible
   def mill()(implicit c: Character) = do {
     if (c.opportunities.size < 3 && c.deck > 0) //avoid sending a useless ajax
       c.drawOpportunities()
-    for (opportunity <- c.opportunities if (!playlist(opportunity)(c) && blacklist.contains(opportunity)))
+    for (opportunity <- c.opportunities if (!playlist(opportunity).test(c) && blacklist.contains(opportunity)))
       c.discardOpportunity(opportunity)
   } while(c.opportunities.size < 3 && c.deck > 0)
 
   //if any are playable, play one
-  def act()(implicit c: Character) = did (c.opportunities.map(playlist(_)(c)).reduce(_ || _)) {
-    val opportunity = c.opportunities.filter(playlist(_)(c)).head
+  def act()(implicit c: Character) = did (c.opportunities.map(playlist(_).test(c)).reduce(_ || _)) {
+    val opportunity = c.opportunities.filter(playlist(_).test(c)).head
     
     c.playOpportunity(opportunity)
-    takeAdvantage(opportunity)(c)
+    playlist(opportunity).act(c)
     c.onwards()
   }
 }
