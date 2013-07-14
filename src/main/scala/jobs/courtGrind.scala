@@ -10,8 +10,13 @@ object courtGrind extends OneManJob {
     getToCourt || reduceMenaces || gainFascinating || grind
   }
   
-  private def getToCourt(implicit c: Character) = did (c.location != Areas.Court) {  
-    if (c.qualities("Connected: the Duchess") < 10) {
+  private def getToCourt(implicit c: Character) = did (c.location != Areas.Court) {
+    if (c.qualities("Connected: Society") > 50) {
+      c.travel(Areas.ShutteredPalace)
+      c.beginStorylet("Spend a few days at Court")
+      c.chooseBranch("A word from your friends at Court")
+      c.onwards()      
+    } else if (c.qualities("Connected: the Duchess") < 10) {
       connected.the_duchess()
     } else {
       c.travel(Areas.ShutteredPalace)
