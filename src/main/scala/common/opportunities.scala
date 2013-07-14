@@ -11,6 +11,8 @@ object opportunities {
     "Pass the Cat: a wriggling delivery", //the only benefit is -scandal, which i might not need
     "Wanted: Reminders of Brighter Days", //it's not worth keeping around on the off-chance of saving an action
     "The Ambassador's ball",              //might not be in the range to play it - only gives a confident smile
+    "Whispers from the Surface: The Great Game",  //can't use it to grind
+    "A consideration for services rendered",      //not worth grinding souls for
       
     //always useless
     "Help a spy distract an inconvenient tail",             //best reward: 36 jade
@@ -61,6 +63,12 @@ object opportunities {
       c.playOpportunity("Bandages and Dust: The Tomb-Colonies")
       c.chooseBranch("Spar with a Black Ribbon Duellist")
     }),
+    "Whispers from the Surface: The Great Game" -> Playable(c => (c.qualities("Connected: The Great Game") >= 10 && c.watchful <= 70) || c.qualities("Connected: The Great Game") >= 20, c =>
+      if (c.watchful > 70)
+        c.chooseBranch("Get some work done at Clathermont's tattoo parlour")
+      else 
+        c.chooseBranch("Learn more at the carnival")
+    ),
     
     //Misc
     "Pass the Cat: a wriggling delivery" -> Playable(_.qualities("Scandal") > 0, _.chooseBranch("An elaborate strategy")),
@@ -73,7 +81,8 @@ object opportunities {
       gear.dangerous()
       c.playOpportunity("Going gentle")
       c.chooseBranch("Break him out!")
-    })
+    }),
+    "A consideration for services rendered" -> Playable(_.items("Soul") > 0, _.chooseBranch())
   ) withDefaultValue Unplayable
 
   //grind through discards as far as possible
