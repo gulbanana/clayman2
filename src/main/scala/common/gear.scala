@@ -5,7 +5,7 @@ object gear {
   def watchful()(implicit c: Character) {
     c.equip("Luminous Neathglass Goggles")
     c.equip("Morning Suit")
-    c.equip("Avid Glove")
+    c.equip("Insatiable Glove")
     c.equip("Patent Scrutinizer")
     c.equip("Mirror-polished Shoes")
     c.equip("Appreciation Society")
