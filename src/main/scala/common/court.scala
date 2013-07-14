@@ -12,7 +12,7 @@ object court {
   
   //+4 morelways, +fascinating
   //failure: -fascinating
-  def grind_wines()(implicit c: Character) {
+  def grind_morelways()(implicit c: Character) {
     c.beginStorylet("Attend to matters of romance")
     c.chooseBranch("Perform artistically")
     c.onwards()

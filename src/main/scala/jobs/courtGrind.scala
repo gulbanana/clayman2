@@ -7,7 +7,7 @@ object courtGrind extends OneManJob {
   def apply(implicit c: Character): Unit = repeat {
     gear.persuasive()
     
-    getToCourt || reduceMenaces || gainFascinating || grind
+    getToCourt || reduceMenaces || revelsPrep || gainFascinating || grind
   }
   
   private def getToCourt(implicit c: Character) = did (c.location != Areas.Court) {
@@ -35,7 +35,7 @@ object courtGrind extends OneManJob {
   private def gainFascinating(implicit c: Character) = did (c.items("Whispered Secret") < 80000) { 
     court.grind_mysteries() //buy the lofty tower
   } or (c.qualities("Fascinating...") < 5) {
-    court.grind_wines()
+    court.grind_morelways()
   }
   
   private def grind(implicit c: Character) = did (c.items("Prisoner's Honey") < 40000) { 
@@ -46,5 +46,9 @@ object courtGrind extends OneManJob {
     court.grind_influence() 
   } or {
     court.grind_jade()      //safe money fallback - should never be reached, though
+  }
+  
+  private def revelsPrep(implicit c: Character) = did (c.items("Prisoner's Honey") < 400) {
+    court.grind_honey()
   }
 }
