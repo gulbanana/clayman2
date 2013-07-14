@@ -29,25 +29,36 @@ object opportunities {
   private val playlist = Map[String, Playable](
     //Lodgings
     "The Tower of Sparrows" -> Playable(_ => true, _.chooseBranch("Settle down to a game of cards")),
-    "The Tower of Sleeping Giants" -> Playable(_ => true, { c =>
+    "The Tower of Sleeping Giants" -> Playable(_ => true, c =>
       if (c.items("An Infernal Contract") < 100)
         c.chooseBranch("The owner")
       else 
         c.chooseBranch("Examine the stock") 
-    }),
+    ),
     "The Lofty Tower" -> Unplayable,
     
     //Connections
-    "Altars and alms-houses: the Church" -> Playable(c => c.qualities("Connected: The Church") >= 20 || c.items("Rostygold") >= 10, { c =>
+    "Altars and alms-houses: the Church" -> Playable(c => c.qualities("Connected: The Church") >= 20 || c.items("Rostygold") >= 10, c =>
       if (c.qualities("Connected: The Church") >= 20)
         c.chooseBranch("Attend a private lecture given by the Bishop of Southwark")
       else 
         c.chooseBranch("Attend a church fête on the south bank of the River")
-    }),
+    ),
+    "Court and Cell: the Constables" -> Playable(c => c.qualities("Connected: Constables") >= 15 || c.items("Rostygold") >= 10, implicit c =>
+      if (c.qualities("Connected: Constables") >= 15) {
+        c.perhapsNot()
+        gear.watchful()
+        c.playOpportunity("Court and Cell: the Constables")
+        c.chooseBranch("Attend a class given by the Implacable Detective")
+      } else {
+        c.chooseBranch("A small donation")
+      }
+    ),
     "The Demi-Monde: Bohemians" -> Playable(_.qualities("Connected: Bohemian") >= 3, _.chooseBranch("Take tea with a Reclusive Novelist")),
-    "Bandages and Dust: The Tomb-Colonies" -> Playable(_.qualities("Connected: The Tomb-Coloniees") >= 3, { implicit c =>
+    "Bandages and Dust: The Tomb-Colonies" -> Playable(_.qualities("Connected: The Tomb-Colonies") >= 3, { implicit c =>
       c.perhapsNot()
       gear.dangerous()
+      c.playOpportunity("Bandages and Dust: The Tomb-Colonies")
       c.chooseBranch("Spar with a Black Ribbon Duellist")
     }),
     
