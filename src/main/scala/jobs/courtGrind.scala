@@ -48,7 +48,7 @@ object courtGrind extends OneManJob {
     court.grind_jade()      //safe money fallback - should never be reached, though
   }
   
-  private def revelsPrep(implicit c: Character) = did (c.items("Drop of Prisoner's Honey") < 400) {
+  private def revelsPrep(implicit c: Character) = did (c.items("Drop of Prisoner's Honey") < 500) {
     court.grind_honey()
   }
 }
