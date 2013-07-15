@@ -37,7 +37,9 @@ object opportunities {
       else 
         c.chooseBranch("Examine the stock") 
     ),
+    "The Sleepless Tower" -> Playable(_ => true, _.chooseBranch("Spores and fangs")),
     "The Lofty Tower" -> Unplayable,
+    "The Western Tower" -> Unplayable,
     
     //Connections
     "Altars and alms-houses: the Church" -> Playable(c => c.qualities("Connected: The Church") >= 20 || c.items("Rostygold") >= 10, c =>
@@ -48,21 +50,14 @@ object opportunities {
     ),
     "Court and Cell: the Constables" -> Playable(c => c.qualities("Connected: Constables") >= 15 || c.items("Rostygold") >= 10, implicit c =>
       if (c.qualities("Connected: Constables") >= 15) {
-        c.perhapsNot()
         gear.watchful()
-        c.playOpportunity("Court and Cell: the Constables")
         c.chooseBranch("Attend a class given by the Implacable Detective")
       } else {
         c.chooseBranch("A small donation")
       }
     ),
     "The Demi-Monde: Bohemians" -> Playable(_.qualities("Connected: Bohemian") >= 3, _.chooseBranch("Take tea with a Reclusive Novelist")),
-    "Bandages and Dust: The Tomb-Colonies" -> Playable(_.qualities("Connected: The Tomb-Colonies") >= 3, { implicit c =>
-      c.perhapsNot()
-      gear.dangerous()
-      c.playOpportunity("Bandages and Dust: The Tomb-Colonies")
-      c.chooseBranch("Spar with a Black Ribbon Duellist")
-    }),
+    "Bandages and Dust: The Tomb-Colonies" -> Playable(_.qualities("Connected: The Tomb-Colonies") >= 3, { implicit c => gear.dangerous(); c.chooseBranch("Spar with a Black Ribbon Duellist") }),
     "Whispers from the Surface: The Great Game" -> Playable(c => (c.qualities("Connected: The Great Game") >= 10 && c.watchful <= 70) || c.qualities("Connected: The Great Game") >= 20, c =>
       if (c.watchful > 70)
         c.chooseBranch("Get some work done at Clathermont's tattoo parlour")
@@ -76,16 +71,8 @@ object opportunities {
     "Mr Wines is holding a sale!" -> Playable(_.items("Romantic Notion") >= 80, _.chooseBranch("A discount for purchase in bulk")),
     "Lies below the Palace" -> Playable(_.qualities("Nightmares") < 7, _.chooseBranch()), //okish Watchful/rumour grind- +18 proscribed. reconsider later
     "The Ambassador's ball" -> Playable(c => c.persuasive > 80 && c.persuasive < 119, _.chooseBranch("Making a point of not making a point")),
-    "Going gentle" -> Playable(_ => true, { implicit c =>   //grinds dangerous and tomb-colonies
-      c.perhapsNot()
-      gear.dangerous()
-      c.playOpportunity("Going gentle")
-      c.chooseBranch("Break him out!")
-    }),
-    "A night at the carnival" -> Playable(_ => true, { implicit c =>   //grinds dangerous 
-      gear.dangerous() //experimental unperhapsing
-      c.chooseBranch("There's always something")
-    }),
+    "Going gentle" -> Playable(_ => true, { implicit c => gear.dangerous(); c.chooseBranch("Break him out!") }),
+    "A night at the carnival" -> Playable(_ => true, { implicit c => gear.dangerous(); c.chooseBranch("There's always something") }),
     "A consideration for services rendered" -> Playable(_.items("Soul") > 0, _.chooseBranch())
   ) withDefaultValue Unplayable
 
