@@ -60,9 +60,9 @@ object opportunities {
     "Bandages and Dust: The Tomb-Colonies" -> Playable(_.qualities("Connected: The Tomb-Colonies") >= 3, { implicit c => gear.dangerous(); c.chooseBranch("Spar with a Black Ribbon Duellist") }),
     "Whispers from the Surface: The Great Game" -> Playable(c => (c.qualities("Connected: The Great Game") >= 10 && c.watchful <= 70) || c.qualities("Connected: The Great Game") >= 20, c =>
       if (c.watchful > 70)
-        c.chooseBranch("Get some work done at Clathermont's tattoo parlour")
-      else 
         c.chooseBranch("Learn more at the carnival")
+      else 
+        c.chooseBranch("Get some work done at Clathermont's tattoo parlour")
     ),
     
     //Misc
