@@ -38,7 +38,7 @@ object courtGrind extends OneManJob {
     court.grind_morelways()
   }
   
-  private def grind(implicit c: Character) = did (c.items("Prisoner's Honey") < 40000) { 
+  private def grind(implicit c: Character) = did (c.items("Drop of Prisoner's Honey") < 40000) { 
     court.grind_honey()     //buy the royal bethlehem
   } or (c.items("Proscribed Material") < 15000) {
     court.grind_rumour() 	  //buy the western tower (by converting to souls)
@@ -48,7 +48,7 @@ object courtGrind extends OneManJob {
     court.grind_jade()      //safe money fallback - should never be reached, though
   }
   
-  private def revelsPrep(implicit c: Character) = did (c.items("Prisoner's Honey") < 400) {
+  private def revelsPrep(implicit c: Character) = did (c.items("Drop of Prisoner's Honey") < 400) {
     court.grind_honey()
   }
 }
