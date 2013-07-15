@@ -64,7 +64,7 @@ object opportunities {
       else 
         c.chooseBranch("Get some work done at Clathermont's tattoo parlour")
     ),
-    "The Roof-Tops: Urchins" -> Playable(c => (c.qualities("Connected: Urchins") >= 3) && c.shadowy < 71) || c.items("Glim") >= 20 || c.items("Lucky Weasel") >= 1, c => 
+    "The Roof-Tops: Urchins" -> Playable(c => (c.qualities("Connected: Urchins") >= 3 && c.shadowy < 71) || c.items("Glim") >= 20 || c.items("Lucky Weasel") >= 1, c => 
       if (c.shadowy > 70 && c.items("Glim") >= 20)
         c.chooseBranch("Out you go, longshanks")
       else if (c.shadowy < 71 && c.qualities("Connected: Urchins") >= 3)
