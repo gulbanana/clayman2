@@ -4,6 +4,7 @@ import london._
 object opportunities {
   case class Playable(test: Character=>Boolean, act: Character=>Unit) 
   object Unplayable extends Playable(_ => false, null)
+  object Trivial extends Playable(_ => true, _.chooseBranch())
   
   //auto-discard these, unless they are playable
   private val blacklist = Set(
@@ -81,7 +82,8 @@ object opportunities {
     "The Ambassador's ball" -> Playable(c => c.persuasive > 80 && c.persuasive < 119, _.chooseBranch("Making a point of not making a point")),
     "Going gentle" -> Playable(_ => true, { implicit c => gear.dangerous(); c.chooseBranch("Break him out!") }),
     "A night at the carnival" -> Playable(_ => true, { implicit c => gear.dangerous(); c.chooseBranch("There's always something") }),
-    "A consideration for services rendered" -> Playable(_.items("Soul") > 0, _.chooseBranch())
+    "A consideration for services rendered" -> Playable(_.items("Soul") > 0, _.chooseBranch()),
+    "The Awful Temptation of Money" -> Trivial
   ) withDefaultValue Unplayable
 
   //grind through discards as far as possible
