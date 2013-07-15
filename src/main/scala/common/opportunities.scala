@@ -82,6 +82,10 @@ object opportunities {
       c.playOpportunity("Going gentle")
       c.chooseBranch("Break him out!")
     }),
+    "A night at the carnival" -> Playable(_ => true, { implicit c =>   //grinds dangerous 
+      gear.dangerous() //experimental unperhapsing
+      c.chooseBranch("There's always something")
+    }),
     "A consideration for services rendered" -> Playable(_.items("Soul") > 0, _.chooseBranch())
   ) withDefaultValue Unplayable
 
