@@ -39,7 +39,7 @@ class Status {
   private val failurePattern = """(.+) (\d+) failed in a challenge!.*""".r
 
   private val itemModPattern = """You've (gained|lost) (\d+) x (.+) \(new total (\d+)\).""".r
-  private val itemSetPattern = """You now have (\d+) x (.+).""".r
+  private val itemSetPattern = """You now have (\d+) x (.+)\.?""".r
   private val itemSetPattern2 = """You now have (\d+) of this: '(.+)'.""".r
   private val itemClearPattern = """You no longer have any of this: '(.+)'.""".r
   
