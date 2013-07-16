@@ -2,9 +2,11 @@ package jobs
 import london._
 import common._
 
-object getDangerous extends OneManJob {
+object blackRibbon extends OneManJob {
   def apply(implicit c: Character): Unit = repeat {
+    println("blackRibbon debug: begin iteration")
     prep || {gear.dangerous(); c.travel(Areas.WolfstackDocks); duel}
+    println("blackRibbon debug: end iteration")
   }
 
   def prep(implicit c: Character) = did (c.items("Rostygold") < 50) {
@@ -89,6 +91,14 @@ object getDangerous extends OneManJob {
   def mr_inch()(implicit c: Character) {
     c.beginStorylet("Duel Mr Inch and his menagerie")
     c.chooseBranch("A friendly duel with Mr Inch")
+    c.onwards()
+  }
+  
+  //70% at RB9; 1300p of misc goods
+  //this would be better than mr_inch- and is better for general grinding someday- but the rostygold purse is useful to heal wounds
+  def spider_pit()(implicit c: Character) {
+    c.beginStorylet("Get into other fights")
+    c.chooseBranch("Volunteer for the spider pit")
     c.onwards()
   }
 }
