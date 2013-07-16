@@ -83,7 +83,8 @@ object opportunities {
     "Going gentle" -> Playable(_ => true, { implicit c => gear.dangerous(); c.chooseBranch("Break him out!") }),
     "A night at the carnival" -> Playable(_ => true, { implicit c => gear.dangerous(); c.chooseBranch("There's always something") }),
     "A consideration for services rendered" -> Playable(_.items("Soul") > 0, _.chooseBranch()),
-    "The Awful Temptation of Money" -> Trivial
+    "The Awful Temptation of Money" -> Trivial,
+    "A parliament of bats" -> Playable(_ => true, _.chooseBranch("Release a bat into the cloud"))
   ) withDefaultValue Unplayable
 
   //grind through discards as far as possible
