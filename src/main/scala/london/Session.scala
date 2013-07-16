@@ -35,6 +35,7 @@ class Session(cookieTin: String) {
     val jar = reader.readObject().asInstanceOf[mutable.Set[SerializableCookie]].map{ c =>
       new Cookie(c.domain, c.name, c.value, c.path, c.maxAge, c.secure)
     }
+    reader.close()
     Some(jar)
   } else {
     None
