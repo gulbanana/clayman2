@@ -31,6 +31,7 @@ class Status {
   var eventIDs = Map[String, Int]()
   var branchIDs = Map[String, Int]()
   var itemIDs = Map[String, Int]()
+  var invitationIDs = Map[String, Int]()
 
   private val areaPattern = """(?s).*updatePageAfterStoryletChoice\((\d+),.*""".r
   private val actionPattern = """(?s).*setActionsLevel\((\d+),.*""".r
@@ -182,6 +183,10 @@ class Status {
     }).toMap    
     
     updateOpportunities(soup)
+  }
+  
+  def updateInvitations(soup: Document) {
+    //invitationIDs = 
   }
   
   val tooltipPattern = """<strong>(\d+) x (.*?)<.*""".r

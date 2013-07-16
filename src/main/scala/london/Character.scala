@@ -39,6 +39,8 @@ class Character(username: String, password: String) {
   def qualities = parser.qualities
   def opportunities = parser.opportunityIDs.keySet
   def storylets = parser.eventIDs.keySet
+  def branches = parser.branchIDs.keySet
+  def invitations= parser.invitationIDs.keySet
   
   // MANAGE STATUS: change location, equipment
   def travel(area: Area) = if (parser.updateLocation(area)) {
@@ -66,6 +68,19 @@ class Character(username: String, password: String) {
     println ("Discarded \"%s\".".format(opportunity))
   }
   
+  // MANAGE SOCIAL ACTIONS: context free
+  def checkMessages() {
+    parser updateInvitations http.query(site / "Me" / "Landing")
+  }
+  
+  def acceptInvitation(message: String) {
+    parser updateInvitations http.query(site / "Me" / "AcceptInvitation" << Map("invitationId" -> parser.invitationIDs(message).toString))
+  }
+  
+  def rejectInvitation(message: String) {
+    parser updateInvitations http.query(site / "Me" / "RejectInvitation" << Map("invitationId" -> parser.invitationIDs(message).toString))
+  }
+  
   // BEGIN STORYLETS: opportunities, items, or area-based 
   def playOpportunity(opportunity: String) {
     parser updateBranches http.query(site / "Storylet" / "Begin" << Map("eventid" -> parser.opportunityIDs(opportunity).toString))
@@ -84,7 +99,6 @@ class Character(username: String, password: String) {
   }
   
   // IN STORYLETS: choose a branch, onwards, or back
-  def branches = parser.branchIDs.keySet
   def chooseBranch(branch: String) {
     val soup = http.query(site / "Storylet" / "ChooseBranch" << Map("branchid" -> parser.branchIDs(branch).toString,
                                                                               "secondChances" -> "false"))
