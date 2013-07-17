@@ -7,7 +7,12 @@ package object common extends Did {
     opportunities.mill()
     
     val buffer = c.actionCap - 4
-    while (c.actions > buffer)
-      if (!opportunities.act()) f
+    while (c.actions > buffer) {
+      if (opportunities.act()) {
+        opportunities.mill()
+      } else {
+        f
+      }
+    }
   }
 }
