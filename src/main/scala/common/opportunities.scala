@@ -120,6 +120,13 @@ object opportunities {
       } else {
         c.chooseBranch("Discreetly inform the family about the baronet's communication")
       }
+    ),
+    "A contact in the Great Game has a tale for you" -> Playable(c =>
+      if (c.qualities("Connected: The Great Game") <= c.qualities("Connected: The Church")) {
+        c.chooseBranch("Make it clear that no-one leaves the Game") 
+      } else {
+        c.chooseBranch("Everyone deserves a second chance")
+      }
     )
   )
   
