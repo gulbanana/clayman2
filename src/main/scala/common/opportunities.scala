@@ -58,9 +58,19 @@ object opportunities {
     "Court and Cell: the Constables" -> Conditional(c => c.qualities("Connected: Constables") >= 15 || c.items("Rostygold") >= 10, implicit c =>
       if (c.qualities("Connected: Constables") >= 15) {
         gear.watchful()
+        c.refreshBranches()
         c.chooseBranch("Attend a class given by the Implacable Detective")
       } else {
         c.chooseBranch("A small donation")
+      }
+    ),
+    "By the River's Side: the Docks" -> Conditional(c => c.qualities("Connected: The Docks") >= 3 || c.items("Rostygold") >= 10, implicit c =>
+      if (c.qualities("Connected: The Docks") >= 3) {
+        gear.dangerous()
+        c.refreshBranches()
+        c.chooseBranch("Fencing lessons with a Dashing Captain")
+      } else {
+        c.chooseBranch("Buy a round at the Rusty Tramp")
       }
     ),
     "The Demi-Monde: Bohemians" -> Conditional(_.qualities("Connected: Bohemian") >= 3, _.chooseBranch("Take tea with a Reclusive Novelist")),

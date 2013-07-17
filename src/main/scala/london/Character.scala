@@ -92,13 +92,16 @@ class Character(username: String, password: String) {
     println("\"%s\"".format(parser.title))
   }
   
-  
   def beginStorylet(storylet: String) {
     parser updateBranches http.query(site / "Storylet" / "Begin" << Map("eventid" -> parser.eventIDs(storylet).toString))
     println("\"%s\"".format(parser.title))
   }
   
   // IN STORYLETS: choose a branch, onwards, or back
+  def refreshBranches() {
+    parser updateBranches http.query(site / "Storylet" / "In")
+  }
+  
   def chooseBranch(branch: String) {
     val soup = http.query(site / "Storylet" / "ChooseBranch" << Map("branchid" -> parser.branchIDs(branch).toString,
                                                                               "secondChances" -> "false"))
