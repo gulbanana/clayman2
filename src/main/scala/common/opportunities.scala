@@ -73,7 +73,21 @@ object opportunities {
         c.chooseBranch("Buy a round at the Rusty Tramp")
       }
     ),
-    "The Demi-Monde: Bohemians" -> Conditional(_.qualities("Connected: Bohemian") >= 3, _.chooseBranch("Take tea with a Reclusive Novelist")),
+    "Burning Shadows: the Devils of London" -> Playable(implicit c => 
+      if (c.qualities("Connected: Hell") >= 3) {
+        gear.watchful()
+        c.refreshBranches()
+        c.chooseBranch("Speak with a senior deviless")
+      } else {
+        c.chooseBranch("Attend a lecture at the Brass Embassy")
+      }
+    ),
+    "The Demi-Monde: Bohemians" -> Conditional(c => c.qualities("Connected: Bohemian") >= 3 || c.items("Greyfields 1882") >= 2, c => 
+      if (c.qualities("Connected: Bohemian") >= 3)
+        c.chooseBranch("Take tea with a Reclusive Novelist")
+      else
+        c.chooseBranch("Buy drinks for writers")
+    ),
     "Bandages and Dust: The Tomb-Colonies" -> Conditional(_.qualities("Connected: The Tomb-Colonies") >= 3, { implicit c => gear.dangerous(); c.chooseBranch("Spar with a Black Ribbon Duellist") }),
     "Whispers from the Surface: The Great Game" -> Conditional(c => (c.qualities("Connected: The Great Game") >= 10 && c.watchful <= 70) || c.qualities("Connected: The Great Game") >= 20, c =>
       if (c.watchful > 70)
@@ -88,13 +102,6 @@ object opportunities {
         c.chooseBranch("Run the rooftops with the urchins")
       else
         c.chooseBranch("In the shadow of All Christs Spire")
-    ),
-    "Burning Shadows: the Devils of London" -> Playable(c => 
-      if (c.watchful > 70 && c.qualities("Connected: Hell") > 2) {
-        c.chooseBranch("Speak with a senior deviless")
-      } else {
-        c.chooseBranch("Attend a lecture at the Brass Embassy")
-      }
     ),
     "Gunpowder and Zeal: the Revolutionaries" -> Playable(_.chooseBranch("Taking a walk down gin lane"))
   )
