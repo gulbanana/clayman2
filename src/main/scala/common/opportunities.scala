@@ -14,6 +14,7 @@ object opportunities {
     "Romance and practicality",                             //best reward: 36 whispered secrets
     "Stark villainy",                   					//best reward: like 30 rostygold
     "The marriage of inconvenience",                        //best reward: 50 secrets
+    "Rob a Brass Embassy courier",                          //15 proscribed material
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
     "The Ways of Wolfstack Docks",
@@ -113,14 +114,14 @@ object opportunities {
       else
         c.chooseBranch("Convince the urchin to keep his soul")
     ),
-    "Going gentle" -> Playable(implicit c =>
+    /*"Going gentle" -> Playable(implicit c =>
       if (c.qualities("Connected: The Tomb-Colonies") <= c.qualities("Connected: Society")) {
         gear.dangerous()
         c.chooseBranch("Break him out!") 
       } else {
         c.chooseBranch("Discreetly inform the family about the baronet's communication")
       }
-    ),
+    ),*/
     "A contact in the Great Game has a tale for you" -> Playable(c =>
       if (c.qualities("Connected: The Great Game") <= c.qualities("Connected: The Church")) {
         c.chooseBranch("Make it clear that no-one leaves the Game") 
