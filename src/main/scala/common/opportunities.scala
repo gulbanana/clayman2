@@ -3,17 +3,7 @@ import london._
 
 object opportunities {  
   //auto-discard these, unless they are playable
-  private val blacklist = Set(
-    //useless if they aren't useful
-    "Pass the Cat: a wriggling delivery", //the only benefit is -scandal, which i might not need
-    "Wanted: Reminders of Brighter Days", //it's not worth keeping around on the off-chance of saving an action
-    "The Ambassador's ball",              //might not be in the range to play it - only gives a confident smile
-    "Whispers from the Surface: The Great Game",  //can't use it to grind
-    "A consideration for services rendered",      //not worth grinding souls for
-    "Graffiti with a sting",					  //only useful when Counting the Days
-    "The Ways of the Flit",					//street signs are valuable, though it's difficult 
-      
-    //always useless
+  private val alwaysUseless = Set(
     "Help a spy distract an inconvenient tail",             //best reward: 36 jade
     "A meeting of cats",                                    //best reward: 24 clues
     "The notable citizen",                                  //best reward: 83 whispered secrets and it can't be made scandal-safe
@@ -30,9 +20,19 @@ object opportunities {
     "The Ways of the Shuttered Palace"
   )
   
+  private val sometimesUseless = Set(
+    "Pass the Cat: a wriggling delivery", 			//the only benefit is -scandal, which i might not need
+    "Wanted: Reminders of Brighter Days", 			//it's not worth keeping around on the off-chance of saving an action
+    "The Ambassador's ball",              			//might not be in the range to play it - only gives a confident smile
+    "Whispers from the Surface: The Great Game",	//can't use it to grind
+    "A consideration for services rendered",      	//not worth grinding souls for
+    "Graffiti with a sting",						//only useful when Counting the Days
+    "The Ways of the Flit"							//street signs are valuable, but it's difficult
+  )
+  
   //auto-play these if conditions are met
-  private val playlist = Map[String, Opportunity](
-    //Lodgings
+  private val lodgingCards = Map(
+    "The Sleepless Tower" -> Playable(_.chooseBranch("Spores and fangs")),
     "The Tower of Sparrows" -> Playable(_.chooseBranch("Settle down to a game of cards")),
     "The Tower of Sleeping Giants" -> Playable(c =>
       if (c.items("An Infernal Contract") < 100)
@@ -40,11 +40,15 @@ object opportunities {
       else 
         c.chooseBranch("Examine the stock") 
     ),
-    "The Sleepless Tower" -> Playable(_.chooseBranch("Spores and fangs")),
+    "The Heron Tower" -> Playable(implicit c => {
+      gear.dangerous()
+      c.chooseBranch("Peril and pyjamas")
+    }),
     "The Lofty Tower" -> Unplayable,
-    "The Western Tower" -> Unplayable,
-    
-    //Connections
+    "The Western Tower" -> Unplayable
+  )
+  
+  private val connectionCards = Map(
     "Altars and alms-houses: the Church" -> Conditional(c => c.qualities("Connected: The Church") >= 20 || c.items("Rostygold") >= 10, c =>
       if (c.qualities("Connected: The Church") >= 20)
         c.chooseBranch("Attend a private lecture given by the Bishop of Southwark")
@@ -82,29 +86,27 @@ object opportunities {
         c.chooseBranch("Attend a lecture at the Brass Embassy")
       }
     ),
-    "Gunpowder and Zeal: the Revolutionaries" -> Playable(_.chooseBranch("Taking a walk down gin lane")),
-    
-    //Connection vs connection - +15cp net. worth the action?
+    "Gunpowder and Zeal: the Revolutionaries" -> Playable(_.chooseBranch("Taking a walk down gin lane"))
+  )
+  
+  private val conflictCards = Map(
     "The Devil and the Child" -> Playable(c =>
       if (c.qualities("Connected: Hell") <= c.qualities("Connected: Urchins"))
         c.chooseBranch("Take the Devil's side")
       else
         c.chooseBranch("Convince the urchin to keep his soul")
     ),
-    "Going gentle" -> Playable(implicit c => 	//there's another option here, Box-related, for later
+    "Going gentle" -> Playable(implicit c =>
       if (c.qualities("Connected: The Tomb-Colonies") <= c.qualities("Connected: Society")) {
         gear.dangerous()
         c.chooseBranch("Break him out!") 
       } else {
         c.chooseBranch("Discreetly inform the family about the baronet's communication")
       }
-    ),
-    
-    //Counting the Days
-    "The Awful Temptation of Money" -> Trivial,
-    "Graffiti with a sting" -> Conditional(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw")),
-    
-    //Misc playbles
+    )
+  )
+  
+  private val londonCards = Map(
     "Pass the Cat: a wriggling delivery" -> Conditional(_.qualities("Scandal") > 0, _.chooseBranch("An elaborate strategy")),
     "Wanted: Reminders of Brighter Days" -> Conditional(_.items("Incendiary Gossip") >= 25, _.chooseBranch("The tiniest of classified advertisements")),
     "Mr Wines is holding a sale!" -> Conditional(_.items("Romantic Notion") >= 80, _.chooseBranch("A discount for purchase in bulk")),
@@ -115,12 +117,20 @@ object opportunities {
     "A parliament of bats" -> Playable(_.chooseBranch("Release a bat into the cloud")),
     "The Ways of the Flit" -> Conditional(_.shadowy >= 70, _.chooseBranch("An old street sign")),
     "The Correspondence Savages Your Dreams" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Perhaps you can remember something useful") }),
-    
-    //Misc to explicitly keep 
     "What will you do with your Partisan Messenger Tortoise?" -> Unplayable,
     "Help the Sardonic Music-Hall Singer" -> Unplayable,
     "A presumptuous little opportunity" -> Unplayable
-  ) withDefaultValue Unplayable
+  )
+  
+  private val countingTheDays = Map(
+    "The Awful Temptation of Money" -> Trivial,
+    "Graffiti with a sting" -> Conditional(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw"))
+  )
+  
+  private val affairOfTheBox = Map(
+    "Going gentle" -> Unplayable
+  )
 
-  def london = new Opportunist(playlist, blacklist)
+  def london = new Opportunist((lodgingCards ++ connectionCards ++ conflictCards ++ londonCards) withDefaultValue Unplayable, 
+                               (alwaysUseless ++ sometimesUseless))
 }
