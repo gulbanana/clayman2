@@ -14,6 +14,7 @@ object opportunities {
     "The Ambassador's ball",              //might not be in the range to play it - only gives a confident smile
     "Whispers from the Surface: The Great Game",  //can't use it to grind
     "A consideration for services rendered",      //not worth grinding souls for
+    "Graffiti with a sting",					  //only useful when Counting the Days
       
     //always useless
     "Help a spy distract an inconvenient tail",             //best reward: 36 jade
@@ -24,7 +25,7 @@ object opportunities {
     "The tenor's minder",                                   //reward low, dangerous range too small
     "A runaway horse!",                                     //reward low, dangerous range too small
     "Romance and practicality",                             //best reward: 36 whispered secrets
-    "Stark villainy",                   										//best reward: like 30 rostygold
+    "Stark villainy",                   					//best reward: like 30 rostygold
     "The marriage of inconvenience"                         //best reward: 50 secrets
   )
   
@@ -73,6 +74,14 @@ object opportunities {
       else
         c.chooseBranch("In the shadow of All Christs Spire")
     ),
+    "Burning Shadows: the Devils of London" -> Playable(c => true, c => 
+      if (c.watchful > 70 && c.qualities("Connected: Hell") > 2) {
+        c.chooseBranch("Speak with a senior deviless")
+      } else {
+        c.chooseBranch("Attend a lecture at the Brass Embassy")
+      }
+    ),
+    "Gunpowder and Zeal: the Revolutionaries" -> Playable(c => true, _.chooseBranch("Taking a walk down gin lane")),
     
     //Misc
     "Pass the Cat: a wriggling delivery" -> Playable(_.qualities("Scandal") > 0, _.chooseBranch("An elaborate strategy")),
@@ -83,8 +92,11 @@ object opportunities {
     "Going gentle" -> Playable(_ => true, { implicit c => gear.dangerous(); c.chooseBranch("Break him out!") }),
     "A night at the carnival" -> Playable(_ => true, { implicit c => gear.dangerous(); c.chooseBranch("There's always something") }),
     "A consideration for services rendered" -> Playable(_.items("Soul") > 0, _.chooseBranch()),
+    "A parliament of bats" -> Playable(_ => true, _.chooseBranch("Release a bat into the cloud")),
+    
+    //Counting the Days
     "The Awful Temptation of Money" -> Trivial,
-    "A parliament of bats" -> Playable(_ => true, _.chooseBranch("Release a bat into the cloud"))
+    "Graffiti with a sting" -> Playable(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw"))
   ) withDefaultValue Unplayable
 
   //grind through discards as far as possible
