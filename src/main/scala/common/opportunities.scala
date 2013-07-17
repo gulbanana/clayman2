@@ -1,13 +1,7 @@
 package common
 import london._
 
-object opportunities {
-  case class Conditional(test: Character=>Boolean, act: Character=>Unit)
-  class Playable(act: Character=>Unit) extends Conditional(_ => true, act)
-  object Playable { def apply(a: Character=>Unit) = new Playable(a) }
-  object Unplayable extends Conditional(_ => false, _ => throw new Exception("Error: Unplayable card played"))
-  object Trivial extends Conditional(_ => true, _.chooseBranch())
-  
+object opportunities {  
   //auto-discard these, unless they are playable
   private val blacklist = Set(
     //useless if they aren't useful
@@ -37,7 +31,7 @@ object opportunities {
   )
   
   //auto-play these if conditions are met
-  private val playlist = Map[String, Conditional](
+  private val playlist = Map[String, Opportunity](
     //Lodgings
     "The Tower of Sparrows" -> Playable(_.chooseBranch("Settle down to a game of cards")),
     "The Tower of Sleeping Giants" -> Playable(c =>
@@ -128,20 +122,5 @@ object opportunities {
     "A presumptuous little opportunity" -> Unplayable
   ) withDefaultValue Unplayable
 
-  //grind through discards as far as possible
-  def mill()(implicit c: Character) = do {
-    if (c.opportunities.size < 3 && c.deck > 0) //avoid sending a useless ajax
-      c.drawOpportunities()
-    for (opportunity <- c.opportunities if (!playlist(opportunity).test(c) && blacklist.contains(opportunity)))
-      c.discardOpportunity(opportunity)
-  } while(c.opportunities.size < 3 && c.deck > 0)
-
-  //if any are playable, play one
-  def act()(implicit c: Character) = did (c.opportunities.map(playlist(_).test(c)).reduce(_ || _)) {
-    val opportunity = c.opportunities.filter(playlist(_).test(c)).head
-    
-    c.playOpportunity(opportunity)
-    playlist(opportunity).act(c)
-    c.onwards()
-  }
+  def london = new Opportunist(playlist, blacklist)
 }
