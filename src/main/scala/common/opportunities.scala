@@ -88,7 +88,11 @@ object opportunities {
     ),
     "Gunpowder and Zeal: the Revolutionaries" -> Playable(c => true, _.chooseBranch("Taking a walk down gin lane")),
     
-    //Misc
+    //Counting the Days
+    "The Awful Temptation of Money" -> Trivial,
+    "Graffiti with a sting" -> Playable(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw")),
+    
+    //Misc playbles
     "Pass the Cat: a wriggling delivery" -> Playable(_.qualities("Scandal") > 0, _.chooseBranch("An elaborate strategy")),
     "Wanted: Reminders of Brighter Days" -> Playable(_.items("Incendiary Gossip") >= 25, _.chooseBranch("The tiniest of classified advertisements")),
     "Mr Wines is holding a sale!" -> Playable(_.items("Romantic Notion") >= 80, _.chooseBranch("A discount for purchase in bulk")),
@@ -99,10 +103,13 @@ object opportunities {
     "A consideration for services rendered" -> Playable(_.items("Soul") > 0, _.chooseBranch()),
     "A parliament of bats" -> Playable(_ => true, _.chooseBranch("Release a bat into the cloud")),
     "The Ways of the Flit" -> Playable(_.shadowy >= 70, _.chooseBranch("An old street sign")),
+    "The Correspondence Savages Your Dreams" -> Playable(_.qualities("Nightmares") < 7, implicit c => {
+      gear.watchful()
+      c.chooseBranch("Perhaps you can remember something useful")
+    }),
     
-    //Counting the Days
-    "The Awful Temptation of Money" -> Trivial,
-    "Graffiti with a sting" -> Playable(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw"))
+    //Misc to keep for now but play later
+    "What will you do with your Partisan Messenger Tortoise?" -> Unplayable
   ) withDefaultValue Unplayable
 
   //grind through discards as far as possible
