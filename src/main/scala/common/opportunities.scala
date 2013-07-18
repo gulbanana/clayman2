@@ -8,6 +8,7 @@ object opportunities {
     "A meeting of cats",                                    //best reward: 24 clues
     "The notable citizen",                                  //best reward: 83 whispered secrets and it can't be made scandal-safe
     "Shroom-hopping: a quaint sport of the lower classes",  //best reward: 18 '82
+    "A Sporting Sort",                                      //pure gamble
     "What profit?",                                         //i don't want to sell my soul! at least not cheaply
     "The tenor's minder",                                   //reward low, dangerous range too small
     "A runaway horse!",                                     //reward low, dangerous range too small
