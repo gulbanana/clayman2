@@ -40,7 +40,7 @@ class Status {
   private val failurePattern = """(.+) (\d+) failed in a challenge!.*""".r
 
   private val itemModPattern = """You've (gained|lost) (\d+) x (.+) \(new total (\d+)\).""".r
-  private val itemSetPattern = """You now have (\d+) x (.+)\.?""".r
+  private val itemSetPattern = """You now have (\d+) x (.+)""".r
   private val itemSetPattern2 = """You now have (\d+) of this: '(.+)'.""".r
   private val itemClearPattern = """You no longer have any of this: '(.+)'.""".r
   
@@ -48,6 +48,7 @@ class Status {
   private val qualityModPattern2 = """(.+) has (increased|dropped) to (\d+) - (.+)!""".r
   private val qualitySetPattern = """An occurrence! Your '(.+)' quality is now (\d+)!""".r
   private val qualityClearPattern = """You've lost a quality: (.+).""".r
+  private val qualityClearPattern2 = """Your '(.+)' Quality has gone!""".r
   private val qualityChangingPattern = """(.+) is (increasing|dropping)...""".r
   private val qualityNoChangePattern = """(.+) hasn't changed, because it's higher than (\d+)""".r
     
@@ -76,14 +77,15 @@ class Status {
         case failurePattern(qname, qval) => ()
         
         case itemModPattern(idir, imod, iname, ival) => items = items.updated(iname, ival.toInt)
-        case itemSetPattern(iname, ival) => items = items.updated(iname, ival.toInt)
-        case itemSetPattern2(iname, ival) => items = items.updated(iname, ival.toInt)
+        case itemSetPattern(ival, iname) => items = items.updated(iname, ival.toInt)
+        case itemSetPattern2(ival, iname) => items = items.updated(iname, ival.toInt)
         case itemClearPattern(iname) => items = items.updated(iname, 0)
         
         case qualityModPattern(qname, qdir, qval) => qualities = qualities.updated(qname, qval.toInt)
         case qualityModPattern2(qname, qdir, qval, qdesc) => qualities = qualities.updated(qname, qval.toInt)
         case qualitySetPattern(qname, qval) => qualities = qualities.updated(qname, qval.toInt)
         case qualityClearPattern(qname) => qualities = qualities.updated(qname, 0)
+        case qualityClearPattern2(qname) => qualities = qualities.updated(qname, 0)
         case qualityChangingPattern(qname, qdir) => ()
         case qualityNoChangePattern(qname, qmax) => ()
         
