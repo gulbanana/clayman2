@@ -59,6 +59,7 @@ class Status {
   //ways of the neath:
   //A bat zips past, not far overhead.
   //Today, something in the air makes the gas-lamps slink low, burn marsh-green.
+  //Someone speaks your name. But when you turn, there is only a mirror.
   
   def updateEffects(soup: Document) = {
     val updateScript = soup.select("script")(1).data

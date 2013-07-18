@@ -1,5 +1,6 @@
 package common
 import london._
+import scala.reflect.internal.util.StringOps
 
 object opportunities {  
   //auto-discard these, unless they are playable
@@ -120,14 +121,14 @@ object opportunities {
       else
         c.chooseBranch("Convince the urchin to keep his soul")
     ),
-    /*"Going gentle" -> Playable(implicit c =>
+    "Going gentle" -> Playable(implicit c =>
       if (c.qualities("Connected: The Tomb-Colonies") <= c.qualities("Connected: Society")) {
         gear.dangerous()
         c.chooseBranch("Break him out!") 
       } else {
         c.chooseBranch("Discreetly inform the family about the baronet's communication")
       }
-    ),*/
+    ),
     "A contact in the Great Game has a tale for you" -> Playable(c =>
       if (c.qualities("Connected: The Great Game") <= c.qualities("Connected: The Church")) {
         c.chooseBranch("Make it clear that no-one leaves the Game") 
@@ -170,7 +171,10 @@ object opportunities {
   
   private val countingTheDays = Map(
     "The Awful Temptation of Money" -> Trivial,
-    "Graffiti with a sting" -> Conditional(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw"))
+    "Graffiti with a sting" -> Conditional(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw")),
+    "A Moment's Peace" -> Playable(c => {
+      c.chooseBranch(c.branches.toSeq.sortBy(b => -Math.abs(b.compareTo("Relax and enjoy"))).head)
+    })
   )
   
   private val affairOfTheBox = Map(
