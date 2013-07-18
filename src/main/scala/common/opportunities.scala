@@ -45,6 +45,10 @@ object opportunities {
       gear.dangerous()
       c.chooseBranch("Peril and pyjamas")
     }),
+    "The High Castle" -> Playable(implicit c => {
+      gear.shadowy()
+      c.chooseBranch("A stroll with a sack")
+    }),
     "The Lofty Tower" -> Unplayable,
     "The Western Tower" -> Unplayable,
     "The Tower of Sun and Moon" -> Unplayable
