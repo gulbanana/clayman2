@@ -141,6 +141,13 @@ object opportunities {
       } else {
         c.chooseBranch("Convince the residents to pay their protection fees to the urchins instead")
       }
+    ),
+    "Brimstone or frankincense?" -> Playable(c =>
+      if (c.qualities("Connected: Hell") <= c.qualities("Connected: The Church")) {
+        c.chooseBranch("Firecrackers in the thurible!") 
+      } else {
+        c.chooseBranch("Alert the vicar")
+      }
     )
   )
   
