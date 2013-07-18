@@ -128,6 +128,13 @@ object opportunities {
       } else {
         c.chooseBranch("Everyone deserves a second chance")
       }
+    ),
+    "Youthful high spirits" -> Playable(c =>
+      if (c.qualities("Connected: The Docks") <= c.qualities("Connected: Urchins")) {
+        c.chooseBranch("Sabotage the cannon") 
+      } else {
+        c.chooseBranch("Convince the residents to pay their protection fees to the urchins instead")
+      }
     )
   )
   
