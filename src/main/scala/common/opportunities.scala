@@ -46,7 +46,8 @@ object opportunities {
       c.chooseBranch("Peril and pyjamas")
     }),
     "The Lofty Tower" -> Unplayable,
-    "The Western Tower" -> Unplayable
+    "The Western Tower" -> Unplayable,
+    "The Tower of Sun and Moon" -> Unplayable
   )
   
   private val connectionCards = Map(
