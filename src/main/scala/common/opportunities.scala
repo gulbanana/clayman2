@@ -12,7 +12,7 @@ object opportunities {
     "The tenor's minder",                                   //reward low, dangerous range too small
     "A runaway horse!",                                     //reward low, dangerous range too small
     "Romance and practicality",                             //best reward: 36 whispered secrets
-    "Stark villainy",                   					//best reward: like 30 rostygold
+    "Stark villainy",                                       //best reward: like 30 rostygold
     "The marriage of inconvenience",                        //best reward: 50 secrets
     "Rob a Brass Embassy courier",                          //15 proscribed material
     "The Ways of the University",
@@ -139,14 +139,15 @@ object opportunities {
   )
   
   private val londonCards = Map(
+    "Recapturing a prison escapee" -> Trivial,
+    "A parliament of bats" -> Playable(_.chooseBranch("Release a bat into the cloud")),
+    "A night at the carnival" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("There's always something") }),
     "Pass the Cat: a wriggling delivery" -> Conditional(_.qualities("Scandal") > 0, _.chooseBranch("An elaborate strategy")),
     "Wanted: Reminders of Brighter Days" -> Conditional(_.items("Incendiary Gossip") >= 25, _.chooseBranch("The tiniest of classified advertisements")),
     "Mr Wines is holding a sale!" -> Conditional(_.items("Romantic Notion") >= 80, _.chooseBranch("A discount for purchase in bulk")),
     "Lies below the Palace" -> Conditional(_.qualities("Nightmares") < 7, _.chooseBranch()), //okish Watchful/rumour grind- +18 proscribed. reconsider later
     "The Ambassador's ball" -> Conditional(c => c.persuasive > 80 && c.persuasive < 119, _.chooseBranch("Making a point of not making a point")),
-    "A night at the carnival" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("There's always something") }),
     "A consideration for services rendered" -> Conditional(_.items("Soul") > 0, _.chooseBranch()),
-    "A parliament of bats" -> Playable(_.chooseBranch("Release a bat into the cloud")),
     "The Ways of the Flit" -> Conditional(_.shadowy >= 70, _.chooseBranch("An old street sign")),
     "The Correspondence Savages Your Dreams" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Perhaps you can remember something useful") }),
     "What will you do with your Partisan Messenger Tortoise?" -> Unplayable,
