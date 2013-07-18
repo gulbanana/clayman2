@@ -181,6 +181,6 @@ object opportunities {
     "Going gentle" -> Unplayable
   )
 
-  def london = new Opportunist((lodgingCards ++ connectionCards ++ conflictCards ++ londonCards) withDefaultValue Unplayable, 
+  def london = new Opportunist((lodgingCards ++ connectionCards ++ conflictCards ++ londonCards ++ countingTheDays) withDefaultValue Unplayable, 
                                (alwaysUseless ++ sometimesUseless))
 }
