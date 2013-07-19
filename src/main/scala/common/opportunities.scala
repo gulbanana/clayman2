@@ -177,8 +177,8 @@ object opportunities {
     "Lies below the Palace" -> Conditional(_.qualities("Nightmares") < 7, _.chooseBranch()), //okish Watchful/rumour grind- +18 proscribed. reconsider later
     "The Ambassador's ball" -> Conditional(c => c.persuasive > 80 && c.persuasive < 119, _.chooseBranch("Making a point of not making a point")),
     "A consideration for services rendered" -> Conditional(_.items("Soul") > 0, _.chooseBranch()),
-    "The Ways of the Flit" -> Conditional(_.shadowy >= 70, _.chooseBranch("An old street sign")),
-    "The Correspondence Savages Your Dreams" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Perhaps you can remember something useful") }),
+    "The Ways of the Flit" -> Playable(implicit c => { gear.shadowy(); c.refreshBranches(); c.chooseBranch("An old street sign") }),
+    "The Correspondence Savages Your Dreams" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.refreshBranches(); c.chooseBranch("Perhaps you can remember something useful") }),
     "What will you do with your Partisan Messenger Tortoise?" -> Unplayable,
     "Help the Sardonic Music-Hall Singer" -> Unplayable,
     "A presumptuous little opportunity" -> Unplayable
