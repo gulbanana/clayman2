@@ -27,10 +27,8 @@ object opportunities {
     "Pass the Cat: a wriggling delivery", 			//the only benefit is -scandal, which i might not need
     "Wanted: Reminders of Brighter Days", 			//it's not worth keeping around on the off-chance of saving an action
     "The Ambassador's ball",              			//might not be in the range to play it - only gives a confident smile
-    "Whispers from the Surface: The Great Game",	//can't use it to grind
-    "A consideration for services rendered",      	//not worth grinding souls for
-    "Graffiti with a sting",						//only useful when Counting the Days
-    "The Ways of the Flit"							//street signs are valuable, but it's difficult
+    "A consideration for services rendered",    //not worth grinding souls for
+    "Graffiti with a sting"	          					//only useful when Counting the Days
   )
   
   //auto-play these if conditions are met
