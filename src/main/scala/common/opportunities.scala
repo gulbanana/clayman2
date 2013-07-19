@@ -189,6 +189,9 @@ object opportunities {
     "Graffiti with a sting" -> Conditional(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw")),
     "A Moment's Peace" -> Playable(c => {
       c.chooseBranch(c.branches.filter(_ != "Follow a light into the trees").toSeq.sortBy(b => -Math.abs(b.compareTo("Relax and enjoy"))).head)
+    }),
+    "A Restorative" -> Playable(c => {
+      c.chooseBranch(c.branches.filter(_ != "A sumptuous repast!").toSeq.sortBy(b => -Math.abs(b.compareTo("Scraps from the table"))).head)
     })
   )
   
