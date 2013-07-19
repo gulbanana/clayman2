@@ -149,6 +149,20 @@ object opportunities {
       } else {
         c.chooseBranch("Alert the vicar")
       }
+    ),
+    "The kaleidoscopic church" -> Playable(c =>
+      if (c.qualities("Connected: Bohemian") <= c.qualities("Connected: The Church")) {
+        c.chooseBranch("Secure the artists’ work") 
+      } else {
+        c.chooseBranch("Make it clear the Bohemians aren’t welcome any more")
+      }
+    ),
+    "A familiar face by the school railings" -> Playable(c =>
+      if (c.qualities("Connected: The Orient") <= c.qualities("Connected: Urchins")) {
+        c.chooseBranch("Advise the girl to return to the Widow") 
+      } else {
+        c.chooseBranch("Arrange for the girl to return to the urchin-gangs")
+      }
     )
   )
   
