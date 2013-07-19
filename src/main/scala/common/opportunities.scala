@@ -96,13 +96,16 @@ object opportunities {
       else
         c.chooseBranch("Buy drinks for writers")
     ),
-    "Bandages and Dust: The Tomb-Colonies" -> Conditional(_.qualities("Connected: The Tomb-Colonies") >= 3, { implicit c => gear.dangerous(); c.chooseBranch("Spar with a Black Ribbon Duellist") }),
-    "Whispers from the Surface: The Great Game" -> Conditional(c => (c.qualities("Connected: The Great Game") >= 10 && c.watchful <= 70) || c.qualities("Connected: The Great Game") >= 20, c =>
-      if (c.watchful > 70)
-        c.chooseBranch("Learn more at the carnival")
-      else 
-        c.chooseBranch("Get some work done at Clathermont's tattoo parlour")
-    ),
+    "Bandages and Dust: The Tomb-Colonies" -> Conditional(_.qualities("Connected: The Tomb-Colonies") >= 3, implicit c => {
+      gear.dangerous()
+      c.refreshBranches()
+      c.chooseBranch("Spar with a Black Ribbon Duellist") 
+    }),
+    "Whispers from the Surface: The Great Game" -> Conditional(_.qualities("Connected: The Great Game") >= 20, implicit c => {
+      gear.watchful()
+      c.refreshBranches()
+      c.chooseBranch("Learn more at the carnival")
+    }),
     "The Roof-Tops: Urchins" -> Conditional(c => (c.qualities("Connected: Urchins") >= 3 && c.shadowy < 71) || c.items("Glim") >= 20 || c.items("Lucky Weasel") >= 1, c => 
       if (c.shadowy > 70 && c.items("Glim") >= 20)
         c.chooseBranch("Out you go, longshanks")
