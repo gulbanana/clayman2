@@ -47,6 +47,7 @@ class Status {
   private val qualityModPattern = """(.+) has (increased|dropped) to (\d+)!""".r
   private val qualityModPattern2 = """(.+) has (increased|dropped) to (\d+) - (.+)!""".r
   private val qualitySetPattern = """An occurrence! Your '(.+)' quality is now (\d+)!""".r
+  private val qualitySetPattern2 = """You've gained a new quality: (.+) at (\d+) - (.+)""".r
   private val qualityClearPattern = """You've lost a quality: (.+).""".r
   private val qualityClearPattern2 = """Your '(.+)' Quality has gone!""".r
   private val qualityChangingPattern = """(.+) is (increasing|dropping)...""".r
@@ -84,6 +85,7 @@ class Status {
         case qualityModPattern(qname, qdir, qval) => qualities = qualities.updated(qname, qval.toInt)
         case qualityModPattern2(qname, qdir, qval, qdesc) => qualities = qualities.updated(qname, qval.toInt)
         case qualitySetPattern(qname, qval) => qualities = qualities.updated(qname, qval.toInt)
+        case qualitySetPattern2(qname, qdir, qval, qdesc) => qualities = qualities.updated(qname, qval.toInt)
         case qualityClearPattern(qname) => qualities = qualities.updated(qname, 0)
         case qualityClearPattern2(qname) => qualities = qualities.updated(qname, 0)
         case qualityChangingPattern(qname, qdir) => ()
