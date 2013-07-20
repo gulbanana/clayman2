@@ -5,18 +5,19 @@ import scala.reflect.internal.util.StringOps
 object opportunities {  
   //auto-discard these, unless they are playable
   private val alwaysUseless = Set(
-    "Help a spy distract an inconvenient tail",             //best reward: 36 jade
-    "A meeting of cats",                                    //best reward: 24 clues
-    "The notable citizen",                                  //best reward: 83 whispered secrets and it can't be made scandal-safe
-    "Shroom-hopping: a quaint sport of the lower classes",  //best reward: 18 '82
+    "Help a spy distract an inconvenient tail",             //36 jade
+    "A meeting of cats",                                    //24 clues
+    "The notable citizen",                                  //83 whispered secrets, but i can grind that easily and it can't be made scandal-safe
+    "Shroom-hopping: a quaint sport of the lower classes",  //18 '82
     "A Sporting Sort",                                      //pure gamble
     "What profit?",                                         //i don't want to sell my soul! at least not cheaply
     "The tenor's minder",                                   //reward low, dangerous range too small
     "A runaway horse!",                                     //reward low, dangerous range too small
-    "Romance and practicality",                             //best reward: 36 whispered secrets
-    "Stark villainy",                                       //best reward: like 30 rostygold
-    "The marriage of inconvenience",                        //best reward: 50 secrets
+    "Romance and practicality",                             //36 whispered secrets
+    "Stark villainy",                                       //36 rostygold
+    "The marriage of inconvenience",                        //50 whispered secrets
     "Rob a Brass Embassy courier",                          //15 proscribed material
+    "Academic discipline",                                  //60 '79
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
     "The Ways of Wolfstack Docks",
