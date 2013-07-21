@@ -17,9 +17,11 @@ object opportunities {
     "Stark villainy",                                       //36 rostygold
     "The marriage of inconvenience",                        //50 whispered secrets
     "Rob a Brass Embassy courier",                          //15 proscribed material
-    "Academic discipline",                                  //60 '79,
+    "Academic discipline",                                  //0.6E '79,
     "A chance encounter with an old friend...",             //quirk gains cap at 6
     "A libraryette for Mr Pages",                           //req: too much to grind for, for now
+    "Infiltrate a gentlemen's club",                        //0.6E stuff, connections but can't be menace-free
+    "A day in the garden",                                  //0.6E secrets
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
     "The Ways of Wolfstack Docks",
