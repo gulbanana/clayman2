@@ -22,6 +22,8 @@ object opportunities {
     "A libraryette for Mr Pages",                           //req: too much to grind for, for now
     "Infiltrate a gentlemen's club",                        //0.6E stuff, connections but can't be menace-free
     "A day in the garden",                                  //0.6E secrets
+    "The ever-present and invisible servantry",             //<0.4E stuff
+    "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
     "The Ways of Wolfstack Docks",
@@ -180,11 +182,13 @@ object opportunities {
     "Pass the Cat: a wriggling delivery" -> Conditional(_.qualities("Scandal") > 0, _.chooseBranch("An elaborate strategy")),
     "Wanted: Reminders of Brighter Days" -> Conditional(_.items("Incendiary Gossip") >= 25, _.chooseBranch("The tiniest of classified advertisements")),
     "Mr Wines is holding a sale!" -> Conditional(_.items("Romantic Notion") >= 80, _.chooseBranch("A discount for purchase in bulk")),
-    "Lies below the Palace" -> Conditional(_.qualities("Nightmares") < 7, _.chooseBranch()), //okish Watchful/rumour grind- +18 proscribed. reconsider later
     "The Ambassador's ball" -> Conditional(c => c.persuasive > 80 && c.persuasive < 119, _.chooseBranch("Making a point of not making a point")),
     "A consideration for services rendered" -> Conditional(_.items("Soul") > 0, _.chooseBranch()),
     "The Ways of the Flit" -> Playable(implicit c => { gear.shadowy(); c.refreshBranches(); c.chooseBranch("An old street sign") }),
     "The Correspondence Savages Your Dreams" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.refreshBranches(); c.chooseBranch("Perhaps you can remember something useful") }),
+    "Medical Emergency" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Examine the scene for evidence") }),
+    "Consulting detective required for government work" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),
+    "Lies below the Palace" -> Conditional(_.qualities("Nightmares") < 7, _.chooseBranch()), //okish Watchful/rumour grind- +18 proscribed. reconsider later
     "What will you do with your Partisan Messenger Tortoise?" -> Unplayable,
     "Help the Sardonic Music-Hall Singer" -> Unplayable,
     "A presumptuous little opportunity" -> Unplayable
