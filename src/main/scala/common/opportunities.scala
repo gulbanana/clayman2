@@ -1,6 +1,5 @@
 package common
 import london._
-import scala.reflect.internal.util.StringOps
 
 object opportunities {  
   //auto-discard these, unless they are playable
