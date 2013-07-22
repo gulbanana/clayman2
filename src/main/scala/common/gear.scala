@@ -26,7 +26,7 @@ object gear {
     c.equip("Spiderchitin Gauntlets")
     c.equip("Ancient Hunting Rifle")
     c.equip("Savage Hob-nailed Boots")
-    c.equip("Ruthless Henchman")
+    c.equip("Rattus Faber Bandit-Chief")
   }
   
   def persuasive()(implicit c: Character) {

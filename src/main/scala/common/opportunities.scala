@@ -41,25 +41,30 @@ object opportunities {
   
   //auto-play these if conditions are met
   private val lodgingCards = Map(
-    "The Sleepless Tower" -> Playable(_.chooseBranch("Spores and fangs")),
-    "The Tower of Sparrows" -> Playable(_.chooseBranch("Settle down to a game of cards")),
-    "The Tower of Sleeping Giants" -> Playable(c =>
+    "The Tower of Sparrows" -> Playable(_.chooseBranch("Settle down to a game of cards")),	//persuasive t2
+    "The Sleepless Tower" -> Playable(_.chooseBranch("Spores and fangs")),					//dangerous t2 
+    "The Tower of Knives" -> Playable(_.chooseBranch("Rough camaraderie")),					//shadowy t2
+    "The Tower of Sleeping Giants" -> Playable(c =>											//watchful t2
       if (c.items("An Infernal Contract") < 100)
         c.chooseBranch("The owner")
       else 
         c.chooseBranch("Examine the stock") 
     ),
-    "The Heron Tower" -> Playable(implicit c => {
-      gear.dangerous()
-      c.chooseBranch("Peril and pyjamas")
+    "The Tower of Eyes" -> Playable(_.chooseBranch("Do a little promenading yourself")),	//persuasive t2.5
+    "The Heron Tower" -> Playable(_.chooseBranch("Hunt down a huge lizard")),				//dangerous t2.5
+    "The Listing Tower" -> Unplayable,														//dangerous t2.5
+    "The Windward Tower" -> Unplayable,														//shadowy t2.5
+    "The High Castle" -> Playable(implicit c => {											//shadowy t2.5
+      if (c.items("Greyfields 1882") < 1000)
+        c.chooseBranch("Talk to a friend of a friend")
+      else {
+        gear.shadowy()
+        c.chooseBranch("A stroll with a sack")
+      }
     }),
-    "The High Castle" -> Playable(implicit c => {
-      gear.shadowy()
-      c.chooseBranch("A stroll with a sack")
-    }),
-    "The Lofty Tower" -> Unplayable,
-    "The Western Tower" -> Unplayable,
-    "The Tower of Sun and Moon" -> Unplayable
+    "The Lofty Tower" -> Unplayable,														//persuasive t3
+    "The Western Tower" -> Unplayable,														//watchful t3
+    "The Tower of Sun and Moon" -> Unplayable												//watchful t3
   )
   
   private val connectionCards = Map(
