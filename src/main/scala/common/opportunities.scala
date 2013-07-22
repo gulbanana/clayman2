@@ -23,6 +23,7 @@ object opportunities {
     "Infiltrate a gentlemen's club",                        //0.6E stuff, connections but can't be menace-free
     "A day in the garden",                                  //0.6E secrets
     "The ever-present and invisible servantry",             //<0.4E stuff
+    "The young buck",                                       //67 silk or 84 rostygold
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
