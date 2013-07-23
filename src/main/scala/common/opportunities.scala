@@ -23,6 +23,8 @@ object opportunities {
     "Infiltrate a gentlemen's club",                        //0.6E stuff, connections but can't be menace-free
     "A day in the garden",                                  //0.6E secrets
     "The ever-present and invisible servantry",             //<0.4E stuff
+    "A limping figure in a top hat beckons",				//amber for too much connection
+    "Work the carnival",									//12 4th relics
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
@@ -34,8 +36,8 @@ object opportunities {
     "Pass the Cat: a wriggling delivery", 			//the only benefit is -scandal, which i might not need
     "Wanted: Reminders of Brighter Days", 			//it's not worth keeping around on the off-chance of saving an action
     "The Ambassador's ball",              			//might not be in the range to play it - only gives a confident smile
-    "A consideration for services rendered",    //not worth grinding souls for
-    "Graffiti with a sting"	          					//only useful when Counting the Days
+    "A consideration for services rendered",    	//not worth grinding souls for
+    "Graffiti with a sting"	          				//only useful when Counting the Days
   )
   
   //auto-play these if conditions are met
