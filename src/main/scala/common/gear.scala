@@ -15,7 +15,7 @@ object gear {
     c.equip("Sneak-Thief's Mask")
     c.equip("Anarchist's Sable")
     c.equip("Cracksman's Mittens")
-    c.equip("Shepherd's Timepiece")
+    c.equip("Kifers")
     c.equip("Spidersilk Slippers")
     c.equip("Devious Henchman")
   }
