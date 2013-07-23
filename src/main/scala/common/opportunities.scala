@@ -1,6 +1,5 @@
 package common
 import london._
-import scala.reflect.internal.util.StringOps
 
 object opportunities {  
   //auto-discard these, unless they are playable
@@ -25,6 +24,7 @@ object opportunities {
     "The ever-present and invisible servantry",             //<0.4E stuff
     "A limping figure in a top hat beckons",				//amber for too much connection
     "Work the carnival",									//12 4th relics
+    "The young buck",                                       //67 silk or 84 rostygold
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
