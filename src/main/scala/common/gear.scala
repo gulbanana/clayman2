@@ -37,4 +37,17 @@ object gear {
     c.equip("Masterwork Dancing Slippers")
     c.equip("Appreciation Society")
   }
+  
+  def bizarre()(implicit c: Character) {
+    c.equip("Bejewelled Cane")
+  }
+  
+  def dreaded()(implicit c: Character) {
+    c.equip("Anarchist's Sable")
+  }
+  
+  def respectable()(implicit c: Character) {
+    c.equip("Morning Suit")
+    c.equip("Partisan Messenger Tortoise")
+  }
 }
