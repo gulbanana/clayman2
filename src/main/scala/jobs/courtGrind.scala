@@ -13,7 +13,7 @@ object courtGrind extends OneManJob {
   
   private def getToCourt(implicit c: Character) = did (c.location != Areas.Court) {
     if (c.qualities("Suspicion") < 7 && c.qualities("Casing...") < 20) {
-      casing.prep3()  //secrets! but slow Casing growth.
+      casing.prep1()
     } else if (c.qualities("Connected: Society") > 50) {
       c.travel(Areas.ShutteredPalace)
       c.beginStorylet("Spend a few days at Court")
