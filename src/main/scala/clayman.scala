@@ -1,6 +1,7 @@
 import reflect.runtime.{universe=>reflect}
 import com.ning.http.client.AsyncHttpClientConfig
 import jobs._
+import common.Job
 
 object Clayman {
   def main(args: Array[String]) {  

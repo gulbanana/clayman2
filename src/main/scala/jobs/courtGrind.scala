@@ -1,6 +1,10 @@
 package jobs
 import london._
 import common._
+import david._
+import common.OneManJob
+import david.court
+import david.connected
 
 //hang around the court grinding
 object courtGrind extends OneManJob {

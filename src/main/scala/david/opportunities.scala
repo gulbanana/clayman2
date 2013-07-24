@@ -1,5 +1,6 @@
-package common
+package david
 import london._
+import common._
 
 object opportunities {  
   //auto-discard these, unless they are playable

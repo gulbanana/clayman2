@@ -1,6 +1,7 @@
 package jobs
 import london._
 import common._
+import david._
 
 object fidgetingWriter extends OneManJob {
   def apply(implicit c: Character): Unit = repeat {

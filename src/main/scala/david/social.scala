@@ -1,5 +1,6 @@
-package common
+package david
 import london._
+import common._
 
 object social {
   def accepted_nursing()(implicit c: Character) = did (c.invitations("Be Nursed Back To Health")) {

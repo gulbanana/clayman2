@@ -1,6 +1,8 @@
 package jobs
 import london._
 import common._
+import david.grind
+import common.OneManJob
 
 object standardGrind extends OneManJob {
   def apply(implicit c: Character) = repeat {

@@ -1,6 +1,9 @@
 package jobs
 import london._
 import common._
+import david._
+import david.grind
+import common.OneManJob
 
 object blackRibbon extends OneManJob {
   def apply(implicit c: Character): Unit = repeat {
