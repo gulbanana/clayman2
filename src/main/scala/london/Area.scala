@@ -12,6 +12,7 @@ object Areas {
   val ForgottenQuarter = Area(9, "The Forgotten Quarter")
   val ShutteredPalace = Area(10, "The Shuttered Palace")
   val TheFlit = Area(11, "The Flit")
+  val NewNewgate = Area(16, "New Newgate Prison")
   val Carnival = Area(18, "Mrs Plenty's Carnival")
   val Court = Area(26, "The Empress' Court")
   val HouseOfChimes = Area(34, "The House of Chimes")
@@ -26,6 +27,7 @@ object Areas {
     9 -> ForgottenQuarter,
     10 -> ShutteredPalace,
     11 -> TheFlit,
+    16 -> NewNewgate,
     18 -> Carnival,
     26 -> Court,
     34 -> HouseOfChimes
