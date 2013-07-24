@@ -187,6 +187,7 @@ object opportunities {
     "A parliament of bats" -> Playable(_.chooseBranch("Release a bat into the cloud")),
     "The Northbound Parliamentarian" -> Playable(_.chooseBranch("Advise prudence in her latest bill")),
     "A night at the carnival" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("There's always something") }),
+    "The Ways of the Flit" -> Playable(implicit c => { gear.shadowy(); c.refreshBranches(); c.chooseBranch("An old street sign") }),
     "The Eye and the Camera" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.watchful(); c.chooseBranch("Gather evidence... with a camera!") }), //min. 0.8E worth of luminosity
     "Rob a library at the University" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch() }), //conn: rev and 15 proscribed
     "Pass the Cat: a wriggling delivery" -> Conditional(_.qualities("Scandal") > 0, _.chooseBranch("An elaborate strategy")),
@@ -195,7 +196,6 @@ object opportunities {
     "Mr Wines is holding a sale!" -> Conditional(_.items("Romantic Notion") >= 80, _.chooseBranch("A discount for purchase in bulk")),
     "The Ambassador's ball" -> Conditional(c => c.persuasive > 80 && c.persuasive < 119, _.chooseBranch("Making a point of not making a point")),
     "A consideration for services rendered" -> Conditional(_.items("Soul") > 0, _.chooseBranch()),
-    "The Ways of the Flit" -> Playable(implicit c => { gear.shadowy(); c.refreshBranches(); c.chooseBranch("An old street sign") }),
     "The Correspondence Savages Your Dreams" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.refreshBranches(); c.chooseBranch("Perhaps you can remember something useful") }),
     "Medical Emergency" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Examine the scene for evidence") }),
     "Consulting detective required for government work" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),
