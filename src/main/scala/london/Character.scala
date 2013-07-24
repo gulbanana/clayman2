@@ -37,6 +37,7 @@ class Character(username: String, password: String) {
   
   def items = parser.items
   def qualities = parser.qualities
+  def opportunityCap = parser.opportunityCap
   def opportunities = parser.opportunityIDs.keySet
   def storylets = parser.eventIDs.keySet
   def branches = parser.branchIDs.keySet

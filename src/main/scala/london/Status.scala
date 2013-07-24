@@ -27,6 +27,7 @@ class Status {
   
   var title = ""
   
+  var opportunityCap = 3
   var opportunityIDs = Map[String, Int]()
   var eventIDs = Map[String, Int]()
   var branchIDs = Map[String, Int]()

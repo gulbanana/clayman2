@@ -10,11 +10,11 @@ object Trivial extends Opportunity(_ => true, _.chooseBranch())
 class Opportunist(playlist: Map[String, Opportunity], blacklist: Set[String]) {
   //grind through discards as far as possible
   def mill()(implicit c: Character) = do {
-    if (c.opportunities.size < 3 && c.deck > 0) //avoid sending a useless ajax
+    if (c.opportunities.size < c.opportunityCap && c.deck > 0) //avoid sending a useless ajax
       c.drawOpportunities()
     for (opportunity <- c.opportunities if (!playlist(opportunity).test(c) && blacklist.contains(opportunity)))
       c.discardOpportunity(opportunity)
-  } while(c.opportunities.size < 3 && c.deck > 0)
+  } while(c.opportunities.size < c.opportunityCap && c.deck > 0)
 
   //if any are playable, play one
   def act()(implicit c: Character) = did (c.opportunities.map(playlist(_).test(c)).reduce(_ || _)) {
