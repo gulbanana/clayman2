@@ -2,9 +2,6 @@ package jobs
 import london._
 import common._
 import david._
-import common.OneManJob
-import david.court
-import david.connected
 
 //hang around the court grinding
 object courtGrind extends OneManJob {
@@ -15,7 +12,9 @@ object courtGrind extends OneManJob {
   }
   
   private def getToCourt(implicit c: Character) = did (c.location != Areas.Court) {
-    if (c.qualities("Connected: Society") > 50) {
+    if (c.qualities("Suspicion") < 7 && c.qualities("Casing...") < 20) {
+      casing.prep3()  //secrets! but slow Casing growth.
+    } else if (c.qualities("Connected: Society") > 50) {
       c.travel(Areas.ShutteredPalace)
       c.beginStorylet("Spend a few days at Court")
       c.chooseBranch("A word from your friends at Court")
