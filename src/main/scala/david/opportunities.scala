@@ -23,9 +23,10 @@ object opportunities {
     "Infiltrate a gentlemen's club",                        //0.6E stuff, connections but can't be menace-free
     "A day in the garden",                                  //0.6E secrets
     "The ever-present and invisible servantry",             //<0.4E stuff
-    "A limping figure in a top hat beckons",				//amber for too much connection
-    "Work the carnival",									//12 4th relics
-    "The young buck",                                       //67 silk or 84 rostygold
+    "A limping figure in a top hat beckons",                //amber for too much connection
+    "Work the carnival",									                  //12 4th relics
+    "The young buck",                                       //67 silk or 84 rostygold, never 100%
+    "The marvellous contrivance",                           //69 candles or 84 jade, never 100%
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
@@ -34,6 +35,7 @@ object opportunities {
   )
   
   private val sometimesUseless = Set(
+    "The simple joys of villainy",            //crap reward, i just want the shadowy
     "Pass the Cat: a wriggling delivery", 			//the only benefit is -scandal, which i might not need
     "Wanted: Reminders of Brighter Days", 			//it's not worth keeping around on the off-chance of saving an action
     "The Ambassador's ball",              			//might not be in the range to play it - only gives a confident smile
@@ -188,6 +190,7 @@ object opportunities {
     "The Northbound Parliamentarian" -> Playable(_.chooseBranch("Advise prudence in her latest bill")),
     "A night at the carnival" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("There's always something") }),
     "The Ways of the Flit" -> Playable(implicit c => { gear.shadowy(); c.refreshBranches(); c.chooseBranch("An old street sign") }),
+    "The simple joys of villainy" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch("Hire some help and strip the place bare") }), //only 36 beeswax, but +shadowy
     "The Eye and the Camera" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.watchful(); c.chooseBranch("Gather evidence... with a camera!") }), //min. 0.8E worth of luminosity
     "Rob a library at the University" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch() }), //conn: rev and 15 proscribed
     "Pass the Cat: a wriggling delivery" -> Conditional(_.qualities("Scandal") > 0, _.chooseBranch("An elaborate strategy")),
