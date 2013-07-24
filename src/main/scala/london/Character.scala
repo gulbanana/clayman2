@@ -20,8 +20,6 @@ class Character(username: String, password: String) {
     println("%s: %s.".format(parser.name, parser.description))
   
   parser updateBranches http.query(site / "Storylet" / "In")
-  if (newLogin)
-    println("Welcome to %s, delicious friend!".format(location.name))
   
   //Public API
   def name = parser.name
@@ -37,11 +35,12 @@ class Character(username: String, password: String) {
   
   def items = parser.items
   def qualities = parser.qualities
-  def opportunityCap = parser.opportunityCap
   def opportunities = parser.opportunityIDs.keySet
   def storylets = parser.eventIDs.keySet
   def branches = parser.branchIDs.keySet
   def invitations= parser.invitationIDs.keySet
+  
+  def opportunityCap = parser.opportunityCap
   
   // MANAGE STATUS: change location, equipment
   def travel(area: Area) = if (parser.updateLocation(area)) {
