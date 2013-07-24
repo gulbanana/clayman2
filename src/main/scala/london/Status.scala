@@ -154,6 +154,8 @@ class Status {
   
   val deckPattern = """(?s).*(\d+) cards? waiting.*""".r
   def updateOpportunities(soup: Document) = {
+    opportunityCap = soup.select("ul#cards > li:not(.card_deck)").size
+    
     opportunityIDs = (for (opportunity <- soup.select("ul#cards > li:not(.card_deck) a")) yield {
       val key = Jsoup.parseBodyFragment(opportunity.attr("title")).select("strong").text.trim
       val id = opportunity.select("input[type=image]").attr("onclick").drop(11).dropRight(2).toInt
