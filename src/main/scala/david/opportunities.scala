@@ -185,6 +185,7 @@ object opportunities {
   private val londonCards = Map(
     "Recapturing a prison escapee" -> Trivial,
     "A parliament of bats" -> Playable(_.chooseBranch("Release a bat into the cloud")),
+    "The Northbound Parliamentarian" -> Playable(_.chooseBranch("Advise prudence in her latest bill")),
     "A night at the carnival" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("There's always something") }),
     "The Eye and the Camera" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.watchful(); c.chooseBranch("Gather evidence... with a camera!") }), //min. 0.8E worth of luminosity
     "Rob a library at the University" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch() }), //conn: rev and 15 proscribed
