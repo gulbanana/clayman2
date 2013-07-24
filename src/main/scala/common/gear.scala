@@ -48,6 +48,5 @@ object gear {
   
   def respectable()(implicit c: Character) {
     c.equip("Morning Suit")
-    c.equip("Partisan Messenger Tortoise")
   }
 }
