@@ -6,9 +6,9 @@ import london._
 //it scales linearly with a factor of the base diff
 //some of the prep actions have rare successes which give you more cp
 
-object casing {
+object heist {
   //3 actions, 6cp (8 rare), difficulty 75
-  def prep1()(implicit c: Character) {
+  def casing1()(implicit c: Character) {
     c.travel(Areas.TheFlit)
     c.beginStorylet("Preparing for a Big Score")
     c.chooseBranch("Look for the targets")
@@ -17,7 +17,7 @@ object casing {
   
   //3 actions, 6cp, difficulty 76
   //fail: 1-2cp suspicion
-  def prep2()(implicit c: Character) {
+  def casing2()(implicit c: Character) {
     c.travel(Areas.TheFlit)
     c.beginStorylet("Preparing for a Big Score")
     c.chooseBranch("Examine the target")
@@ -26,7 +26,7 @@ object casing {
   
   //3 actions, 6cp & +20 secrets, difficulty 78
   //fail: +suspicion, -casing
-  def prep3()(implicit c: Character) {
+  def casing3()(implicit c: Character) {
     c.travel(Areas.TheFlit)
     c.beginStorylet("Preparing for a Big Score")
     c.chooseBranch("Criminal assistance")
@@ -35,7 +35,7 @@ object casing {
   
   //3 actions, 9cp, difficulty 80
   //fail: +suspicion
-  def prep4()(implicit c: Character) {
+  def casing4()(implicit c: Character) {
     c.travel(Areas.TheFlit)
     c.beginStorylet("Preparing for a Big Score")
     c.chooseBranch("Scapegoats and alibis")
@@ -44,7 +44,7 @@ object casing {
   
   //3 actions, 9cp (rare +vigor), difficulty 82
   //fail: +suspicion
-  def prep5()(implicit c: Character) {
+  def casing5()(implicit c: Character) {
     c.travel(Areas.TheFlit)
     c.beginStorylet("Preparing for a Big Score")
     c.chooseBranch("Formulate a plan")
@@ -53,7 +53,7 @@ object casing {
   
   //3 actions, 9cp & bundle 30, difficulty 84
   //fail: +suspicion
-  def prep6()(implicit c: Character) {
+  def casing6()(implicit c: Character) {
     c.travel(Areas.TheFlit)
     c.beginStorylet("Preparing for a Big Score")
     c.chooseBranch("The decoy")
