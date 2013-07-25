@@ -15,11 +15,12 @@ class Character(username: String, password: String) {
     loginSoup = http.query(site / "Gap" / "Load" <<? Map("content" -> "/Me"))
   }
   
-  parser updateStatus(loginSoup, http.query(site / "Me"))
+  parser updateStatus loginSoup
+  parser updateQualities http.query(site / "Me")
+  parser updateBranches http.query(site / "Storylet" / "In")
+  
   if (newLogin)
     println("%s: %s.".format(parser.name, parser.description))
-  
-  parser updateBranches http.query(site / "Storylet" / "In")
   
   //Public API
   def name = parser.name
@@ -88,21 +89,26 @@ class Character(username: String, password: String) {
   }
   
   def useItem(item: String) {
+    if (!parser.itemIDs.keySet.contains(item))
+      parser updateBranches http.query(site / "Me" / "In")
+    
     parser updateBranches http.query(site / "Storylet" / "UseQuality" << Map("qualityId" -> parser.itemIDs(item).toString))
     println("\"%s\"".format(parser.title))
   }
   
   def beginStorylet(storylet: String) {
+    if (!parser.eventIDs.keySet.contains(storylet))
+      parser updateBranches http.query(site / "Storylet" / "Available")
+    	
     parser updateBranches http.query(site / "Storylet" / "Begin" << Map("eventid" -> parser.eventIDs(storylet).toString))
     println("\"%s\"".format(parser.title))
   }
   
   // IN STORYLETS: choose a branch, onwards, or back
-  def refreshBranches() {
-    parser updateBranches http.query(site / "Storylet" / "In")
-  }
-  
   def chooseBranch(branch: String) {
+    if (!parser.branchIDs.keySet.contains(branch))
+      parser updateBranches http.query(site / "Storylet" / "In")
+    
     val soup = http.query(site / "Storylet" / "ChooseBranch" << Map("branchid" -> parser.branchIDs(branch).toString,
                                                                               "secondChances" -> "false"))
     println("--> %s".format(branch))

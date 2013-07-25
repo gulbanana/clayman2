@@ -102,7 +102,7 @@ class Status {
     }
   }
   
-  def updateStatus(outerSoup: Document, innerSoup: Document) = {
+  def updateStatus(outerSoup: Document) {
     //Actions: nested spans in the outer HTML
     val actionPattern = """(\d+)/(\d+)""".r
     val actionPattern(current, max) = outerSoup.select("span.actions_remaining").text
@@ -119,7 +119,9 @@ class Status {
     shadowy = extractStat(outerSoup, 210)
     dangerous = extractStat(outerSoup, 211)
     persuasive = extractStat(outerSoup, 212)
-    
+  }
+  
+  def updateQualities(innerSoup: Document) = {
     //Name and description: at the start of the /Me page in redesign_heading div
     name = innerSoup.select("div.redesign_heading > h1 > a").first.text
     description = innerSoup.select("div.redesign_heading > p").first.text

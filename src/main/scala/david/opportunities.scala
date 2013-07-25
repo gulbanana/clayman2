@@ -81,7 +81,6 @@ object opportunities {
     "Court and Cell: the Constables" -> Conditional(c => c.qualities("Connected: Constables") >= 15 || c.items("Rostygold") >= 10, implicit c =>
       if (c.qualities("Connected: Constables") >= 15) {
         gear.watchful()
-        c.refreshBranches()
         c.chooseBranch("Attend a class given by the Implacable Detective")
       } else {
         c.chooseBranch("A small donation")
@@ -90,7 +89,6 @@ object opportunities {
     "By the River's Side: the Docks" -> Conditional(c => c.qualities("Connected: The Docks") >= 3 || c.items("Rostygold") >= 10, implicit c =>
       if (c.qualities("Connected: The Docks") >= 3) {
         gear.dangerous()
-        c.refreshBranches()
         c.chooseBranch("Fencing lessons with a Dashing Captain")
       } else {
         c.chooseBranch("Buy a round at the Rusty Tramp")
@@ -99,7 +97,6 @@ object opportunities {
     "Burning Shadows: the Devils of London" -> Playable(implicit c => 
       if (c.qualities("Connected: Hell") >= 3) {
         gear.watchful()
-        c.refreshBranches()
         c.chooseBranch("Speak with a senior deviless")
       } else {
         c.chooseBranch("Attend a lecture at the Brass Embassy")
@@ -113,12 +110,10 @@ object opportunities {
     ),
     "Bandages and Dust: The Tomb-Colonies" -> Conditional(_.qualities("Connected: The Tomb-Colonies") >= 3, implicit c => {
       gear.dangerous()
-      c.refreshBranches()
       c.chooseBranch("Spar with a Black Ribbon Duellist") 
     }),
     "Whispers from the Surface: The Great Game" -> Conditional(_.qualities("Connected: The Great Game") >= 20, implicit c => {
       gear.watchful()
-      c.refreshBranches()
       c.chooseBranch("Learn more at the carnival")
     }),
     "The Roof-Tops: Urchins" -> Conditional(c => (c.qualities("Connected: Urchins") >= 3 && c.shadowy < 71) || c.items("Glim") >= 20 || c.items("Lucky Weasel") >= 1, c => 
@@ -190,7 +185,7 @@ object opportunities {
     "A parliament of bats" -> Playable(_.chooseBranch("Release a bat into the cloud")),
     "The Northbound Parliamentarian" -> Playable(_.chooseBranch("Advise prudence in her latest bill")),
     "A night at the carnival" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("There's always something") }),
-    "The Ways of the Flit" -> Playable(implicit c => { gear.shadowy(); c.refreshBranches(); c.chooseBranch("An old street sign") }),
+    "The Ways of the Flit" -> Playable(implicit c => { gear.shadowy(); c.chooseBranch("An old street sign") }),
     "The simple joys of villainy" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch("Hire some help and strip the place bare") }), //only 36 beeswax, but +shadowy
     "The Eye and the Camera" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.watchful(); c.chooseBranch("Gather evidence... with a camera!") }), //min. 0.8E worth of luminosity
     "Rob a library at the University" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch() }), //conn: rev and 15 proscribed
@@ -200,7 +195,7 @@ object opportunities {
     "Mr Wines is holding a sale!" -> Conditional(_.items("Romantic Notion") >= 80, _.chooseBranch("A discount for purchase in bulk")),
     "The Ambassador's ball" -> Conditional(c => c.persuasive > 80 && c.persuasive < 119, _.chooseBranch("Making a point of not making a point")),
     "A consideration for services rendered" -> Conditional(_.items("Soul") > 0, _.chooseBranch()),
-    "The Correspondence Savages Your Dreams" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.refreshBranches(); c.chooseBranch("Perhaps you can remember something useful") }),
+    "The Correspondence Savages Your Dreams" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Perhaps you can remember something useful") }),
     "Medical Emergency" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Examine the scene for evidence") }),
     "Consulting detective required for government work" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),
     "Lies below the Palace" -> Conditional(_.qualities("Nightmares") < 7, _.chooseBranch()), //okish Watchful/rumour grind- +18 proscribed. reconsider later
