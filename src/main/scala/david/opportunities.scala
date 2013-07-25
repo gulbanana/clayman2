@@ -130,6 +130,7 @@ object opportunities {
         c.chooseBranch("In the shadow of All Christs Spire")
     ),
     "Gunpowder and Zeal: the Revolutionaries" -> Playable(_.chooseBranch("Taking a walk down gin lane"))
+    //"The Alleys of London: the Criminals" -> Conditional(_.qualities("Connected: Criminals"))
   )
   
   private val conflictCards = Map(
