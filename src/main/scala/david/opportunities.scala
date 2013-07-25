@@ -6,7 +6,7 @@ object opportunities {
   //auto-discard these, unless they are playable
   private val alwaysUseless = Set(
     "Help a spy distract an inconvenient tail",             //36 jade
-    "A meeting of cats",                                    //24 clues
+    "A meeting of cats",                                    //24 clues, never 100%
     "The notable citizen",                                  //83 whispered secrets, but i can grind that easily and it can't be made scandal-safe
     "Shroom-hopping: a quaint sport of the lower classes",  //18 '82
     "A Sporting Sort",                                      //pure gamble
@@ -29,6 +29,7 @@ object opportunities {
     "The marvellous contrivance",                           //69 candles or 84 jade, never 100%
     "Ambushed by pirates!",                                 //72 glim, never 100%
     "An evening's zailing",                                 //bad conn card - always +1 to one, -5 to the other
+    "Rob a Brass Embassy courier",                          //15 proscribed, never 100%
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
