@@ -35,40 +35,38 @@ object opportunities {
   )
   
   private val sometimesUseless = Set(
-    "The simple joys of villainy",            //crap reward, i just want the shadowy
+    "The simple joys of villainy",              //crap reward, i just want the shadowy
     "Pass the Cat: a wriggling delivery", 			//the only benefit is -scandal, which i might not need
     "Wanted: Reminders of Brighter Days", 			//it's not worth keeping around on the off-chance of saving an action
     "The Ambassador's ball",              			//might not be in the range to play it - only gives a confident smile
-    "A consideration for services rendered",    	//not worth grinding souls for
-    "Graffiti with a sting"	          				//only useful when Counting the Days
+    "A consideration for services rendered",    //not worth grinding souls for
+    "Graffiti with a sting",	          				//only useful when Counting the Days
+    "A night on the tiles"                      //doesn't way well without the wine
   )
   
   //auto-play these if conditions are met
   private val lodgingCards = Map(
-    "The Tower of Sparrows" -> Playable(_.chooseBranch("Settle down to a game of cards")),	//persuasive t2
-    "The Sleepless Tower" -> Playable(_.chooseBranch("Spores and fangs")),					//dangerous t2 
-    "The Tower of Knives" -> Playable(_.chooseBranch("Rough camaraderie")),					//shadowy t2
-    "The Tower of Sleeping Giants" -> Playable(c =>											//watchful t2
-      if (c.items("An Infernal Contract") < 100)
-        c.chooseBranch("The owner")
-      else 
-        c.chooseBranch("Examine the stock") 
-    ),
-    "The Tower of Eyes" -> Playable(_.chooseBranch("Do a little promenading yourself")),	//persuasive t2.5
-    "The Heron Tower" -> Playable(_.chooseBranch("Hunt down a huge lizard")),				//dangerous t2.5
-    "The Listing Tower" -> Unplayable,														//dangerous t2.5
-    "The Windward Tower" -> Unplayable,														//shadowy t2.5
-    "The High Castle" -> Playable(implicit c => {											//shadowy t2.5
+    "The Tower of Sparrows" -> Playable(_.chooseBranch("Settle down to a game of cards")),                                                            //persuasive t2
+    "The Sleepless Tower" -> Playable(_.chooseBranch("Spores and fangs")),                                                                            //dangerous t2 
+    "The Tower of Knives" -> Playable(_.chooseBranch("Rough camaraderie")),                                                                           //shadowy t2
+    "The Tower of Sleeping Giants" -> Playable(c => c.chooseBranch(if (c.items("An Infernal Contract") < 100) "The owner" else "Examine the stock")), //watchful t2
+    
+    "The Tower of Eyes" -> Playable(_.chooseBranch("Do a little promenading yourself")),                                                              //persuasive t2.5
+    "The Heron Tower" -> Playable(_.chooseBranch("Hunt down a huge lizard")),                                                                         //dangerous t2.5
+    "The Listing Tower" -> Unplayable,														                                                                                    //dangerous t2.5
+    "The Windward Tower" -> Unplayable,														                                                                                    //shadowy t2.5
+    "The High Castle" -> Playable(implicit c => {											                                                                                //shadowy t2.5
       if (c.items("Greyfields 1882") < 1000)
         c.chooseBranch("Talk to a friend of a friend")
       else {
-        gear.shadowy()
+        gear.shadowy()  //straightforward at 67
         c.chooseBranch("A stroll with a sack")
       }
     }),
-    "The Lofty Tower" -> Unplayable,														//persuasive t3
-    "The Western Tower" -> Unplayable,														//watchful t3
-    "The Tower of Sun and Moon" -> Unplayable												//watchful t3
+    
+    "The Lofty Tower" -> Unplayable,														                                                                                      //persuasive t3
+    "The Western Tower" -> Unplayable,														                                                                                    //watchful t3
+    "The Tower of Sun and Moon" -> Unplayable												                                                                                  //watchful t3
   )
   
   private val connectionCards = Map(
@@ -199,6 +197,7 @@ object opportunities {
     "Medical Emergency" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Examine the scene for evidence") }),
     "Consulting detective required for government work" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),
     "Lies below the Palace" -> Conditional(_.qualities("Nightmares") < 7, _.chooseBranch()), //okish Watchful/rumour grind- +18 proscribed. reconsider later
+    "A night on the tiles" -> Conditional(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")), //1E of influence 
     "What will you do with your Partisan Messenger Tortoise?" -> Unplayable,
     "Help the Sardonic Music-Hall Singer" -> Unplayable,
     "A presumptuous little opportunity" -> Unplayable
