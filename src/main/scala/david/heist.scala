@@ -100,7 +100,7 @@ object heist {
   }
   
   //casing 7, 70%/30%
-  //XXX probably proscribed material
+  //59 material & 200 clues & 40 correspondence / ???
   def target_ministry()(implicit c: Character) {
     c.travel(Areas.TheFlit)
     c.beginStorylet("Rob the Ministry of Public Decency")

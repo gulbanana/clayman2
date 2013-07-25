@@ -27,6 +27,8 @@ object opportunities {
     "Work the carnival",									                  //12 4th relics
     "The young buck",                                       //67 silk or 84 rostygold, never 100%
     "The marvellous contrivance",                           //69 candles or 84 jade, never 100%
+    "Ambushed by pirates!",                                 //72 glim, never 100%
+    "An evening's zailing",                                 //bad conn card - always +1 to one, -5 to the other
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
@@ -211,6 +213,9 @@ object opportunities {
     }),
     "A Restorative" -> Playable(c => {
       c.chooseBranch(c.branches.filter(_ != "A sumptuous repast!").toSeq.sortBy(b => -Math.abs(b.compareTo("Scraps from the table"))).head)
+    }),
+    "An afternoon of good deeds?" -> Playable(c => {
+      c.chooseBranch("Quite a moral afternoon. Let's make sure it's appreciated.")
     })
   )
   
