@@ -6,7 +6,10 @@ import david._
 //hang around the court grinding
 object courtGrind extends OneManJob {
   def apply(implicit c: Character): Unit = repeat {
-    gear.persuasive()
+    if (c.location == Areas.Court || c.qualities("Suspicion") >= 7 || c.qualities("Casing...") >= 20)
+      gear.persuasive()
+    else
+      gear.shadowy()
     
     getToCourt || reduceMenaces || revelsPrep || gainFascinating || grind
   }
