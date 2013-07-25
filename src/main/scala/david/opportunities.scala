@@ -24,9 +24,10 @@ object opportunities {
     "A day in the garden",                                  //0.6E secrets
     "The ever-present and invisible servantry",             //<0.4E stuff
     "A limping figure in a top hat beckons",                //amber for too much connection
-    "Work the carnival",									                  //12 4th relics
+    "Work the carnival",                                    //12 4th relics
     "The young buck",                                       //67 silk or 84 rostygold, never 100%
     "The marvellous contrivance",                           //69 candles or 84 jade, never 100%
+    "Moonish water",										//1.3E secrets, but -0.5E rostygold, never 100%
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
@@ -35,11 +36,12 @@ object opportunities {
   )
   
   private val sometimesUseless = Set(
-    "The simple joys of villainy",            //crap reward, i just want the shadowy
+    "The simple joys of villainy",                  //crap reward, i just want the shadowy
     "Pass the Cat: a wriggling delivery", 			//the only benefit is -scandal, which i might not need
     "Wanted: Reminders of Brighter Days", 			//it's not worth keeping around on the off-chance of saving an action
     "The Ambassador's ball",              			//might not be in the range to play it - only gives a confident smile
     "A consideration for services rendered",    	//not worth grinding souls for
+    "An unusual wager",	          				    //only useful when Counting the Days
     "Graffiti with a sting"	          				//only useful when Counting the Days
   )
   
@@ -186,6 +188,7 @@ object opportunities {
     "The Northbound Parliamentarian" -> Playable(_.chooseBranch("Advise prudence in her latest bill")),
     "A night at the carnival" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("There's always something") }),
     "The Ways of the Flit" -> Playable(implicit c => { gear.shadowy(); c.chooseBranch("An old street sign") }),
+    "Weather at last" -> Playable(implicit c => { gear.shadowy(); c.chooseBranch("An opportunity!") }),	//quirks and shadowy, delete eventually
     "The simple joys of villainy" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch("Hire some help and strip the place bare") }), //only 36 beeswax, but +shadowy
     "The Eye and the Camera" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.watchful(); c.chooseBranch("Gather evidence... with a camera!") }), //min. 0.8E worth of luminosity
     "Rob a library at the University" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch() }), //conn: rev and 15 proscribed
@@ -206,13 +209,14 @@ object opportunities {
   
   private val countingTheDays = Map(
     "The Awful Temptation of Money" -> Trivial,
-    "Graffiti with a sting" -> Conditional(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw")),
     "A Moment's Peace" -> Playable(c => {
       c.chooseBranch(c.branches.filter(_ != "Follow a light into the trees").toSeq.sortBy(b => -Math.abs(b.compareTo("Relax and enjoy"))).head)
     }),
     "A Restorative" -> Playable(c => {
       c.chooseBranch(c.branches.filter(_ != "A sumptuous repast!").toSeq.sortBy(b => -Math.abs(b.compareTo("Scraps from the table"))).head)
-    })
+    }),
+    "An unusual wager" -> Conditional(_.qualities("Counting the Days") < 10, _.chooseBranch("Look at those coins")),
+    "Graffiti with a sting" -> Conditional(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw"))
   )
   
   private val affairOfTheBox = Map(
