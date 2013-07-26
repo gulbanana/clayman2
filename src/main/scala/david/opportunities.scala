@@ -30,6 +30,8 @@ object opportunities {
     "Ambushed by pirates!",                                 //72 glim, never 100%
     "An evening's zailing",                                 //bad conn card - always +1 to one, -5 to the other
     "Rob a Brass Embassy courier",                          //15 proscribed, never 100%
+    "Undertakings",                                         //too-narrow a watchful range
+    "Recapturing a prison escapee",                         //too-narrow a watchful range
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
@@ -182,7 +184,6 @@ object opportunities {
   )
   
   private val londonCards = Map(
-    "Recapturing a prison escapee" -> Trivial,
     "A parliament of bats" -> Playable(_.chooseBranch("Release a bat into the cloud")),
     "The Northbound Parliamentarian" -> Playable(_.chooseBranch("Advise prudence in her latest bill")),
     "A night at the carnival" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("There's always something") }),

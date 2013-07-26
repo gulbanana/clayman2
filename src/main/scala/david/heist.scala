@@ -142,4 +142,7 @@ object heist {
   def target_brass_embassy()(implicit c: Character) {
     
   }
+  
+  //thefts: req casing 10, shadowy challenges - 38% at 77 - only eats <27cp casing
+  //Steal Tales of Terror from a noted author - 25x TOT
 }
