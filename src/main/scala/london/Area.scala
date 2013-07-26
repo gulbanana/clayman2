@@ -31,7 +31,7 @@ object Areas {
     16 -> NewNewgate,
     18 -> Carnival,
     26 -> Court,
-    28 -> LabyrinthOfTigers,
+    28 -> LabyrinthOfTigers,  
     34 -> HouseOfChimes
   )
   
