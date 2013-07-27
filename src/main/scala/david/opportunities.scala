@@ -130,7 +130,13 @@ object opportunities {
       else
         c.chooseBranch("In the shadow of All Christs Spire")
     ),
-    "Gunpowder and Zeal: the Revolutionaries" -> Playable(_.chooseBranch("Taking a walk down gin lane"))
+    "Park and Palace: Society" -> Playable(c => 
+      if (c.qualities("Connected: Society") >= 40)
+        c.chooseBranch("Take port with the Veteran Privy Counsellor") //+10cp persuasive, -400cp connected
+      else
+        c.chooseBranch("An invitation to dinner")   //+connected, -wounds
+    ),
+    "Gunpowder and Zeal: the Revolutionaries" -> Playable(_.chooseBranch("Taking a walk down gin lane"))  //counting the days
     //"The Alleys of London: the Criminals" -> Conditional(_.qualities("Connected: Criminals"))
   )
   
