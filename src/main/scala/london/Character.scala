@@ -105,12 +105,12 @@ class Character(username: String, password: String) {
   }
   
   // IN STORYLETS: choose a branch, onwards, or back
-  def chooseBranch(branch: String) {
+  def chooseBranch(branch: String, useSecondChance: Boolean = false) {
     if (!parser.branchIDs.keySet.contains(branch))
       parser updateBranches http.query(site / "Storylet" / "In")
     
-    val soup = http.query(site / "Storylet" / "ChooseBranch" << Map("branchid" -> parser.branchIDs(branch).toString,
-                                                                              "secondChances" -> "false"))
+    val soup = http.query(site / "Storylet" / "ChooseBranch" << Map("branchid"      -> parser.branchIDs(branch).toString,
+                                                                    "secondChances" -> useSecondChance.toString))
     println("--> %s".format(branch))
     parser updateEffects soup
   }
