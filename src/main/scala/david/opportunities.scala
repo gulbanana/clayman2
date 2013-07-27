@@ -34,6 +34,7 @@ object opportunities {
     "Recapturing a prison escapee",                         //too-narrow a watchful range
     "Moonish water",                                        //net +.8E secrets, narrow dangerous range
     "Race across the river",                                //84 glim
+    "The Noted Orchid-Grower consults",                     //requires fate for small payoff
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
