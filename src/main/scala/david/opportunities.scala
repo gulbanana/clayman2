@@ -32,6 +32,8 @@ object opportunities {
     "Rob a Brass Embassy courier",                          //15 proscribed, never 100%
     "Undertakings",                                         //too-narrow a watchful range
     "Recapturing a prison escapee",                         //too-narrow a watchful range
+    "Moonish water",                                        //net +.8E secrets, narrow dangerous range
+    "Race across the river",                                //84 glim
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
