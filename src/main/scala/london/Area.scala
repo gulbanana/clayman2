@@ -35,7 +35,7 @@ object Areas {
     26 -> Court,
     28 -> LabyrinthOfTigers,  
     34 -> HouseOfChimes
-  )
+  ) withDefault(i => { println("WARNING: unknown areaid %d".format(i)); Area(i, "Unknown Area")})
   
   def apply(id: Int) = byID(id)
 }
