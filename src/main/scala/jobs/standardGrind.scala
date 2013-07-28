@@ -4,10 +4,7 @@ import common._
 import david.grind
 
 object standardGrind extends OneManJob {
-  def apply(implicit c: Character) = {
-    grind.quarter_jade()
-    true
-  }
+  def apply(implicit c: Character) = courtGrind(c)
   
 /*
         # keep 1000 of this around for the presumptuous little opportunity
