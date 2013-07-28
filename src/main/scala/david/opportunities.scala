@@ -35,6 +35,7 @@ object opportunities {
     "Moonish water",                                        //net +.8E secrets, narrow dangerous range
     "Race across the river",                                //84 glim
     "The Noted Orchid-Grower consults",                     //requires fate for small payoff
+    "Medical Emergency",                                    //<50 secrets
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
@@ -210,7 +211,6 @@ object opportunities {
     "The Ambassador's ball" -> Conditional(c => c.persuasive > 80 && c.persuasive < 119, _.chooseBranch("Making a point of not making a point")),
     "A consideration for services rendered" -> Conditional(_.items("Soul") > 0, _.chooseBranch()),
     "The Correspondence Savages Your Dreams" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Perhaps you can remember something useful") }),
-    "Medical Emergency" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Examine the scene for evidence") }),
     "Consulting detective required for government work" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),
     "Lies below the Palace" -> Conditional(_.qualities("Nightmares") < 7, _.chooseBranch()), //okish Watchful/rumour grind- +18 proscribed. reconsider later
     "A night on the tiles" -> Conditional(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")), //1E of influence 
