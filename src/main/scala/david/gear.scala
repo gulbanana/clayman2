@@ -4,7 +4,7 @@ import london._
 object gear {
   def watchful()(implicit c: Character) {
     c.equip("Luminous Neathglass Goggles")
-    c.equip("Morning Suit")
+    c.equip("Academic Gown")
     c.equip("Insatiable Glove")
     c.equip("Patent Scrutinizer")
     c.equip("Mirror-polished Shoes")
