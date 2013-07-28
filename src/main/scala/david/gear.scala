@@ -13,7 +13,7 @@ object gear {
   
   def shadowy()(implicit c: Character) {
     c.equip("Sneak-Thief's Mask")
-    c.equip("Anarchist's Sable")
+    c.equip("Ratskin Suit")
     c.equip("Cracksman's Mittens")
     c.equip("Kifers")
     c.equip("Spidersilk Slippers")
