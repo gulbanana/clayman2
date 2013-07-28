@@ -11,7 +11,7 @@ object courtGrind extends OneManJob {
     else
       gear.shadowy()
     
-    getToCourt || reduceMenaces || revelsPrep || gainFascinating || grind
+    playCards(c) || getToCourt || reduceMenaces || revelsPrep || gainFascinating || grind
   }
   
   private def getToCourt(implicit c: Character) = did (c.location != Areas.Court) {

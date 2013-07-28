@@ -4,7 +4,7 @@ import common._
 import david._
 
 object blackRibbon extends OneManJob {
-  def apply(implicit c: Character) = prep || {
+  def apply(implicit c: Character) = playCards(c) || prep || {
     gear.dangerous(); 
     c.travel(Areas.WolfstackDocks); 
     duel

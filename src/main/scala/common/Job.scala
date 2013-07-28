@@ -9,7 +9,5 @@ trait Duty {
 }
 
 trait OneManJob extends Job with Duty {
-  def apply() = with_character { c => 
-    repeat(c, david.opportunities.london, apply(_))
-  }
+  def apply() = with_character(c => repeat(c, apply(_)))
 }
