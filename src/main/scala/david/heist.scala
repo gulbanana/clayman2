@@ -110,7 +110,7 @@ object heist {
   }
   
   //casing 9, 70%/30%
-  //XXX probably glim
+  //1296 glim / XXX 
   def target_shipment()(implicit c: Character) {
     c.travel(Areas.TheFlit)
     c.beginStorylet("Rob the glim shipment")
@@ -120,7 +120,7 @@ object heist {
   }
   
   //casing 9, 70%/30%
-  //XXX 
+  //200 proscribed & 90 stolen & 50 cp / 300 proscribed & 200 cryptics & 100 cp
   def target_revolution()(implicit c: Character) {
     c.travel(Areas.TheFlit)
     c.beginStorylet("Bringing revolution!")
@@ -130,7 +130,7 @@ object heist {
   }
   
   //casing 11, 70%/30%
-  //XXX  -20cc/
+  //XXX & -20cc / 1000 pearl & 1000 jade & 5 rat 
   def target_duchess()(implicit c: Character) {
     c.travel(Areas.TheFlit)
     c.beginStorylet("Rob the chambers of the Duchess")
@@ -139,8 +139,13 @@ object heist {
     c.onwards()
   }
   
+  //casing 13 50%, 18 100%
+  //fail: arrested
   def target_brass_embassy()(implicit c: Character) {
-    
+    c.travel(Areas.TheFlit)
+    //c.beginStorylet("Rob the chambers of the Duchess")
+    //c.chooseBranch("Rob the study")
+    c.onwards()    
   }
   
   //thefts: req casing 10, shadowy challenges - 38% at 77 - only eats <27cp casing
