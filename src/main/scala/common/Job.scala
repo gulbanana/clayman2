@@ -4,7 +4,12 @@ trait Job {
   def apply()
 }
 
-trait OneManJob extends Job {
-  def apply(implicit c: london.Character)
-  def apply() = with_character(apply(_))
+trait Duty {
+  def apply(implicit c: london.Character): Boolean
+}
+
+trait OneManJob extends Job with Duty {
+  def apply() = with_character { c => 
+    repeat(c, david.opportunities.london, apply(_))
+  }
 }
