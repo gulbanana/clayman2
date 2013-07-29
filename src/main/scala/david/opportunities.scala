@@ -201,8 +201,9 @@ object opportunities {
     "A parliament of bats" -> Playable(_.chooseBranch("Release a bat into the cloud")),
     "The Northbound Parliamentarian" -> Playable(_.chooseBranch("Advise prudence in her latest bill")),
     "A night at the carnival" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("There's always something") }),
-    "The Ways of the Flit" -> Playable(implicit c => { gear.shadowy(); c.chooseBranch("An old street sign") }),
-    "One's public" -> Playable(implicit c => { gear.persuasive(); c.chooseBranch("Put on a fine show for them") }),
+    "The Parthenaeum" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("Expelling undesirables") }),  //conn:soc and 0.6E wines 
+    "The Ways of the Flit" -> Playable(implicit c => { gear.shadowy(); c.chooseBranch("An old street sign") }), //2.5E
+    "One's public" -> Playable(implicit c => { gear.persuasive(); c.chooseBranch("Put on a fine show for them") }), //>2E of stuff!
     "His Young Lordship seized by tentacles" -> Playable(_.chooseBranch("Sell snacks to the crowd")),
     "What's in the sack, Jack?" -> Conditional(_.qualities("Wounds") < 7, implicit c=> { gear.dangerous(); c.chooseBranch()}), //18 proscribed, 100% at 110
     "The simple joys of villainy" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch("Hire some help and strip the place bare") }), //only 36 beeswax, but +shadowy
