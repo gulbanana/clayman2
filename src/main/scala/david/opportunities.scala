@@ -37,6 +37,8 @@ object opportunities {
     "The Noted Orchid-Grower consults",                     //requires fate for small payoff
     "Medical Emergency",                                    //<50 secrets
     "A simple job from a devil",                            //72 brass
+    "As silent as the grave?",                              //0.75E misc goods
+    "Property most intellectual",                           //<1E correspondence
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
