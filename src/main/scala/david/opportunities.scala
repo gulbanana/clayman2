@@ -230,7 +230,7 @@ object opportunities {
       c.chooseBranch(c.branches.filter(_ != "A sumptuous repast!").toSeq.sortBy(b => -Math.abs(b.compareTo("Scraps from the table"))).head)
     }),
     "An afternoon of good deeds?" -> Playable(c => {
-      c.chooseBranch("Quite a moral afternoon. Let's make sure it's appreciated.")
+      c.chooseBranch(c.branches.filter(b => b != "A plaster saint!" && b != "An afternoon of mischief!").toSeq.sortBy(b => -Math.abs(b.compareTo("Quite a moral afternoon."))).head)
     })
   )
   
