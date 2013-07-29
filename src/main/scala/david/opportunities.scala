@@ -36,6 +36,7 @@ object opportunities {
     "Race across the river",                                //84 glim
     "The Noted Orchid-Grower consults",                     //requires fate for small payoff
     "Medical Emergency",                                    //<50 secrets
+    "A simple job from a devil",                            //72 brass
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
@@ -232,6 +233,7 @@ object opportunities {
     "An afternoon of good deeds?" -> Playable(c => {
       c.chooseBranch(c.branches.filter(b => b != "A plaster saint!" && b != "An afternoon of mischief!").toSeq.sortBy(b => -Math.abs(b.compareTo("Quite a moral afternoon."))).head)
     })
+    //The Law's Long Arm
   )
   
   private val affairOfTheBox = Map(
