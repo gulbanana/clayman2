@@ -126,14 +126,13 @@ object opportunities {
       gear.watchful()
       c.chooseBranch("Learn more at the carnival")
     }),
-    "The Roof-Tops: Urchins" -> Conditional(c => (c.qualities("Connected: Urchins") >= 3 && c.shadowy < 71) || c.items("Glim") >= 20 || c.items("Lucky Weasel") >= 1, c => 
-      if (c.shadowy > 70 && c.items("Glim") >= 20)
+    "The Roof-Tops: Urchins" -> Conditional(c => c.items("Glim") >= 20 || c.items("Lucky Weasel") >= 1, implicit c => {
+      gear.shadowy()
+      if (c.items("Glim") >= 20)
         c.chooseBranch("Out you go, longshanks")
-      else if (c.shadowy < 71 && c.qualities("Connected: Urchins") >= 3)
-        c.chooseBranch("Run the rooftops with the urchins")
       else
         c.chooseBranch("In the shadow of All Christs Spire")
-    ),
+    }),
     "Park and Palace: Society" -> Playable(c => 
       if (c.qualities("Connected: Society") >= 40)
         c.chooseBranch("Take port with the Veteran Privy Counsellor") //+10cp persuasive, -400cp connected

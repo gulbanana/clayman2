@@ -33,7 +33,7 @@ object gear {
     c.equip("Gentleman's Hat")
     c.equip("Dignified Tailcoat")
     c.equip("Dancemaster's Dabs")
-    c.equip("Brass Ring")
+    c.equip("Irresistible Drum")
     c.equip("Masterwork Dancing Slippers")
     c.equip("Appreciation Society")
   }

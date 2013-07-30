@@ -129,8 +129,8 @@ object heist {
     c.onwards()
   }
   
-  //casing 11, 70%/30%
-  //XXX & -20cc / 1000 pearl & 1000 jade & 5 rat 
+  //casing 11, 70%/30%wring flesh
+  //300 stolen correspondence & 50 cryptic clues & 242 whispered secrets & 2 appalling secrets / 1000 pearl & 1000 jade & 5 rat 
   def target_duchess()(implicit c: Character) {
     c.travel(Areas.TheFlit)
     c.beginStorylet("Rob the chambers of the Duchess")
