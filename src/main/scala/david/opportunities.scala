@@ -200,6 +200,13 @@ object opportunities {
       } else {
         c.chooseBranch("Convince the revolutionaries to find somewhere else")
       }
+    ),
+    "They all look the same to me" -> Playable(c =>
+      if (c.qualities("Connected: Rubbery Men") <= c.qualities("Connected: Constables")) {
+        c.chooseBranch("Finger a scapegoat") 
+      } else {
+        c.chooseBranch("Finger the guilty party")
+      }
     )
   )
   
