@@ -193,6 +193,13 @@ object opportunities {
       } else {
         c.chooseBranch("Arrange for the girl to return to the urchin-gangs")
       }
+    ),
+    "Amber in the well" -> Playable(c =>
+      if (c.qualities("Connected: Revolutionaries") <= c.qualities("Connected: Rubbery Men")) {
+        c.chooseBranch("Convince the Rubbery Men to move on") 
+      } else {
+        c.chooseBranch("Convince the revolutionaries to find somewhere else")
+      }
     )
   )
   
@@ -226,22 +233,22 @@ object opportunities {
     //"Robbing the Ambassador's ball" -> Playable(c => c.chooseBranch("Pose as a servant")) //XXX 
   )
   
-  def ostracize[T <% Ordered[T]](xs: Set[T], worst: T) = xs.toSeq.sortBy(b => -Math.abs(b.compareTo(worst))).head
+  def deprioritise[T <% Ordered[T]](xs: Set[T], worst: T) = xs.toSeq.sortBy(b => -Math.abs(b.compareTo(worst))).head
   
   private val countingTheDays = Map(
     "The Awful Temptation of Money" -> Trivial,
     "Graffiti with a sting" -> Conditional(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw")),
     "The Law's Long Arm" -> Playable(c => {
-      c.chooseBranch(ostracize(c.branches, "Official incompetence"))
+      c.chooseBranch(deprioritise(c.branches, "Official incompetence"))
     }),
     "A Moment's Peace" -> Playable(c => {
-      c.chooseBranch(ostracize(c.branches - "Follow a light into the trees", "Relax and enjoy"))
+      c.chooseBranch(deprioritise(c.branches - "Follow a light into the trees", "Relax and enjoy"))
     }),
     "A Restorative" -> Playable(c => {
-      c.chooseBranch(ostracize(c.branches - "A sumptuous repast!", "Scraps from the table"))
+      c.chooseBranch(deprioritise(c.branches - "A sumptuous repast!", "Scraps from the table"))
     }),
     "An afternoon of good deeds?" -> Playable(c => {
-      c.chooseBranch(ostracize(c.branches - "A plaster saint!" - "An afternoon of mischief!", "Quite a moral afternoon."))
+      c.chooseBranch(deprioritise(c.branches - "A plaster saint!" - "An afternoon of mischief!", "Quite a moral afternoon."))
     })
   )
   
