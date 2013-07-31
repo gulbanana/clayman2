@@ -129,7 +129,7 @@ object opportunities {
     }),
     "The Roof-Tops: Urchins" -> Conditional(c => c.items("Glim") >= 20 || c.items("Lucky Weasel") >= 1, implicit c => {
       gear.shadowy()
-      if (c.items("Glim") >= 20)
+      if (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 10)
         c.chooseBranch("Out you go, longshanks")
       else
         c.chooseBranch("In the shadow of All Christs Spire")
@@ -205,7 +205,7 @@ object opportunities {
     "The Ways of the Flit" -> Playable(implicit c => { gear.shadowy(); c.chooseBranch("An old street sign") }), //2.5E
     "One's public" -> Playable(implicit c => { gear.persuasive(); c.chooseBranch("Put on a fine show for them") }), //>2E of stuff!
     "His Young Lordship seized by tentacles" -> Playable(_.chooseBranch("Sell snacks to the crowd")),
-    "Minding the detective" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("The case of the frenzied mandrake") }),  //business card
+    "Minding the detective" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("The case of the frenzied mandrake") }),  //business card (and 60 rostygold)
     "Rat Melancholy" -> Playable(_.chooseBranch("Listen to her story")),  //50 cryptic clues, rat sympathy
     "What's in the sack, Jack?" -> Conditional(_.qualities("Wounds") < 7, implicit c=> { gear.dangerous(); c.chooseBranch()}), //18 proscribed, 100% at 110
     "The simple joys of villainy" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch("Hire some help and strip the place bare") }), //only 36 beeswax, but +shadowy
