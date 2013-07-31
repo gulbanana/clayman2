@@ -17,7 +17,7 @@ class Opportunist(playlist: Map[String, Opportunity], blacklist: Set[String]) {
   } while(c.opportunities.size < c.opportunityCap && c.deck > 0)
 
   //if any are playable, play one
-  def act()(implicit c: Character) = did (c.opportunities.map(playlist(_).test(c)).reduce(_ || _)) {
+  def act()(implicit c: Character) = did (c.opportunities.nonEmpty && c.opportunities.map(playlist(_).test(c)).reduce(_ || _)) {
     val opportunity = c.opportunities.filter(playlist(_).test(c)).head
     
     c.playOpportunity(opportunity)

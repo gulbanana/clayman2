@@ -140,11 +140,12 @@ object heist {
   }
   
   //casing 13 50%, 18 100%
+  //1000 nevercold brass, 500 souls, 40 infernal contracts, 10 flawed diamonds, 25 proscribed material
   //fail: arrested
   def target_brass_embassy()(implicit c: Character) {
     c.travel(Areas.TheFlit)
-    //c.beginStorylet("Rob the chambers of the Duchess")
-    //c.chooseBranch("Rob the study")
+    c.beginStorylet("Rob the Brass Embassy")
+    c.chooseBranch()
     c.onwards()    
   }
   

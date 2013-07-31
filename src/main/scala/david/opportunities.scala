@@ -204,6 +204,7 @@ object opportunities {
     "The Ways of the Flit" -> Playable(implicit c => { gear.shadowy(); c.chooseBranch("An old street sign") }), //2.5E
     "One's public" -> Playable(implicit c => { gear.persuasive(); c.chooseBranch("Put on a fine show for them") }), //>2E of stuff!
     "His Young Lordship seized by tentacles" -> Playable(_.chooseBranch("Sell snacks to the crowd")),
+    "Rat Melancholy" -> Playable(_.chooseBranch("Listen to her story")),  //50 cryptic clues, rat sympathy
     "What's in the sack, Jack?" -> Conditional(_.qualities("Wounds") < 7, implicit c=> { gear.dangerous(); c.chooseBranch()}), //18 proscribed, 100% at 110
     "The simple joys of villainy" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch("Hire some help and strip the place bare") }), //only 36 beeswax, but +shadowy
     "The Eye and the Camera" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.watchful(); c.chooseBranch("Gather evidence... with a camera!") }), //min. 0.8E worth of luminosity
@@ -215,12 +216,13 @@ object opportunities {
     "The Ambassador's ball" -> Conditional(c => c.persuasive > 80 && c.persuasive < 119, _.chooseBranch("Making a point of not making a point")),
     "A consideration for services rendered" -> Conditional(_.items("Soul") > 0, _.chooseBranch()),
     "The Correspondence Savages Your Dreams" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Perhaps you can remember something useful") }),
-    "Consulting detective required for government work" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),
+    "Consulting detective required for government work" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),  //21 proscribed and +subtle
     "Lies below the Palace" -> Conditional(_.qualities("Nightmares") < 7, _.chooseBranch()), //okish Watchful/rumour grind- +18 proscribed. reconsider later
     "A night on the tiles" -> Conditional(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")), //1E of influence 
     "What will you do with your Partisan Messenger Tortoise?" -> Unplayable,
     "Help the Sardonic Music-Hall Singer" -> Unplayable,
     "A presumptuous little opportunity" -> Unplayable
+    //"Robbing the Ambassador's ball" -> Playable(c => c.chooseBranch("Pose as a servant")) //XXX 
   )
   
   private val countingTheDays = Map(
