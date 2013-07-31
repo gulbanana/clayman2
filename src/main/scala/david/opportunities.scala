@@ -39,6 +39,7 @@ object opportunities {
     "A simple job from a devil",                            //72 brass
     "As silent as the grave?",                              //0.75E misc goods
     "Property most intellectual",                           //<1E correspondence
+    "Lies below the Palace",                                //18 proscribed (<0.8E)
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
@@ -218,7 +219,6 @@ object opportunities {
     "A consideration for services rendered" -> Conditional(_.items("Soul") > 0, _.chooseBranch()),
     "The Correspondence Savages Your Dreams" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Perhaps you can remember something useful") }),
     "Consulting detective required for government work" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),  //21 proscribed and +subtle
-    "Lies below the Palace" -> Conditional(_.qualities("Nightmares") < 7, _.chooseBranch()), //okish Watchful/rumour grind- +18 proscribed. reconsider later
     "A night on the tiles" -> Conditional(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")), //1E of influence 
     "What will you do with your Partisan Messenger Tortoise?" -> Unplayable,
     "Help the Sardonic Music-Hall Singer" -> Unplayable,
