@@ -226,19 +226,23 @@ object opportunities {
     //"Robbing the Ambassador's ball" -> Playable(c => c.chooseBranch("Pose as a servant")) //XXX 
   )
   
+  def ideallyNot[T <% Ordered[T]](xs: Set[T], worst: T) = xs.toSeq.sortBy(b => -Math.abs(b.compareTo(worst))).head
+  
   private val countingTheDays = Map(
     "The Awful Temptation of Money" -> Trivial,
     "Graffiti with a sting" -> Conditional(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw")),
     "A Moment's Peace" -> Playable(c => {
-      c.chooseBranch(c.branches.filter(_ != "Follow a light into the trees").toSeq.sortBy(b => -Math.abs(b.compareTo("Relax and enjoy"))).head)
+      c.chooseBranch(ideallyNot(c.branches - "Follow a light into the trees", "Relax and enjoy"))
     }),
     "A Restorative" -> Playable(c => {
-      c.chooseBranch(c.branches.filter(_ != "A sumptuous repast!").toSeq.sortBy(b => -Math.abs(b.compareTo("Scraps from the table"))).head)
+      c.chooseBranch(ideallyNot(c.branches - "A sumptuous repast!", "Scraps from the table"))
     }),
     "An afternoon of good deeds?" -> Playable(c => {
-      c.chooseBranch(c.branches.filter(b => b != "A plaster saint!" && b != "An afternoon of mischief!").toSeq.sortBy(b => -Math.abs(b.compareTo("Quite a moral afternoon."))).head)
+      c.chooseBranch(ideallyNot(c.branches - "A plaster saint!" - "An afternoon of mischief!", "Quite a moral afternoon."))
+    }),
+    "The Law's Long Arm" -> Playable(c => {
+      c.chooseBranch(ideallyNot(c.branches, "Official incompetence"))
     })
-    //The Law's Long Arm
   )
   
   private val affairOfTheBox = Map(
