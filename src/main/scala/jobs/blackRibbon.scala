@@ -12,7 +12,7 @@ object blackRibbon extends OneManJob {
 
   def prep(implicit c: Character) = did (c.items("Rostygold") < 50) {
     gear.watchful()
-    grind.ladybones_rostygold()
+    grind.rostygold()
   } 
   
   def duel(implicit c: Character) = did(c.qualities("Wounds") > 2) {

@@ -61,6 +61,8 @@ object heist {
     c.chooseBranch()
     c.onwards()
   }
+  
+  def casing_optimal()(implicit c: Character) = casing4()
 
   //casing 3, 100%
   //+10cp criminals, +10cp shadowy
@@ -159,7 +161,7 @@ object heist {
     c.onwards()    
   }
   
-  //XXX
+  //XXX probably 5 brandy
   def steal_muscaria_brandy()(implicit c: Character) {
     c.travel(Areas.TheFlit)
     c.beginStorylet("Thefts of Particular Character")

@@ -70,7 +70,7 @@ object standardGrind extends OneManJob {
   }
   
   def money(implicit c: Character) {
-    grind.quarter_jade()
+    grind.tales_of_terror()
   }
   
   

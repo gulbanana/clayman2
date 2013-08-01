@@ -12,7 +12,7 @@ object flitGrind extends OneManJob {
   }
   
   def prep(implicit c: Character) = did (c.qualities("Casing...") < 20) {
-    heist.casing4()
+    heist.casing_optimal()
   }
   
   //for the Royal Beth
