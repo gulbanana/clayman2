@@ -6,18 +6,12 @@ import david._
 //hang around the court grinding
 object courtGrind extends OneManJob {
   def apply(implicit c: Character) = {
-    if (c.location == Areas.Court || c.qualities("Suspicion") >= 7 || c.qualities("Casing...") >= 20)
-      gear.persuasive()
-    else
-      gear.shadowy()
-    
+    gear.persuasive()
     playCards(c) || getToCourt || reduceMenaces || revelsPrep || gainFascinating || grind
   }
   
   private def getToCourt(implicit c: Character) = did (c.location != Areas.Court) {
-    if (c.qualities("Suspicion") < 7) {
-      heist.casing4()
-    } else if (c.qualities("Connected: Society") > 50) {
+    if (c.qualities("Connected: Society") > 50) {
       c.travel(Areas.ShutteredPalace)
       c.beginStorylet("Spend a few days at Court")
       c.chooseBranch("A word from your friends at Court")
