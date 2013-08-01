@@ -3,12 +3,10 @@ import london._
 import common._
 import david._
 
-object flitGrind extends OneManJob {
-  def apply(implicit c: Character) = did (c.location == Areas.NewNewgate) {
-    prison.opportunities.played() or prison.reduce_suspicion()
-  } or {
+object flitGrind extends BufferedJob {
+  def apply(implicit c: Character) = {
     gear.shadowy()
-    playCards.apply || prep || stealMysteries || stealSouls or stealTales
+    avertMenaces.apply || playCards.apply || prep || stealMysteries || stealSouls or stealTales
   }
   
   def prep(implicit c: Character) = did (c.qualities("Casing...") < 20) {

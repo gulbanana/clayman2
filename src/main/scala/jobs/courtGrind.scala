@@ -4,7 +4,7 @@ import common._
 import david._
 
 //hang around the court grinding
-object courtGrind extends OneManJob {
+object courtGrind extends BufferedJob {
   def apply(implicit c: Character) = {
     gear.persuasive()
     playCards(c) || getToCourt || reduceMenaces || revelsPrep || gainFascinating || grind

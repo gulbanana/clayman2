@@ -4,9 +4,9 @@ import common._
 import david._
 
 //For efficient convertibility, 10/50/250/etc echoes are required at each tier 
-object standardGrind extends OneManJob {
-  def apply(implicit c: Character) = {
-    playCards(c) || reduceMenaces || stockpileT1(10) || achieveGoals || stockpileT2(50) or money
+object standardGrind extends BufferedJob {
+  def apply(implicit c: Character): Boolean = {
+    avertMenaces.apply || playCards.apply || reduceMenaces || stockpileT1(10) || achieveGoals || stockpileT2(50) or money
   }
 
   def reduceMenaces = false

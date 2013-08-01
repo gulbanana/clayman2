@@ -235,6 +235,8 @@ object flit {
   }
   def seeking_optimal()(implicit c: Character) = seeking3()
   
+  //Intercept the message
+  
   /*****************/
   /* INVESTIGATING */
   /*****************/

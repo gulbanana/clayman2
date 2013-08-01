@@ -3,7 +3,7 @@ import london._
 import common._
 import david._
 
-object fidgetingWriter extends OneManJob {
+object fidgetingWriter extends BufferedJob {
   def apply(implicit c: Character) = {
     gear.watchful()
     

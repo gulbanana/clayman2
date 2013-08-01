@@ -3,7 +3,7 @@ import london._
 import common._
 import david._
 
-object blackRibbon extends OneManJob {
+object blackRibbon extends BufferedJob {
   def apply(implicit c: Character) = playCards(c) || prep || {
     gear.dangerous(); 
     c.travel(Areas.WolfstackDocks); 
