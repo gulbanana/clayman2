@@ -161,6 +161,14 @@ object heist {
     c.onwards()    
   }
   
+  //+25 journals (12.5E)
+  def steal_journals_of_infamy()(implicit c: Character) {
+    c.travel(Areas.TheFlit)
+    c.beginStorylet("Thefts of Particular Character")
+    c.chooseBranch("Steal Journals of Infamy from an Iniquitous Solicitor ")
+    c.onwards()    
+  }
+  
   //XXX probably 5 brandy
   def steal_muscaria_brandy()(implicit c: Character) {
     c.travel(Areas.TheFlit)
@@ -182,6 +190,14 @@ object heist {
     c.travel(Areas.TheFlit)
     c.beginStorylet("Thefts of Particular Character")
     c.chooseBranch("Steal an Antique Mystery from Feducci")
+    c.onwards()    
+  }
+  
+  //+1 permit (12.5E)
+  def steal_bazaar_permit()(implicit c: Character) {
+    c.travel(Areas.TheFlit)
+    c.beginStorylet("Thefts of Particular Character")
+    c.chooseBranch("Steal a Bazaar Permit from the offices of Baseborn & Fowlingpiece")
     c.onwards()    
   }
 }
