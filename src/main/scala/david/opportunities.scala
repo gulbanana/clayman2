@@ -40,6 +40,7 @@ object opportunities {
     "As silent as the grave?",                              //0.75E misc goods
     "Property most intellectual",                           //<1E correspondence
     "Lies below the Palace",                                //18 proscribed (<0.8E)
+    "Trailing the Affluent Photographer",                   //i have better gear than this gives now
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
