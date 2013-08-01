@@ -29,9 +29,9 @@ object grind {
   def antique_mysteries()(implicit c: Character) {
     gear.shadowy()
     if (c.qualities("Casing...") < 10)
-      heist.casing_optimal()
+      flit.casing_optimal()
     else
-      heist.steal_antique_mystery()
+      flit.steal_antique_mystery()
   }
   
   /************/
@@ -49,18 +49,18 @@ object grind {
   def brilliant_souls()(implicit c: Character) {
     gear.shadowy()
     if (c.qualities("Casing...") < 10)
-      heist.casing_optimal()
+      flit.casing_optimal()
     else
-      heist.steal_brilliant_souls()
+      flit.steal_brilliant_souls()
   }
   
   //12+ actions for 5 brandy (12.5E)
   def muscaria_brandy()(implicit c: Character) {
     gear.shadowy()
     if (c.qualities("Casing...") < 10)
-      heist.casing_optimal()
+      flit.casing_optimal()
     else
-      heist.steal_muscaria_brandy()
+      flit.steal_muscaria_brandy()
   }
   
   /*************/
@@ -70,18 +70,18 @@ object grind {
   def tales_of_terror()(implicit c: Character) {
     gear.shadowy()
     if (c.qualities("Casing...") < 10)
-      heist.casing_optimal()
+      flit.casing_optimal()
     else
-      heist.steal_tales_of_terror()
+      flit.steal_tales_of_terror()
   }
   
   //12+ actions for 25 journals (12.5E)
   def journals_of_infamy()(implicit c: Character) {
     gear.shadowy()
     if (c.qualities("Casing...") < 10)
-      heist.casing_optimal()
+      flit.casing_optimal()
     else
-      heist.steal_journals_of_infamy()
+      flit.steal_journals_of_infamy()
   }
   
   /*************/
@@ -91,8 +91,8 @@ object grind {
   def bazaar_permits()(implicit c: Character) {
     gear.shadowy()
     if (c.qualities("Casing...") < 10)
-      heist.casing_optimal()
+      flit.casing_optimal()
     else
-      heist.steal_tales_of_terror()
+      flit.steal_tales_of_terror()
   }
 }

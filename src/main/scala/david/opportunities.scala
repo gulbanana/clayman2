@@ -236,8 +236,9 @@ object opportunities {
     "Consulting detective required for government work" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),  //21 proscribed and +subtle
     "A night on the tiles" -> Conditional(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")), //1E of influence 
     "What will you do with your Partisan Messenger Tortoise?" -> Unplayable,
-    "Help the Sardonic Music-Hall Singer" -> Unplayable,
-    "A presumptuous little opportunity" -> Unplayable 
+    "Help the Sardonic Music-Hall Singer" -> Unplayable, //investigate the other-acquaintance options, otherwise Playable with persuasive-alone option
+    "Ask the Sardonic Music-Hall Singer to help you" -> Unplayable, //not 100% but all options >1 E - make it Playable with higher stats
+    "A presumptuous little opportunity" -> Unplayable
     //"Robbing the Ambassador's ball" -> Playable(c => c.chooseBranch("Pose as a servant")) //XXX 
   )
   

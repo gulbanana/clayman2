@@ -6,7 +6,12 @@ import london._
 //it scales linearly with a factor of the base diff
 //some of the prep actions have rare successes which give you more cp
 
-object heist {
+//Flit theievery actions
+object flit {
+  /**********/
+  /* CASING */
+  /**********/  
+  
   //3 actions, 6cp (8 rare), difficulty 75
   def casing1()(implicit c: Character) {
     c.travel(Areas.TheFlit)
@@ -140,7 +145,7 @@ object heist {
     //c.chooseBranch("Gleams in the darkness")
     c.onwards()
   }
-  
+
   //casing 13 50%, 18 100%
   //1000 nevercold brass, 500 souls, 40 infernal contracts, 10 flawed diamonds, 25 proscribed material
   //fail: arrested
@@ -151,8 +156,11 @@ object heist {
     c.onwards()    
   }
   
-  //thefts: req casing 10, shadowy challenges - 38% at 77 - only eats <27cp casing (but double/more if you fail)
-  
+  /************************************/
+  /* THEFTS                           */
+  /* req casing 10, success cost 27cp */
+  /* shadowy challenges, 38% at 77    */
+  /************************************/
   //+25 tales (12.5E)
   def steal_tales_of_terror()(implicit c: Character) {
     c.travel(Areas.TheFlit)
@@ -160,7 +168,6 @@ object heist {
     c.chooseBranch("Steal Tales of Terror from a noted author")
     c.onwards()    
   }
-  
   //+25 journals (12.5E)
   def steal_journals_of_infamy()(implicit c: Character) {
     c.travel(Areas.TheFlit)
@@ -168,7 +175,6 @@ object heist {
     c.chooseBranch("Steal Journals of Infamy from an Iniquitous Solicitor ")
     c.onwards()    
   }
-  
   //XXX probably 5 brandy
   def steal_muscaria_brandy()(implicit c: Character) {
     c.travel(Areas.TheFlit)
@@ -176,7 +182,6 @@ object heist {
     c.chooseBranch("Steal Muscaria Brandy from the Infernal Sommelier")
     c.onwards()    
   }
-
   //XXX probably 25 brilliants
   def steal_brilliant_souls()(implicit c: Character) {
     c.travel(Areas.TheFlit)
@@ -184,7 +189,6 @@ object heist {
     c.chooseBranch("Steal Brilliant Souls en route to Hookman House")
     c.onwards()    
   }
-  
   //+1 antique (12.5E)
   def steal_antique_mystery()(implicit c: Character) {
     c.travel(Areas.TheFlit)
@@ -192,12 +196,72 @@ object heist {
     c.chooseBranch("Steal an Antique Mystery from Feducci")
     c.onwards()    
   }
-  
   //+1 permit (12.5E)
   def steal_bazaar_permit()(implicit c: Character) {
     c.travel(Areas.TheFlit)
     c.beginStorylet("Thefts of Particular Character")
     c.chooseBranch("Steal a Bazaar Permit from the offices of Baseborn & Fowlingpiece")
+    c.onwards()    
+  }
+  
+  /***********/
+  /* SEEKING */
+  /***********/
+  //+1(or 2?) seeking, difficulty 85
+  //fail: +1cp suspicion
+  def seeking1()(implicit c: Character) {
+    c.travel(Areas.TheFlit)
+    c.beginStorylet("Shadowing Couriers")
+    c.chooseBranch("Follow at a distance")
+    c.onwards()    
+  }
+  
+  //+2(or 3?) seeking, difficulty ?? > 87
+  //fail: -seeking, +suspicion
+  def seeking2()(implicit c: Character) {
+    c.travel(Areas.TheFlit)
+    c.beginStorylet("Shadowing Couriers")
+    c.chooseBranch("Follow closely")
+    c.onwards()    
+  }
+  
+  //+3 seeking, difficulty ?? > 89
+  //fail: +suspicion
+  def seeking3()(implicit c: Character) {
+    c.travel(Areas.TheFlit)
+    c.beginStorylet("Shadowing Couriers")
+    c.chooseBranch("Disguise yourself as a courier")
+    c.onwards()    
+  }
+  def seeking_optimal()(implicit c: Character) = seeking3()
+  
+  /*****************/
+  /* INVESTIGATING */
+  /*****************/
+  //+2 investigating, difficulty 86
+  //fail: +1cp suspicion
+  def investigating1()(implicit c: Character) {
+    c.travel(Areas.TheFlit)
+    c.beginStorylet("The Tricks of the Courier's Trade")
+    c.chooseBranch("Spy on the couriers")
+    c.onwards()    
+  }
+  
+  //+3 investigating, difficulty ??
+  //fail: -investigating, +suspicion
+  def investigating2()(implicit c: Character) {
+    c.travel(Areas.TheFlit)
+    c.beginStorylet("The Tricks of the Courier's Trade")
+    c.chooseBranch("Spy on those who supply them")
+    c.onwards()    
+  }
+
+  //+3 investigating, difficulty ??
+  //fail: +suspicion
+  def investigating3()(implicit c: Character) {
+    c.travel(Areas.TheFlit)
+    c.beginStorylet("The Tricks of the Courier's Trade")
+    c.chooseBranch("Spy on the Topsy King's court")
     c.onwards()    
   }
 }
