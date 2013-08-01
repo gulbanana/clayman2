@@ -11,7 +11,7 @@ object standardGrind extends OneManJob {
 
   def reduceMenaces = false
   
-  def achieveGoals(implicit c: Character) = flitThefts(c) 
+  def achieveGoals(implicit c: Character) = flitGrind(c) 
   
   def stockpileT1(echoes: Int)(implicit c: Character) = did (c.items("Whispered Secret") < (100 * echoes)) {
     ???

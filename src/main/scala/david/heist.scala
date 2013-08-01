@@ -149,6 +149,37 @@ object heist {
     c.onwards()    
   }
   
-  //thefts: req casing 10, shadowy challenges - 38% at 77 - only eats <27cp casing
-  //Steal Tales of Terror from a noted author - 25x TOT
+  //thefts: req casing 10, shadowy challenges - 38% at 77 - only eats <27cp casing (but double/more if you fail)
+  
+  //+25 tales (12.5E)
+  def steal_tales_of_terror()(implicit c: Character) {
+    c.travel(Areas.TheFlit)
+    c.beginStorylet("Thefts of Particular Character")
+    c.chooseBranch("Steal Tales of Terror from a noted author")
+    c.onwards()    
+  }
+  
+  //XXX
+  def steal_muscaria_brandy()(implicit c: Character) {
+    c.travel(Areas.TheFlit)
+    c.beginStorylet("Thefts of Particular Character")
+    c.chooseBranch("Steal Muscaria Brandy from the Infernal Sommelier")
+    c.onwards()    
+  }
+
+  //XXX probably 25 brilliants
+  def steal_brilliant_souls()(implicit c: Character) {
+    c.travel(Areas.TheFlit)
+    c.beginStorylet("Thefts of Particular Character")
+    c.chooseBranch("Steal Brilliant Souls en route to Hookman House")
+    c.onwards()    
+  }
+  
+  //+1 antique (12.5E)
+  def steal_antique_mystery()(implicit c: Character) {
+    c.travel(Areas.TheFlit)
+    c.beginStorylet("Thefts of Particular Character")
+    c.chooseBranch("Steal an Antique Mystery from Feducci")
+    c.onwards()    
+  }
 }

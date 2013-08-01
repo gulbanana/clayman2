@@ -236,7 +236,7 @@ object opportunities {
     "A night on the tiles" -> Conditional(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")), //1E of influence 
     "What will you do with your Partisan Messenger Tortoise?" -> Unplayable,
     "Help the Sardonic Music-Hall Singer" -> Unplayable,
-    "A presumptuous little opportunity" -> Unplayable
+    "A presumptuous little opportunity" -> Unplayable 
     //"Robbing the Ambassador's ball" -> Playable(c => c.chooseBranch("Pose as a servant")) //XXX 
   )
   
@@ -263,6 +263,6 @@ object opportunities {
     "Going gentle" -> Unplayable
   )
 
-  def london = new Opportunist((lodgingCards ++ connectionCards ++ conflictCards ++ londonCards ++ countingTheDays) withDefaultValue Unplayable, 
+  val london = new Opportunist((lodgingCards ++ connectionCards ++ conflictCards ++ londonCards ++ countingTheDays) withDefaultValue Unplayable, 
                                (alwaysUseless ++ sometimesUseless))
 }

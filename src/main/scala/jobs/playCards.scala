@@ -7,12 +7,5 @@ import david._
 object playCards extends Job with Duty {
   def apply() = with_character(c => while (c.actions > 0 && apply(c)) ())
   
-  def apply(implicit c: Character) = {
-    val deck = opportunities.london
-    deck.mill()
-    
-    did (deck.act()) {
-      deck.mill()
-    }
-  }
+  def apply(implicit c: Character) = opportunities.london.played()
 }

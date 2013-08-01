@@ -24,4 +24,13 @@ class Opportunist(playlist: Map[String, Opportunity], blacklist: Set[String]) {
     playlist(opportunity).act(c)
     c.onwards()
   }
+  
+  //attempt to spend an action
+  def played()(implicit c: Character) = {
+    mill()
+    
+    did (act()) {
+      mill()
+    }
+  }
 }
