@@ -41,6 +41,7 @@ object opportunities {
     "Property most intellectual",                           //<1E correspondence
     "Lies below the Palace",                                //18 proscribed (<0.8E)
     "Trailing the Affluent Photographer",                   //i have better gear than this gives now
+    "Robbing the Ambassador's ball",                        //34 clues or 84 amber
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
@@ -222,6 +223,7 @@ object opportunities {
     "His Young Lordship seized by tentacles" -> Playable(_.chooseBranch("Sell snacks to the crowd")),
     "Minding the detective" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("The case of the frenzied mandrake") }),  //business card (and 60 rostygold)
     "Rat Melancholy" -> Playable(_.chooseBranch("Listen to her story")),  //50 cryptic clues, rat sympathy
+    "A past benefactor" -> Playable(_.chooseBranch("And what of the secrets of Hell?")),  //sudden insight
     "What's in the sack, Jack?" -> Conditional(_.qualities("Wounds") < 7, implicit c=> { gear.dangerous(); c.chooseBranch()}), //18 proscribed, 100% at 110
     "The simple joys of villainy" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch("Hire some help and strip the place bare") }), //only 36 beeswax, but +shadowy
     "The Eye and the Camera" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.watchful(); c.chooseBranch("Gather evidence... with a camera!") }), //min. 0.8E worth of luminosity
@@ -238,8 +240,8 @@ object opportunities {
     "What will you do with your Partisan Messenger Tortoise?" -> Unplayable,
     "Help the Sardonic Music-Hall Singer" -> Unplayable, //investigate the other-acquaintance options, otherwise Playable with persuasive-alone option
     "Ask the Sardonic Music-Hall Singer to help you" -> Unplayable, //not 100% but all options >1 E - make it Playable with higher stats
-    "A presumptuous little opportunity" -> Unplayable
-    //"Robbing the Ambassador's ball" -> Playable(c => c.chooseBranch("Pose as a servant")) //XXX 
+    "A presumptuous little opportunity" -> Unplayable,
+    "Tea with the Inspector" -> Unplayable //useful if on a case i think? 
   )
   
   def deprioritise[T <% Ordered[T]](xs: Set[T], worst: T) = xs.toSeq.sortBy(b => -Math.abs(b.compareTo(worst))).head

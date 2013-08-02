@@ -6,6 +6,7 @@ case class Conditional(t: Character=>Boolean, a: Character=>Unit) extends Opport
 case class Playable(a: Character=>Unit) extends Opportunity(_ => true, a)
 object Unplayable extends Opportunity(_ => false, _ => throw new Exception("Error: Unplayable card played"))
 object Trivial extends Opportunity(_ => true, _.chooseBranch())
+object Autofire extends Opportunity(_ => true, _ => ())
 
 class Opportunist(playlist: Map[String, Opportunity], blacklist: Set[String]) {
   //grind through discards as far as possible
