@@ -207,7 +207,7 @@ object opportunities {
       if (c.qualities("Connected: Revolutionaries") <= c.qualities("Connected: Rubbery Men")) {
         c.chooseBranch("Convince the Rubbery Men to move on") 
       } else {
-        c.chooseBranch("Convince the revolutionaries to find somewhere else")
+        c.chooseBranch("Convince the Revolutionaries to find somewhere else")
       }
     ),
     "They all look the same to me" -> Playable(c =>
