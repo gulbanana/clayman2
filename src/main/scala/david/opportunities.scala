@@ -42,6 +42,7 @@ object opportunities {
     "Lies below the Palace",                                //18 proscribed (<0.8E)
     "Trailing the Affluent Photographer",                   //i have better gear than this gives now
     "Robbing the Ambassador's ball",                        //34 clues or 84 amber
+    "Publish your scientific work",                         //48 clues or 81 pearls, never 100%
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
@@ -56,7 +57,9 @@ object opportunities {
     "The Ambassador's ball",              			//might not be in the range to play it - only gives a confident smile
     "A consideration for services rendered",    //not worth grinding souls for
     "Graffiti with a sting",	          				//only useful when Counting the Days
-    "A night on the tiles"                      //doesn't way well without the wine
+    "A night on the tiles",                     //doesn't pay well without the wine
+    "Altars and alms-houses: the Church",       //i don't always want to spend Connected   
+    "The Alleys of London: the Criminals"
   )
   
   //auto-play these if conditions are met
@@ -142,8 +145,12 @@ object opportunities {
       else
         c.chooseBranch("An invitation to dinner")   //+connected, -wounds
     ),
+    "The Alleys of London: the Criminals" -> Conditional(_.qualities("Connected: Criminals") >= 20, implicit c => {
+      gear.shadowy()
+      c.chooseBranch("Consult with a master thief")
+    }), 
     "Gunpowder and Zeal: the Revolutionaries" -> Playable(_.chooseBranch("Taking a walk down gin lane"))  //counting the days
-    //"The Alleys of London: the Criminals" -> Conditional(_.qualities("Connected: Criminals"))
+     
   )
   
   private val conflictCards = Map(
@@ -241,7 +248,7 @@ object opportunities {
     "Help the Sardonic Music-Hall Singer" -> Unplayable, //investigate the other-acquaintance options, otherwise Playable with persuasive-alone option
     "Ask the Sardonic Music-Hall Singer to help you" -> Unplayable, //not 100% but all options >1 E - make it Playable with higher stats
     "A presumptuous little opportunity" -> Unplayable,
-    "Tea with the Inspector" -> Unplayable //useful if on a case i think? 
+    "Tea with the Inspector" -> Unplayable //useful if on a case i think? 13-14 cp Investigating. high watchful diff.  
   )
   
   def deprioritise[T <% Ordered[T]](xs: Set[T], worst: T) = xs.toSeq.sortBy(b => -Math.abs(b.compareTo(worst))).head
