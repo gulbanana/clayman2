@@ -223,6 +223,7 @@ object opportunities {
     "A rather decadent evening" -> Trivial,
     "A parliament of bats" -> Playable(_.chooseBranch("Release a bat into the cloud")),
     "The Northbound Parliamentarian" -> Playable(_.chooseBranch("Advise prudence in her latest bill")),
+    "Investigate the Topsy King's court" -> Playable(_.chooseBranch("Spy on the dealings with revolutionaries")), //conn:const and 64 rostygold
     "A night at the carnival" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("There's always something") }),
     "The Parthenaeum" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("Expelling undesirables") }),  //conn:soc and 0.6E wines 
     "The Ways of the Flit" -> Playable(implicit c => { gear.shadowy(); c.chooseBranch("An old street sign") }), //2.5E
