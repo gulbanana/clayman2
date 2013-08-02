@@ -19,6 +19,7 @@ object Areas {
   val Court = Area(26, "The Empress' Court")
   val LabyrinthOfTigers = Area(28, "The Labyrinth of Tigers")
   val HouseOfChimes = Area(34, "The House of Chimes")
+  val GamekeepersCottage = Area(5821, "The Gamekeeper's Cottage")
   
   private val byID = Map(
     2 -> Lodgings,
@@ -36,7 +37,8 @@ object Areas {
     23 -> University,
     26 -> Court,
     28 -> LabyrinthOfTigers,  
-    34 -> HouseOfChimes
+    34 -> HouseOfChimes,
+    5821 -> GamekeepersCottage
   ) withDefault(i => { println("WARNING: unknown areaid %d".format(i)); Area(i, "Unknown Area")})
   
   def apply(id: Int) = byID(id)
