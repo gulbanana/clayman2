@@ -16,7 +16,7 @@ object fidgetingWriter extends BufferedJob {
     c.useItem("Tale of Terror")
     c.chooseBranch("There's something familiar about this tale...")	//"pretty good" odds
   } or {
-    //xxx gain TOT
+    grind.tales_of_terror()
   }
 
   //Sense of Déjà Vu‎ -> Extraordinary Implication (2.5E)
@@ -64,7 +64,7 @@ object fidgetingWriter extends BufferedJob {
       c.useItem("Deal with a Devil")
       c.chooseBranch("Make a counter-offer.")	//could go either way, iirc?
     } else {
-      //XXX gain souls
+      grind.brilliant_souls()
     }
   }
   

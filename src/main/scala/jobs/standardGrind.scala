@@ -70,7 +70,7 @@ object standardGrind extends BufferedJob {
   }
   
   def money(implicit c: Character) {
-    grind.tales_of_terror()
+    grind.tales_of_terror()	//for later use with the Fidgeting Writer
   }
   
   
