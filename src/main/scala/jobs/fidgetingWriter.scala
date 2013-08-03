@@ -3,7 +3,7 @@ import london._
 import common._
 import david._
 
-object fidgetingWriter extends BufferedJob {
+object fidgetingWriter extends RepeatedJob {
   def apply(implicit c: Character) = {
     gear.watchful()
     
@@ -11,27 +11,29 @@ object fidgetingWriter extends BufferedJob {
     cashout4 || gamble4 || gamble3 || gamble2 || gamble1
   }
   
-  //Tale of Terror -> Sense of Dï¿½jï¿½ Vu
-  private def gamble1(implicit c: Character) = did (c.items("Tale of Terror") > 0) {
-    c.useItem("Tale of Terror")
+  //Tale of Terror!! -> Sense of DŽjˆ Vu
+  //gains Touched by Fingerwork
+  private def gamble1(implicit c: Character) = did (c.items("Tale of Terror!!") > 0) {
+    c.useItem("Tale of Terror!!")
     c.chooseBranch("There's something familiar about this tale...")	//"pretty good" odds
   } or {
     grind.tales_of_terror()
   }
 
-  //Sense of DÃ©jÃ  Vuâ€Ž -> Extraordinary Implication (2.5E)
-  private def cashout1(implicit c: Character) = did (c.items("Sense of DÃ©jÃ  Vuâ€Ž") > 0) {
-    c.useItem("Sense of DÃ©jÃ  Vuâ€Ž")
+  //Sense of DŽjˆ Vu -> Extraordinary Implication (2.5E)
+  private def cashout1(implicit c: Character) = did (c.items("Sense of DŽjˆ Vu") > 0) {
+    c.useItem("Sense of DŽjˆ Vu")
     c.chooseBranch("Put the thought aside")
   }
   
-  //Sense of DÃ©jÃ  Vuâ€Ž + Vision of the Surface (0.5E) -> Glimpse of Something Larger
-  private def gamble2(implicit c: Character) = did (c.items("Sense of DÃ©jÃ  Vuâ€Ž") > 0) {
+  //Sense of DŽjˆ Vu + Vision of the Surface (0.5E) -> Glimpse of Something Larger
+  //gains Seeing through the Eyes of Icarus
+  private def gamble2(implicit c: Character) = did (c.items("Sense of DŽjˆ Vu") > 0) {
     if (c.items("Vision of the Surface") > 0) {
-      c.useItem("Sense of DÃ©jÃ  Vuâ€Ž")
+      c.useItem("Sense of DŽjˆ Vu")
       c.chooseBranch("Track down the Fidgeting Writer")	//"pretty good" odds
     } else {
-      //XXX gain visions
+      ???
     }
   }
   
@@ -48,7 +50,7 @@ object fidgetingWriter extends BufferedJob {
       c.useItem("Glimpse of Something Larger")
       c.chooseBranch("Cancel your appointments and investigate the ideogram")	  //"pretty good" odds
     } else {
-      //XXX gain plaques
+      ???
     }
   }
   
@@ -74,13 +76,13 @@ object fidgetingWriter extends BufferedJob {
     c.chooseBranch("Give him honey and a pen")
   }
   
-  //Room Number at the Royal Beth -> 
+  //Room Number at the Royal Beth -> Last Hope of a Fidgeting Writer
   private def gamble5(implicit c: Character) = did (c.items("Room Number at the Royal Beth") > 0) {
     if (c.items("An Identity Uncovered!") > 0) {
       c.useItem("Room Number at the Royal Beth")
       c.chooseBranch("Visit him regularly and ask the Manager about his stay")	//could go either way
     } else {
-      //XXX gain rumour
+      ???
     }
   }
 }

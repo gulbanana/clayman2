@@ -59,6 +59,9 @@ class Status {
   
   private val travelPattern = """You have moved to a new area: (.+)""".r
   
+  private val goodLuckPattern = """You were fortunate!""".r
+  private val badLuckPattern = """You were unlucky. Better luck next time...""".r
+  
   //    ways of the neath:
   //A bat zips past, not far overhead.
   //Today, something in the air makes the gas-lamps slink low, burn marsh-green.
@@ -97,6 +100,9 @@ class Status {
         case endVenturePattern(qname) => qualities = qualities.updated(qname, 0)
         
         case travelPattern(aname) => () //XXX make this do a thing - but maybe unnecessary, b/c of javascript
+        
+        case goodLuckPattern() => () //XXX add stats tracking
+        case badLuckPattern() => () //XXX add stats tracking
         
         case unknown:String => println("Effect NOT MATCHED: " + unknown)
       }

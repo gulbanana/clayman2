@@ -9,6 +9,10 @@ trait Duty {
   def apply(implicit c: Character): Boolean
 }
 
+trait OneManJob extends Job with Duty {
+  def apply() = with_character { c => apply(c) }
+}
+
 trait BufferedJob extends Job with Duty {
   def apply() = with_character { c =>
     val buffer = c.actionCap - 4
