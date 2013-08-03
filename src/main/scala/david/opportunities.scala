@@ -6,7 +6,7 @@ object opportunities {
   //auto-discard these, unless they are playable
   private val alwaysUseless = Set(
     "Help a spy distract an inconvenient tail",             //36 jade
-    "A meeting of cats",                                    //24 clues
+    "A meeting of cats",                                    //24 clues, never 100%
     "The notable citizen",                                  //83 whispered secrets, but i can grind that easily and it can't be made scandal-safe
     "Shroom-hopping: a quaint sport of the lower classes",  //18 '82
     "A Sporting Sort",                                      //pure gamble
@@ -28,6 +28,22 @@ object opportunities {
     "The young buck",                                       //67 silk or 84 rostygold, never 100%
     "The marvellous contrivance",                           //69 candles or 84 jade, never 100%
     "Moonish water",										//1.3E secrets, but -0.5E rostygold, never 100%
+    "Ambushed by pirates!",                                 //72 glim, never 100%
+    "An evening's zailing",                                 //bad conn card - always +1 to one, -5 to the other
+    "Rob a Brass Embassy courier",                          //15 proscribed, never 100%
+    "Undertakings",                                         //too-narrow a watchful range
+    "Recapturing a prison escapee",                         //too-narrow a watchful range
+    "Moonish water",                                        //net +.8E secrets, narrow dangerous range
+    "Race across the river",                                //84 glim
+    "The Noted Orchid-Grower consults",                     //requires fate for small payoff
+    "Medical Emergency",                                    //<50 secrets
+    "A simple job from a devil",                            //72 brass
+    "As silent as the grave?",                              //0.75E misc goods
+    "Property most intellectual",                           //<1E correspondence
+    "Lies below the Palace",                                //18 proscribed (<0.8E)
+    "Trailing the Affluent Photographer",                   //i have better gear than this gives now
+    "Robbing the Ambassador's ball",                        //34 clues or 84 amber
+    "Publish your scientific work",                         //48 clues or 81 pearls, never 100%
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
@@ -42,35 +58,35 @@ object opportunities {
     "The Ambassador's ball",              			//might not be in the range to play it - only gives a confident smile
     "A consideration for services rendered",    	//not worth grinding souls for
     "An unusual wager",	          				    //only useful when Counting the Days
-    "Graffiti with a sting"	          				//only useful when Counting the Days
+    "Graffiti with a sting",          				//only useful when Counting the Days
+    "A night on the tiles",                     	//doesn't pay well without the wine
+    "Altars and alms-houses: the Church",       	//i don't always want to spend Connected   
+    "The Alleys of London: the Criminals"
   )
   
   //auto-play these if conditions are met
   private val lodgingCards = Map(
-    "The Tower of Sparrows" -> Playable(_.chooseBranch("Settle down to a game of cards")),	//persuasive t2
-    "The Sleepless Tower" -> Playable(_.chooseBranch("Spores and fangs")),					//dangerous t2 
-    "The Tower of Knives" -> Playable(_.chooseBranch("Rough camaraderie")),					//shadowy t2
-    "The Tower of Sleeping Giants" -> Playable(c =>											//watchful t2
-      if (c.items("An Infernal Contract") < 100)
-        c.chooseBranch("The owner")
-      else 
-        c.chooseBranch("Examine the stock") 
-    ),
-    "The Tower of Eyes" -> Playable(_.chooseBranch("Do a little promenading yourself")),	//persuasive t2.5
-    "The Heron Tower" -> Playable(_.chooseBranch("Hunt down a huge lizard")),				//dangerous t2.5
-    "The Listing Tower" -> Unplayable,														//dangerous t2.5
-    "The Windward Tower" -> Unplayable,														//shadowy t2.5
-    "The High Castle" -> Playable(implicit c => {											//shadowy t2.5
+    "The Tower of Sparrows" -> Playable(_.chooseBranch("Settle down to a game of cards")),                                                            //persuasive t2
+    "The Sleepless Tower" -> Playable(_.chooseBranch("Spores and fangs")),                                                                            //dangerous t2 
+    "The Tower of Knives" -> Playable(_.chooseBranch("Rough camaraderie")),                                                                           //shadowy t2
+    "The Tower of Sleeping Giants" -> Playable(c => c.chooseBranch(if (c.items("An Infernal Contract") < 100) "The owner" else "Examine the stock")), //watchful t2
+    
+    "The Tower of Eyes" -> Playable(_.chooseBranch("Do a little promenading yourself")),                                                              //persuasive t2.5
+    "The Heron Tower" -> Playable(_.chooseBranch("Hunt down a huge lizard")),                                                                         //dangerous t2.5
+    "The Listing Tower" -> Unplayable,														                                                                                    //dangerous t2.5
+    "The Windward Tower" -> Unplayable,														                                                                                    //shadowy t2.5
+    "The High Castle" -> Playable(implicit c => {											                                                                                //shadowy t2.5
       if (c.items("Greyfields 1882") < 1000)
         c.chooseBranch("Talk to a friend of a friend")
       else {
-        gear.shadowy()
+        gear.shadowy()  //straightforward at 67
         c.chooseBranch("A stroll with a sack")
       }
     }),
-    "The Lofty Tower" -> Unplayable,														//persuasive t3
-    "The Western Tower" -> Unplayable,														//watchful t3
-    "The Tower of Sun and Moon" -> Unplayable												//watchful t3
+    
+    "The Lofty Tower" -> Unplayable,														                                                                                      //persuasive t3
+    "The Western Tower" -> Unplayable,														                                                                                    //watchful t3
+    "The Tower of Sun and Moon" -> Unplayable												                                                                                  //watchful t3
   )
   
   private val connectionCards = Map(
@@ -118,16 +134,25 @@ object opportunities {
       gear.watchful()
       c.chooseBranch("Learn more at the carnival")
     }),
-    "The Roof-Tops: Urchins" -> Conditional(c => (c.qualities("Connected: Urchins") >= 3 && c.shadowy < 71) || c.items("Glim") >= 20 || c.items("Lucky Weasel") >= 1, c => 
-      if (c.shadowy > 70 && c.items("Glim") >= 20)
+    "The Roof-Tops: Urchins" -> Conditional(c => c.items("Glim") >= 20 || c.items("Lucky Weasel") >= 1, implicit c => {
+      gear.shadowy()
+      if (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 10)
         c.chooseBranch("Out you go, longshanks")
-      else if (c.shadowy < 71 && c.qualities("Connected: Urchins") >= 3)
-        c.chooseBranch("Run the rooftops with the urchins")
       else
         c.chooseBranch("In the shadow of All Christs Spire")
+    }),
+    "Park and Palace: Society" -> Playable(c => 
+      if (c.qualities("Connected: Society") >= 40)
+        c.chooseBranch("Take port with the Veteran Privy Counsellor") //+10cp persuasive, -400cp connected
+      else
+        c.chooseBranch("An invitation to dinner")   //+connected, -wounds
     ),
-    "Gunpowder and Zeal: the Revolutionaries" -> Playable(_.chooseBranch("Taking a walk down gin lane"))
-    //"The Alleys of London: the Criminals" -> Conditional(_.qualities("Connected: Criminals"))
+    "The Alleys of London: the Criminals" -> Conditional(_.qualities("Connected: Criminals") >= 20, implicit c => {
+      gear.shadowy()
+      c.chooseBranch("Consult with a master thief")
+    }), 
+    "Gunpowder and Zeal: the Revolutionaries" -> Playable(_.chooseBranch("Taking a walk down gin lane"))  //counting the days
+     
   )
   
   private val conflictCards = Map(
@@ -179,16 +204,38 @@ object opportunities {
       } else {
         c.chooseBranch("Arrange for the girl to return to the urchin-gangs")
       }
+    ),
+    "Amber in the well" -> Playable(c =>
+      if (c.qualities("Connected: Revolutionaries") <= c.qualities("Connected: Rubbery Men")) {
+        c.chooseBranch("Convince the Rubbery Men to move on") 
+      } else {
+        c.chooseBranch("Convince the Revolutionaries to find somewhere else")
+      }
+    ),
+    "They all look the same to me" -> Playable(c =>
+      if (c.qualities("Connected: Rubbery Men") <= c.qualities("Connected: Constables")) {
+        c.chooseBranch("Finger a scapegoat.") 
+      } else {
+        c.chooseBranch("Finger the guilty party")
+      }
     )
   )
   
   private val londonCards = Map(
-    "Recapturing a prison escapee" -> Trivial,
+    "A rather decadent evening" -> Trivial,
     "A parliament of bats" -> Playable(_.chooseBranch("Release a bat into the cloud")),
     "The Northbound Parliamentarian" -> Playable(_.chooseBranch("Advise prudence in her latest bill")),
+    "Investigate the Topsy King's court" -> Playable(_.chooseBranch("Spy on the dealings with revolutionaries")), //conn:const and 64 rostygold
     "A night at the carnival" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("There's always something") }),
-    "The Ways of the Flit" -> Playable(implicit c => { gear.shadowy(); c.chooseBranch("An old street sign") }),
     "Weather at last" -> Playable(implicit c => { gear.shadowy(); c.chooseBranch("An opportunity!") }),	//quirks and shadowy, delete eventually
+    "The Parthenaeum" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("Expelling undesirables") }),  //conn:soc and 0.6E wines 
+    "The Ways of the Flit" -> Playable(implicit c => { gear.shadowy(); c.chooseBranch("An old street sign") }), //2.5E
+    "One's public" -> Playable(implicit c => { gear.persuasive(); c.chooseBranch("Put on a fine show for them") }), //>2E of stuff!
+    "His Young Lordship seized by tentacles" -> Playable(_.chooseBranch("Sell snacks to the crowd")),
+    "Minding the detective" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("The case of the frenzied mandrake") }),  //business card (and 60 rostygold)
+    "Rat Melancholy" -> Playable(_.chooseBranch("Listen to her story")),  //50 cryptic clues, rat sympathy
+    "A past benefactor" -> Playable(_.chooseBranch("And what of the secrets of Hell?")),  //sudden insight
+    "What's in the sack, Jack?" -> Conditional(_.qualities("Wounds") < 7, implicit c=> { gear.dangerous(); c.chooseBranch()}), //18 proscribed, 100% at 110
     "The simple joys of villainy" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch("Hire some help and strip the place bare") }), //only 36 beeswax, but +shadowy
     "The Eye and the Camera" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.watchful(); c.chooseBranch("Gather evidence... with a camera!") }), //min. 0.8E worth of luminosity
     "Rob a library at the University" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch() }), //conn: rev and 15 proscribed
@@ -199,30 +246,39 @@ object opportunities {
     "The Ambassador's ball" -> Conditional(c => c.persuasive > 80 && c.persuasive < 119, _.chooseBranch("Making a point of not making a point")),
     "A consideration for services rendered" -> Conditional(_.items("Soul") > 0, _.chooseBranch()),
     "The Correspondence Savages Your Dreams" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Perhaps you can remember something useful") }),
-    "Medical Emergency" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Examine the scene for evidence") }),
-    "Consulting detective required for government work" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),
-    "Lies below the Palace" -> Conditional(_.qualities("Nightmares") < 7, _.chooseBranch()), //okish Watchful/rumour grind- +18 proscribed. reconsider later
+    "Consulting detective required for government work" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),  //21 proscribed and +subtle
+    "A night on the tiles" -> Conditional(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")), //1E of influence 
     "What will you do with your Partisan Messenger Tortoise?" -> Unplayable,
-    "Help the Sardonic Music-Hall Singer" -> Unplayable,
-    "A presumptuous little opportunity" -> Unplayable
+    "Help the Sardonic Music-Hall Singer" -> Unplayable, //investigate the other-acquaintance options, otherwise Playable with persuasive-alone option
+    "Ask the Sardonic Music-Hall Singer to help you" -> Unplayable, //not 100% but all options >1 E - make it Playable with higher stats
+    "A presumptuous little opportunity" -> Unplayable,
+    "Tea with the Inspector" -> Unplayable //useful if on a case i think? 13-14 cp Investigating. high watchful diff.  
   )
+  
+  def deprioritise[T <% Ordered[T]](xs: Set[T], worst: T) = xs.toSeq.sortBy(b => -Math.abs(b.compareTo(worst))).head
   
   private val countingTheDays = Map(
     "The Awful Temptation of Money" -> Trivial,
+    "Graffiti with a sting" -> Conditional(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw")),
+    "An unusual wager" -> Conditional(_.qualities("Counting the Days") < 10, _.chooseBranch("Look at those coins")),
+    "The Law's Long Arm" -> Playable(c => {
+      c.chooseBranch(deprioritise(c.branches, "Official incompetence"))
+    }),
     "A Moment's Peace" -> Playable(c => {
-      c.chooseBranch(c.branches.filter(_ != "Follow a light into the trees").toSeq.sortBy(b => -Math.abs(b.compareTo("Relax and enjoy"))).head)
+      c.chooseBranch(deprioritise(c.branches - "Follow a light into the trees", "Relax and enjoy"))
     }),
     "A Restorative" -> Playable(c => {
-      c.chooseBranch(c.branches.filter(_ != "A sumptuous repast!").toSeq.sortBy(b => -Math.abs(b.compareTo("Scraps from the table"))).head)
+      c.chooseBranch(deprioritise(c.branches - "A sumptuous repast!", "Scraps from the table"))
     }),
-    "An unusual wager" -> Conditional(_.qualities("Counting the Days") < 10, _.chooseBranch("Look at those coins")),
-    "Graffiti with a sting" -> Conditional(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw"))
+    "An afternoon of good deeds?" -> Playable(c => {
+      c.chooseBranch(deprioritise(c.branches - "A plaster saint!" - "An afternoon of mischief!", "Quite a moral afternoon."))
+    })
   )
   
   private val affairOfTheBox = Map(
     "Going gentle" -> Unplayable
   )
 
-  def london = new Opportunist((lodgingCards ++ connectionCards ++ conflictCards ++ londonCards ++ countingTheDays) withDefaultValue Unplayable, 
+  val london = new Opportunist((lodgingCards ++ connectionCards ++ conflictCards ++ londonCards ++ countingTheDays) withDefaultValue Unplayable, 
                                (alwaysUseless ++ sometimesUseless))
 }

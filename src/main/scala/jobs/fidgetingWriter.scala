@@ -3,8 +3,8 @@ import london._
 import common._
 import david._
 
-object fidgetingWriter extends OneManJob {
-  def apply(implicit c: Character): Unit = repeat {
+object fidgetingWriter extends BufferedJob {
+  def apply(implicit c: Character) = {
     gear.watchful()
     
     //going any higher requires watchful 90

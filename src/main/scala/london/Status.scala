@@ -87,7 +87,7 @@ class Status {
         case qualityModPattern(qname, qdir, qval) => qualities = qualities.updated(qname, qval.toInt)
         case qualityModPattern2(qname, qdir, qval, qdesc) => qualities = qualities.updated(qname, qval.toInt)
         case qualitySetPattern(qname, qval) => qualities = qualities.updated(qname, qval.toInt)
-        case qualitySetPattern2(qname, qdir, qval, qdesc) => qualities = qualities.updated(qname, qval.toInt)
+        case qualitySetPattern2(qname, qval, qdesc) => qualities = qualities.updated(qname, qval.toInt)
         case qualityClearPattern(qname) => qualities = qualities.updated(qname, 0)
         case qualityClearPattern2(qname) => qualities = qualities.updated(qname, 0)
         case qualityChangingPattern(qname, qdir) => ()

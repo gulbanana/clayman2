@@ -15,6 +15,6 @@ trait Did {
   
   implicit class Shortcircuitable(b: Boolean) {
     def or(c: ConditionalAction) = b || did(c.test)(c.act)
-    def or(f: => Any) = {f; true}
+    def or(f: => Any) = b || {f; true}
   }
 }

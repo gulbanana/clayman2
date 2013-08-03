@@ -2,19 +2,17 @@ package jobs
 import london._
 import common._
 import david._
-import david.grind
-import common.OneManJob
 
-object blackRibbon extends OneManJob {
-  def apply(implicit c: Character): Unit = repeat {
-    println("blackRibbon debug: begin iteration")
-    prep || {gear.dangerous(); c.travel(Areas.WolfstackDocks); duel}
-    println("blackRibbon debug: end iteration")
+object blackRibbon extends BufferedJob {
+  def apply(implicit c: Character) = playCards(c) || prep || {
+    gear.dangerous(); 
+    c.travel(Areas.WolfstackDocks); 
+    duel
   }
 
   def prep(implicit c: Character) = did (c.items("Rostygold") < 50) {
     gear.watchful()
-    grind.ladybones_rostygold()
+    grind.rostygold()
   } 
   
   def duel(implicit c: Character) = did(c.qualities("Wounds") > 2) {

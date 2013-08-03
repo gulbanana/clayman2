@@ -4,7 +4,7 @@ import london._
 object gear {
   def watchful()(implicit c: Character) {
     c.equip("Luminous Neathglass Goggles")
-    c.equip("Morning Suit")
+    c.equip("Academic Gown")
     c.equip("Insatiable Glove")
     c.equip("Patent Scrutinizer")
     c.equip("Mirror-polished Shoes")
@@ -13,7 +13,7 @@ object gear {
   
   def shadowy()(implicit c: Character) {
     c.equip("Sneak-Thief's Mask")
-    c.equip("Anarchist's Sable")
+    c.equip("Ratskin Suit")
     c.equip("Cracksman's Mittens")
     c.equip("Kifers")
     c.equip("Spidersilk Slippers")
@@ -33,7 +33,7 @@ object gear {
     c.equip("Gentleman's Hat")
     c.equip("Dignified Tailcoat")
     c.equip("Dancemaster's Dabs")
-    c.equip("Brass Ring")
+    c.equip("Irresistible Drum")
     c.equip("Masterwork Dancing Slippers")
     c.equip("Appreciation Society")
   }
