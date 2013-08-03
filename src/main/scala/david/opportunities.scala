@@ -78,7 +78,7 @@ object opportunities {
     "The Tower of Eyes" -> Playable(_.chooseBranch("Do a little promenading yourself")),                                                              //persuasive t2.5
     "The Heron Tower" -> Playable(_.chooseBranch("Hunt down a huge lizard")),                                                                         //dangerous t2.5
     "The Listing Tower" -> Unplayable,														                                                                                    //dangerous t2.5
-    "The Windward Tower" -> Unplayable,														                                                                                    //shadowy t2.5
+    "The Windward Tower" -> Playable(_.chooseBranch("The cautious contact")),														                                              //shadowy t2.5
     "The High Castle" -> Playable(implicit c => {											                                                                                //shadowy t2.5
       if (c.items("Greyfields 1882") < 1000)
         c.chooseBranch("Talk to a friend of a friend")
