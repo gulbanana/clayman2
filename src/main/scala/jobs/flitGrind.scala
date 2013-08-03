@@ -9,7 +9,7 @@ object flitGrind extends BufferedJob {
     avertMenaces.apply || playCards.apply || prep || stealMysteries || stealSouls or stealTales
   }
   
-  def prep(implicit c: Character) = did (c.qualities("Casing...") < 20) {
+  def prep(implicit c: Character) = did (c.qualities("Casing...") < 10) {
     flit.casing_optimal()
   }
   
