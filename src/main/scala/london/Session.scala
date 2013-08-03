@@ -55,7 +55,7 @@ class Session(cookieTin: String) {
   def query(builder: RequestBuilder) = {
     for(cookie <- cookies)
       builder.addCookie(cookie)
-    val request = client(builder OK as.jsoup.Document)
+    val request = client(builder > as.jsoup.Document)
     
     request()
   }
