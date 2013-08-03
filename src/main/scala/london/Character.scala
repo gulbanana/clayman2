@@ -90,7 +90,7 @@ class Character(username: String, password: String) {
   
   def useItem(item: String) {
     if (!parser.itemIDs.keySet.contains(item))
-      parser updateBranches http.query(site / "Me" / "In")
+      parser updateQualities http.query(site / "Me")
     
     parser updateBranches http.query(site / "Storylet" / "UseQuality" << Map("qualityId" -> parser.itemIDs(item).toString))
     println("\"%s\"".format(parser.title))
