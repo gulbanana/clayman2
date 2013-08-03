@@ -11,7 +11,7 @@ object fidgetingWriter extends RepeatedJob {
     cashout4 || gamble4 || gamble3 || gamble2 || gamble1
   }
   
-  //Tale of Terror!! -> Sense of Déjà Vu
+  //Tale of Terror!! -> Sense of D√©j√† Vu
   //gains Touched by Fingerwork
   private def gamble1(implicit c: Character) = did (c.items("Tale of Terror!!") > 0) {
     c.useItem("Tale of Terror!!")
@@ -20,17 +20,17 @@ object fidgetingWriter extends RepeatedJob {
     grind.tales_of_terror()
   }
 
-  //Sense of Déjà Vu -> Extraordinary Implication (2.5E)
-  private def cashout1(implicit c: Character) = did (c.items("Sense of Déjà Vu") > 0) {
-    c.useItem("Sense of Déjà Vu")
+  //Sense of D√©j√† Vu -> Extraordinary Implication (2.5E)
+  private def cashout1(implicit c: Character) = did (c.items("Sense of D√©j√† Vu") > 0) {
+    c.useItem("Sense of D√©j√† Vu")
     c.chooseBranch("Put the thought aside")
   }
   
-  //Sense of Déjà Vu + Vision of the Surface (0.5E) -> Glimpse of Something Larger
+  //Sense of D√©j√† Vu + Vision of the Surface (0.5E) -> Glimpse of Something Larger
   //gains Seeing through the Eyes of Icarus
-  private def gamble2(implicit c: Character) = did (c.items("Sense of Déjà Vu") > 0) {
+  private def gamble2(implicit c: Character) = did (c.items("Sense of D√©j√† Vu") > 0) {
     if (c.items("Vision of the Surface") > 0) {
-      c.useItem("Sense of Déjà Vu")
+      c.useItem("Sense of D√©j√† Vu")
       c.chooseBranch("Track down the Fidgeting Writer")	//"pretty good" odds
     } else {
       ???
