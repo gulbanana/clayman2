@@ -44,6 +44,7 @@ object opportunities {
     "Trailing the Affluent Photographer",                   //i have better gear than this gives now
     "Robbing the Ambassador's ball",                        //34 clues or 84 amber
     "Publish your scientific work",                         //48 clues or 81 pearls, never 100%
+    "The colour of currency",                               //27 surface currency, never 100%
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
