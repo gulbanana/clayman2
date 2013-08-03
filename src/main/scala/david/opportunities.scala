@@ -27,7 +27,7 @@ object opportunities {
     "Work the carnival",                                    //12 4th relics
     "The young buck",                                       //67 silk or 84 rostygold, never 100%
     "The marvellous contrivance",                           //69 candles or 84 jade, never 100%
-    "Moonish water",										//1.3E secrets, but -0.5E rostygold, never 100%
+    "Moonish water",										                    //1.3E secrets, but -0.5E rostygold, never 100%
     "Ambushed by pirates!",                                 //72 glim, never 100%
     "An evening's zailing",                                 //bad conn card - always +1 to one, -5 to the other
     "Rob a Brass Embassy courier",                          //15 proscribed, never 100%
@@ -45,6 +45,7 @@ object opportunities {
     "Robbing the Ambassador's ball",                        //34 clues or 84 amber
     "Publish your scientific work",                         //48 clues or 81 pearls, never 100%
     "The colour of currency",                               //27 surface currency, never 100%
+    "A consideration for services rendered",                //30 brass & 2 appallings for 1 soul, -conn:hell
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
@@ -245,7 +246,6 @@ object opportunities {
     "Wanted: Reminders of Brighter Days" -> Conditional(_.items("Incendiary Gossip") >= 25, _.chooseBranch("The tiniest of classified advertisements")),
     "Mr Wines is holding a sale!" -> Conditional(_.items("Romantic Notion") >= 80, _.chooseBranch("A discount for purchase in bulk")),
     "The Ambassador's ball" -> Conditional(c => c.persuasive > 80 && c.persuasive < 119, _.chooseBranch("Making a point of not making a point")),
-    "A consideration for services rendered" -> Conditional(_.items("Soul") > 0, _.chooseBranch()),
     "The Correspondence Savages Your Dreams" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Perhaps you can remember something useful") }),
     "Consulting detective required for government work" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),  //21 proscribed and +subtle
     "A night on the tiles" -> Conditional(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")), //1E of influence 
