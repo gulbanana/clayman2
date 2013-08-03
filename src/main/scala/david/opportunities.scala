@@ -46,6 +46,7 @@ object opportunities {
     "Publish your scientific work",                         //48 clues or 81 pearls, never 100%
     "The colour of currency",                               //27 surface currency, never 100%
     "A consideration for services rendered",                //30 brass & 2 appallings for 1 soul, -conn:hell
+    "A day at the races",                                   //fatelocked sidequests area, i've already done it 
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
@@ -63,7 +64,8 @@ object opportunities {
     "Graffiti with a sting",          				//only useful when Counting the Days
     "A night on the tiles",                     	//doesn't pay well without the wine
     "Altars and alms-houses: the Church",       	//i don't always want to spend Connected   
-    "The Alleys of London: the Criminals"
+    "The Alleys of London: the Criminals",
+    "Whispers from the Surface: The Great Game"
   )
   
   //auto-play these if conditions are met
