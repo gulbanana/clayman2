@@ -47,6 +47,7 @@ object opportunities {
     "The colour of currency",                               //27 surface currency, never 100%
     "A consideration for services rendered",                //30 brass & 2 appallings for 1 soul, -conn:hell
     "A day at the races",                                   //fatelocked sidequests area, i've already done it 
+    "Revolution and Coffee",                                //affluent photographer - completed this storyline both ways
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
