@@ -239,7 +239,7 @@ object opportunities {
     "One's public" -> Playable(implicit c => { gear.persuasive(); c.chooseBranch("Put on a fine show for them") }), //>2E of stuff!
     "His Young Lordship seized by tentacles" -> Playable(_.chooseBranch("Sell snacks to the crowd")),
     "Minding the detective" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("The case of the frenzied mandrake") }),  //business card (and 60 rostygold)
-    "Rat Melancholy" -> Playable(_.chooseBranch("Listen to her story")),  //50 cryptic clues, rat sympathy
+    "Rat Melancholy" -> Playable(_.chooseBranch("Let her grieve in dignified silence")),  //50 '82, 3cp rat sympathy
     "A past benefactor" -> Playable(_.chooseBranch("And what of the secrets of Hell?")),  //sudden insight
     "What's in the sack, Jack?" -> Conditional(_.qualities("Wounds") < 7, implicit c=> { gear.dangerous(); c.chooseBranch()}), //18 proscribed, 100% at 110
     "The simple joys of villainy" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch("Hire some help and strip the place bare") }), //only 36 beeswax, but +shadowy
