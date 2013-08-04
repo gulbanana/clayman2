@@ -48,6 +48,7 @@ object opportunities {
     "A consideration for services rendered",                //30 brass & 2 appallings for 1 soul, -conn:hell
     "A day at the races",                                   //fatelocked sidequests area, i've already done it 
     "Revolution and Coffee",                                //affluent photographer - completed this storyline both ways
+    "The assassin",                                         //84 rostygold
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
