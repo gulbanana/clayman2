@@ -16,7 +16,7 @@ object gear {
     c.equip("Ratskin Suit")
     c.equip("Cracksman's Mittens")
     c.equip("Kifers")
-    c.equip("Spidersilk Slippers")
+    c.equip("Hushed Spidersilk Slippers")
     c.equip("Devious Henchman")
   }
   
