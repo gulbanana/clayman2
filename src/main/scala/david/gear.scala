@@ -17,7 +17,7 @@ object gear {
     c.equip("Cracksman's Mittens")
     c.equip("Kifers")
     c.equip("Hushed Spidersilk Slippers")
-    c.equip("Devious Henchman")
+    c.equip("Unscrupulous Raven Advisor")
   }
   
   def dangerous()(implicit c: Character) {
