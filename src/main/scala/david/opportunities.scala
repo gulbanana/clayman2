@@ -241,6 +241,7 @@ object opportunities {
     "Minding the detective" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("The case of the frenzied mandrake") }),  //business card (and 60 rostygold)
     "Rat Melancholy" -> Playable(_.chooseBranch("Let her grieve in dignified silence")),  //50 '82, 3cp rat sympathy
     "A past benefactor" -> Playable(_.chooseBranch("And what of the secrets of Hell?")),  //sudden insight
+    "The Paronomastic Newshound" -> Playable(_.chooseBranch("Talk to him about the Tomb-Colonies")),  //
     "What's in the sack, Jack?" -> Conditional(_.qualities("Wounds") < 7, implicit c=> { gear.dangerous(); c.chooseBranch()}), //18 proscribed, 100% at 110
     "The simple joys of villainy" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch("Hire some help and strip the place bare") }), //only 36 beeswax, but +shadowy
     "The Eye and the Camera" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.watchful(); c.chooseBranch("Gather evidence... with a camera!") }), //min. 0.8E worth of luminosity
