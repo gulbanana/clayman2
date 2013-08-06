@@ -6,7 +6,7 @@ object gear {
     c.equip("Luminous Neathglass Goggles")
     c.equip("Academic Gown")
     c.equip("Insatiable Glove")
-    c.equip("Patent Scrutinizer")
+    c.equip("Dilmun Club Lapel Badge")
     c.equip("Mirror-polished Shoes")
     c.equip("Appreciation Society")
   }
