@@ -41,7 +41,7 @@ object opportunities {
     "As silent as the grave?",                              //0.75E misc goods
     "Property most intellectual",                           //<1E correspondence
     "Lies below the Palace",                                //18 proscribed (<0.8E)
-    "Trailing the Affluent Photographer",                   //i have better gear than this gives now
+    "Investigating the Affluent Photographer",                   //i have better gear than this gives now
     "Robbing the Ambassador's ball",                        //34 clues or 84 amber
     "Publish your scientific work",                         //48 clues or 81 pearls, never 100%
     "The colour of currency",                               //27 surface currency, never 100%
