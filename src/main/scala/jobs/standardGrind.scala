@@ -3,7 +3,7 @@ import london._
 import common._
 import david._
 
-object standardGrind extends OneManJob {
+object standardGrind extends BufferedJob {
   def apply(implicit c: Character) = {
     avertMenaces.apply || playCards.apply || stockpile || achieveGoals or money
   }
