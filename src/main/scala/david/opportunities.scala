@@ -41,7 +41,7 @@ object opportunities {
     "As silent as the grave?",                              //0.75E misc goods
     "Property most intellectual",                           //<1E correspondence
     "Lies below the Palace",                                //18 proscribed (<0.8E)
-    "Investigating the Affluent Photographer",                   //i have better gear than this gives now
+    "Investigating the Affluent Photographer",              //i have better gear than this gives now
     "Robbing the Ambassador's ball",                        //34 clues or 84 amber
     "Publish your scientific work",                         //48 clues or 81 pearls, never 100%
     "The colour of currency",                               //27 surface currency, never 100%
@@ -49,6 +49,9 @@ object opportunities {
     "A day at the races",                                   //fatelocked sidequests area, i've already done it 
     "Revolution and Coffee",                                //affluent photographer - completed this storyline both ways
     "The assassin",                                         //84 rostygold
+    "The simple joys of villainy",                          //21 or 36 beeswax
+    "The Eye and the Camera",                               //80 beeswax
+    "A night at the carnival",                              //60 rats
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Forgotten Quarter",
@@ -57,7 +60,6 @@ object opportunities {
   )
   
   private val sometimesUseless = Set(
-    "The simple joys of villainy",                  //crap reward, i just want the shadowy
     "Pass the Cat: a wriggling delivery", 			//the only benefit is -scandal, which i might not need
     "Wanted: Reminders of Brighter Days", 			//it's not worth keeping around on the off-chance of saving an action
     "The Ambassador's ball",              			//might not be in the range to play it - only gives a confident smile
@@ -232,7 +234,6 @@ object opportunities {
     "A parliament of bats" -> Playable(_.chooseBranch("Release a bat into the cloud")),
     "The Northbound Parliamentarian" -> Playable(_.chooseBranch("Advise prudence in her latest bill")),
     "Investigate the Topsy King's court" -> Playable(_.chooseBranch("Spy on the dealings with revolutionaries")), //conn:const and 64 rostygold
-    "A night at the carnival" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("There's always something") }),
     "Weather at last" -> Playable(implicit c => { gear.shadowy(); c.chooseBranch("An opportunity!") }),	//quirks and shadowy, delete eventually
     "The Parthenaeum" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("Expelling undesirables") }),  //conn:soc and 0.6E wines 
     "The Ways of the Flit" -> Playable(implicit c => { gear.shadowy(); c.chooseBranch("An old street sign") }), //2.5E
@@ -243,8 +244,6 @@ object opportunities {
     "A past benefactor" -> Playable(_.chooseBranch("And what of the secrets of Hell?")),  //sudden insight
     "The Paronomastic Newshound" -> Playable(_.chooseBranch("Talk to him about the Tomb-Colonies")),  //
     "What's in the sack, Jack?" -> Conditional(_.qualities("Wounds") < 7, implicit c=> { gear.dangerous(); c.chooseBranch()}), //18 proscribed, 100% at 110
-    "The simple joys of villainy" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch("Hire some help and strip the place bare") }), //only 36 beeswax, but +shadowy
-    "The Eye and the Camera" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.watchful(); c.chooseBranch("Gather evidence... with a camera!") }), //min. 0.8E worth of luminosity
     "Rob a library at the University" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch() }), //conn: rev and 15 proscribed
     "Pass the Cat: a wriggling delivery" -> Conditional(_.qualities("Scandal") > 0, _.chooseBranch("An elaborate strategy")),
     "The Fallen Angel" -> Conditional(_.qualities("Wounds") < 7, implicit c => {gear.dangerous(); c.chooseBranch("Tackle the verger")}),	//conn: church and a second chance
