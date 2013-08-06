@@ -67,7 +67,15 @@ object flit {
     c.onwards()
   }
   
-  def casing_optimal()(implicit c: Character) = casing4()
+  //5 actions, 15cp
+  def casing7()(implicit c: Character) {
+    c.travel(Areas.TheFlit)
+    c.beginStorylet("Preparing for a Big Score")
+    c.chooseBranch("Well-planned villainy")
+    c.onwards()    
+  }
+  
+  def casing_optimal()(implicit c: Character) = casing7()
 
   //casing 3, 100%
   //+10cp criminals, +10cp shadowy
