@@ -8,10 +8,24 @@ object standardGrind extends BufferedJob {
     avertMenaces.apply || playCards.apply || stockpile || achieveGoals or money
   }
 
-  //For efficient convertibility, 10/50/250/etc echoes are required at each tier
-  def stockpile(implicit c: Character) = farmT1(10) || farmT2(10)
+  def achieveGoals(implicit c: Character) = flitGrind(c)
   
-  def achieveGoals(implicit c: Character) = flitGrind(c) 
+  //For efficient convertibility, 10/50/250/etc echoes are required at each tier
+  def stockpile(implicit c: Character) = farmGoods(10) || farmT1(10) || farmT2(10)
+  
+  def farmGoods(echoes: Int)(implicit c: Character) = did (c.items("Rostygold") < (100 * echoes)) {
+    grind.rostygold()
+  } or (c.items("Moon-pearl") < (100 * echoes)) {
+    grind.moon_pearls()
+  } or (c.items("Nevercold Brass Sliver") < (100 * echoes)) {
+    grind.nevercold_brass_slivers()
+  } or (c.items("Deep Amber") < (100 * echoes)) {
+    grind.deep_amber()
+  } or (c.items("Rat on a String") < (100 * echoes)) {
+    grind.rats_on_strings()
+  } or (c.items("Infernal Contract") < (5 * echoes)) {
+    grind.infernal_contracts()
+  }
   
   def farmT1(echoes: Int)(implicit c: Character) = did (c.items("Cryptic Clue") < (50 * echoes)) {
     grind.cryptic_clues()
