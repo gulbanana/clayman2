@@ -54,6 +54,7 @@ object opportunities {
     "A night at the carnival",                              //60 rats
     "The Dean's distress",             
     "The Ways of the University",
+    "The Ways of the Flit",
     "The Ways of the Forgotten Quarter",
     "The Ways of Wolfstack Docks",
     "The Ways of the Shuttered Palace"
@@ -236,7 +237,6 @@ object opportunities {
     "Investigate the Topsy King's court" -> Playable(_.chooseBranch("Spy on the dealings with revolutionaries")), //conn:const and 64 rostygold
     "Weather at last" -> Playable(implicit c => { gear.shadowy(); c.chooseBranch("An opportunity!") }),	//quirks and shadowy, delete eventually
     "The Parthenaeum" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("Expelling undesirables") }),  //conn:soc and 0.6E wines 
-    "The Ways of the Flit" -> Playable(implicit c => { gear.shadowy(); c.chooseBranch("An old street sign") }), //2.5E
     "One's public" -> Playable(implicit c => { gear.persuasive(); c.chooseBranch("Put on a fine show for them") }), //>2E of stuff!
     "His Young Lordship seized by tentacles" -> Playable(_.chooseBranch("Sell snacks to the crowd")),
     "Minding the detective" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("The case of the frenzied mandrake") }),  //business card (and 60 rostygold)
