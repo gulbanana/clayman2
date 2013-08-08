@@ -3,12 +3,18 @@ import london._
 import common._
 import david._
 
-object standardGrind extends BufferedJob {
+object standardGrind extends RepeatedJob {
   def apply(implicit c: Character) = {
     avertMenaces.apply || playCards.apply || stockpile || achieveGoals or money
   }
 
-  def achieveGoals(implicit c: Character) = flitGrind(c)
+  def achieveGoals(implicit c: Character) = did (c.items("Antique Mystery") < 50) {
+    grind.antique_mysteries()
+  } or (c.items("Muscaria Brandy") < 120) {
+    grind.muscaria_brandy()
+  } or (c.items("Brilliant Soul") < 600) {
+    grind.brilliant_souls()
+  }
   
   //For efficient convertibility, 10/50/250/etc echoes are required at each tier
   def stockpile(implicit c: Character) = farmGoods(10) || farmT1(10) || farmT2(10)
@@ -23,7 +29,7 @@ object standardGrind extends BufferedJob {
     grind.deep_amber()
   } or (c.items("Rat on a String") < (100 * echoes)) {
     grind.rats_on_strings()
-  } or (c.items("Infernal Contract") < (5 * echoes)) {
+  } or (c.items("An Infernal Contract") < (5 * echoes)) {
     grind.infernal_contracts()
   }
   
