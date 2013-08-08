@@ -53,6 +53,7 @@ object opportunities {
     "The Eye and the Camera",                               //80 beeswax
     "A night at the carnival",                              //60 rats
     "Spy on the Black Ribbon",                              //caps too low- a recipe for suspicion
+    "Putting the pieces together: something about the Fourth City",  //low-chance luck challenge
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Flit",
