@@ -52,6 +52,7 @@ object opportunities {
     "The simple joys of villainy",                          //21 or 36 beeswax
     "The Eye and the Camera",                               //80 beeswax
     "A night at the carnival",                              //60 rats
+    "Spy on the Black Ribbon",                              //caps too low- a recipe for suspicion
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Flit",
@@ -243,6 +244,19 @@ object opportunities {
     "Rat Melancholy" -> Playable(_.chooseBranch("Let her grieve in dignified silence")),  //50 '82, 3cp rat sympathy
     "A past benefactor" -> Playable(_.chooseBranch("And what of the secrets of Hell?")),  //sudden insight
     "The Paronomastic Newshound" -> Playable(_.chooseBranch("Talk to him about the Tomb-Colonies")),  //
+    "The little people" -> Playable(_.chooseBranch("Do your best for him")),  //80 pearls, 5 conn:crim, rare=bribr
+    "Cheesemonger no more" -> Playable(c => {
+      if (c.qualities("Melancholy") < 9) 
+        c.chooseBranch("You regret what happened")
+      else if (c.qualities("Steadfast") < 9) 
+        c.chooseBranch("You did the right thing")
+      else if (c.qualities("Ruthless") < 9) 
+        c.chooseBranch("It's all in the game")
+      else {
+        c.perhapsNot()
+        c.discardOpportunity("Cheesemonger no more")
+      }
+    }), //+1 HEL and quirks up to 9
     "What's in the sack, Jack?" -> Conditional(_.qualities("Wounds") < 7, implicit c=> { gear.dangerous(); c.chooseBranch()}), //18 proscribed, 100% at 110
     "Rob a library at the University" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch() }), //conn: rev and 15 proscribed
     "Pass the Cat: a wriggling delivery" -> Conditional(_.qualities("Scandal") > 0, _.chooseBranch("An elaborate strategy")),
