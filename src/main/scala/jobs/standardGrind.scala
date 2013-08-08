@@ -16,7 +16,7 @@ object standardGrind extends BufferedJob {
     grind.brilliant_souls()
   }
   
-  //For efficient convertibility, 10/50/250/etc echoes are required at each tier
+  //For efficient convertibility, multiples of 10/50/25/125 echoes are required
   def stockpile(implicit c: Character) = farmGoods(10) || farmT1(20) || farmT2(10)
   
   def farmGoods(echoes: Int)(implicit c: Character) = did (c.items("Rostygold") < (100 * echoes)) {

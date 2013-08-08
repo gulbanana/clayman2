@@ -5,6 +5,7 @@ import common._
 object opportunities {  
   //auto-discard these, unless they are playable
   private val alwaysUseless = Set(
+    "Putting the pieces together: something about the Fourth City",  //low-chance luck challenge
     "Help a spy distract an inconvenient tail",             //36 jade
     "A meeting of cats",                                    //24 clues, never 100%
     "The notable citizen",                                  //83 whispered secrets, but i can grind that easily and it can't be made scandal-safe
@@ -53,7 +54,7 @@ object opportunities {
     "The Eye and the Camera",                               //80 beeswax
     "A night at the carnival",                              //60 rats
     "Spy on the Black Ribbon",                              //caps too low- a recipe for suspicion
-    "Putting the pieces together: something about the Fourth City",  //low-chance luck challenge
+    "Map the new heavens",                                  //small watchful range, <1E rewards
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Flit",
