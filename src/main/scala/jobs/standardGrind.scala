@@ -17,7 +17,7 @@ object standardGrind extends RepeatedJob {
   }
   
   //For efficient convertibility, 10/50/250/etc echoes are required at each tier
-  def stockpile(implicit c: Character) = farmGoods(10) || farmT1(10) || farmT2(10)
+  def stockpile(implicit c: Character) = farmGoods(10) || farmT1(20) || farmT2(10)
   
   def farmGoods(echoes: Int)(implicit c: Character) = did (c.items("Rostygold") < (100 * echoes)) {
     grind.rostygold()
