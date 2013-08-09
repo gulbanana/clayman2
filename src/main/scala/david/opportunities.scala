@@ -55,6 +55,7 @@ object opportunities {
     "A night at the carnival",                              //60 rats
     "Spy on the Black Ribbon",                              //caps too low- a recipe for suspicion
     "Map the new heavens",                                  //small watchful range, <1E rewards
+    "Tea with the Inspector",                               //i have outlevelled this
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Flit",
