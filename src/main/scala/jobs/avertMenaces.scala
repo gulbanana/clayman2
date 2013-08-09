@@ -31,6 +31,7 @@ object avertMenaces extends RepeatedJob {
   }
   
   private val guestPriorities = Map(
+    "Visions in the mirror" -> +1,  //nightmares on failure!
     "A visit from the Wry Functionary" -> -1,
     "A visit from the Repentant Forger" -> -1,
     "A visit from the Sardonic Music-Hall Singer" -> -1,
