@@ -243,6 +243,7 @@ object opportunities {
     "Weather at last" -> Playable(implicit c => { gear.shadowy(); c.chooseBranch("An opportunity!") }),	//quirks and shadowy, delete eventually
     "The Parthenaeum" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("Expelling undesirables") }),  //conn:soc and 0.6E wines 
     "One's public" -> Playable(implicit c => { gear.persuasive(); c.chooseBranch("Put on a fine show for them") }), //>2E of stuff!
+    "The Cities that Fell" -> Playable(implicit c => { gear.watchful(); c.chooseBranch("Ancient stories") }), //with POSI, three visions
     "His Young Lordship seized by tentacles" -> Playable(_.chooseBranch("Sell snacks to the crowd")),
     "Minding the detective" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("The case of the frenzied mandrake") }),  //business card (and 60 rostygold)
     "Rat Melancholy" -> Playable(_.chooseBranch("Let her grieve in dignified silence")),  //50 '82, 3cp rat sympathy
