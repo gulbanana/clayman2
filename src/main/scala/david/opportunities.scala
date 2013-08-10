@@ -274,7 +274,7 @@ object opportunities {
     "A night on the tiles" -> Conditional(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")), //1E of influence
     "A tavern dust-up" -> Conditional(_.items("Cryptic Clue") >= 10, c => {
       val faction = Set("Connected: The Constables", "Connected: The Church", "Connected: The Docks").min(Ordering.by(c.qualities))
-      c.chooseBranch("Intervene to help the" + Map(
+      c.chooseBranch("Intervene to help the " + Map(
         "Connected: The Constables" -> "Constable",
         "Connected: The Church" -> "cleric",
         "Connected: The Docks" -> "docker"
