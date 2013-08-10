@@ -17,7 +17,7 @@ object standardGrind extends BufferedJob {
   }
   
   //For efficient convertibility, multiples of 10/50/25/62.5 echoes are required
-  def stockpile(implicit c: Character) = farmGoods(10) || farmT1(20) || farmT2(10)
+  def stockpile(implicit c: Character) = farmGoods(20) || farmT1(20) || farmT2(50) || farmT3(50)
   
   def farmGoods(echoes: Int)(implicit c: Character) = did (c.items("Rostygold") < (100 * echoes)) {
     grind.rostygold()
@@ -83,6 +83,34 @@ object standardGrind extends BufferedJob {
     convert.silk_to_surface_silk()
   } or (c.items("Maniac's Prayer") < (10 * echoes)) {
     convert.shrieks_to_prayers()
+  }
+  
+  def farmT3(echoes: Int)(implicit c: Character) = did (c.items("A Journal of Infamy") < (2 * echoes)) {
+    grind.journals_of_infamy()
+  } or (c.items("Tale of Terror!!") < (2 * echoes)) {
+    grind.tales_of_terror()
+  } or (c.items("Brilliant Soul") < (2 * echoes)) {
+    grind.brilliant_souls()
+  } or (c.items("Compromising Document") < (2 * echoes)) {
+    convert.gossip_to_documents()
+  } or (c.items("Memory of Distant Shores") < (2 * echoes)) {
+    convert.salts_to_memories()
+  } or (c.items("Memory of Light") < (2 * echoes)) {
+    convert.scarabs_to_memories()
+  } or (c.items("Incendiary Gossip") < (2 * echoes)) {
+    convert.inklings_to_gossip()
+  } or (c.items("Zee-Ztory") < (2 * echoes)) {
+    convert.scraps_to_ztories()
+  } or (c.items("Mystery of the Elder Continent") < (2 * echoes)) {
+    convert.relics_to_mysteries()
+  } or (c.items("Strangling Willow Absinthe") < (2 * echoes)) {
+    convert.morelways_to_absinthe()
+  } or (c.items("Vision of the Surface") < (2 * echoes)) {
+    convert.notions_to_visions()
+  } or (c.items("Whisper-Satin Scrap") < (2 * echoes)) {
+    convert.surface_silk_to_whisper_satin()
+  } or (c.items("Correspondence Plaque") < (2 * echoes)) {
+    convert.prayers_to_plaques()
   }
   
   def money(implicit c: Character) {

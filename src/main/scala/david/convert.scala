@@ -32,9 +32,20 @@ object convert {
     c.onwards()
   } 
   
-  /***************/
+  /*********/
   /* ELDER */
-  /***************/
+  /*********/
+  def jade_to_relics()(implicit c: Character) {
+    c.useItem("Jade Fragment")
+    c.chooseBranch("Buy out a shop of antiquities with your jade ")
+    c.onwards()
+  } 
+  
+  def relics_to_mysteries()(implicit c: Character) {
+    c.useItem("Relic of the Third City")
+    c.chooseBranch("Sell your relics to Feducci")
+    c.onwards()
+  } 
   
   /************/
   /* INFERNAL */
