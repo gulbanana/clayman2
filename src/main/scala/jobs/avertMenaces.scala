@@ -19,8 +19,13 @@ object avertMenaces extends RepeatedJob {
     c.onwards()
   } or (c.qualities("Nightmares") > 5) {  //may increase scandal, so it comes after
     c.travel(Areas.Carnival)
-    c.beginStorylet("The Refreshment Pavilion")
-    c.chooseBranch("Try some hot wine")
+    if (c.items("Carnival Ticket") < 1) {
+      c.beginStorylet("Buy tickets to the Carnival")
+      c.chooseBranch("Buy tickets with Cryptic Clues")      
+    } else {
+      c.beginStorylet("The Refreshment Pavilion")
+      c.chooseBranch("Try some hot wine")
+    }
     c.onwards()
   } or (c.qualities("Wounds") > 5) {  //reconsider this.. it might be faster just to die
     c.travel(Areas.Lodgings)
