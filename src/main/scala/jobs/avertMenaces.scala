@@ -30,18 +30,18 @@ object avertMenaces extends RepeatedJob {
   } or (c.qualities("Wounds") > 5) {  //reconsider this.. it might be faster just to die
     c.travel(Areas.Lodgings)
     c.beginStorylet("Time in bed")
-    val bestSleep = (c.branches - "A remarkable tincture").toSeq.sortBy(guestPriorities).head
+    val bestSleep = (c.branches - "A remarkable tincture").max(Ordering.by(guestPriorities))
     c.chooseBranch(bestSleep)
     c.onwards()
   }
   
   private val guestPriorities = Map(
-    "Visions in the mirror" -> +1,  //nightmares on failure!
-    "A visit from the Wry Functionary" -> -1,
-    "A visit from the Repentant Forger" -> -1,
-    "A visit from the Sardonic Music-Hall Singer" -> -1,
-    "A visit from the Regretful Soldier" -> -1,
-    "A dreamless sleep" -> -2  //7cp
+    "Visions in the mirror" -> -1,  //nightmares on failure!
+    "A visit from the Wry Functionary" -> 1,
+    "A visit from the Repentant Forger" -> 1,
+    "A visit from the Sardonic Music-Hall Singer" -> 1,
+    "A visit from the Regretful Soldier" -> 1,
+    "A dreamless sleep" -> 2  //7cp
   ).withDefault(_ => 0)
 
 }
