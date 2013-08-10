@@ -21,7 +21,7 @@ object avertMenaces extends RepeatedJob {
     c.travel(Areas.Carnival)
     if (c.items("Carnival Ticket") < 1) {
       c.beginStorylet("Buy tickets to the Carnival")
-      c.chooseBranch("Buy tickets with Cryptic Clues")      
+      c.chooseBranch("Buy a ticket with moon-pearls")      
     } else {
       c.beginStorylet("The Refreshment Pavilion")
       c.chooseBranch("Try some hot wine")
