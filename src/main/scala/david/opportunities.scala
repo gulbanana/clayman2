@@ -66,14 +66,15 @@ object opportunities {
   )
   
   private val sometimesUseless = Set(
-    "Pass the Cat: a wriggling delivery", 			//the only benefit is -scandal, which i might not need
-    "Wanted: Reminders of Brighter Days", 			//it's not worth keeping around on the off-chance of saving an action
-    "The Ambassador's ball",              			//might not be in the range to play it - only gives a confident smile
+    "Pass the Cat: a wriggling delivery", 			  //the only benefit is -scandal, which i might not need
+    "Wanted: Reminders of Brighter Days", 			  //it's not worth keeping around on the off-chance of saving an action
+    "The Ambassador's ball",              		    //might not be in the range to play it - only gives a confident smile
     "A consideration for services rendered",    	//not worth grinding souls for
-    "An unusual wager",	          				    //only useful when Counting the Days
-    "Graffiti with a sting",          				//only useful when Counting the Days
+    "An unusual wager",	          				        //only useful when Counting the Days
+    "Graffiti with a sting",          				    //only useful when Counting the Days
     "A night on the tiles",                     	//doesn't pay well without the wine
-    "Altars and alms-houses: the Church",       	//i don't always want to spend Connected   
+    "Altars and alms-houses: the Church",       	//i don't always want to spend Connected
+    "Invited to another revel of the Masters",    //only raises connected from 0 to 1
     "The Alleys of London: the Criminals",
     "Whispers from the Surface: The Great Game"
   )
