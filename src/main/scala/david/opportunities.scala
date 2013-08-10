@@ -224,6 +224,13 @@ object opportunities {
       } else {
         c.chooseBranch("Finger the guilty party")
       }
+    ),
+    "A misfortune at the Carnival" -> Playable(c =>
+      if (c.qualities("Connected: Rubbery Men") <= c.qualities("Connected: The Tomb-Colonies")) {
+        c.chooseBranch("Save the Rubbery Man") 
+      } else {
+        c.chooseBranch("Save the Tomb-Colonist!")
+      }
     )
   )
   
@@ -290,10 +297,14 @@ object opportunities {
     })
   )
   
+  private val laudanumHabit = Map(
+    "A day without laudanum" -> Autofire
+  )
+  
   private val affairOfTheBox = Map(
     "Going gentle" -> Unplayable
   )
 
-  val london = new Opportunist((lodgingCards ++ connectionCards ++ conflictCards ++ londonCards ++ countingTheDays) withDefaultValue Unplayable, 
+  val london = new Opportunist((londonCards ++ connectionCards ++ conflictCards ++ lodgingCards ++ countingTheDays ++ laudanumHabit) withDefaultValue Unplayable, 
                                (alwaysUseless ++ sometimesUseless))
 }
