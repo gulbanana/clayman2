@@ -61,7 +61,8 @@ object opportunities {
     "The Ways of the Flit",
     "The Ways of the Forgotten Quarter",
     "The Ways of Wolfstack Docks",
-    "The Ways of the Shuttered Palace"
+    "The Ways of the Shuttered Palace",
+    "The Ways of Mahogany Hall"
   )
   
   private val sometimesUseless = Set(
