@@ -53,9 +53,11 @@ class Status {
   private val qualityClearPattern2 = """Your '(.+)' Quality has gone!""".r
   private val qualityChangingPattern = """(.+) is (increasing|dropping)...""".r
   private val qualityNoChangePattern = """(.+) hasn't changed, because it's higher than (\d+)""".r
-    
-  private val beginVenturePattern = """(.+) shows your progress in the venture.""".r
-  private val endVenturePattern = """(.+) has been reset: a conclusion, or a new beginning?""".r
+  
+  private val beginStoryPattern = """A twist in your tale! You are now (.+).""".r
+  private val beginStoryPattern2 = """(.+) shows your progress in the venture.""".r
+  private val endStoryPattern = """(.+) has been reset: a conclusion, or a new beginning?""".r
+  
   
   private val travelPattern = """You have moved to a new area: (.+)""".r
   
@@ -96,8 +98,9 @@ class Status {
         case qualityChangingPattern(qname, qdir) => ()
         case qualityNoChangePattern(qname, qmax) => ()
         
-        case beginVenturePattern(qname) => qualities = qualities.updated(qname, 1)
-        case endVenturePattern(qname) => qualities = qualities.updated(qname, 0)
+        case beginStoryPattern(qname) => qualities = qualities.updated(qname, 1)
+        case beginStoryPattern2(qname) => qualities = qualities.updated(qname, 1)
+        case endStoryPattern(qname) => qualities = qualities.updated(qname, 0)
         
         case travelPattern(aname) => () //XXX make this do a thing - but maybe unnecessary, b/c of javascript
         
