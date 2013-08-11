@@ -88,11 +88,17 @@ object opportunities {
     
     "The Tower of Eyes" -> Playable(_.chooseBranch("Do a little promenading yourself")),                                                              //persuasive t2.5
     "The Heron Tower" -> Playable(_.chooseBranch("Hunt down a huge lizard")),                                                                         //dangerous t2.5
-    "The Listing Tower" -> Unplayable,														                                                                                    //dangerous t2.5
+    "The Listing Tower" -> Unplayable, //I think I'm too Dangerous to ever get this?                                                                  //dangerous t2.5
     "The Windward Tower" -> Playable(_.chooseBranch("The cautious contact")),														                                              //shadowy t2.5
     "The High Castle" -> Playable(_.chooseBranch("A stroll with a sack")),                                                                            //shadowy t2.5
     
-    "The Lofty Tower" -> Unplayable,														                                                                                      //persuasive t3
+    "The Lofty Tower" -> Playable{c =>                                                                                                                //persuasive t3
+      if (c.items("A Sense of Urgency") == 0) {
+        c.chooseBranch("An opening in the Game of Knife-and-Candle!")
+      } else {
+        c.chooseBranch("Engage in commerce")  //4 scraps
+      }
+    },
     "The Western Tower" -> Unplayable,														                                                                                    //watchful t3
     "The Tower of Sun and Moon" -> Unplayable												                                                                                  //watchful t3
   )
