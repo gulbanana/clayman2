@@ -35,6 +35,10 @@ object avertMenaces extends RepeatedJob {
     c.onwards()
   }
   
+  //this is largely dependent on the airs of london; as they increase in semi-random amounts,
+  //the available options improve. it's always a random thing, except for visits from friends 
+  //and for Really High airs, which will always heal you a lot
+  //The ideal would be to find a low-action way to manipulate Airs before sleeping...
   private val guestPriorities = Map(
     "Visions in the mirror" -> -2,  //nightmares on failure!
     "Spend a day in bed" -> -1, //no healing on failure
