@@ -60,6 +60,7 @@ object opportunities {
     "The Ways of the University",
     "The Ways of the Flit",
     "The Ways of the Forgotten Quarter",
+    "The Ways of the Labyrinth of Tigers",
     "The Ways of Wolfstack Docks",
     "The Ways of the Shuttered Palace",
     "The Ways of Mahogany Hall"
@@ -276,6 +277,7 @@ object opportunities {
     "Wanted: Reminders of Brighter Days" -> Conditional(_.items("Incendiary Gossip") >= 25, _.chooseBranch("The tiniest of classified advertisements")),
     "Mr Wines is holding a sale!" -> Conditional(_.items("Romantic Notion") >= 80, _.chooseBranch("A discount for purchase in bulk")),
     "The Ambassador's ball" -> Conditional(c => c.persuasive > 80 && c.persuasive < 119, _.chooseBranch("Making a point of not making a point")),
+    //eventually, use "Call on the services of a great mind of the Surface" for 4 scraps - requires high scholar
     "The Correspondence Savages Your Dreams" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Perhaps you can remember something useful") }),
     "Consulting detective required for government work" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),  //21 proscribed and +subtle
     "A night on the tiles" -> Conditional(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")), //1E of influence

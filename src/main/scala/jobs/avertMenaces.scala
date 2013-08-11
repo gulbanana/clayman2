@@ -7,7 +7,6 @@ import david._
 object avertMenaces extends RepeatedJob {
   def apply(implicit c: Character) = escapePrison || reduceMenaces
   
-  //there's no good repeatable way to reduce suspicion, so just treat prison as a revolving door
   def escapePrison(implicit c: Character) = did (c.location == Areas.NewNewgate) {
     prison.opportunities.played() or prison.reduce_suspicion()
   }
@@ -33,7 +32,7 @@ object avertMenaces extends RepeatedJob {
     val bestSleep = (c.branches - "A remarkable tincture").max(Ordering.by(guestPriorities))
     c.chooseBranch(bestSleep)
     c.onwards()
-  }
+  } //there's no good repeatable way to reduce suspicion, so just treat prison as a revolving door
   
   //this is largely dependent on the airs of london; as they increase in semi-random amounts,
   //the available options improve. it's always a random thing, except for visits from friends 
