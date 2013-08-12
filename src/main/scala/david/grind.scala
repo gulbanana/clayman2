@@ -65,7 +65,7 @@ object grind {
     c.travel(Areas.WatchmakersHill)
     c.beginStorylet("Unfinished Business in Watchmaker's Hill")
     if (c.items("Hard-Earned Lesson") > 0)
-      c.chooseBranch("Wade into the Ring Fights", true)
+      c.chooseBranch("Wade into the Ring Fights", false)
     else
       c.chooseBranch("Wade into the Ring Fights")
     c.onwards()
