@@ -10,7 +10,7 @@ trait Duty {
 }
 
 trait OneManJob extends Job with Duty {
-  def apply() = with_character { c => apply(c) }
+  def apply() = with_character { c => if (c.actions > 0) apply(c) }
 }
 
 trait BufferedJob extends Job with Duty {

@@ -64,7 +64,10 @@ object grind {
     gear.dangerous()
     c.travel(Areas.WatchmakersHill)
     c.beginStorylet("Unfinished Business in Watchmaker's Hill")
-    c.chooseBranch("Wade into the Ring Fights")
+    if (c.items("Hard-Earned Lesson") > 0)
+      c.chooseBranch("Wade into the Ring Fights", true)
+    else
+      c.chooseBranch("Wade into the Ring Fights")
     c.onwards()
   }
   

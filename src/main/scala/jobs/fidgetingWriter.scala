@@ -32,8 +32,12 @@ object fidgetingWriter extends OneManJob {
     if (c.items("Vision of the Surface") > 0) {
       c.useItem("Sense of Déjà Vu")
       c.chooseBranch("Track down the Fidgeting Writer")	//"pretty good" odds
+    } else if (c.items("Romantic Notion") >= 500) {
+      convert.notions_to_visions()
+    } else if (c.items("Drop of Prisoner's Honey") >= 500) {
+      convert.honey_to_notions()
     } else {
-      ???
+      grind.prisoners_honey()
     }
   }
   
@@ -49,8 +53,12 @@ object fidgetingWriter extends OneManJob {
     if (c.items("Correspondence Plaque") >= 2) {
       c.useItem("Glimpse of Something Larger")
       c.chooseBranch("Cancel your appointments and investigate the ideogram")	  //"pretty good" odds
+    } else if (c.items("Maniac's Prayer") >= 500) {
+      convert.prayers_to_plaques()
+    } else if (c.items("Primordial Shriek") >= 500) {
+      convert.shrieks_to_prayers()
     } else {
-      ???
+      grind.primordial_shrieks()
     }
   }
   
