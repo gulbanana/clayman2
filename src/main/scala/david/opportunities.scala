@@ -252,7 +252,8 @@ object opportunities {
     "The Parthenaeum" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("Expelling undesirables") }),  //conn:soc and 0.6E wines 
     "One's public" -> Playable(implicit c => { gear.persuasive(); c.chooseBranch("Put on a fine show for them") }), //>2E of stuff!
     "A riot in Spite!" -> Playable(_.chooseBranch("Wade in with fists flying")), //connections
-    "The Cities that Fell" -> Playable(implicit c => { gear.watchful(); c.chooseBranch("Ancient stories") }), //with POSI, three visions
+    "The Cities that Fell" -> Playable(implicit c => { gear.watchful(); c.chooseBranch("Ancient stories") }), //with POSI, 3 visions
+    "Devices and desires" -> Playable(implicit c => { gear.watchful(); c.chooseBranch("The trade in clocks") }), //with POSI, 10 notions
     "His Young Lordship seized by tentacles" -> Playable(_.chooseBranch("Sell snacks to the crowd")),
     "Minding the detective" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("The case of the frenzied mandrake") }),  //business card (and 60 rostygold)
     "Rat Melancholy" -> Playable(_.chooseBranch("Let her grieve in dignified silence")),  //50 '82, 3cp rat sympathy
