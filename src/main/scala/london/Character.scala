@@ -109,9 +109,15 @@ class Character(username: String, password: String) {
     if (!parser.branchIDs.keySet.contains(branch))
       parser updateBranches http.query(site / "Storylet" / "In")
     
-    val soup = http.query(site / "Storylet" / "ChooseBranch" << Map("branchid"      -> parser.branchIDs(branch).toString,
+    var soup = http.query(site / "Storylet" / "ChooseBranch" << Map("branchid"      -> parser.branchIDs(branch).toString,
                                                                     "secondChances" -> useSecondChance.toString))
     println("--> %s".format(branch))
+                                                                    
+    if (useSecondChance && branches.contains(branch)) {
+      soup = http.query(site / "Storylet" / "ChooseBranch" << Map("branchid"      -> parser.branchIDs(branch).toString))
+      println("--> %s (second chance)".format(branch))
+    }
+    
     parser updateEffects soup
   }
   
