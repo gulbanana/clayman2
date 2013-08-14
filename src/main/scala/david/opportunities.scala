@@ -248,7 +248,7 @@ object opportunities {
         c.chooseBranch("Save the Tomb-Colonist!")
       }
     ),
-    "The Tomb-Colonist and the Footpad" -> Conditional(_.items("Intriguing Gossip") >= 1, c =>
+    "The Tomb-colonist and the Footpad" -> Conditional(_.items("Intriguing Gossip") >= 1, c =>
       if (c.qualities("Connected: Criminals") <= c.qualities("Connected: The Tomb-Colonies"))
         c.chooseBranch("Accept the job")
       else
