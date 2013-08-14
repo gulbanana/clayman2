@@ -56,6 +56,8 @@ object opportunities {
     "Spy on the Black Ribbon",                              //caps too low- a recipe for suspicion
     "Map the new heavens",                                  //small watchful range, <1E rewards
     "Tea with the Inspector",                               //i have outlevelled this
+    "Memoirs of a butler",                                  //narrow shadowy range, 84 glim
+    "A private detective",                                  //<1E clues
     "The Dean's distress",             
     "The Ways of the University",
     "The Ways of the Flit",

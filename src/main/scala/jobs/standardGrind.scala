@@ -59,7 +59,7 @@ object standardGrind extends BufferedJob {
     grind.primordial_shrieks()
   }
   
-  def farmT2(echoes: Int)(implicit c: Character) = did (c.items("Appalling Secret") < ((8.0/3.0) * echoes)) {
+  def farmT2(echoes: Int)(implicit c: Character) = did (c.items("Appalling Secret") < ((1.0/0.15) * echoes)) {
     convert.cryptic_to_appalling()
   } or (c.items("Amanita Sherry") < (10 * echoes)) {
     convert.souls_to_sherry()
