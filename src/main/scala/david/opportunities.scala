@@ -60,6 +60,7 @@ object opportunities {
     "A private detective",                                  //<1E clues
     "Bounty Hunting",                                       //81 rostygold or 96 jade
     "The Dean's distress",                                  //60 candles      
+    "Lizardly matters",                                     //50% chance of 4 memories of light, for 25 beeswax - <1E EV
     "The Ways of the University",
     "The Ways of the Flit",
     "The Ways of the Forgotten Quarter",
