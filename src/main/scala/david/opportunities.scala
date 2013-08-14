@@ -61,7 +61,7 @@ object opportunities {
     "Bounty Hunting",                                       //81 rostygold or 96 jade
     "The Dean's distress",                                  //60 candles      
     "Lizardly matters",                                     //50% chance of 4 memories of light, for 25 beeswax - <1E EV
-    "Expedition to Winewound Heath"                         //narrow range, <1E
+    "Expedition to Winewound Heath",                        //narrow range, <1E
     "The Ways of the University",
     "The Ways of the Flit",
     "The Ways of the Forgotten Quarter",
@@ -173,7 +173,6 @@ object opportunities {
       c.chooseBranch("Consult with a master thief")
     }), 
     "Gunpowder and Zeal: the Revolutionaries" -> Playable(_.chooseBranch("Taking a walk down gin lane"))  //counting the days
-     
   )
   
   //each net +15 connections
