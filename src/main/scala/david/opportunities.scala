@@ -58,7 +58,8 @@ object opportunities {
     "Tea with the Inspector",                               //i have outlevelled this
     "Memoirs of a butler",                                  //narrow shadowy range, 84 glim
     "A private detective",                                  //<1E clues
-    "The Dean's distress",             
+    "Bounty Hunting",                                       //81 rostygold or 96 jade
+    "The Dean's distress",                                  //60 candles      
     "The Ways of the University",
     "The Ways of the Flit",
     "The Ways of the Forgotten Quarter",
