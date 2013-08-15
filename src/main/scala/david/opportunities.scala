@@ -99,15 +99,10 @@ object opportunities {
     "The Windward Tower" -> Playable(_.chooseBranch("The cautious contact")),														                                              //shadowy t2.5
     "The High Castle" -> Playable(_.chooseBranch("A stroll with a sack")),                                                                            //shadowy t2.5
     
-    "The Lofty Tower" -> Playable{c =>                                                                                                                //persuasive t3
-      if (c.items("A Sense of Urgency") == 0) {
-        c.chooseBranch("An opening in the Game of Knife-and-Candle!")
-      } else {
-        c.chooseBranch("Engage in commerce")  //4 scraps
-      }
-    },
-    "The Western Tower" -> Unplayable,														                                                                                    //watchful t3
-    "The Tower of Sun and Moon" -> Unplayable												                                                                                  //watchful t3
+    //tier 3 - 4 scraps
+    "The Lofty Tower" -> Playable(_.chooseBranch("Engage in commerce")),
+    "The Western Tower" -> Unplayable,
+    "The Tower of Sun and Moon" -> Unplayable
   )
   
   private val connectionCards = Map(
