@@ -8,7 +8,7 @@ object fidgetingWriter extends OneManJob {
     gear.watchful()
     
     //going any higher requires watchful 90
-    cashout4 || gamble4 || gamble3 || gamble2 || gamble1
+    gamble4 || gamble3 || gamble2 || gamble1
   }
   
   //Tale of Terror!! -> Sense of Déjà Vu
@@ -72,7 +72,7 @@ object fidgetingWriter extends OneManJob {
   private def gamble4(implicit c: Character) = did (c.items("Deal with a Devil") > 0) {
     if (c.items("Brilliant Soul") >= 2) {
       c.useItem("Deal with a Devil")
-      c.chooseBranch("Make a counter-offer.")	//could go either way, iirc?
+      c.chooseBranch("Make a counter-offer.")	//"could go either way"
     } else {
       grind.brilliant_souls()
     }
