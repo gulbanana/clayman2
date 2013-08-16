@@ -5,10 +5,12 @@ import david._
 
 //eat all opportunties and actions until we run out of one or the other
 object avertMenaces extends RepeatedJob {
-  def apply(implicit c: Character) = escapePrison || reduceMenaces
+  def apply(implicit c: Character) = escapeMenaceAreas || reduceMenaces
   
-  def escapePrison(implicit c: Character) = did (c.location == Areas.NewNewgate) {
+  def escapeMenaceAreas(implicit c: Character) = did (c.location == Areas.NewNewgate) {
     prison.opportunities.played() or prison.reduce_suspicion()
+  } or (c.location == Areas.TombColonies) {
+    colonies.opportunities.played() or colonies.reduce_scandal()
   }
   
   def reduceMenaces(implicit c: Character) = did (c.qualities("Scandal") > 5) { //this depends on luck, so start it ASAP
