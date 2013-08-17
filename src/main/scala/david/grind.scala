@@ -295,4 +295,13 @@ object grind {
     c.chooseBranch("A tradition developed after the Fall")
     c.onwards()
   }
+  
+  //+2 absinthe
+  def strangling_willow_absinthe()(implicit c: Character) {
+    gear.persuasive()
+    c.travel(Areas.WolfstackDocks)
+    c.beginStorylet("Waiting for your ship")
+    c.chooseBranch()
+    c.onwards()
+  }
 }

@@ -104,7 +104,7 @@ object standardGrind extends BufferedJob {
   } or (c.items("Mystery of the Elder Continent") < (2 * echoes)) {
     convert.relics_to_mysteries()
   } or (c.items("Strangling Willow Absinthe") < (2 * echoes)) {
-    convert.morelways_to_absinthe()
+    grind.strangling_willow_absinthe()
   } or (c.items("Vision of the Surface") < (2 * echoes)) {
     convert.notions_to_visions()
   } or (c.items("Whisper-Satin Scrap") < (2 * echoes)) {
