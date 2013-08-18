@@ -281,6 +281,12 @@ object opportunities {
         c.discardOpportunity("Cheesemonger no more")
       }
     }), //+1 HEL and quirks up to 9
+    "A Day with God's Editors" -> Playable(c => {
+      if (c.qualities("Scandal") > 0 && c.qualities("Nightmares") > 0) 
+        c.chooseBranch("Work diligently") //-1cp of each and 5cp conn:church
+      else 
+        c.chooseBranch("Examine the latest revisions")
+    }), //+1 HEL and quirks up to 9
     "What's in the sack, Jack?" -> Conditional(_.qualities("Wounds") < 7, implicit c=> { gear.dangerous(); c.chooseBranch()}), //18 proscribed, 100% at 110
     "Rob a library at the University" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch() }), //conn: rev and 15 proscribed
     "Pass the Cat: a wriggling delivery" -> Conditional(_.qualities("Scandal") > 0, _.chooseBranch("An elaborate strategy")),
