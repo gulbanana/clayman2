@@ -5,16 +5,20 @@ import common._
 object prison { 
   private def blacklist = Set(
     "Voice from the oubliette",
-    "Promises of revenge", //only 1 cp
-    "University of crime", //+2cp shadowy but costs 2cp criminals and +1 suspicion
-    "Volunteer for bilge duty", //-persuasive, -shadowy
-    "The talkative gaoler", //only useful if you lose all criminals
-    "The screaming prisoner" //only 1 cp
+    "A Better Class of Villain", //social
+    "Promises of revenge",       //only 1 cp
+    "University of crime",       //+2cp shadowy but costs 2cp criminals and +1 suspicion
+    "Volunteer for bilge duty",  //-persuasive, -shadowy
+    "The talkative gaoler",      //only useful if you lose all criminals
+    "The screaming prisoner",    //only 1 cp
+    "Sent to the treadmill"      //-shadowy
   )
   
   private def playlist = Map(
     "The Warden" -> Trivial,
-    "A visit from a priest" -> Playable(_.chooseBranch("Admit nothing"))  //+3cp criminals, docks
+    "Start a brawl" -> Trivial,
+    "A visit from a priest" -> Playable(_.chooseBranch("Admit nothing")),  //+3cp criminals, docks
+    "The Stuttering Fence" -> Playable(_.chooseBranch("Connections"))      //-criminals, -suspicion
   ) withDefaultValue Unplayable
   
   val opportunities = new Opportunist(playlist, blacklist)
