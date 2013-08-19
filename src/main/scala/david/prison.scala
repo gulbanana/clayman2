@@ -3,7 +3,7 @@ import london._
 import common._
 
 object prison { 
-  private def blacklist = Set[String](
+  private def blacklist = Set(
     "Voice from the oubliette",
     "Promises of revenge", //only 1 cp
     "University of crime", //+2cp shadowy but costs 2cp criminals and +1 suspicion
@@ -12,7 +12,7 @@ object prison {
     "The screaming prisoner" //only 1 cp
   )
   
-  private def playlist = Map[String,Opportunity](
+  private def playlist = Map(
     "The Warden" -> Trivial,
     "A visit from a priest" -> Playable(_.chooseBranch("Admit nothing"))  //+3cp criminals, docks
   ) withDefaultValue Unplayable
