@@ -12,7 +12,7 @@ object Areas {
   val ForgottenQuarter = Area(9, "The Forgotten Quarter")
   val ShutteredPalace = Area(10, "The Shuttered Palace")
   val TheFlit = Area(11, "The Flit")
-  val NewNewgate = Area(16, "New Newgate Prison")
+  val NewNewgate = Area(16, "New Newgate Prison - again!")
   val TombColonies = Area(17, "The Tomb-Colonies")
   val Carnival = Area(18, "Mrs Plenty's Carnival")
   val University = Area(23, "The University")
