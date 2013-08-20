@@ -94,7 +94,8 @@ object opportunities {
     "The Tower of Knives" -> Playable(_.chooseBranch("Rough camaraderie")),                                                                           //shadowy t2
     "The Tower of Sleeping Giants" -> Playable(c => c.chooseBranch(if (c.items("An Infernal Contract") < 100) "The owner" else "Examine the stock")), //watchful t2
     
-    "The Tower of Eyes" -> Playable(_.chooseBranch("Do a little promenading yourself")),                                                              //persuasive t2.5
+    //"The Tower of Eyes" -> Playable(_.chooseBranch("Do a little promenading yourself")),                                                              //persuasive t2.5
+    "The Tower of Eyes" -> Unplayable, //want to check some stuff
     "The Heron Tower" -> Playable(_.chooseBranch("Hunt down a huge lizard")),                                                                         //dangerous t2.5
     "The Listing Tower" -> Unplayable, //I think I'm too Dangerous to ever get this?                                                                  //dangerous t2.5
     "The Windward Tower" -> Playable(_.chooseBranch("The cautious contact")),														                                              //shadowy t2.5
@@ -269,6 +270,7 @@ object opportunities {
     "The Paronomastic Newshound" -> Playable(_.chooseBranch("Talk to him about the Tomb-Colonies")),  //
     "The little people" -> Playable(_.chooseBranch("Do your best for him")),  //80 pearls, 5 conn:crim, rare=bribr
     "Riding your Velocipede" -> Playable(_.chooseBranch("The velocipede courier")),
+    "The tomb-colonist's dogs" -> Playable(_.chooseBranch("Could you look after them for a day?")), //61 candle, +10cp colonies
     "Cheesemonger no more" -> Playable(c => {
       if (c.qualities("Melancholy") < 9) 
         c.chooseBranch("You regret what happened")
