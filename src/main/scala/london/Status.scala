@@ -209,7 +209,7 @@ class Status {
     //invitationIDs = 
   }
   
-  val tooltipPattern = """<strong>(\d+) x (.*?)<.*""".r
+  val tooltipPattern = """(?s)<strong>(\d+) x (.*?)<.*""".r
   val imagePattern = """infoBarQImage(\d*)""".r
   private def extractItems(elements: Seq[Element]) = for (item <- elements) yield {
     val tooltipPattern(quantity, name) = item.attr("title") 
