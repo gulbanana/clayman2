@@ -249,7 +249,23 @@ object opportunities {
         c.chooseBranch("Accept the job")
       else
         c.chooseBranch("Double-cross him")
-    )
+    ),
+    "A tavern dust-up" -> Conditional(_.items("Cryptic Clue") >= 10, c => {
+      val faction = Set("Connected: The Constables", "Connected: The Church", "Connected: The Docks").min(Ordering.by(c.qualities))
+      c.chooseBranch("Intervene to help the " + Map(
+        "Connected: The Constables" -> "Constable",
+        "Connected: The Church" -> "cleric",
+        "Connected: The Docks" -> "docker"
+      )(faction))
+    }),
+    "Valuable Secrets" -> Conditional(_.items("Whispered Secret") >= 15, c => {
+      val faction = Set("Connected: Hell", "Connected: The Great Game", "Connected: Bohemian").min(Ordering.by(c.qualities))
+      c.chooseBranch(Map(
+        "Connected: Hell" -> "Sell the information to the Embassy",
+        "Connected: The Great Game" -> "Find a buyer for the information",
+        "Connected: Bohemian" -> "Warn the artist"
+      )(faction))
+    })
   )
   
   private val londonCards = Map(
@@ -300,14 +316,6 @@ object opportunities {
     "The Correspondence Savages Your Dreams" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Perhaps you can remember something useful") }),
     "Consulting detective required for government work" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),  //21 proscribed and +subtle
     "A night on the tiles" -> Conditional(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")), //1E of influence
-    "A tavern dust-up" -> Conditional(_.items("Cryptic Clue") >= 10, c => {
-      val faction = Set("Connected: The Constables", "Connected: The Church", "Connected: The Docks").min(Ordering.by(c.qualities))
-      c.chooseBranch("Intervene to help the " + Map(
-        "Connected: The Constables" -> "Constable",
-        "Connected: The Church" -> "cleric",
-        "Connected: The Docks" -> "docker"
-      )(faction))
-    }),
     "What will you do with your Partisan Messenger Tortoise?" -> Unplayable,
     "Help the Sardonic Music-Hall Singer" -> Unplayable, //investigate the other-acquaintance options, otherwise Playable with persuasive-alone option
     "Ask the Sardonic Music-Hall Singer to help you" -> Unplayable, //not 100% but all options >1 E - make it Playable with higher stats
