@@ -137,6 +137,12 @@ object convert {
     c.onwards()
   } 
   
+  def journals_to_implications()(implicit c: Character) {
+    c.useItem("A Journal of Infamy")
+    c.chooseBranch("Study your journals with a learned colleague")
+    c.onwards()
+  } 
+  
   /*************/
   /* NOSTALGIA */
   /*************/
@@ -181,6 +187,12 @@ object convert {
     c.chooseBranch("Agree to forget an identity you've confirmed")
     c.onwards()
   } 
+  
+  def gossip_to_identities()(implicit c: Character) {
+    c.useItem("Incendiary Gossip")
+    c.chooseBranch("Speculate on the identity of certain parties at a salon")
+    c.onwards()
+  }
   
   /**************/
   /* WILD WORDS */
