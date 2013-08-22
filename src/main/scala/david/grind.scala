@@ -71,7 +71,7 @@ object grind {
     c.onwards()
   }
   
-  //+250 currency for 6 actions (1.25E - higher difficulty..)
+  //+230 currency for 6 actions (1.15E - higher difficulty..)
   def surface_currency()(implicit c: Character) {
     gear.persuasive()
     c.travel(Areas.Veilgarden)

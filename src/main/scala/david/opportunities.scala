@@ -63,6 +63,8 @@ object opportunities {
     "Lizardly matters",                                     //50% chance of 4 memories of light, for 25 beeswax - <1E EV
     "Expedition to Winewound Heath",                        //narrow range, <1E
     "Ask Madame Shoshana to cast your horoscope",           //recasting sign requires fate
+    "The Northbound Parliamentarian",                       //3 appalling secrets and WTFC
+    "A new piece in the Game",                              //45 clues, narrow shadowy range
     "The Ways of the University",
     "The Ways of the Flit",
     "The Ways of the Forgotten Quarter",
@@ -264,13 +266,20 @@ object opportunities {
         "Connected: The Great Game" -> "Find a buyer for the information",
         "Connected: Bohemian" -> "Warn the artist"
       )(faction))
+    }),
+    "A scuffle on the street" -> Playable(c => {
+      val faction = Set("Connected: Society", "Connected: Revolutionaries", "Connected: Urchins").min(Ordering.by(c.qualities))
+      c.chooseBranch(Map(
+        "Connected: Society" -> "Stand up for the Lady",
+        "Connected: Revolutionaries" -> "Take the Revolutionary's side",
+        "Connected: Urchins" -> "Assist the Urchin"
+      )(faction))
     })
   )
   
   private val londonCards = Map(
     "A rather decadent evening" -> Trivial,
     "A parliament of bats" -> Playable(_.chooseBranch("Release a bat into the cloud")),
-    "The Northbound Parliamentarian" -> Playable(_.chooseBranch("Advise prudence in her latest bill")),
     "Investigate the Topsy King's court" -> Playable(_.chooseBranch("Spy on the dealings with revolutionaries")), //conn:const and 64 rostygold
     "Weather at last" -> Playable(implicit c => { gear.shadowy(); c.chooseBranch("An opportunity!") }),	//quirks and shadowy, delete eventually
     "The Parthenaeum" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("Roust out an interloper") }),  //conn:soc and 0.6E wines 
