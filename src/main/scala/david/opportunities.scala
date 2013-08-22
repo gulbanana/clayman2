@@ -94,8 +94,7 @@ object opportunities {
     "The Tower of Knives" -> Playable(_.chooseBranch("Rough camaraderie")),                                                                           //shadowy t2
     "The Tower of Sleeping Giants" -> Playable(c => c.chooseBranch(if (c.items("An Infernal Contract") < 100) "The owner" else "Examine the stock")), //watchful t2
     
-    //"The Tower of Eyes" -> Playable(_.chooseBranch("Do a little promenading yourself")),                                                              //persuasive t2.5
-    "The Tower of Eyes" -> Unplayable, //want to check some stuff
+    "The Tower of Eyes" -> Conditional(_.qualities("Connected: Summerset") == 0, _.chooseBranch("Do a little promenading yourself")),                 //persuasive t2.5
     "The Heron Tower" -> Playable(_.chooseBranch("Hunt down a huge lizard")),                                                                         //dangerous t2.5
     "The Listing Tower" -> Unplayable, //I think I'm too Dangerous to ever get this?                                                                  //dangerous t2.5
     "The Windward Tower" -> Playable(_.chooseBranch("The cautious contact")),														                                              //shadowy t2.5
@@ -131,15 +130,15 @@ object opportunities {
       }
     ),
     "Burning Shadows: the Devils of London" -> Playable(implicit c => 
-      if (c.qualities("Connected: Hell") >= 3) {
+      if (c.qualities("Connected: Hell") >= 20) {
         gear.watchful()
         c.chooseBranch("Speak with a senior deviless")
       } else {
         c.chooseBranch("Attend a lecture at the Brass Embassy")
       }
     ),
-    "The Demi-Monde: Bohemians" -> Conditional(c => c.qualities("Connected: Bohemian") >= 3 || c.items("Greyfields 1882") >= 2, c => 
-      if (c.qualities("Connected: Bohemian") >= 3)
+    "The Demi-Monde: Bohemians" -> Conditional(c => c.qualities("Connected: Bohemian") >= 60 || c.items("Greyfields 1882") >= 2, c => 
+      if (c.qualities("Connected: Bohemian") >= 60)
         c.chooseBranch("Take tea with a Reclusive Novelist")
       else
         c.chooseBranch("Buy drinks for writers")
@@ -160,7 +159,7 @@ object opportunities {
         c.chooseBranch("In the shadow of All Christs Spire")
     }),
     "Park and Palace: Society" -> Playable(c => 
-      if (c.qualities("Connected: Society") >= 40)
+      if (c.qualities("Connected: Society") >= 60)
         c.chooseBranch("Take port with the Veteran Privy Counsellor") //+10cp persuasive, -400cp connected
       else
         c.chooseBranch("An invitation to dinner")   //+connected, -wounds
