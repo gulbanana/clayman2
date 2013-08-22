@@ -31,6 +31,8 @@ object standardGrind extends BufferedJob {
     grind.rats_on_strings()
   } or (c.items("An Infernal Contract") < (5 * echoes)) {
     grind.infernal_contracts()
+  } or (c.items("Surface Currency") < (100 * echoes / 3)) {
+    grind.surface_currency()
   }
   
   def farmT1(echoes: Int)(implicit c: Character) = did (c.items("Cryptic Clue") < (50 * echoes)) {
