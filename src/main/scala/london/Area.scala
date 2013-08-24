@@ -45,6 +45,7 @@ object Areas {
     31 -> BazaarSideStreets,
     34 -> HouseOfChimes,
     42 -> WilmotsEnd,
+    47 -> DoubtStreet,
     5821 -> GamekeepersCottage
   ) withDefault(i => { println("WARNING: unknown areaid %d".format(i)); Area(i, "Unknown Area")})
   
