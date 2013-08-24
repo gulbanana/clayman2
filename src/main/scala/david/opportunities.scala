@@ -65,6 +65,7 @@ object opportunities {
     "Ask Madame Shoshana to cast your horoscope",           //recasting sign requires fate
     "The Northbound Parliamentarian",                       //3 appalling secrets and WTFC
     "A new piece in the Game",                              //45 clues, narrow shadowy range
+    "Weather at last",                                      //quirks up to a point
     "The Ways of the University",
     "The Ways of the Flit",
     "The Ways of the Forgotten Quarter",
@@ -282,7 +283,7 @@ object opportunities {
     "A rather decadent evening" -> Trivial,
     "A parliament of bats" -> Playable(_.chooseBranch("Release a bat into the cloud")),
     "Investigate the Topsy King's court" -> Playable(_.chooseBranch("Spy on the dealings with revolutionaries")), //conn:const and 64 rostygold
-    "Weather at last" -> Playable(implicit c => { gear.shadowy(); c.chooseBranch("An opportunity!") }),	//quirks and shadowy, delete eventually
+    "The Geology of Winewound" -> Playable(implicit c => { gear.watchful(); c.chooseBranch("Go as far as you can") }), //130E of relics, rare for visions
     "The Parthenaeum" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("Roust out an interloper") }),  //conn:soc and 0.6E wines 
     "One's public" -> Playable(implicit c => { gear.persuasive(); c.chooseBranch("Put on a fine show for them") }), //>2E of stuff!
     "A riot in Spite!" -> Playable(_.chooseBranch("Wade in with fists flying")), //connections
