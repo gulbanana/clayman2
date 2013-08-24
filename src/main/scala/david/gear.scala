@@ -16,7 +16,7 @@ object gear {
     c.equip("Ratskin Suit")
     c.equip("Cracksman's Mittens")
     c.equip("Kifers")
-    c.equip("Hushed Spidersilk Slippers")
+    c.equip("Kingscale Boots")
     c.equip("Devious Raven Advisor")
   }
   
@@ -25,7 +25,7 @@ object gear {
     c.equip("Gentleman's Athletic Support")
     c.equip("Spiderchitin Gauntlets")
     c.equip("Ancient Hunting Rifle")
-    c.equip("Savage Hob-nailed Boots")
+    c.equip("Kingscale Boots")
     c.equip("Rattus Faber Bandit-Chief")
   }
   
