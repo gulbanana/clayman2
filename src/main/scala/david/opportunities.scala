@@ -296,6 +296,7 @@ object opportunities {
     "The little people" -> Playable(_.chooseBranch("Do your best for him")),  //80 pearls, 5 conn:crim, rare=bribr
     "Riding your Velocipede" -> Playable(_.chooseBranch("The velocipede courier")),
     "The tomb-colonist's dogs" -> Playable(_.chooseBranch("Could you look after them for a day?")), //61 candle, +10cp colonies
+    "Below the Neath" -> Playable(_.chooseBranch("Go and see what else you can find")), //70 souls
     "Cheesemonger no more" -> Playable(c => {
       if (c.qualities("Melancholy") < 9) 
         c.chooseBranch("You regret what happened")
