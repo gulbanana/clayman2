@@ -43,10 +43,19 @@ object gear {
   }
   
   def dreaded()(implicit c: Character) {
-    c.equip("Anarchist's Sable")
+    c.equip("Ratskin Suit")
+    c.equip("Kingscale Boots")
   }
   
   def respectable()(implicit c: Character) {
-    c.equip("Morning Suit")
+    c.equip("Academic Gown")
+    c.equip("Appreciation Society")
+  }
+  
+  def bdr()(implicit c: Character) {
+    c.equip("Academic Gown")
+    c.equip("Bejewelled Cane")
+    c.equip("Kingscale Boots")
+    c.equip("Appreciation Society")
   }
 }
