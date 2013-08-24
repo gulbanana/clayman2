@@ -22,6 +22,7 @@ object Areas {
   val BazaarSideStreets = Area(31, "Bazaar Side-streets")
   val HouseOfChimes = Area(34, "The House of Chimes")
   val WilmotsEnd = Area(42, "Wilmot's End")
+  val DoubtStreet = Area(47, "Doubt Street")
   val GamekeepersCottage = Area(5821, "The Gamekeeper's Cottage")
   
   private val byID = Map(
