@@ -86,7 +86,8 @@ object opportunities {
     "Invited to another revel of the Masters",    //only raises connected from 0 to 1
     "Mirrors and Clay",                           //Vision and Touched by Fingerwork, but 1 vision is 0.5E and touched doesn't seem useful anymore..
     "The Alleys of London: the Criminals",
-    "Whispers from the Surface: The Great Game"
+    "Whispers from the Surface: The Great Game",
+    "Swap Incendiary Gossip"
   )
   
   //auto-play these if conditions are met
@@ -324,6 +325,7 @@ object opportunities {
     "The Correspondence Savages Your Dreams" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Perhaps you can remember something useful") }),
     "Consulting detective required for government work" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),  //21 proscribed and +subtle
     "A night on the tiles" -> Conditional(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")), //1E of influence
+    "Swap Incendiary Gossip" -> Conditional(c => c.items("Incendiary Gossip") > 0 && c.qualities("Connected: Society") >= 50, _.chooseBranch()),
     "What will you do with your Partisan Messenger Tortoise?" -> Unplayable,
     "Help the Sardonic Music-Hall Singer" -> Unplayable, //investigate the other-acquaintance options, otherwise Playable with persuasive-alone option
     "Ask the Sardonic Music-Hall Singer to help you" -> Unplayable, //not 100% but all options >1 E - make it Playable with higher stats
