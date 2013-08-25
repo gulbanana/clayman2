@@ -1,11 +1,15 @@
 package common
-import scala.collection.mutable
 import java.io._
 import java.nio.file._
+import london.Character
 
 trait Stats {  
-  private def statsFile(implicit c: Character) = Paths.get("%s.stats".format("idk"))
-  
+  private def statsFile(implicit c: Character) = Paths.get("%s.stats".format(c.name))
+  private def loadStats(implicit c: Character) = if (Files.exists(statsFile)) {
+    Map()
+  } else {
+    Map()
+  }
   /*
   private val cookies = loadCookies().getOrElse(mutable.Set[Cookie]())
   

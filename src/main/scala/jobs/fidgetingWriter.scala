@@ -2,8 +2,9 @@ package jobs
 import london._
 import common._
 import david._
+import common.Stats
 
-object fidgetingWriter extends OneManJob {
+object fidgetingWriter extends OneManJob with Stats {
   def apply(implicit c: Character) = {
     gear.watchful()
     
@@ -92,5 +93,11 @@ object fidgetingWriter extends OneManJob {
     } else {
       ???
     }
+  }
+}
+
+object fidgetingWriterStats extends OneManJob with Stats {
+  def apply(implicit c: Character) = {
+    false
   }
 }
