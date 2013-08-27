@@ -328,11 +328,16 @@ object opportunities {
     "Consulting detective required for government work" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),  //21 proscribed and +subtle
     "A night on the tiles" -> Conditional(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")), //1E of influence
     "Swap Incendiary Gossip" -> Conditional(c => c.items("Incendiary Gossip") > 0 && c.qualities("Connected: Society") >= 50, _.chooseBranch()),
-    "What will you do with your Partisan Messenger Tortoise?" -> Unplayable,
     "Help the Sardonic Music-Hall Singer" -> Unplayable, //investigate the other-acquaintance options, otherwise Playable with persuasive-alone option
     "Ask the Sardonic Music-Hall Singer to help you" -> Unplayable, //not 100% but all options >1 E - make it Playable with higher stats
     "A presumptuous little opportunity" -> Unplayable,
-    "Tea with the Inspector" -> Unplayable //useful if on a case i think? 13-14 cp Investigating. high watchful diff.  
+    "A relaxed day at the Club" -> Playable(c =>
+      if (c.qualities("Suspicion") > 1) {
+        c.chooseBranch("Have a little word with the Chief Constable")
+      } else {
+        c.chooseBranch("Fall asleep in front of the fire")
+      }
+    )
   )
   
   def deprioritise[T <% Ordered[T]](xs: Set[T], worst: T) = xs.toSeq.sortBy(b => -Math.abs(b.compareTo(worst))).head
