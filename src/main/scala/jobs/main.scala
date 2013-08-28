@@ -4,12 +4,17 @@ import common._
 import david._
 
 object main extends BufferedJob {
-  def apply(implicit c: Character) = did (c.location == Areas.NewNewgate) {
+  def apply(implicit c: Character) = if (c.location == Areas.NewNewgate) {
     prison.opportunities.played() or prison.reduce_suspicion()
-  } or (c.location == Areas.TombColonies) {
+  } else if (c.location == Areas.TombColonies) {
     colonies.opportunities.played() or colonies.reduce_scandal()
-  } or (londonAreas.contains(c.location)) {
+  } else if (londonAreas.contains(c.location)) {
     london.standardGrind(c)
+  } else if (unscriptedAreas.contains(c.location)) {
+    false
+  } else {
+    print("No script available for area " + c.location)
+    false
   }
   
   private val londonAreas = Set(
@@ -29,5 +34,10 @@ object main extends BufferedJob {
     Areas.WatchmakersHill,
     Areas.WilmotsEnd,
     Areas.WolfstackDocks
+  )
+  
+  private val unscriptedAreas = Set(
+      Areas.Court,
+      Areas.DoubtStreet
   )
 }
