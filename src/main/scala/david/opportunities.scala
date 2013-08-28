@@ -66,6 +66,7 @@ object opportunities {
     "The Northbound Parliamentarian",                       //3 appalling secrets and WTFC
     "A new piece in the Game",                              //45 clues, narrow shadowy range
     "Weather at last",                                      //quirks up to a point
+    "Where did that come from?",                            //50 rostygold or start the tournament of lilies
     "The Ways of the University",
     "The Ways of the Flit",
     "The Ways of the Forgotten Quarter",
@@ -316,6 +317,13 @@ object opportunities {
       else 
         c.chooseBranch("Examine the latest revisions")
     }), //+1 HEL and quirks up to 9
+    "A relaxed day at the Club" -> Playable(c =>
+      if (c.qualities("Suspicion") > 1) {
+        c.chooseBranch("Have a little word with the Chief Constable")
+      } else {
+        c.chooseBranch("Fall asleep in front of the fire")
+      }
+    ),
     "What's in the sack, Jack?" -> Conditional(_.qualities("Wounds") < 7, implicit c=> { gear.dangerous(); c.chooseBranch()}), //18 proscribed, 100% at 110
     "Rob a library at the University" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch() }), //conn: rev and 15 proscribed
     "Pass the Cat: a wriggling delivery" -> Conditional(_.qualities("Scandal") > 0, _.chooseBranch("An elaborate strategy")),
@@ -328,16 +336,10 @@ object opportunities {
     "Consulting detective required for government work" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),  //21 proscribed and +subtle
     "A night on the tiles" -> Conditional(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")), //1E of influence
     "Swap Incendiary Gossip" -> Conditional(c => c.items("Incendiary Gossip") > 0 && c.qualities("Connected: Society") >= 50, _.chooseBranch()),
+    "The Soft-Hearted Widow" -> Conditional(_.items("Glim") >= 500, _.chooseBranch("Give a significant donation to her charity for the homeless")), //upgrades to 2x stolen kiss, +making waves
     "Help the Sardonic Music-Hall Singer" -> Unplayable, //investigate the other-acquaintance options, otherwise Playable with persuasive-alone option
     "Ask the Sardonic Music-Hall Singer to help you" -> Unplayable, //not 100% but all options >1 E - make it Playable with higher stats
-    "A presumptuous little opportunity" -> Unplayable,
-    "A relaxed day at the Club" -> Playable(c =>
-      if (c.qualities("Suspicion") > 1) {
-        c.chooseBranch("Have a little word with the Chief Constable")
-      } else {
-        c.chooseBranch("Fall asleep in front of the fire")
-      }
-    )
+    "A presumptuous little opportunity" -> Unplayable
   )
   
   def deprioritise[T <% Ordered[T]](xs: Set[T], worst: T) = xs.toSeq.sortBy(b => -Math.abs(b.compareTo(worst))).head

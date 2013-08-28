@@ -107,7 +107,7 @@ class Status {
         case goodLuckPattern() => () //XXX add stats tracking
         case badLuckPattern() => () //XXX add stats tracking
         
-        case unknown:String => println("Effect NOT MATCHED: " + unknown)
+        case unknown:String => println("UNKNOWN EFFECT: " + unknown)
       }
     }
   }
