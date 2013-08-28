@@ -1,8 +1,7 @@
 package jobs
-import london._
+import api._
 import common._
 import david._
-import common.Stats
 
 object fidgetingWriter extends OneManJob with Stats {
   def apply(implicit c: Character) = {
@@ -17,8 +16,6 @@ object fidgetingWriter extends OneManJob with Stats {
   private def gamble1(implicit c: Character) = did (c.items("Tale of Terror!!") > 0) {
     c.useItem("Tale of Terror!!")
     c.chooseBranch("There's something familiar about this tale...")	//"pretty good" odds
-  } or {
-    grind.tales_of_terror()
   }
 
   //Sense of Déjà Vu -> Extraordinary Implication (2.5E)
@@ -29,17 +26,8 @@ object fidgetingWriter extends OneManJob with Stats {
   
   //Sense of Déjà Vu + Vision of the Surface (0.5E) -> Glimpse of Something Larger
   //gains Seeing through the Eyes of Icarus
-  private def gamble2(implicit c: Character) = did (c.items("Sense of Déjà Vu") > 0) {
-    if (c.items("Vision of the Surface") > 0) {
-      c.useItem("Sense of Déjà Vu")
-      c.chooseBranch("Track down the Fidgeting Writer")	//"pretty good" odds
-    } else if (c.items("Romantic Notion") >= 500) {
-      convert.notions_to_visions()
-    } else if (c.items("Drop of Prisoner's Honey") >= 500) {
-      convert.honey_to_notions()
-    } else {
-      grind.prisoners_honey()
-    }
+  private def gamble2(implicit c: Character) = did (c.items("Sense of Déjà Vu") > 0 && c.items("Vision of the Surface") > 0) {
+    c.chooseBranch("Track down the Fidgeting Writer")	//"pretty good" odds
   }
   
   //Glimpse of Something Larger -> 2x Collated Research (5.0E)
@@ -50,17 +38,9 @@ object fidgetingWriter extends OneManJob with Stats {
   }
   
   //Glimpse of Something Larger + 2x Correspondence Plaque (1.0E) -> Deal with a Devil
-  private def gamble3(implicit c: Character) = did (c.items("Glimpse of Something Larger") > 0) {
-    if (c.items("Correspondence Plaque") >= 2) {
-      c.useItem("Glimpse of Something Larger")
-      c.chooseBranch("Cancel your appointments and investigate the ideogram")	  //"pretty good" odds
-    } else if (c.items("Maniac's Prayer") >= 500) {
-      convert.prayers_to_plaques()
-    } else if (c.items("Primordial Shriek") >= 500) {
-      convert.shrieks_to_prayers()
-    } else {
-      grind.primordial_shrieks()
-    }
+  private def gamble3(implicit c: Character) = did (c.items("Glimpse of Something Larger") > 0 && c.items("Correspondence Plaque") >= 2) {
+    c.useItem("Glimpse of Something Larger")
+    c.chooseBranch("Cancel your appointments and investigate the ideogram")	  //"pretty good" odds
   }
   
   //Deal with a Devil -> Brass Ring (12.5E)
@@ -70,13 +50,9 @@ object fidgetingWriter extends OneManJob with Stats {
   }
   
   //Deal with a Devil + 2x Brilliant Soul (1.0E) -> Room Number at the Royal Beth
-  private def gamble4(implicit c: Character) = did (c.items("Deal with a Devil") > 0) {
-    if (c.items("Brilliant Soul") >= 2) {
-      c.useItem("Deal with a Devil")
-      c.chooseBranch("Make a counter-offer.")	//"could go either way"
-    } else {
-      grind.brilliant_souls()
-    }
+  private def gamble4(implicit c: Character) = did (c.items("Deal with a Devil") > 0 && c.items("Brilliant Soul") >= 2) {
+    c.useItem("Deal with a Devil")
+    c.chooseBranch("Make a counter-offer.")	//"could go either way"
   }
   
   //Room Number at the Royal Beth -> 2x Antique Mystery (25.0E)
@@ -86,13 +62,9 @@ object fidgetingWriter extends OneManJob with Stats {
   }
   
   //Room Number at the Royal Beth -> Last Hope of a Fidgeting Writer
-  private def gamble5(implicit c: Character) = did (c.items("Room Number at the Royal Beth") > 0) {
-    if (c.items("An Identity Uncovered!") > 0) {
-      c.useItem("Room Number at the Royal Beth")
-      c.chooseBranch("Visit him regularly and ask the Manager about his stay")	//could go either way
-    } else {
-      ???
-    }
+  private def gamble5(implicit c: Character) = did (c.items("Room Number at the Royal Beth") > 0 && c.items("An Identity Uncovered!") > 0) {
+    c.useItem("Room Number at the Royal Beth")
+    c.chooseBranch("Visit him regularly and ask the Manager about his stay")	//could go either way
   }
 }
 

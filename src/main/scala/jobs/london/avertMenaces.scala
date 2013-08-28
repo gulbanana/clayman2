@@ -1,19 +1,10 @@
-package jobs
-import london._
+package jobs.london
+import api._
 import common._
 import david._
 
-//eat all opportunties and actions until we run out of one or the other
 object avertMenaces extends RepeatedJob {
-  def apply(implicit c: Character) = escapeMenaceAreas || reduceMenaces
-  
-  def escapeMenaceAreas(implicit c: Character) = did (c.location == Areas.NewNewgate) {
-    prison.opportunities.played() or prison.reduce_suspicion()
-  } or (c.location == Areas.TombColonies) {
-    colonies.opportunities.played() or colonies.reduce_scandal()
-  }
-  
-  def reduceMenaces(implicit c: Character) = did (c.qualities("Scandal") > 5) { //this depends on luck, so start it ASAP
+  def apply(implicit c: Character) = did (c.qualities("Scandal") > 5) { //this depends on luck, so start it ASAP
     c.travel(Areas.Lodgings)
     c.beginStorylet("Attend a Church Service")
     c.chooseBranch()
@@ -49,5 +40,4 @@ object avertMenaces extends RepeatedJob {
     "A visit from the Regretful Soldier" -> 1,
     "A dreamless sleep" -> 2  //7cp
   ).withDefault(_ => 0)
-
 }

@@ -1,4 +1,4 @@
-package london
+package api
 
 case class Area(id: Int, name: String)
 

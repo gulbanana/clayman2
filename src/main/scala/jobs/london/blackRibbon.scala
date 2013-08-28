@@ -1,10 +1,10 @@
-package jobs
-import london._
+package jobs.london
+import api._
 import common._
-import david._
+import david._, london._
 
 object blackRibbon extends BufferedJob {
-  def apply(implicit c: Character) = playCards(c) || prep || {
+  def apply(implicit c: Character) = avertMenaces.apply || playCards.apply || prep || {
     gear.dangerous(); 
     c.travel(Areas.WolfstackDocks); 
     duel

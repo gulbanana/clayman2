@@ -1,5 +1,5 @@
 package common
-import london._
+import api._
 
 class Opportunity(val test: Character => Boolean, val act: Character=>Unit)
 case class Conditional(t: Character=>Boolean, a: Character=>Unit) extends Opportunity(t, a)

@@ -1,5 +1,5 @@
-package david
-import london._
+package david.london
+import api._
 
 //notes on difficulty:
 //diff X = 60% chance at qual X, 100% at qual X*5/3.

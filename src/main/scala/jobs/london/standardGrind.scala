@@ -1,14 +1,14 @@
-package jobs
-import london._
+package jobs.london
+import api._
 import common._
-import david._
+import david._, london._
 
 object standardGrind extends BufferedJob {
   def apply(implicit c: Character) = {
     avertMenaces.apply || playCards.apply || stockpile || achieveGoals or money
   }
 
-  def achieveGoals(implicit c: Character) = did (c.items("Antique Mystery") < 50) {
+  private def achieveGoals(implicit c: Character) = did (c.items("Antique Mystery") < 50) {
     grind.antique_mysteries()
   } or (c.items("Muscaria Brandy") < 120) {
     grind.muscaria_brandy()
@@ -17,9 +17,9 @@ object standardGrind extends BufferedJob {
   }
   
   //For efficient convertibility, multiples of 10/50/25/62.5 echoes are required
-  def stockpile(implicit c: Character) = farmGoods(20) || farmT1(20) || farmT2(50) || farmT3(50) || farmT4(25)
+  private def stockpile(implicit c: Character) = farmGoods(20) || farmT1(20) || farmT2(50) || farmT3(50) || farmT4(25)
   
-  def farmGoods(echoes: Int)(implicit c: Character) = did (c.items("Rostygold") < (100 * echoes)) {
+  private def farmGoods(echoes: Int)(implicit c: Character) = did (c.items("Rostygold") < (100 * echoes)) {
     grind.rostygold()
   } or (c.items("Moon-pearl") < (100 * echoes)) {
     grind.moon_pearls()
@@ -35,7 +35,7 @@ object standardGrind extends BufferedJob {
     grind.surface_currency()
   }
   
-  def farmT1(echoes: Int)(implicit c: Character) = did (c.items("Cryptic Clue") < (50 * echoes)) {
+  private def farmT1(echoes: Int)(implicit c: Character) = did (c.items("Cryptic Clue") < (50 * echoes)) {
     grind.cryptic_clues()
   } or (c.items("Soul") < (50 * echoes)) {
     grind.souls()
@@ -61,7 +61,7 @@ object standardGrind extends BufferedJob {
     grind.primordial_shrieks()
   }
   
-  def farmT2(echoes: Int)(implicit c: Character) = did (c.items("Appalling Secret") < ((1.0/0.15) * echoes)) {
+  private def farmT2(echoes: Int)(implicit c: Character) = did (c.items("Appalling Secret") < ((1.0/0.15) * echoes)) {
     convert.cryptic_to_appalling()
   } or (c.items("Amanita Sherry") < (10 * echoes)) {
     convert.souls_to_sherry()
@@ -87,7 +87,7 @@ object standardGrind extends BufferedJob {
     convert.shrieks_to_prayers()
   }
   
-  def farmT3(echoes: Int)(implicit c: Character) = did (c.items("A Journal of Infamy") < (2 * echoes)) {
+  private def farmT3(echoes: Int)(implicit c: Character) = did (c.items("A Journal of Infamy") < (2 * echoes)) {
     grind.journals_of_infamy()
   } or (c.items("Tale of Terror!!") < (2 * echoes)) {
     grind.tales_of_terror()
@@ -115,13 +115,13 @@ object standardGrind extends BufferedJob {
     convert.prayers_to_plaques()
   }
   
-  def farmT4(echoes: Int)(implicit c: Character) = did (c.items("Extraordinary Implication") < echoes / 2.5) {
+  private def farmT4(echoes: Int)(implicit c: Character) = did (c.items("Extraordinary Implication") < echoes / 2.5) {
     convert.journals_to_implications()
   } or (c.items("An Identity Uncovered") < echoes / 2.5) {
     convert.gossip_to_identities()
   }
   
-  def money(implicit c: Character) {
+  private def money(implicit c: Character) {
     grind.tales_of_terror()	//for later use with the Fidgeting Writer
   }
 }

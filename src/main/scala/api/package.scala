@@ -2,7 +2,7 @@ import dispatch._
 import com.ning.http.client._
 
 //dispatch extensions for handling redirects explicitly - not currently used
-package object london {
+package object api {
   implicit class RequestHandlerExtensions(builder: RequestBuilder) {
     def FOUND [T](f: Response => T) =
       ((builder.build(), new FoundFunctionHandler(f)))

@@ -1,5 +1,6 @@
-package david
-import london._
+package david.london
+import api._
+import david.gear
 
 object grind {  
   /*********/

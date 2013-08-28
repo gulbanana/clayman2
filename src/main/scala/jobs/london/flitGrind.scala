@@ -1,18 +1,18 @@
-package jobs
-import london._
+package jobs.london
+import api._
 import common._
-import david._
+import david._, london._
 
 object flitGrind extends BufferedJob {
-  def apply(implicit c: Character) = {
-    gear.shadowy()
-    avertMenaces.apply || playCards.apply || prep || stealContracts || stealMysteries || stealSouls or stealTales
-  }
+  def apply(implicit c: Character) = avertMenaces.apply || playCards.apply || prep || stealContracts || stealMysteries || stealSouls or stealTales
   
-  def prep(implicit c: Character) = did (c.items("An Infernal Contract") < 100 && c.qualities("Casing...") < 20) {
-    flit.casing_optimal()
-  } or (c.qualities("Casing...") < 10) {
-    flit.casing_optimal()
+  def prep(implicit c: Character) = {
+    gear.shadowy()
+    did (c.items("An Infernal Contract") < 100 && c.qualities("Casing...") < 20) {
+      flit.casing_optimal()
+    } or (c.qualities("Casing...") < 10) {
+      flit.casing_optimal()
+    }
   }
 
   //for the CVR

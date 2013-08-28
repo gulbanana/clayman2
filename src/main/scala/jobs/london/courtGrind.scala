@@ -1,13 +1,13 @@
-package jobs
-import london._
+package jobs.london
+import api._
 import common._
-import david._
+import david._, london._
 
 //hang around the court grinding
 object courtGrind extends BufferedJob {
   def apply(implicit c: Character) = {
     gear.persuasive()
-    playCards(c) || getToCourt || reduceMenaces || revelsPrep || gainFascinating || grind
+    playCards.apply || getToCourt || reduceMenaces || revelsPrep || gainFascinating || grind
   }
   
   private def getToCourt(implicit c: Character) = did (c.location != Areas.Court) {

@@ -1,7 +1,7 @@
 package common
 import java.io._
 import java.nio.file._
-import london.Character
+import api.Character
 
 trait Stats {  
   private def statsFile(implicit c: Character) = Paths.get("%s.stats".format(c.name))

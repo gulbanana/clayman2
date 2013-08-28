@@ -1,4 +1,4 @@
-package london
+package api
 import dispatch._, Defaults._
 
 class Character(username: String, password: String) {
