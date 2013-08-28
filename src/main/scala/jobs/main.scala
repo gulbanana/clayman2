@@ -9,7 +9,7 @@ object main extends BufferedJob {
   } or (c.location == Areas.TombColonies) {
     colonies.opportunities.played() or colonies.reduce_scandal()
   } or (londonAreas.contains(c.location)) {
-    london.standardGrind(c)
+    london.standardGrind
   }
   
   private val londonAreas = Set(

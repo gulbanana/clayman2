@@ -9,7 +9,7 @@ object Clayman {
     val mirror = reflect.runtimeMirror(getClass().getClassLoader())
     val jobName = mirror.staticModule("jobs."+args(0))
     val job = mirror.reflectModule(jobName).instance.asInstanceOf[Job]
-    job()
+    job.work()
     
     //XXX dispose Dispatch once client bugs are sorted
     //dispatch.Http.shutdown()
