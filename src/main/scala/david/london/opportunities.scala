@@ -61,7 +61,6 @@ object opportunities extends Opportunist(
         c.chooseBranch("Buy drinks for writers")
     ),
     "Bandages and Dust: The Tomb-Colonies" -> Conditional(_.qualities("Connected: The Tomb-Colonies") >= 3, implicit c => {
-      gear.dangerous()
       c.chooseBranch("Spar with a Black Ribbon Duellist") 
     }),
     "Whispers from the Surface: The Great Game" -> Conditional(_.qualities("Connected: The Great Game") >= 20, implicit c => {
