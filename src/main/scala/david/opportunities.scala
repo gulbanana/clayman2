@@ -67,6 +67,7 @@ object opportunities {
     "A new piece in the Game",                              //45 clues, narrow shadowy range
     "Weather at last",                                      //quirks up to a point
     "Where did that come from?",                            //50 rostygold or start the tournament of lilies
+    "A squire of the Flit",                                 //max shadowy 106, not 100%
     "The Ways of the University",
     "The Ways of the Flit",
     "The Ways of the Forgotten Quarter",
