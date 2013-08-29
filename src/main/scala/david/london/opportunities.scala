@@ -24,22 +24,22 @@ object opportunities extends Opportunist(
     /********************/
     /* CONNECTION CARDS */
     /********************/
-    "Altars and alms-houses: the Church" -> Conditional(c => c.qualities("Connected: The Church") >= 20 || c.items("Rostygold") >= 10, c =>
-      if (c.qualities("Connected: The Church") >= 20)
+    "Altars and alms-houses: the Church" -> Conditional(c => c.qualities("Connected: The Church") >= 30 || c.items("Rostygold") >= 10, c =>
+      if (c.qualities("Connected: The Church") >= 30)
         c.chooseBranch("Attend a private lecture given by the Bishop of Southwark")
       else 
         c.chooseBranch("Attend a church fête on the south bank of the River")
     ),
-    "Court and Cell: the Constables" -> Conditional(c => c.qualities("Connected: Constables") >= 15 || c.items("Rostygold") >= 10, implicit c =>
-      if (c.qualities("Connected: Constables") >= 15) {
+    "Court and Cell: the Constables" -> Conditional(c => c.qualities("Connected: Constables") >= 30 || c.items("Rostygold") >= 10, implicit c =>
+      if (c.qualities("Connected: Constables") >= 30) {
         gear.watchful()
         c.chooseBranch("Attend a class given by the Implacable Detective")
       } else {
         c.chooseBranch("A small donation")
       }
     ),
-    "By the River's Side: the Docks" -> Conditional(c => c.qualities("Connected: The Docks") >= 3 || c.items("Rostygold") >= 10, implicit c =>
-      if (c.qualities("Connected: The Docks") >= 3) {
+    "By the River's Side: the Docks" -> Conditional(c => c.qualities("Connected: The Docks") >= 30 || c.items("Rostygold") >= 10, implicit c =>
+      if (c.qualities("Connected: The Docks") >= 30) {
         gear.dangerous()
         c.chooseBranch("Fencing lessons with a Dashing Captain")
       } else {
@@ -47,7 +47,7 @@ object opportunities extends Opportunist(
       }
     ),
     "Burning Shadows: the Devils of London" -> Playable(implicit c => 
-      if (c.qualities("Connected: Hell") >= 20) {
+      if (c.qualities("Connected: Hell") >= 30) {
         gear.watchful()
         c.chooseBranch("Speak with a senior deviless")
       } else {
@@ -60,16 +60,16 @@ object opportunities extends Opportunist(
       else
         c.chooseBranch("Buy drinks for writers")
     ),
-    "Bandages and Dust: The Tomb-Colonies" -> Conditional(_.qualities("Connected: The Tomb-Colonies") >= 3, implicit c => {
+    "Bandages and Dust: The Tomb-Colonies" -> Conditional(_.qualities("Connected: The Tomb-Colonies") >= 30, implicit c => {
       c.chooseBranch("Spar with a Black Ribbon Duellist") 
     }),
-    "Whispers from the Surface: The Great Game" -> Conditional(_.qualities("Connected: The Great Game") >= 20, implicit c => {
+    "Whispers from the Surface: The Great Game" -> Conditional(_.qualities("Connected: The Great Game") >= 30, implicit c => {
       gear.watchful()
       c.chooseBranch("Learn more at the carnival")
     }),
-    "The Roof-Tops: Urchins" -> Conditional(c => c.items("Glim") >= 20 || c.items("Lucky Weasel") >= 1, implicit c => {
+    "The Roof-Tops: Urchins" -> Conditional(c => (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 30) || c.items("Lucky Weasel") >= 1, implicit c => {
       gear.shadowy()
-      if (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 10)
+      if (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 30)
         c.chooseBranch("Out you go, longshanks")
       else
         c.chooseBranch("In the shadow of All Christs Spire")
@@ -80,7 +80,7 @@ object opportunities extends Opportunist(
       else
         c.chooseBranch("An invitation to dinner")   //+connected, -wounds
     ),
-    "The Alleys of London: the Criminals" -> Conditional(_.qualities("Connected: Criminals") >= 20, implicit c => {
+    "The Alleys of London: the Criminals" -> Conditional(_.qualities("Connected: Criminals") >= 30, implicit c => {
       gear.shadowy()
       c.chooseBranch("Consult with a master thief")
     }), 
@@ -343,6 +343,7 @@ object opportunities extends Opportunist(
     "Weather at last",                                      //quirks up to a point
     "Where did that come from?",                            //50 rostygold or start the tournament of lilies
     "A squire of the Flit",                                 //max shadowy 106, not 100%
+    "Coats and souls",                                      //60 secrets
     "The Ways of the University",
     "The Ways of the Flit",
     "The Ways of the Forgotten Quarter",
