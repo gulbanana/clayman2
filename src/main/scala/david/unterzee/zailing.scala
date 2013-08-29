@@ -10,7 +10,9 @@ object zailing {
   private def blacklist = Set(
     "Share your Research with a Fellow Scholar", //social
     "A Mountain of the Unterzee",                //-2/+2 or +2/-2, random
-    "Those engines don't sound healthy"          //either -1 journey -1 troubled, or a bundle
+    "Those engines don't sound healthy",         //either -1 journey -1 troubled, or a bundle
+    "She's Going Down!",                         //-journey, and quirks
+    "The Killing Wind"                           //statistically Bad with no zub
   )
   
   private def playlist = Map(
@@ -19,13 +21,22 @@ object zailing {
     "The Fleet of Truth" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("Villainy!")}),                                       //+journey, +5 of each type of notes
     "Calm Seas: Fair Zailing" -> Trivial,                                                                                                   //+4 journey, +3 troubled, +SIC
     "Calm Seas: A Spit of Land" -> Playable(_.chooseBranch("Steam on by")),                                                                 //+2 journey, +2 troubled
-    "Calm Seas: A Steamer full of Passengers" -> Playable(_.chooseBranch("Invite them aboard for a party"))                                 //+hedonist, 1 stockings, 5 secluded addresses - 1.40E (but +troubled)
+    "Calm Seas: A Steamer full of Passengers" -> Playable(_.chooseBranch("Invite them aboard for a party")),                                //+hedonist, 1 stockings, 5 secluded addresses - 1.40E (but +troubled)
+    "Lashing Waves: A Stowaway!" -> Playable(_.chooseBranch("Let him off at the next port"))                                                //+1 journey
   ) withDefaultValue Unplayable
   
   val opportunities = new Opportunist(playlist, blacklist)
   
-  def steam_prudently(implicit c: Character) {
-    c.beginStorylet("Steam Prudently")  //+1 journey, +2 troubled
+  //+1 journey, +2 troubled
+  def steam_prudently()(implicit c: Character) {
+    c.beginStorylet("Steam Prudently")  
     c.chooseBranch()
+  }
+  
+  //50% +2 journey & +1 troubled; 50% +1 journey & +3 troubled
+  //requires troubled < 9
+  def steam_boldly()(implicit c: Character) {
+    c.beginStorylet("Steam Boldly")  
+    c.chooseBranch("Extrapolate from the charts") 
   }
 }
