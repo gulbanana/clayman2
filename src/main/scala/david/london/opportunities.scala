@@ -219,6 +219,10 @@ object opportunities extends Opportunist(
       gear.persuasive()
       c.chooseBranch("An invitation to a rather exclusive soirée")  //1.2E of gossip, or rare Aeolian Scream
     }),
+    "Help the Sardonic Music-Hall Singer" -> Playable(implicit c => {
+      gear.persuasive()
+      c.chooseBranch("Help her negotiate")  //1.2E of gossip, or rare Aeolian Scream
+    }),
     
     
     /***************/
@@ -281,7 +285,6 @@ object opportunities extends Opportunist(
     "A night on the tiles" -> Conditional(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")), //1E of influence
     "Swap Incendiary Gossip" -> Conditional(c => c.items("Incendiary Gossip") > 0 && c.qualities("Connected: Society") >= 50, _.chooseBranch()),
     "The Soft-Hearted Widow" -> Conditional(_.items("Glim") >= 500, _.chooseBranch("Give a significant donation to her charity for the homeless")), //upgrades to 2x stolen kiss, +making waves
-    "Help the Sardonic Music-Hall Singer" -> Unplayable, //investigate the other-acquaintance options, otherwise Playable with persuasive-alone option
     "A presumptuous little opportunity" -> Unplayable
   ) withDefaultValue Unplayable, Set(
     //Always useless
