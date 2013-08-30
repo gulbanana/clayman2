@@ -282,7 +282,6 @@ object opportunities extends Opportunist(
     "Swap Incendiary Gossip" -> Conditional(c => c.items("Incendiary Gossip") > 0 && c.qualities("Connected: Society") >= 50, _.chooseBranch()),
     "The Soft-Hearted Widow" -> Conditional(_.items("Glim") >= 500, _.chooseBranch("Give a significant donation to her charity for the homeless")), //upgrades to 2x stolen kiss, +making waves
     "Help the Sardonic Music-Hall Singer" -> Unplayable, //investigate the other-acquaintance options, otherwise Playable with persuasive-alone option
-    "Ask the Sardonic Music-Hall Singer to help you" -> Unplayable, //not 100% but all options >1 E - make it Playable with higher stats
     "A presumptuous little opportunity" -> Unplayable
   ) withDefaultValue Unplayable, Set(
     //Always useless
