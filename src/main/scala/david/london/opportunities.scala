@@ -214,6 +214,12 @@ object opportunities extends Opportunist(
     }),
     
     
+    /* ACQUAINTANCE CARDS */
+    "Ask the Sardonic Music-Hall Singer to help you" -> Playable(implicit c => {
+      gear.persuasive()
+      c.chooseBranch("An invitation to a rather exclusive soirée")  //1.2E of gossip, or rare Aeolian Scream
+    }),
+    
     
     /***************/
     /* OTHER CARDS */
