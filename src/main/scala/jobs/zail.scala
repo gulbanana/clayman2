@@ -1,18 +1,18 @@
 package jobs
 import api._
 import common._
-import david._
+import david.unterzee._
 
 object zail extends RepeatedJob {
   def apply(implicit c: Character) = {
     if (c.qualities("Approaching Journey's End") < 9) {
-      unterzee.zailing.opportunities.played() or (c.qualities("Troubled Waters") < 9) {
-        unterzee.zailing.steam_boldly()
-      } or {
-        unterzee.zailing.steam_prudently()
+      if (c.qualities("Troubled Waters") < 9) {
+        zailing.opportunities_calm.played() or zailing.steam_boldly()
+      } else {
+        zailing.opportunities_troubled.played() or zailing.steam_prudently()
       }
     } else {
-      fidgetingWriter(c)
-    }
+      zailing.opportunities_port.played() || fidgetingWriter(c)
+    } 
   }
 }
