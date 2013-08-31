@@ -29,14 +29,14 @@ object zailing {
     "The Fleet of Truth" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("Villainy!")}),                                                 //+journey (XXX check this), +5 of each type of notes
     "Calm Seas: Fair Zailing" -> Trivial,                                                                                                            //+4 journey, +3 troubled, +SIC
     "Calm Seas: A Spit of Land" -> Playable(_.chooseBranch("Steam on by")),                                                                          //+2 journey, +2 troubled
-    "Calm Seas: A Huge Terrible Beast of the Unterzee!" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("Delicious, delicious lumps")})  //+2 journey (XXX check this), +SIC
+    "Calm Seas: A Huge Terrible Beast of the Unterzee!" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("Delicious, delicious lumps")}), //+2 journey (XXX check this), +SIC
+    "Lashing Waves: A Ship of Zealots" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("See them off")})                                 //+2 journey, +? troubled
   )
   
   private val betterThanPrudent = Map(
     "A Corvette of Her Majesty's Navy" -> Conditional(_.qualities("Suspicion") < 5, _.chooseBranch("Exchange pleasantries via semaphore")), //+1 journey, -1 troubled
     "Lashing Waves: A Stowaway!" -> Playable(_.chooseBranch("Let him off at the next port")),                                               //+1 journey
-    "Lashing Waves: A Tiny Coral Island" -> Playable(_.chooseBranch("Record it and move on")),                                              //+1 journey, +1 troubled - better with zub
-    "Lashing Waves: A Ship of Zealots" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("See them off")})                        //+1 journey, +1 troubled?
+    "Lashing Waves: A Tiny Coral Island" -> Playable(_.chooseBranch("Record it and move on"))                                               //+1 journey, +1 troubled - better with zub
   )
   
   private val allCards = justBad ++ lucrative ++ betterThanBold ++ betterThanPrudent 
