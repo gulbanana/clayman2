@@ -26,7 +26,7 @@ object zailing {
   private val betterThanBold = Map(
     "A Wily Zailor" -> Trivial,                                                                                                                      //XXX gets better with exzperience, so change this after more voyagez
     "The Clinging Coral Mass" -> Playable(implicit c => {gear.persuasive(); c.chooseBranch("'Put your backs into it, lads!'")}),                     //+2 journey
-    "The Fleet of Truth" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("Villainy!")}),                                                 //+journey, +5 of each type of notes
+    "The Fleet of Truth" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("Villainy!")}),                                                 //+journey (XXX check this), +5 of each type of notes
     "Calm Seas: Fair Zailing" -> Trivial,                                                                                                            //+4 journey, +3 troubled, +SIC
     "Calm Seas: A Spit of Land" -> Playable(_.chooseBranch("Steam on by")),                                                                          //+2 journey, +2 troubled
     "Calm Seas: A Huge Terrible Beast of the Unterzee!" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("Delicious, delicious lumps")})  //+2 journey (XXX check this), +SIC
