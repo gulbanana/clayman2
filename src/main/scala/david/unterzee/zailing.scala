@@ -21,14 +21,14 @@ object zailing {
     "Those engines don't sound healthy" -> Unplayable,         //either -1 journey -1 troubled, or a bundle
     "She's Going Down!" -> Unplayable,                         //-journey, and quirks
     "The Killing Wind" -> Unplayable,                          //statistically Bad with no zub
+    "A Good Meal" -> Unplayable,                               //9 pages of notes - 0.9E
     "Calm Seas: Creaking from Above" -> Unplayable,            //always troubled, 50% journey
     "Lashing Waves: A Blanket of Fog" -> Unplayable            //50% +2 troubled, 50% ?
   )
   
   private val lucrative = Map(
     "Zailing in style" -> Trivial,                                                                          //many echoesworth of stuff
-    "A Good Meal" -> Trivial,                                                                               //15 pages of notes - 1.5E
-    "The Fleet of Truth" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("Villainy!")}),        //+journey (XXX check this), 15 pages of notes
+    "The Fleet of Truth" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("Villainy!")}),        //+journey (XXX check this), 15 pages of notes - 1.5E
     "Calm Seas: A Steamer full of Passengers" -> Playable(_.chooseBranch("Invite them aboard for a party")) //1.4E of things, hedonist, and scandal
   )
   
@@ -36,17 +36,19 @@ object zailing {
     "A Wily Zailor" -> Trivial,                                                                                                                      //XXX gets better with exzperience, so change this after more voyagez
     "The Clinging Coral Mass" -> Playable(implicit c => {gear.persuasive(); c.chooseBranch("'Put your backs into it, lads!'")}),                     //+2 journey
     "A Light in the Fog" -> Playable(_.chooseBranch("Keep away from the lighthouse")),                                                               //+2 journey
+    "Listen to the Wind" -> Playable(_.chooseBranch("Steam the way the voices tell you")),                                                           //3? journey, +? troubled
     "Calm Seas: Fair Zailing" -> Trivial,                                                                                                            //+4 journey, +3 troubled, +SIC
     "Calm Seas: A Spit of Land" -> Playable(_.chooseBranch("Steam on by")),                                                                          //+2 journey, +2 troubled
     "Calm Seas: A Huge Terrible Beast of the Unterzee!" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("Delicious, delicious lumps")}), //+3 journey, secrets, +SIC
     "Calm Seas: Meeting a Local Steamer" -> Playable(_.chooseBranch("I say, must you do that?")),                                                    //+? journey, -1 troubled, +1 ztory
+    "Calm Seas: The Giant of the Unterzee" -> Playable(implicit c => {gear.persuasive(); c.chooseBranch()}),                                         //+2 journey
     "Lashing Waves: A Ship of Zealots" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("See them off")})                                 //+2 journey, +? troubled
   )
   
   private val betterThanPrudent = Map(
     "A Corvette of Her Majesty's Navy" -> Conditional(_.qualities("Suspicion") < 5, _.chooseBranch("Exchange pleasantries via semaphore")), //+1 journey, -1 troubled
-    //"Listen to the Wind" -> Playable(_.chooseBranch("Steam the way the voices tell you")),                                                  //+? journey, +? troubled
-    "Listen to the Wind" -> Unplayable,
+    //"Crossing Paths" -> Unplayable, //-1 troubled and 1 ztory, or ?
+    "A Hazard to Shipping" -> Playable(implicit c => {gear.watchful(); c.chooseBranch()}), //+? journey (1 or 2)
     "Lashing Waves: A Stowaway!" -> Playable(_.chooseBranch("Let him off at the next port")),                                               //+1 journey
     "Lashing Waves: A Tiny Coral Island" -> Playable(_.chooseBranch("Record it and move on"))                                               //+1 journey, +1 troubled - better with zub
   )
