@@ -8,8 +8,8 @@ object main extends BufferedJob {
     prison.opportunities.played() or prison.reduce_suspicion()
   } else if (c.location == Areas.TombColonies) {
     colonies.opportunities.played() or colonies.reduce_scandal()
-  } else if (c.location == Areas.BroadUnterzee && c.qualities("Approaching Journey's End") < 9 && c.qualities("Troubled Waters") <= 10) {
-    unterzee.zailing.opportunities.played() || unterzee.zailing.zailed() || fidgetingWriter(c)
+  } else if (c.location == Areas.BroadUnterzee) {
+    zail(c)
   } else if (londonAreas.contains(c.location)) {
     london.standardGrind(c)
   } else if (unscriptedAreas.contains(c.location)) {

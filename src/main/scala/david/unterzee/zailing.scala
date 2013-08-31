@@ -46,8 +46,4 @@ object zailing {
     c.beginStorylet("Steam Boldly")  
     c.chooseBranch("Extrapolate from the charts") 
   }
-  
-  def zailed()(implicit c: Character) = did (c.qualities("Troubled Waters") < 9) {
-    steam_boldly()
-  }
 }
