@@ -29,7 +29,7 @@ object zailing {
     "The Fleet of Truth" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("Villainy!")}),                                                 //+journey (XXX check this), +5 of each type of notes
     "Calm Seas: Fair Zailing" -> Trivial,                                                                                                            //+4 journey, +3 troubled, +SIC
     "Calm Seas: A Spit of Land" -> Playable(_.chooseBranch("Steam on by")),                                                                          //+2 journey, +2 troubled
-    "Calm Seas: A Huge Terrible Beast of the Unterzee!" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("Delicious, delicious lumps")}), //+2 journey (XXX check this), +SIC
+    "Calm Seas: A Huge Terrible Beast of the Unterzee!" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("Delicious, delicious lumps")}), //+3 journey, secrets, +SIC
     "Lashing Waves: A Ship of Zealots" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("See them off")})                                 //+2 journey, +? troubled
   )
   
