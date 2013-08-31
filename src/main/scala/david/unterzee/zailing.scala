@@ -53,12 +53,14 @@ object zailing {
   def steam_prudently()(implicit c: Character) {
     c.beginStorylet("Steam Prudently")  
     c.chooseBranch()
+    c.onwards()
   }
   
   //50% +2 journey & +1 troubled; 50% +1 journey & +3 troubled
   //requires troubled < 9
   def steam_boldly()(implicit c: Character) {
     c.beginStorylet("Steam Boldly")  
-    c.chooseBranch("Extrapolate from the charts") 
+    c.chooseBranch("Extrapolate from the charts")
+    c.onwards()
   }
 }
