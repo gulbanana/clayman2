@@ -41,6 +41,7 @@ object main extends BufferedJob {
   private val unscriptedAreas = Set(
     Areas.Court,
     Areas.DoubtStreet,
-    Areas.CorpsecageIsland
+    Areas.CorpsecageIsland,
+    Areas.BullboneIsland
   )
 }
