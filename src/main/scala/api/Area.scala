@@ -26,6 +26,7 @@ object Areas {
   val DoubtStreet = Area(47, "Doubt Street")
   val BullboneIsland = Area(48, "Bullbone Island")
   val CorpsecageIsland = Area(49, "Corpsecage Island")
+  val GruntingFen = Area(50, "Grunting Fen")
   val SeaOfVoices = Area(51, "The Sea of Voices")
   val GamekeepersCottage = Area(5821, "The Gamekeeper's Cottage")
   
@@ -53,6 +54,7 @@ object Areas {
     47 -> DoubtStreet,
     48 -> BullboneIsland,
     49 -> CorpsecageIsland,
+    50 -> GruntingFen,
     51 -> SeaOfVoices,
     5821 -> GamekeepersCottage
   ) withDefault(i => { println("WARNING: unknown areaid %d".format(i)); Area(i, "Unknown Area")})

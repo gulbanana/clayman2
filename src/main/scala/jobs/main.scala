@@ -4,22 +4,15 @@ import common._
 import david._
 
 object main extends BufferedJob {
-  def apply(implicit c: Character) = if (c.location == Areas.NewNewgate) {
-    prison.opportunities.played() or prison.reduce_suspicion()
-  } else if (c.location == Areas.TombColonies) {
-    colonies.opportunities.played() or colonies.reduce_scandal()
-  } else if (c.location == Areas.BroadUnterzee) {
-    unterzee.southernArchipelago(c)
-  } else if (c.location == Areas.SeaOfVoices) {
-    unterzee.seaOfVoices(c)
-  }else if (londonAreas.contains(c.location)) {
-    london.standardGrind(c)
-  } else if (unscriptedAreas.contains(c.location)) {
-    false
-  } else {
-    print("No script available for area " + c.location)
-    false
-  }
+  def apply(implicit c: Character) = c.location match {
+    case Areas.NewNewgate             => prison.opportunities.played() or prison.reduce_suspicion()
+    case Areas.TombColonies           => colonies.opportunities.played() or colonies.reduce_scandal()
+    case Areas.BroadUnterzee          => unterzee.southernArchipelago(c)
+    case Areas.SeaOfVoices            => unterzee.seaOfVoices(c)
+    case Areas.GruntingFen            => unterzee.gruntingFen(c)
+    case x if londonAreas.contains(x) => london.standardGrind(c)
+    case _                            => false
+  } 
   
   private val londonAreas = Set(
     Areas.BazaarSideStreets,
@@ -38,12 +31,5 @@ object main extends BufferedJob {
     Areas.WatchmakersHill,
     Areas.WilmotsEnd,
     Areas.WolfstackDocks
-  )
-  
-  private val unscriptedAreas = Set(
-    Areas.Court,
-    Areas.DoubtStreet,
-    Areas.CorpsecageIsland,
-    Areas.BullboneIsland
   )
 }
