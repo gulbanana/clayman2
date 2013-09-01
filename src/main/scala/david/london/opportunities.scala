@@ -215,15 +215,18 @@ object opportunities extends Opportunist(
     
     
     /* ACQUAINTANCE CARDS */
+    "An Old Acquaintance?" -> Playable(implicit c => {
+      gear.persuasive()
+      c.chooseBranch("Call on her")  //1.1E of stuff and connections 
+    }), 
+    "Help the Sardonic Music-Hall Singer" -> Playable(implicit c => {
+      gear.persuasive()
+      c.chooseBranch("Help her negotiate")  //?
+    }),
     "Ask the Sardonic Music-Hall Singer to help you" -> Playable(implicit c => {
       gear.persuasive()
       c.chooseBranch("An invitation to a rather exclusive soirée")  //1.2E of gossip, or rare Aeolian Scream
     }),
-    "Help the Sardonic Music-Hall Singer" -> Playable(implicit c => {
-      gear.persuasive()
-      c.chooseBranch("Help her negotiate")  //1.2E of gossip, or rare Aeolian Scream
-    }),
-    
     
     /***************/
     /* OTHER CARDS */
@@ -386,6 +389,7 @@ object opportunities extends Opportunist(
     "Invited to another revel of the Masters",    //only raises connected from 0 to 1
     "Mirrors and Clay",                           //Vision and Touched by Fingerwork, but 1 vision is 0.5E and touched doesn't seem useful anymore..
     "The Alleys of London: the Criminals",
+    "An implausible penance",                     //trades in conn: criminals for rewards, e.g. 500cp for ~30 echoes
     "Whispers from the Surface: The Great Game",
     "Swap Incendiary Gossip"
   )
