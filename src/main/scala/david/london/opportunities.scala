@@ -285,7 +285,19 @@ object opportunities extends Opportunist(
     "A night on the tiles" -> Conditional(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")), //1E of influence
     "Swap Incendiary Gossip" -> Conditional(c => c.items("Incendiary Gossip") > 0 && c.qualities("Connected: Society") >= 50, _.chooseBranch()),
     "The Soft-Hearted Widow" -> Conditional(_.items("Glim") >= 500, _.chooseBranch("Give a significant donation to her charity for the homeless")), //upgrades to 2x stolen kiss, +making waves
-    "A presumptuous little opportunity" -> Unplayable
+    "A presumptuous little opportunity" -> Conditional(
+      c => c.items("Greyfields 1882") >= 1000 || c.items("Morelways 1872") >= 400 || c.items("Greyfields 1879") >= 5000 || c.items("Cellar of Wine") >= 5,
+      c => if (c.items("Greyfields 1879") >= 5000) {
+        c.chooseBranch("Perhaps you're interested in an exceptional vintage?")
+      } else if (c.items("Morelways 1872") >= 400) {
+        c.chooseBranch("An alarming amount of Strangling Willow Absinthe")
+      } else if (c.items("Greyfields 1882") >= 1000) {
+        c.chooseBranch("Ten cases of Morelways")
+      } else {  
+        c.perhapsNot() //can trade cellars for airag, but there's no reason to do so and it costs 3 actions
+        c.discardOpportunity("A presumptuous little opportunity")
+      }
+    )
   ) withDefaultValue Unplayable, Set(
     //Always useless
     "Putting the pieces together: something about the Fourth City",  //low-chance luck challenge
