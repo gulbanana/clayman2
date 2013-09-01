@@ -36,8 +36,8 @@ object zailing {
     "A Wily Zailor" -> Trivial,                                                                                                                      //XXX gets better with exzperience, so change this after more voyagez
     "The Clinging Coral Mass" -> Playable(implicit c => {gear.persuasive(); c.chooseBranch("'Put your backs into it, lads!'")}),                     //+2 journey
     "A Light in the Fog" -> Playable(_.chooseBranch("Keep away from the lighthouse")),                                                               //+2 journey
-    //"Listen to the Wind" -> Playable(_.chooseBranch("Steam the way the voices tell you")),                                                           //3?1? journey, +3 troubled
-    "Crossing Paths" -> Playable(_.chooseBranch("Steam on by")),                                                                                     //+2 journey +1 troubled
+    "Listen to the Wind" -> Playable(_.chooseBranch("Steam the way the voices tell you")),                                                           //+3 journey, +3 troubled
+    "Crossing Paths" -> Playable(_.chooseBranch("Steam on by")),                                                                                     //+2 journey, +3 troubled
     "Calm Seas: Fair Zailing" -> Trivial,                                                                                                            //+4 journey, +3 troubled, +SIC
     "Calm Seas: A Spit of Land" -> Playable(_.chooseBranch("Steam on by")),                                                                          //+2 journey, +2 troubled
     "Calm Seas: A Huge Terrible Beast of the Unterzee!" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("Delicious, delicious lumps")}), //+3 journey, secrets, +SIC
@@ -48,7 +48,7 @@ object zailing {
   
   private val betterThanPrudent = Map(
     "A Corvette of Her Majesty's Navy" -> Conditional(_.qualities("Suspicion") < 5, _.chooseBranch("Exchange pleasantries via semaphore")), //+1 journey, -1 troubled 
-    "A Hazard to Shipping" -> Playable(implicit c => {gear.watchful(); c.chooseBranch()}), //+? journey (1 or 2)
+    "A Hazard to Shipping" -> Playable(implicit c => {gear.watchful(); c.chooseBranch()}),                                                  //+? journey (1 or 2)
     "Lashing Waves: A Stowaway!" -> Playable(_.chooseBranch("Let him off at the next port")),                                               //+1 journey
     "Lashing Waves: A Tiny Coral Island" -> Playable(_.chooseBranch("Record it and move on"))                                               //+1 journey, +1 troubled - better with zub
   )
