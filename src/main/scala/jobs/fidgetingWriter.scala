@@ -27,6 +27,7 @@ object fidgetingWriter extends OneManJob with Stats {
   //Sense of Déjà Vu + Vision of the Surface (0.5E) -> Glimpse of Something Larger
   //gains Seeing through the Eyes of Icarus
   private def gamble2(implicit c: Character) = did (c.items("Sense of Déjà Vu") > 0 && c.items("Vision of the Surface") > 0) {
+    c.useItem("Sense of Déjà Vu")
     c.chooseBranch("Track down the Fidgeting Writer")	//"pretty good" odds
   }
   
