@@ -12,7 +12,10 @@ object southernArchipelago extends RepeatedJob {
         zailing.opportunities_troubled.played() or zailing.archipelago_safe()
       }
     } else {
-      zailing.opportunities_port.played()
+      zailing.opportunities_port.played() or (c.items("Tale of Terror!!") > 0) {
+        c.useItem("Tale of Terror!!")
+        c.chooseBranch("There's something familiar about this tale...")
+      }
     } 
   }
 }
