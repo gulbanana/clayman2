@@ -43,7 +43,7 @@ object zailing {
     "Calm Seas: A Huge Terrible Beast of the Unterzee!" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("Delicious, delicious lumps")}), //+3 journey, secrets, +SIC
     "Calm Seas: Meeting a Local Steamer" -> Playable(_.chooseBranch("I say, must you do that?")),                                                    //+2 journey, -1 troubled, +1 ztory
     "Calm Seas: The Giant of the Unterzee" -> Playable(implicit c => {gear.persuasive(); c.chooseBranch()}),                                         //+2 journey
-    "Lashing Waves: A Ship of Zealots" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("See them off")})                                 //+2 journey, +? troubled
+    "Lashing Waves: A Ship of Zealots" -> Playable(implicit c => {gear.dangerous(); c.chooseBranch("See them off")})                                 //+2 journey, +1 troubled; fail: +3 troubled
   )
   
   private val betterThanPrudent = Map(
