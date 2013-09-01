@@ -2,6 +2,24 @@ package david.unterzee
 import api._
 
 object islands {
+  def fen_T1()(implicit c: Character) {
+    c.beginStorylet("Grunting Fen")
+    c.chooseBranch("Listen to the island")
+    c.onwards()
+  }
+  
+  def fen_T4()(implicit c: Character) {
+    c.beginStorylet("What is Grunting Fen Made of?")
+    c.chooseBranch("What manner of things live here?")
+    c.onwards()
+  }
+  
+  def fen_T6()(implicit c: Character) {
+    c.beginStorylet("The Skull of a Long-Dead God?")
+    c.chooseBranch("A place filled with spirits?")
+    c.onwards()
+  }
+  
   def fen_T7()(implicit c: Character) {
     c.beginStorylet("The Treasures of Grunting Fen")
     c.chooseBranch("Catch some")
