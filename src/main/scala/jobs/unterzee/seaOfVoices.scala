@@ -12,7 +12,7 @@ object seaOfVoices extends RepeatedJob {
         zailing.opportunities_troubled.played() or zailing.voices_safe()
       }
     } else {
-      zailing.opportunities_port.played() || jobs.fidgetingWriter(c)
+      zailing.opportunities_port.played()
     } 
   }
 }

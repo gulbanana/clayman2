@@ -12,7 +12,7 @@ object southernArchipelago extends RepeatedJob {
         zailing.opportunities_troubled.played() or zailing.archipelago_safe()
       }
     } else {
-      zailing.opportunities_port.played() || jobs.fidgetingWriter(c)
+      zailing.opportunities_port.played()
     } 
   }
 }
