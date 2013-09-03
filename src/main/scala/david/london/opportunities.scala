@@ -12,14 +12,16 @@ object opportunities extends Opportunist(
     "The Sleepless Tower" -> Playable(_.chooseBranch("Spores and fangs")),                                                                            //dangerous t2 
     "The Tower of Knives" -> Playable(_.chooseBranch("Rough camaraderie")),                                                                           //shadowy t2
     "The Tower of Sleeping Giants" -> Playable(c => c.chooseBranch(if (c.items("An Infernal Contract") < 100) "The owner" else "Examine the stock")), //watchful t2
-    "The Tower of Eyes" -> Conditional(_.qualities("Connected: Summerset") == 0, _.chooseBranch("Do a little promenading yourself")),                 //persuasive t2.5
+    "The Tower of Eyes" -> Conditional(_.qualities("Connected: The Masters of the Bazaar") == 0, _.chooseBranch("Do a little promenading yourself")),                 //persuasive t2.5
     "The Heron Tower" -> Playable(_.chooseBranch("Hunt down a huge lizard")),                                                                         //dangerous t2.5
     "The Listing Tower" -> Unplayable, //I think I'm too Dangerous to ever get this?                                                                  //dangerous t2.5
     "The Windward Tower" -> Playable(_.chooseBranch("The cautious contact")),                                                                         //shadowy t2.5
     "The High Castle" -> Playable(_.chooseBranch("A stroll with a sack")),                                                                            //shadowy t2.5
     "The Lofty Tower" -> Playable(_.chooseBranch("Engage in commerce")),                                                                              //persuasive t3
     "The Western Tower" -> Unplayable,                                                                                                                //watchful t3
-    "The Tower of Sun and Moon" -> Unplayable,                                                                                                        //watchful t3
+    "The Tower of Sun and Moon" -> Unplayable,     
+    
+    //watchful t3
     
     /********************/
     /* CONNECTION CARDS */
@@ -214,7 +216,10 @@ object opportunities extends Opportunist(
     }),
     
     
+    
+    /**********************/
     /* ACQUAINTANCE CARDS */
+    /**********************/
     "An Old Acquaintance?" -> Playable(implicit c => {
       gear.persuasive()
       c.chooseBranch("Call on her")  //1.1E of stuff and connections 
@@ -236,6 +241,7 @@ object opportunities extends Opportunist(
         "Acquaintance: Wry Functionary" -> "Visit the Wry Functionary"
       )(friend))
     }),
+    
     
     
     /***************/
@@ -311,7 +317,8 @@ object opportunities extends Opportunist(
         c.perhapsNot() //can trade cellars for airag, but there's no reason to do so and it costs 3 actions
         c.discardOpportunity("A presumptuous little opportunity")
       }
-    )
+    ),
+    "The Seekers of the Garden" -> Playable(implicit c => {gear.watchful(); c.chooseBranch("Leisurely enquiries")})                                 //3 MODS - 1.5E
   ) withDefaultValue Unplayable, Set(
     //Always useless
     "Putting the pieces together: something about the Fourth City",  //low-chance luck challenge
