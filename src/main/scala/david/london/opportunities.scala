@@ -385,6 +385,7 @@ object opportunities extends Opportunist(
     "Where did that come from?",                            //50 rostygold or start the tournament of lilies
     "A squire of the Flit",                                 //max shadowy 106, not 100%
     "Coats and souls",                                      //60 secrets
+    "Bringing the revolution",                              //quirks up to 6 and 1cp shadowy
     "The Ways of the University",
     "The Ways of the Flit",
     "The Ways of the Forgotten Quarter",
