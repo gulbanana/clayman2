@@ -227,6 +227,16 @@ object opportunities extends Opportunist(
       gear.persuasive()
       c.chooseBranch("An invitation to a rather exclusive soirée")  //1.2E of gossip, or rare Aeolian Scream
     }),
+    "A Visit" -> Playable(c => {
+      val friend = Set("Acquaintance: a Repentant Forger", "Acquaintance: Regretful Soldier", "Acquaintance: Sardonic Music-Hall Singer", "Acquaintance: Wry Functionary").min(Ordering.by(c.qualities))
+      c.chooseBranch(Map(
+        "Acquaintance: a Repentant Forger" -> "The Repentant Forger",
+        "Acquaintance: Regretful Soldier" -> "Visit the Regretful Soldier",
+        "Acquaintance: Sardonic Music-Hall Singer" -> "Visit the Sardonic Music-Hall Singer",
+        "Acquaintance: Wry Functionary" -> "Visit the Wry Functionary"
+      )(friend))
+    }),
+    
     
     /***************/
     /* OTHER CARDS */
@@ -275,10 +285,11 @@ object opportunities extends Opportunist(
         c.chooseBranch("Fall asleep in front of the fire")
       }
     ),
-    "What's in the sack, Jack?" -> Conditional(_.qualities("Wounds") < 7, implicit c=> { gear.dangerous(); c.chooseBranch()}), //18 proscribed, 100% at 110
-    "Rob a library at the University" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch() }), //conn: rev and 15 proscribed
+    "A Rubbery Man lopes purposefully in your wake, tentacles dangling like hanged men's fingers" -> Playable(_.chooseBranch("Give it the Amber")), //+100 deep amber and +5 cp rubbery
+    "What's in the sack, Jack?" -> Conditional(_.qualities("Wounds") < 7, implicit c=> { gear.dangerous(); c.chooseBranch()}),                      //18 proscribed, 100% at 110
+    "Rob a library at the University" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch() }),             //conn: rev and 15 proscribed
     "Pass the Cat: a wriggling delivery" -> Conditional(_.qualities("Scandal") > 0, _.chooseBranch("An elaborate strategy")),
-    "The Fallen Angel" -> Conditional(_.qualities("Wounds") < 7, implicit c => {gear.dangerous(); c.chooseBranch("Tackle the verger")}),  //conn: church and a second chance
+    "The Fallen Angel" -> Conditional(_.qualities("Wounds") < 7, implicit c => {gear.dangerous(); c.chooseBranch("Tackle the verger")}),            //conn: church and a second chance
     "Wanted: Reminders of Brighter Days" -> Conditional(_.items("Incendiary Gossip") >= 25, _.chooseBranch("The tiniest of classified advertisements")),
     "Mr Wines is holding a sale!" -> Conditional(_.items("Romantic Notion") >= 80, _.chooseBranch("A discount for purchase in bulk")),
     "The Ambassador's ball" -> Conditional(c => c.persuasive > 80 && c.persuasive < 119, _.chooseBranch("Making a point of not making a point")),
