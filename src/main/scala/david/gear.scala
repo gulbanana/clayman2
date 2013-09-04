@@ -24,7 +24,7 @@ object gear {
     c.equip("Iron Hat")
     c.equip("Gentleman's Athletic Support")
     c.equip("Spiderchitin Gauntlets")
-    c.equip("Ancient Hunting Rifle")
+    c.equip("Ravenglass Knife")
     c.equip("Kingscale Boots")
     c.equip("Rattus Faber Bandit-Chief")
   }
