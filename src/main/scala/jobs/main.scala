@@ -17,6 +17,7 @@ object main extends BufferedJob {
   private val londonAreas = Set(
     Areas.BazaarSideStreets,
     Areas.Carnival,
+    Areas.DoubtStreet,
     Areas.ForgottenQuarter,
     Areas.GamekeepersCottage,
     Areas.HouseOfChimes,
