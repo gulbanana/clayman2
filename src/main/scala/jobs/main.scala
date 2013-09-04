@@ -18,6 +18,7 @@ object main extends BufferedJob {
     Areas.BazaarSideStreets,
     Areas.Carnival,
     Areas.DoubtStreet,
+    Areas.ForeignOffice,
     Areas.ForgottenQuarter,
     Areas.GamekeepersCottage,
     Areas.HouseOfChimes,

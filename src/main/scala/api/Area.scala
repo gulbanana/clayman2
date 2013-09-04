@@ -23,6 +23,7 @@ object Areas {
   val HouseOfChimes = Area(34, "The House of Chimes")
   val BroadUnterzee = Area(36, "the Broad Unterzee")
   val WilmotsEnd = Area(42, "Wilmot's End")
+  val ForeignOffice = Area(45, "The Foreign Office")
   val DoubtStreet = Area(47, "Doubt Street")
   val BullboneIsland = Area(48, "Bullbone Island")
   val CorpsecageIsland = Area(49, "Corpsecage Island")
@@ -51,6 +52,7 @@ object Areas {
     34 -> HouseOfChimes,
     36 -> BroadUnterzee,
     42 -> WilmotsEnd,
+    45 -> ForeignOffice,
     47 -> DoubtStreet,
     48 -> BullboneIsland,
     49 -> CorpsecageIsland,
