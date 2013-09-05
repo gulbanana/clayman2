@@ -405,7 +405,7 @@ object opportunities extends Opportunist(
     "Graffiti with a sting",                      //only useful when Counting the Days
     "A night on the tiles",                       //doesn't pay well without the wine
     "Altars and alms-houses: the Church",         //i don't always want to spend Connected
-    "Invited to another revel of the Masters",    //only raises connected from 0 to 1
+    //"Invited to another revel of the Masters",    //only raises connected from 0 to 1
     "Mirrors and Clay",                           //Vision and Touched by Fingerwork, but 1 vision is 0.5E and touched doesn't seem useful anymore..
     "The Alleys of London: the Criminals",
     "An implausible penance",                     //trades in conn: criminals for rewards, e.g. 500cp for ~30 echoes
