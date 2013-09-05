@@ -12,7 +12,8 @@ object colonies {
     "'..I have attended a ball...'" -> Autofire,
     "A friend of sorts" -> Autofire,
     "Lamentable tastes" -> Autofire,
-    "The construction of the 'Grand Sanatoria'" -> Autofire
+    "The construction of the 'Grand Sanatoria'" -> Autofire,
+    "I Met a Curious Creature" -> Autofire                   //Gain a tomb-lion
   ) withDefaultValue Unplayable
   
   val opportunities = new Opportunist(playlist, blacklist)
