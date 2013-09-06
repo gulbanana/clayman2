@@ -319,7 +319,8 @@ object opportunities extends Opportunist(
       }
     ),
     "The Seekers of the Garden" -> Playable(implicit c => {gear.watchful(); c.chooseBranch("Leisurely enquiries")}),                                //3 MODS - 1.5E
-    "A library of your own" -> Playable(_.chooseBranch("Diligent research"))                                                                        //50% 1.5E clues, 50% 1.05E stuff
+    "A library of your own" -> Playable(_.chooseBranch("Diligent research")),                                                                       //50% 1.5E clues, 50% 1.05E stuff
+    "All fear the Overgoat!" -> Playable(implicit c => {gear.watchful(); c.chooseBranch("Learn of the Overgoat")})
   ) withDefaultValue Unplayable, Set(
     //Always useless
     "Putting the pieces together: something about the Fourth City",  //low-chance luck challenge
