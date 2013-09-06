@@ -302,7 +302,7 @@ object opportunities extends Opportunist(
     //eventually, use "Call on the services of a great mind of the Surface" for 4 scraps - requires high scholar
     "The Correspondence Savages Your Dreams" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Perhaps you can remember something useful") }),
     "Consulting detective required for government work" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),  //21 proscribed and +subtle
-    "A night on the tiles" -> Conditional(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")), //1E of influence
+    "A night on the tiles" -> Conditional(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")),                     //1E of influence
     "Swap Incendiary Gossip" -> Conditional(c => c.items("Incendiary Gossip") > 0 && c.qualities("Connected: Society") >= 50, _.chooseBranch()),
     "The Soft-Hearted Widow" -> Conditional(_.items("Glim") >= 500, _.chooseBranch("Give a significant donation to her charity for the homeless")), //upgrades to 2x stolen kiss, +making waves
     "A presumptuous little opportunity" -> Conditional(
@@ -314,11 +314,12 @@ object opportunities extends Opportunist(
       } else if (c.items("Greyfields 1882") >= 1000) {
         c.chooseBranch("Ten cases of Morelways")
       } else {  
-        c.perhapsNot() //can trade cellars for airag, but there's no reason to do so and it costs 3 actions
+        c.perhapsNot()                                                                                                                              //can trade cellars for airag, but there's no reason to do so and it costs 3 actions
         c.discardOpportunity("A presumptuous little opportunity")
       }
     ),
-    "The Seekers of the Garden" -> Playable(implicit c => {gear.watchful(); c.chooseBranch("Leisurely enquiries")})                                 //3 MODS - 1.5E
+    "The Seekers of the Garden" -> Playable(implicit c => {gear.watchful(); c.chooseBranch("Leisurely enquiries")}),                                //3 MODS - 1.5E
+    "A library of your own" -> Playable(_.chooseBranch("Diligent research"))                                                                        //50% 1.5E clues, 50% 1.05E stuff
   ) withDefaultValue Unplayable, Set(
     //Always useless
     "Putting the pieces together: something about the Fourth City",  //low-chance luck challenge
