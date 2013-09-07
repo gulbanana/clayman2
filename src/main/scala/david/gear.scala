@@ -30,7 +30,7 @@ object gear {
   }
   
   def persuasive()(implicit c: Character) {
-    c.equip("Gentleman's Hat")
+    c.equip("Fecund Amber Tiara")
     c.equip("Dignified Tailcoat")
     c.equip("Dancemaster's Dabs")
     c.equip("Irresistible Drum")
