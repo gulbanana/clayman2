@@ -9,6 +9,8 @@ object gear {
     c.equip("Dilmun Club Lapel Badge")
     c.equip("Mirror-polished Shoes")
     c.equip("Appreciation Society")
+    c.equip("The Sixth City Times (Newspaper)")
+    c.equip("Voluminous Library")
   }
   
   def shadowy()(implicit c: Character) {
@@ -36,27 +38,33 @@ object gear {
     c.equip("Irresistible Drum")
     c.equip("Masterwork Dancing Slippers")
     c.equip("Appreciation Society")
+    c.equip("The Sixth City Times (Newspaper)")
   }
   
   def bizarre()(implicit c: Character) {
+    c.equip("Fecund Amber Tiara")
     c.equip("Bejewelled Cane")
   }
   
   def dreaded()(implicit c: Character) {
     c.equip("Ratskin Suit")
-    c.equip("Obdurate Stallion")
     c.equip("Kingscale Boots")
+    c.equip("Obdurate Stallion")
   }
   
   def respectable()(implicit c: Character) {
     c.equip("Academic Gown")
     c.equip("Appreciation Society")
+    c.equip("Membership of God's Editors")
   }
   
   def bdr()(implicit c: Character) {
+    c.equip("Fecund Amber Tiara")
     c.equip("Academic Gown")
     c.equip("Bejewelled Cane")
     c.equip("Kingscale Boots")
     c.equip("Appreciation Society")
+    c.equip("Membership of God's Editors")
+    c.equip("Obdurate Stallion")
   }
 }
