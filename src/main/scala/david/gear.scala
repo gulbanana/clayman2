@@ -44,8 +44,8 @@ object gear {
   
   def dreaded()(implicit c: Character) {
     c.equip("Ratskin Suit")
-    c.equip("Kingscale Boots")
     c.equip("Obdurate Stallion")
+    c.equip("Kingscale Boots")
   }
   
   def respectable()(implicit c: Character) {

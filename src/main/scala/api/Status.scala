@@ -20,10 +20,10 @@ class Status {
   var dangerous = 0
   var persuasive = 0
   
-  var qualities = Map[String, Int]()
-  var items = Map[String, Int]()
   var equipped = Seq[Item]()
   var unequipped = Seq[Item]()
+  var qualities = Map[String, Int]()
+  var items = Map[String, Int]()
   
   var title = ""
   
@@ -146,7 +146,6 @@ class Status {
     }).toMap.withDefaultValue(0)
     
     //item qualities: the link-containing slots in various divs 
-    updateEquipment(innerSoup) //used standalone for tracking
     val carried = extractItems(innerSoup.select("div.you_bottom_rhs li > a.tooltip"))
     val possessions = carried ++ unequipped ++ equipped
     
@@ -154,9 +153,18 @@ class Status {
     items = possessions.map(i => i.name -> i.quantity).toMap.withDefaultValue(0)
   }
   
+  private var stdInventory: Option[Document] = None 
+  private var expInventory: Option[Document] = None
   def updateEquipment(soup: Document) {
-    unequipped = extractItems(soup.select("div.you_mid_rhs li > a.tooltip"))
-    equipped = extractItems(soup.select("div.you_mid_mid li > a.tooltip"))
+    soup.select("a").first.text match {
+      case "EXPANDED INVENTORY" => stdInventory = Some(soup)  
+      case "STANDARD INVENTORY" => expInventory = Some(soup)
+    }
+    
+    for (std <- stdInventory; exp <- expInventory) {
+      unequipped = extractItems(Seq(std,exp).flatMap(_.select("div.you_mid_rhs li > a.tooltip")))
+      equipped = extractItems(Seq(std,exp).flatMap(_.select("div.you_mid_mid li > a.tooltip")))
+    }
   }
   
   def updateLocation(area: Area) =  if (location != area) {
@@ -166,7 +174,7 @@ class Status {
     false
   }
   
-  val deckPattern = """(?s).*(\d+) cards? waiting.*""".r
+  private val deckPattern = """(?s).*(\d+) cards? waiting.*""".r
   def updateOpportunities(soup: Document) = {
     opportunityCap = soup.select("ul#cards > li:not(.card_deck)").size
     
