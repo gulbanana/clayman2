@@ -156,7 +156,7 @@ class Status {
   private var stdInventory: Option[Document] = None 
   private var expInventory: Option[Document] = None
   def updateEquipment(soup: Document) {
-    soup.select("a").first.text match {
+    soup.select("a.standard_btn").last.text match {
       case "EXPANDED INVENTORY" => stdInventory = Some(soup)  
       case "STANDARD INVENTORY" => expInventory = Some(soup)
     }

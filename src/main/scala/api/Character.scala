@@ -14,11 +14,12 @@ class Character(username: String, password: String) {
     newLogin = true
     loginSoup = http.query(site / "Gap" / "Load" <<? Map("content" -> "/Me"))
   }
+  private val selfSoup = http.query(site / "Me")
   
   parser updateStatus loginSoup
-  parser updateEquipment http.query(site / "Me" / "InventoryStandard")
+  parser updateEquipment selfSoup
   parser updateEquipment http.query(site / "Me" / "InventoryExpanded")
-  parser updateQualities http.query(site / "Me")
+  parser updateQualities selfSoup
   parser updateBranches http.query(site / "Storylet" / "In")
   
   if (newLogin)
