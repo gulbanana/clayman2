@@ -17,6 +17,7 @@ class Character(username: String, password: String) {
   
   parser updateStatus loginSoup
   parser updateQualities http.query(site / "Me")
+  parser updateEquipment http.query(site / "Me" / "InventoryExpanded")
   parser updateBranches http.query(site / "Storylet" / "In")
   
   if (newLogin)

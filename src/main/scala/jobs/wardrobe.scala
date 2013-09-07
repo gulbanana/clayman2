@@ -17,3 +17,7 @@ object getShadowy extends Job {
 object getPersuasive extends Job {
   def work() = with_character(implicit c => gear.persuasive())
 }
+
+object getDreaded extends Job {
+  def work() = with_character(implicit c => gear.dreaded())
+}
