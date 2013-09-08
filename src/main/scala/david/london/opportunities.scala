@@ -327,6 +327,7 @@ object opportunities extends Opportunist(
         c.discardOpportunity("A presumptuous little opportunity")
       }
     ),
+    "1000 Nevercold Brass wanted! Will pay handsomely!" -> Conditional(_.items("Nevercold Brass Sliver") >= 1000, _.chooseBranch("Make the exchange")), //+15cp Great Game
     "A dusty bookshop" -> Unplayable
   ) withDefaultValue Unplayable, Set(
     //Always useless
