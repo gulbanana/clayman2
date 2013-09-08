@@ -16,14 +16,14 @@ import david.gear
  */
 object zailing {  
   private val justBad = Map(
-    "Share your Research with a Fellow Scholar" -> Unplayable, //social
-    "A Mountain of the Unterzee" -> Unplayable,                //-2/+2 or +2/-2, random
-    "Those engines don't sound healthy" -> Unplayable,         //either -1 journey -1 troubled, or a bundle
-    "She's Going Down!" -> Unplayable,                         //-journey, and quirks
-    "The Killing Wind" -> Unplayable,                          //statistically Bad with no zub
-    "A Good Meal" -> Unplayable,                               //9 pages of notes - 0.9E
-    "Calm Seas: Creaking from Above" -> Unplayable,            //always troubled, 50% journey
-    "Lashing Waves: A Blanket of Fog" -> Unplayable            //50% +2 troubled, 50% ?
+    "Share your Research with a Fellow Scholar" -> Discard, //social
+    "A Mountain of the Unterzee" -> Discard,                //-2/+2 or +2/-2, random
+    "Those engines don't sound healthy" -> Discard,         //either -1 journey -1 troubled, or a bundle
+    "She's Going Down!" -> Discard,                         //-journey, and quirks
+    "The Killing Wind" -> Discard,                          //statistically Bad with no zub
+    "A Good Meal" -> Discard,                               //9 pages of notes - 0.9E
+    "Calm Seas: Creaking from Above" -> Discard,            //always troubled, 50% journey
+    "Lashing Waves: A Blanket of Fog" -> Discard            //50% +2 troubled, 50% ?
   )
   
   private val lucrative = Map(
@@ -47,7 +47,7 @@ object zailing {
   )
   
   private val betterThanPrudent = Map(
-    "A Corvette of Her Majesty's Navy" -> Conditional(_.qualities("Suspicion") < 5, _.chooseBranch("Exchange pleasantries via semaphore")), //+1 journey, -1 troubled 
+    "A Corvette of Her Majesty's Navy" -> DiscardUnless(_.qualities("Suspicion") < 5, _.chooseBranch("Exchange pleasantries via semaphore")), //+1 journey, -1 troubled 
     "A Hazard to Shipping" -> Playable(implicit c => {gear.watchful(); c.chooseBranch()}),                                                  //+? journey (1 or 2)
     "Lashing Waves: A Stowaway!" -> Playable(_.chooseBranch("Let him off at the next port")),                                               //+1 journey
     "Lashing Waves: A Tiny Coral Island" -> Playable(_.chooseBranch("Record it and move on"))                                               //+1 journey, +1 troubled - better with zub
@@ -59,9 +59,9 @@ object zailing {
   private val calmCards = lucrative ++ betterThanBold
   private val troubledCards = lucrative ++ betterThanBold ++ betterThanPrudent
   
-  lazy val opportunities_port = new Opportunist(portCards withDefault(_ => Unplayable), allCards.keySet -- portCards.keySet)
-  lazy val opportunities_calm = new Opportunist(calmCards withDefault(_ => Unplayable), allCards.keySet -- calmCards.keySet)
-  lazy val opportunities_troubled = new Opportunist(troubledCards withDefault(_ => Unplayable), allCards.keySet -- troubledCards.keySet)
+  lazy val opportunities_port = new Opportunist(portCards withDefault(_ => Hold), allCards.keySet -- portCards.keySet)
+  lazy val opportunities_calm = new Opportunist(calmCards withDefault(_ => Hold), allCards.keySet -- calmCards.keySet)
+  lazy val opportunities_troubled = new Opportunist(troubledCards withDefault(_ => Hold), allCards.keySet -- troubledCards.keySet)
   
   //southern archipelago - +1 journey, +2 troubled
   def archipelago_safe()(implicit c: Character) {

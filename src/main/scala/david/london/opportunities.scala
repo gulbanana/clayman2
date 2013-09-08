@@ -12,27 +12,27 @@ object opportunities extends Opportunist(
     "The Sleepless Tower" -> Playable(_.chooseBranch("Spores and fangs")),                                                                            //dangerous t2 
     "The Tower of Knives" -> Playable(_.chooseBranch("Rough camaraderie")),                                                                           //shadowy t2
     "The Tower of Sleeping Giants" -> Playable(c => c.chooseBranch(if (c.items("An Infernal Contract") < 100) "The owner" else "Examine the stock")), //watchful t2
-    "The Tower of Eyes" -> Conditional(_.qualities("Connected: The Masters of the Bazaar") == 0, _.chooseBranch("Do a little promenading yourself")),                 //persuasive t2.5
+    "The Tower of Eyes" -> HoldUntil(_.qualities("Connected: The Masters of the Bazaar") == 0, _.chooseBranch("Do a little promenading yourself")),                 //persuasive t2.5
     "The Heron Tower" -> Playable(_.chooseBranch("Hunt down a huge lizard")),                                                                         //dangerous t2.5
-    "The Listing Tower" -> Unplayable, //I think I'm too Dangerous to ever get this?                                                                  //dangerous t2.5
+    "The Listing Tower" -> Hold, //I think I'm too Dangerous to ever get this?                                                                  //dangerous t2.5
     "The Windward Tower" -> Playable(_.chooseBranch("The cautious contact")),                                                                         //shadowy t2.5
     "The High Castle" -> Playable(_.chooseBranch("A stroll with a sack")),                                                                            //shadowy t2.5
     "The Lofty Tower" -> Playable(_.chooseBranch("Engage in commerce")),                                                                              //persuasive t3
-    "The Western Tower" -> Unplayable,                                                                                                                //watchful t3
-    "The Tower of Sun and Moon" -> Unplayable,     
+    "The Western Tower" -> Hold,                                                                                                                //watchful t3
+    "The Tower of Sun and Moon" -> Hold,     
     
     //watchful t3
     
     /********************/
     /* CONNECTION CARDS */
     /********************/
-    "Altars and alms-houses: the Church" -> Conditional(c => c.qualities("Connected: The Church") >= 30 || c.items("Rostygold") >= 10, c =>
+    "Altars and alms-houses: the Church" -> DiscardUnless(c => c.qualities("Connected: The Church") >= 30 || c.items("Rostygold") >= 10, c =>
       if (c.qualities("Connected: The Church") >= 30)
         c.chooseBranch("Attend a private lecture given by the Bishop of Southwark")
       else 
         c.chooseBranch("Attend a church fête on the south bank of the River")
     ),
-    "Court and Cell: the Constables" -> Conditional(c => c.qualities("Connected: Constables") >= 30 || c.items("Rostygold") >= 10, implicit c =>
+    "Court and Cell: the Constables" -> DiscardUnless(c => c.qualities("Connected: Constables") >= 30 || c.items("Rostygold") >= 10, implicit c =>
       if (c.qualities("Connected: Constables") >= 30) {
         gear.watchful()
         c.chooseBranch("Attend a class given by the Implacable Detective")
@@ -40,7 +40,7 @@ object opportunities extends Opportunist(
         c.chooseBranch("A small donation")
       }
     ),
-    "By the River's Side: the Docks" -> Conditional(c => c.qualities("Connected: The Docks") >= 30 || c.items("Rostygold") >= 10, implicit c =>
+    "By the River's Side: the Docks" -> DiscardUnless(c => c.qualities("Connected: The Docks") >= 30 || c.items("Rostygold") >= 10, implicit c =>
       if (c.qualities("Connected: The Docks") >= 30) {
         gear.dangerous()
         c.chooseBranch("Fencing lessons with a Dashing Captain")
@@ -56,20 +56,20 @@ object opportunities extends Opportunist(
         c.chooseBranch("Attend a lecture at the Brass Embassy")
       }
     ),
-    "The Demi-Monde: Bohemians" -> Conditional(c => c.qualities("Connected: Bohemian") >= 60 || c.items("Greyfields 1882") >= 2, c => 
+    "The Demi-Monde: Bohemians" -> DiscardUnless(c => c.qualities("Connected: Bohemian") >= 60 || c.items("Greyfields 1882") >= 2, c => 
       if (c.qualities("Connected: Bohemian") >= 60)
         c.chooseBranch("Take tea with a Reclusive Novelist")
       else
         c.chooseBranch("Buy drinks for writers")
     ),
-    "Bandages and Dust: The Tomb-Colonies" -> Conditional(_.qualities("Connected: The Tomb-Colonies") >= 30, implicit c => {
+    "Bandages and Dust: The Tomb-Colonies" -> DiscardUnless(_.qualities("Connected: The Tomb-Colonies") >= 30, implicit c => {
       c.chooseBranch("Spar with a Black Ribbon Duellist") 
     }),
-    "Whispers from the Surface: The Great Game" -> Conditional(_.qualities("Connected: The Great Game") >= 30, implicit c => {
+    "Whispers from the Surface: The Great Game" -> DiscardUnless(_.qualities("Connected: The Great Game") >= 30, implicit c => {
       gear.watchful()
       c.chooseBranch("Learn more at the carnival")
     }),
-    "The Roof-Tops: Urchins" -> Conditional(c => (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 30) || c.items("Lucky Weasel") >= 1, implicit c => {
+    "The Roof-Tops: Urchins" -> DiscardUnless(c => (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 30) || c.items("Lucky Weasel") >= 1, implicit c => {
       gear.shadowy()
       if (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 30)
         c.chooseBranch("Out you go, longshanks")
@@ -82,7 +82,7 @@ object opportunities extends Opportunist(
       else
         c.chooseBranch("An invitation to dinner")   //+connected, -wounds
     ),
-    "The Alleys of London: the Criminals" -> Conditional(_.qualities("Connected: Criminals") >= 30, implicit c => {
+    "The Alleys of London: the Criminals" -> DiscardUnless(_.qualities("Connected: Criminals") >= 30, implicit c => {
       gear.shadowy()
       c.chooseBranch("Consult with a master thief")
     }), 
@@ -163,13 +163,13 @@ object opportunities extends Opportunist(
         c.chooseBranch("Save the Tomb-Colonist!")
       }
     ),
-    "The Tomb-colonist and the Footpad" -> Conditional(_.items("Intriguing Gossip") >= 1, c =>
+    "The Tomb-colonist and the Footpad" -> HoldUntil(_.items("Intriguing Gossip") >= 1, c =>
       if (c.qualities("Connected: Criminals") <= c.qualities("Connected: The Tomb-Colonies"))
         c.chooseBranch("Accept the job")
       else
         c.chooseBranch("Double-cross him")
     ),
-    "A tavern dust-up" -> Conditional(_.items("Cryptic Clue") >= 10, c => {
+    "A tavern dust-up" -> HoldUntil(_.items("Cryptic Clue") >= 10, c => {
       val faction = Set("Connected: The Constables", "Connected: The Church", "Connected: The Docks").min(Ordering.by(c.qualities))
       c.chooseBranch("Intervene to help the " + Map(
         "Connected: The Constables" -> "Constable",
@@ -177,7 +177,7 @@ object opportunities extends Opportunist(
         "Connected: The Docks" -> "docker"
       )(faction))
     }),
-    "Valuable Secrets" -> Conditional(_.items("Whispered Secret") >= 15, c => {
+    "Valuable Secrets" -> HoldUntil(_.items("Whispered Secret") >= 15, c => {
       val faction = Set("Connected: Hell", "Connected: The Great Game", "Connected: Bohemian").min(Ordering.by(c.qualities))
       c.chooseBranch(Map(
         "Connected: Hell" -> "Sell the information to the Embassy",
@@ -200,8 +200,8 @@ object opportunities extends Opportunist(
     /* COUNTING THE DAYS */
     /*********************/
     "The Awful Temptation of Money" -> Trivial,
-    "Graffiti with a sting" -> Conditional(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw")),
-    "An unusual wager" -> Conditional(_.qualities("Counting the Days") < 10, _.chooseBranch("Look at those coins")),
+    "Graffiti with a sting" -> DiscardUnless(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw")),
+    "An unusual wager" -> DiscardUnless(_.qualities("Counting the Days") < 10, _.chooseBranch("Look at those coins")),
     "The Law's Long Arm" -> Playable(c => {
       c.chooseBranch(deprioritise(c.branches, "Official incompetence"))
     }),
@@ -314,20 +314,20 @@ object opportunities extends Opportunist(
       }
     ),
     "A Rubbery Man lopes purposefully in your wake, tentacles dangling like hanged men's fingers" -> Playable(_.chooseBranch("Give it the Amber")), //+100 deep amber and +5 cp rubbery
-    "What's in the sack, Jack?" -> Conditional(_.qualities("Wounds") < 7, implicit c=> { gear.dangerous(); c.chooseBranch()}),                      //18 proscribed, 100% at 110
-    "Rob a library at the University" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch() }),             //conn: rev and 15 proscribed
-    "Pass the Cat: a wriggling delivery" -> Conditional(_.qualities("Scandal") > 0, _.chooseBranch("An elaborate strategy")),
-    "The Fallen Angel" -> Conditional(_.qualities("Wounds") < 7, implicit c => {gear.dangerous(); c.chooseBranch("Tackle the verger")}),            //conn: church and a second chance
-    "Wanted: Reminders of Brighter Days" -> Conditional(_.items("Incendiary Gossip") >= 25, _.chooseBranch("The tiniest of classified advertisements")),
-    "Mr Wines is holding a sale!" -> Conditional(_.items("Romantic Notion") >= 80, _.chooseBranch("A discount for purchase in bulk")),
-    "The Ambassador's ball" -> Conditional(c => c.persuasive > 80 && c.persuasive < 119, _.chooseBranch("Making a point of not making a point")),
+    "What's in the sack, Jack?" -> Discard,                      //18 proscribed material
+    "Rob a library at the University" -> HoldUntil(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch() }),             //conn: rev and 15 proscribed
+    "Pass the Cat: a wriggling delivery" -> DiscardUnless(_.qualities("Scandal") > 0, _.chooseBranch("An elaborate strategy")),
+    "The Fallen Angel" -> HoldUntil(_.qualities("Wounds") < 7, implicit c => {gear.dangerous(); c.chooseBranch("Tackle the verger")}),            //conn: church and a second chance
+    "Wanted: Reminders of Brighter Days" -> DiscardUnless(_.items("Incendiary Gossip") >= 25, _.chooseBranch("The tiniest of classified advertisements")),
+    "Mr Wines is holding a sale!" -> HoldUntil(_.items("Romantic Notion") >= 80, _.chooseBranch("A discount for purchase in bulk")),
+    "The Ambassador's ball" -> DiscardUnless(c => c.persuasive > 80 && c.persuasive < 119, _.chooseBranch("Making a point of not making a point")),
     //eventually, use "Call on the services of a great mind of the Surface" for 4 scraps - requires high scholar
-    "The Correspondence Savages Your Dreams" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Perhaps you can remember something useful") }),
-    "Consulting detective required for government work" -> Conditional(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),  //21 proscribed and +subtle
-    "A night on the tiles" -> Conditional(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")),                     //1E of influence
-    "Swap Incendiary Gossip" -> Conditional(c => c.items("Incendiary Gossip") > 0 && c.qualities("Connected: Society") >= 50, _.chooseBranch()),
-    "The Soft-Hearted Widow" -> Conditional(_.items("Glim") >= 500, _.chooseBranch("Give a significant donation to her charity for the homeless")), //upgrades to 2x stolen kiss, +making waves
-    "A presumptuous little opportunity" -> Conditional(
+    "The Correspondence Savages Your Dreams" -> HoldUntil(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Perhaps you can remember something useful") }),
+    "Consulting detective required for government work" -> HoldUntil(_.qualities("Nightmares") < 7, implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),  //21 proscribed and +subtle
+    "A night on the tiles" -> DiscardUnless(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")),                     //1E of influence
+    "Swap Incendiary Gossip" -> DiscardUnless(c => c.items("Incendiary Gossip") > 0 && c.qualities("Connected: Society") >= 50, _.chooseBranch()),
+    "The Soft-Hearted Widow" -> DiscardUnless(_.items("Glim") >= 500, _.chooseBranch("Give a significant donation to her charity for the homeless")), //upgrades to 2x stolen kiss, +making waves
+    "A presumptuous little opportunity" -> HoldUntil(
       c => c.items("Greyfields 1882") >= 1000 || c.items("Morelways 1872") >= 400 || c.items("Greyfields 1879") >= 5000 || c.items("Cellar of Wine") >= 5,
       c => if (c.items("Greyfields 1879") >= 5000) {
         c.chooseBranch("Perhaps you're interested in an exceptional vintage?")
@@ -340,9 +340,8 @@ object opportunities extends Opportunist(
         c.discardOpportunity("A presumptuous little opportunity")
       }
     ),
-    "1000 Nevercold Brass wanted! Will pay handsomely!" -> Conditional(_.items("Nevercold Brass Sliver") >= 1000, _.chooseBranch("Make the exchange")), //+15cp Great Game
-    "A dusty bookshop" -> Unplayable
-  ) withDefaultValue Unplayable, Set(
+    "1000 Nevercold Brass wanted! Will pay handsomely!" -> HoldUntil(_.items("Nevercold Brass Sliver") >= 1000, _.chooseBranch("Make the exchange")) //+15cp Great Game
+  ) withDefaultValue Hold, Set(
     //Always useless
     "Putting the pieces together: something about the Fourth City",  //low-chance luck challenge
     "Help a spy distract an inconvenient tail",             //36 jade

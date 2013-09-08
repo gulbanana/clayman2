@@ -19,7 +19,7 @@ object prison {
     "Start a brawl" -> Trivial,
     "A visit from a priest" -> Playable(_.chooseBranch("Admit nothing")),  //+3cp criminals, docks
     "The Stuttering Fence" -> Playable(_.chooseBranch("Connections"))      //-criminals, -suspicion
-  ) withDefaultValue Unplayable
+  ) withDefaultValue Hold
   
   val opportunities = new Opportunist(playlist, blacklist)
   

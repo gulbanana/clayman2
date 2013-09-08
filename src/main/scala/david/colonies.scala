@@ -14,7 +14,7 @@ object colonies {
     "Lamentable tastes" -> Autofire,
     "The construction of the 'Grand Sanatoria'" -> Autofire,
     "I Met a Curious Creature" -> Autofire                   //Gain a tomb-lion
-  ) withDefaultValue Unplayable
+  ) withDefaultValue Hold
   
   val opportunities = new Opportunist(playlist, blacklist)
   
