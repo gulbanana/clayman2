@@ -20,7 +20,7 @@ class Opportunist(p: Map[String, Opportunity]) {
     if (c.opportunities.size < c.opportunityCap && c.deck > 0) //avoid sending a useless ajax
       c.drawOpportunities()
       
-    for (opportunity <- c.opportunities if (!playlist(opportunity).discardIf(c)))
+    for (opportunity <- c.opportunities if (playlist(opportunity).discardIf(c)))
       c.discardOpportunity(opportunity)
       
   } while(c.opportunities.size < c.opportunityCap && c.deck > 0)
