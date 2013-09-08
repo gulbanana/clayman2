@@ -223,6 +223,12 @@ object opportunities extends Opportunist(
     "Less fierce than he looks" -> Trivial,
     
     
+    /****************/
+    /* DOUBT STREET */
+    /****************/
+    "The Illuminated Gentleman Takes the Stage" -> Playable(implicit c => {gear.shadowy(); c.chooseBranch()}), //6x Salacious Copy
+    
+    
     /**********************/
     /* ACQUAINTANCE CARDS */
     /**********************/
