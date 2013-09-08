@@ -217,6 +217,12 @@ object opportunities extends Opportunist(
     
     
     
+    /****************/
+    /* WILMOT'S END */
+    /****************/
+    "Less fierce than he looks" -> Trivial,
+    
+    
     /**********************/
     /* ACQUAINTANCE CARDS */
     /**********************/
@@ -265,7 +271,7 @@ object opportunities extends Opportunist(
     "The little people" -> Playable(_.chooseBranch("Do your best for him")),  //80 pearls, 5 conn:crim, rare=bribr
     "Riding your Velocipede" -> Playable(_.chooseBranch("The velocipede courier")),
     "The tomb-colonist's dogs" -> Playable(_.chooseBranch("Could you look after them for a day?")), //61 candle, +10cp colonies
-    "Below the Neath" -> Playable(_.chooseBranch("Go and see what else you can find")), //70 souls
+    "Below the Neath" -> Playable(_.chooseBranch("Go and see what else you can find")),                                                             //70 souls
     "Cheesemonger no more" -> Playable(c => {
       if (c.qualities("Melancholy") < 9) 
         c.chooseBranch("You regret what happened")
@@ -277,13 +283,13 @@ object opportunities extends Opportunist(
         c.perhapsNot()
         c.discardOpportunity("Cheesemonger no more")
       }
-    }), //+1 HEL and quirks up to 9
+    }),                                                                                                                                             //+1 HEL and quirks up to 9
     "A Day with God's Editors" -> Playable(c => {
       if (c.qualities("Scandal") > 0 && c.qualities("Nightmares") > 0) 
-        c.chooseBranch("Work diligently") //-1cp of each and 5cp conn:church
+        c.chooseBranch("Work diligently")                                                                                                           //-1cp of each and 5cp conn:church
       else 
         c.chooseBranch("Examine the latest revisions")
-    }), //+1 HEL and quirks up to 9
+    }),                                                                                                                                             //+1 HEL and quirks up to 9
     "A relaxed day at the Club" -> Playable(c =>
       if (c.qualities("Suspicion") > 1) {
         c.chooseBranch("Have a little word with the Chief Constable")
@@ -291,6 +297,9 @@ object opportunities extends Opportunist(
         c.chooseBranch("Fall asleep in front of the fire")
       }
     ),
+    "The Seekers of the Garden" -> Playable(implicit c => {gear.watchful(); c.chooseBranch("Leisurely enquiries")}),                                //3 MODS - 1.5E
+    "A library of your own" -> Playable(_.chooseBranch("Diligent research")),                                                                       //50% 1.5E clues, 50% 1.05E stuff
+    "All fear the Overgoat!" -> Playable(implicit c => {gear.watchful(); c.chooseBranch("Learn of the Overgoat")}),
     "A Rubbery Man lopes purposefully in your wake, tentacles dangling like hanged men's fingers" -> Playable(_.chooseBranch("Give it the Amber")), //+100 deep amber and +5 cp rubbery
     "What's in the sack, Jack?" -> Conditional(_.qualities("Wounds") < 7, implicit c=> { gear.dangerous(); c.chooseBranch()}),                      //18 proscribed, 100% at 110
     "Rob a library at the University" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch() }),             //conn: rev and 15 proscribed
@@ -318,9 +327,7 @@ object opportunities extends Opportunist(
         c.discardOpportunity("A presumptuous little opportunity")
       }
     ),
-    "The Seekers of the Garden" -> Playable(implicit c => {gear.watchful(); c.chooseBranch("Leisurely enquiries")}),                                //3 MODS - 1.5E
-    "A library of your own" -> Playable(_.chooseBranch("Diligent research")),                                                                       //50% 1.5E clues, 50% 1.05E stuff
-    "All fear the Overgoat!" -> Playable(implicit c => {gear.watchful(); c.chooseBranch("Learn of the Overgoat")})
+    "A dusty bookshop" -> Unplayable
   ) withDefaultValue Unplayable, Set(
     //Always useless
     "Putting the pieces together: something about the Fourth City",  //low-chance luck challenge
@@ -389,6 +396,8 @@ object opportunities extends Opportunist(
     "Coats and souls",                                      //60 secrets
     "Bringing the revolution",                              //quirks up to 6 and 1cp shadowy
     "A street-cart is selling Fourth City Rags",            //i do not rags
+    "They Want to Hear of the Vake",                        //no friends on the bag a legend ambition
+    "Baying for Blood",                                     //no friends on the nemesis
     "The Ways of the University",
     "The Ways of the Flit",
     "The Ways of the Forgotten Quarter",
