@@ -15,10 +15,10 @@ object prison {
   )
   
   private def playlist = Map(
-    "The Warden" -> Trivial,
-    "Start a brawl" -> Trivial,
-    "A visit from a priest" -> Playable(_.chooseBranch("Admit nothing")),  //+3cp criminals, docks
-    "The Stuttering Fence" -> Playable(_.chooseBranch("Connections"))      //-criminals, -suspicion
+    "The Warden" -> Play,
+    "Start a brawl" -> Play,
+    "A visit from a priest" -> Play(_.chooseBranch("Admit nothing")),  //+3cp criminals, docks
+    "The Stuttering Fence" -> Play(_.chooseBranch("Connections"))      //-criminals, -suspicion
   ) withDefaultValue Hold
   
   val opportunities = new Opportunist(playlist, blacklist)

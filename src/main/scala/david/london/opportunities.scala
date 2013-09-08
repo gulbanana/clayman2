@@ -8,16 +8,16 @@ object opportunities extends Opportunist(
     /*****************/
     /* LODGING CARDS */
     /*****************/
-    "The Tower of Sparrows" -> Playable(_.chooseBranch("Settle down to a game of cards")),                                                            //persuasive t2
-    "The Sleepless Tower" -> Playable(_.chooseBranch("Spores and fangs")),                                                                            //dangerous t2 
-    "The Tower of Knives" -> Playable(_.chooseBranch("Rough camaraderie")),                                                                           //shadowy t2
-    "The Tower of Sleeping Giants" -> Playable(c => c.chooseBranch(if (c.items("An Infernal Contract") < 100) "The owner" else "Examine the stock")), //watchful t2
+    "The Tower of Sparrows" -> Play(_.chooseBranch("Settle down to a game of cards")),                                                            //persuasive t2
+    "The Sleepless Tower" -> Play(_.chooseBranch("Spores and fangs")),                                                                            //dangerous t2 
+    "The Tower of Knives" -> Play(_.chooseBranch("Rough camaraderie")),                                                                           //shadowy t2
+    "The Tower of Sleeping Giants" -> Play(c => c.chooseBranch(if (c.items("An Infernal Contract") < 100) "The owner" else "Examine the stock")), //watchful t2
     "The Tower of Eyes" -> HoldUntil(_.qualities("Connected: The Masters of the Bazaar") == 0, _.chooseBranch("Do a little promenading yourself")),                 //persuasive t2.5
-    "The Heron Tower" -> Playable(_.chooseBranch("Hunt down a huge lizard")),                                                                         //dangerous t2.5
+    "The Heron Tower" -> Play(_.chooseBranch("Hunt down a huge lizard")),                                                                         //dangerous t2.5
     "The Listing Tower" -> Hold, //I think I'm too Dangerous to ever get this?                                                                  //dangerous t2.5
-    "The Windward Tower" -> Playable(_.chooseBranch("The cautious contact")),                                                                         //shadowy t2.5
-    "The High Castle" -> Playable(_.chooseBranch("A stroll with a sack")),                                                                            //shadowy t2.5
-    "The Lofty Tower" -> Playable(_.chooseBranch("Engage in commerce")),                                                                              //persuasive t3
+    "The Windward Tower" -> Play(_.chooseBranch("The cautious contact")),                                                                         //shadowy t2.5
+    "The High Castle" -> Play(_.chooseBranch("A stroll with a sack")),                                                                            //shadowy t2.5
+    "The Lofty Tower" -> Play(_.chooseBranch("Engage in commerce")),                                                                              //persuasive t3
     "The Western Tower" -> Hold,                                                                                                                //watchful t3
     "The Tower of Sun and Moon" -> Hold,     
     
@@ -48,7 +48,7 @@ object opportunities extends Opportunist(
         c.chooseBranch("Buy a round at the Rusty Tramp")
       }
     ),
-    "Burning Shadows: the Devils of London" -> Playable(implicit c => 
+    "Burning Shadows: the Devils of London" -> Play(implicit c => 
       if (c.qualities("Connected: Hell") >= 30) {
         gear.watchful()
         c.chooseBranch("Speak with a senior deviless")
@@ -76,7 +76,7 @@ object opportunities extends Opportunist(
       else
         c.chooseBranch("In the shadow of All Christs Spire")
     }),
-    "Park and Palace: Society" -> Playable(c => 
+    "Park and Palace: Society" -> Play(c => 
       if (c.qualities("Connected: Society") >= 60)
         c.chooseBranch("Take port with the Veteran Privy Counsellor") //+10cp persuasive, -400cp connected
       else
@@ -86,20 +86,20 @@ object opportunities extends Opportunist(
       gear.shadowy()
       c.chooseBranch("Consult with a master thief")
     }), 
-    "Gunpowder and Zeal: the Revolutionaries" -> Playable(_.chooseBranch("Taking a walk down gin lane")), //counting the days
+    "Gunpowder and Zeal: the Revolutionaries" -> Play(_.chooseBranch("Taking a walk down gin lane")), //counting the days
     
     
     
     /******************/
     /* CONFLICT CARDS */
     /******************/
-    "The Devil and the Child" -> Playable(c =>
+    "The Devil and the Child" -> Play(c =>
       if (c.qualities("Connected: Hell") <= c.qualities("Connected: Urchins"))
         c.chooseBranch("Take the Devil's side")
       else
         c.chooseBranch("Convince the urchin to keep his soul")
     ),
-    "Going gentle" -> Playable(implicit c =>
+    "Going gentle" -> Play(implicit c =>
       if (c.qualities("Connected: The Tomb-Colonies") <= c.qualities("Connected: Society")) {
         gear.dangerous()
         c.chooseBranch("Break him out!") 
@@ -107,56 +107,56 @@ object opportunities extends Opportunist(
         c.chooseBranch("Discreetly inform the family about the baronet's communication")
       }
     ),
-    "A contact in the Great Game has a tale for you" -> Playable(c =>
+    "A contact in the Great Game has a tale for you" -> Play(c =>
       if (c.qualities("Connected: The Great Game") <= c.qualities("Connected: The Church")) {
         c.chooseBranch("Make it clear that no-one leaves the Game") 
       } else {
         c.chooseBranch("Everyone deserves a second chance")
       }
     ),
-    "Youthful high spirits" -> Playable(c =>
+    "Youthful high spirits" -> Play(c =>
       if (c.qualities("Connected: The Docks") <= c.qualities("Connected: Urchins")) {
         c.chooseBranch("Sabotage the cannon") 
       } else {
         c.chooseBranch("Convince the residents to pay their protection fees to the urchins instead")
       }
     ),
-    "Brimstone or frankincense?" -> Playable(c =>
+    "Brimstone or frankincense?" -> Play(c =>
       if (c.qualities("Connected: Hell") <= c.qualities("Connected: The Church")) {
         c.chooseBranch("Firecrackers in the thurible!") 
       } else {
         c.chooseBranch("Alert the vicar")
       }
     ),
-    "The kaleidoscopic church" -> Playable(c =>
+    "The kaleidoscopic church" -> Play(c =>
       if (c.qualities("Connected: Bohemian") <= c.qualities("Connected: The Church")) {
         c.chooseBranch("Secure the artists’ work") 
       } else {
         c.chooseBranch("Make it clear the Bohemians aren’t welcome any more")
       }
     ),
-    "A familiar face by the school railings" -> Playable(c =>
+    "A familiar face by the school railings" -> Play(c =>
       if (c.qualities("Connected: The Orient") <= c.qualities("Connected: Urchins")) {
         c.chooseBranch("Advise the girl to return to the Widow") 
       } else {
         c.chooseBranch("Arrange for the girl to return to the urchin-gangs")
       }
     ),
-    "Amber in the well" -> Playable(c =>
+    "Amber in the well" -> Play(c =>
       if (c.qualities("Connected: Revolutionaries") <= c.qualities("Connected: Rubbery Men")) {
         c.chooseBranch("Convince the Rubbery Men to move on") 
       } else {
         c.chooseBranch("Convince the Revolutionaries to find somewhere else")
       }
     ),
-    "They all look the same to me" -> Playable(c =>
+    "They all look the same to me" -> Play(c =>
       if (c.qualities("Connected: Rubbery Men") <= c.qualities("Connected: Constables")) {
         c.chooseBranch("Finger a scapegoat.") 
       } else {
         c.chooseBranch("Finger the guilty party")
       }
     ),
-    "A misfortune at the Carnival" -> Playable(c =>
+    "A misfortune at the Carnival" -> Play(c =>
       if (c.qualities("Connected: Rubbery Men") <= c.qualities("Connected: The Tomb-Colonies")) {
         c.chooseBranch("Save the Rubbery Man") 
       } else {
@@ -185,7 +185,7 @@ object opportunities extends Opportunist(
         "Connected: Bohemian" -> "Warn the artist"
       )(faction))
     }),
-    "A scuffle on the street" -> Playable(c => {
+    "A scuffle on the street" -> Play(c => {
       val faction = Set("Connected: Society", "Connected: Revolutionaries", "Connected: Urchins").min(Ordering.by(c.qualities))
       c.chooseBranch(Map(
         "Connected: Society" -> "Stand up for the Lady",
@@ -199,19 +199,19 @@ object opportunities extends Opportunist(
     /*********************/
     /* COUNTING THE DAYS */
     /*********************/
-    "The Awful Temptation of Money" -> Trivial,
+    "The Awful Temptation of Money" -> Play,
     "Graffiti with a sting" -> DiscardUnless(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw")),
     "An unusual wager" -> DiscardUnless(_.qualities("Counting the Days") < 10, _.chooseBranch("Look at those coins")),
-    "The Law's Long Arm" -> Playable(c => {
+    "The Law's Long Arm" -> Play(c => {
       c.chooseBranch(deprioritise(c.branches, "Official incompetence"))
     }),
-    "A Moment's Peace" -> Playable(c => {
+    "A Moment's Peace" -> Play(c => {
       c.chooseBranch(deprioritise(c.branches - "Follow a light into the trees", "Relax and enjoy"))
     }),
-    "A Restorative" -> Playable(c => {
+    "A Restorative" -> Play(c => {
       c.chooseBranch(deprioritise(c.branches - "A sumptuous repast!", "Scraps from the table"))
     }),
-    "An afternoon of good deeds?" -> Playable(c => {
+    "An afternoon of good deeds?" -> Play(c => {
       c.chooseBranch(deprioritise(c.branches - "A plaster saint!" - "An afternoon of mischief!", "Quite a moral afternoon."))
     }),
     
@@ -220,31 +220,31 @@ object opportunities extends Opportunist(
     /****************/
     /* WILMOT'S END */
     /****************/
-    "Less fierce than he looks" -> Trivial,
+    "Less fierce than he looks" -> Play,
     
     
     /****************/
     /* DOUBT STREET */
     /****************/
-    "The Illuminated Gentleman Takes the Stage" -> Playable(implicit c => {gear.shadowy(); c.chooseBranch()}), //6x Salacious Copy
+    "The Illuminated Gentleman Takes the Stage" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}), //6x Salacious Copy
     
     
     /**********************/
     /* ACQUAINTANCE CARDS */
     /**********************/
-    "An Old Acquaintance?" -> Playable(implicit c => {
+    "An Old Acquaintance?" -> Play(implicit c => {
       gear.persuasive()
       c.chooseBranch("Call on her")  //1.1E of stuff and connections 
     }), 
-    "Help the Sardonic Music-Hall Singer" -> Playable(implicit c => {
+    "Help the Sardonic Music-Hall Singer" -> Play(implicit c => {
       gear.persuasive()
       c.chooseBranch("Help her negotiate")  //?
     }),
-    "Ask the Sardonic Music-Hall Singer to help you" -> Playable(implicit c => {
+    "Ask the Sardonic Music-Hall Singer to help you" -> Play(implicit c => {
       gear.persuasive()
       c.chooseBranch("An invitation to a rather exclusive soirée")  //1.2E of gossip, or rare Aeolian Scream
     }),
-    "A Visit" -> Playable(c => {
+    "A Visit" -> Play(c => {
       val friend = Set("Acquaintance: a Repentant Forger", "Acquaintance: Regretful Soldier", "Acquaintance: Sardonic Music-Hall Singer", "Acquaintance: Wry Functionary").min(Ordering.by(c.qualities))
       c.chooseBranch(Map(
         "Acquaintance: a Repentant Forger" -> "The Repentant Forger",
@@ -259,36 +259,36 @@ object opportunities extends Opportunist(
     /***************/
     /* OTHER CARDS */
     /***************/
-    "A rather decadent evening" -> Trivial,
+    "A rather decadent evening" -> Play,
     "A day without laudanum" -> Autofire,
-    "A parliament of bats" -> Playable(_.chooseBranch("Release a bat into the cloud")),
-    "Investigate the Topsy King's court" -> Playable(_.chooseBranch("Spy on the dealings with revolutionaries")), //conn:const and 64 rostygold
-    "The Geology of Winewound" -> Playable(implicit c => { gear.watchful(); c.chooseBranch("Go as far as you can") }), //130E of relics, rare for visions
-    "The Parthenaeum" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("Roust out an interloper") }),  //conn:soc and 0.6E wines 
-    "One's public" -> Playable(implicit c => { gear.persuasive(); c.chooseBranch("Put on a fine show for them") }), //>2E of stuff!
-    "A riot in Spite!" -> Playable(_.chooseBranch("Wade in with fists flying")), //connections
-    "The Cities that Fell" -> Playable(implicit c => { gear.watchful(); c.chooseBranch("Ancient stories") }), //with POSI, 3 visions
-    "Devices and desires" -> Playable(implicit c => { gear.watchful(); c.chooseBranch("The trade in clocks") }), //with POSI, 10 notions
-    "His Young Lordship seized by tentacles" -> Playable(_.chooseBranch("Sell snacks to the crowd")),
-    "Minding the detective" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("The case of the frenzied mandrake") }),                   //business card (and 60 rostygold)
-    "All fear the Overgoat!" -> Playable(implicit c => {gear.watchful(); c.chooseBranch("Learn of the Overgoat")}),
-    "The Seekers of the Garden" -> Playable(implicit c => {gear.watchful(); c.chooseBranch("Leisurely enquiries")}),                                //3 MODS - 1.5E
-    "A library of your own" -> Playable(_.chooseBranch("Diligent research")),                                                                       //50% 1.5E clues, 50% 1.05E stuff
-    "Rat Melancholy" -> Playable(_.chooseBranch("Let her grieve in dignified silence")),                                                            //50 '82, 3cp rat sympathy
-    "A past benefactor" -> Playable(_.chooseBranch("And what of the secrets of Hell?")),                                                            //sudden insight
-    "The Paronomastic Newshound" -> Playable(_.chooseBranch("Talk to him about the Tomb-Colonies")),  
-    "The little people" -> Playable(_.chooseBranch("Do your best for him")),                                                                        //80 pearls, 5 conn:crim, rare=bribe
-    "Riding your Velocipede" -> Playable(_.chooseBranch("The velocipede courier")),
-    "The tomb-colonist's dogs" -> Playable(_.chooseBranch("Could you look after them for a day?")),                                                 //61 candle, +10cp colonies
-    "Below the Neath" -> Playable(_.chooseBranch("Go and see what else you can find")),                                                             //70 souls
-    "Investigate Doctor Schlomo" -> Playable(implicit c => {
+    "A parliament of bats" -> Play(_.chooseBranch("Release a bat into the cloud")),
+    "Investigate the Topsy King's court" -> Play(_.chooseBranch("Spy on the dealings with revolutionaries")), //conn:const and 64 rostygold
+    "The Geology of Winewound" -> Play(implicit c => { gear.watchful(); c.chooseBranch("Go as far as you can") }), //130E of relics, rare for visions
+    "The Parthenaeum" -> Play(implicit c => { gear.dangerous(); c.chooseBranch("Roust out an interloper") }),  //conn:soc and 0.6E wines 
+    "One's public" -> Play(implicit c => { gear.persuasive(); c.chooseBranch("Put on a fine show for them") }), //>2E of stuff!
+    "A riot in Spite!" -> Play(_.chooseBranch("Wade in with fists flying")), //connections
+    "The Cities that Fell" -> Play(implicit c => { gear.watchful(); c.chooseBranch("Ancient stories") }), //with POSI, 3 visions
+    "Devices and desires" -> Play(implicit c => { gear.watchful(); c.chooseBranch("The trade in clocks") }), //with POSI, 10 notions
+    "His Young Lordship seized by tentacles" -> Play(_.chooseBranch("Sell snacks to the crowd")),
+    "Minding the detective" -> Play(implicit c => { gear.dangerous(); c.chooseBranch("The case of the frenzied mandrake") }),                   //business card (and 60 rostygold)
+    "All fear the Overgoat!" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Learn of the Overgoat")}),
+    "The Seekers of the Garden" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Leisurely enquiries")}),                                //3 MODS - 1.5E
+    "A library of your own" -> Play(_.chooseBranch("Diligent research")),                                                                       //50% 1.5E clues, 50% 1.05E stuff
+    "Rat Melancholy" -> Play(_.chooseBranch("Let her grieve in dignified silence")),                                                            //50 '82, 3cp rat sympathy
+    "A past benefactor" -> Play(_.chooseBranch("And what of the secrets of Hell?")),                                                            //sudden insight
+    "The Paronomastic Newshound" -> Play(_.chooseBranch("Talk to him about the Tomb-Colonies")),  
+    "The little people" -> Play(_.chooseBranch("Do your best for him")),                                                                        //80 pearls, 5 conn:crim, rare=bribe
+    "Riding your Velocipede" -> Play(_.chooseBranch("The velocipede courier")),
+    "The tomb-colonist's dogs" -> Play(_.chooseBranch("Could you look after them for a day?")),                                                 //61 candle, +10cp colonies
+    "Below the Neath" -> Play(_.chooseBranch("Go and see what else you can find")),                                                             //70 souls
+    "Investigate Doctor Schlomo" -> Play(implicit c => {
       gear.watchful()
       if (c.qualities("Nightmares") > 2)
         c.chooseBranch("Pay the Doctor a visit")                                                                                                    //-3cp, rare: scream
       else
         c.chooseBranch("Interrogate a patient")                                                                                                     //60 clues
     }),                                
-    "Cheesemonger no more" -> Playable(c => {
+    "Cheesemonger no more" -> Play(c => {
       if (c.qualities("Melancholy") < 9) 
         c.chooseBranch("You regret what happened")
       else if (c.qualities("Steadfast") < 9) 
@@ -300,20 +300,20 @@ object opportunities extends Opportunist(
         c.discardOpportunity("Cheesemonger no more")
       }
     }),                                                                                                                                             //+1 HEL and quirks up to 9
-    "A Day with God's Editors" -> Playable(c => {
+    "A Day with God's Editors" -> Play(c => {
       if (c.qualities("Scandal") > 0 && c.qualities("Nightmares") > 0) 
         c.chooseBranch("Work diligently")                                                                                                           //-1cp of each and 5cp conn:church
       else 
         c.chooseBranch("Examine the latest revisions")
     }),                                                                                                                                             //+1 HEL and quirks up to 9
-    "A relaxed day at the Club" -> Playable(c =>
+    "A relaxed day at the Club" -> Play(c =>
       if (c.qualities("Suspicion") > 1) {
         c.chooseBranch("Have a little word with the Chief Constable")
       } else {
         c.chooseBranch("Fall asleep in front of the fire")
       }
     ),
-    "A Rubbery Man lopes purposefully in your wake, tentacles dangling like hanged men's fingers" -> Playable(_.chooseBranch("Give it the Amber")), //+100 deep amber and +5 cp rubbery
+    "A Rubbery Man lopes purposefully in your wake, tentacles dangling like hanged men's fingers" -> Play(_.chooseBranch("Give it the Amber")), //+100 deep amber and +5 cp rubbery
     "What's in the sack, Jack?" -> Discard,                      //18 proscribed material
     "Rob a library at the University" -> HoldUntil(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch() }),             //conn: rev and 15 proscribed
     "Pass the Cat: a wriggling delivery" -> DiscardUnless(_.qualities("Scandal") > 0, _.chooseBranch("An elaborate strategy")),

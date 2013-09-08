@@ -9,9 +9,10 @@ case class HoldUntil(t: Character => Boolean, a: Character => Unit) extends Oppo
 object Discard extends Opportunity(_ => true, _ => false)
 case class DiscardUnless(t: Character => Boolean, a: Character => Unit) extends Opportunity(c => !t(c), t, a)
 
-case class Playable(a: Character=>Unit = _.chooseBranch()) extends Opportunity(_ => false, _ => true, a)
-object Trivial extends Opportunity(_ => false, _ => true, _.chooseBranch())
-object Autofire extends Opportunity(_ => false, _ => true, _ => ())
+case class Play(a: Character=>Unit) extends Opportunity(_ => false, _ => true, a)
+object Play extends Play(_.chooseBranch())
+
+object Autofire extends Play(_ => ())
 
 class Opportunist(playlist: Map[String, Opportunity], blacklist: Set[String]) {
   //grind through discards as far as possible
