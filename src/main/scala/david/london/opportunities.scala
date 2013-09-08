@@ -264,14 +264,24 @@ object opportunities extends Opportunist(
     "The Cities that Fell" -> Playable(implicit c => { gear.watchful(); c.chooseBranch("Ancient stories") }), //with POSI, 3 visions
     "Devices and desires" -> Playable(implicit c => { gear.watchful(); c.chooseBranch("The trade in clocks") }), //with POSI, 10 notions
     "His Young Lordship seized by tentacles" -> Playable(_.chooseBranch("Sell snacks to the crowd")),
-    "Minding the detective" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("The case of the frenzied mandrake") }),  //business card (and 60 rostygold)
-    "Rat Melancholy" -> Playable(_.chooseBranch("Let her grieve in dignified silence")),  //50 '82, 3cp rat sympathy
-    "A past benefactor" -> Playable(_.chooseBranch("And what of the secrets of Hell?")),  //sudden insight
-    "The Paronomastic Newshound" -> Playable(_.chooseBranch("Talk to him about the Tomb-Colonies")),  //
-    "The little people" -> Playable(_.chooseBranch("Do your best for him")),  //80 pearls, 5 conn:crim, rare=bribr
+    "Minding the detective" -> Playable(implicit c => { gear.dangerous(); c.chooseBranch("The case of the frenzied mandrake") }),                   //business card (and 60 rostygold)
+    "All fear the Overgoat!" -> Playable(implicit c => {gear.watchful(); c.chooseBranch("Learn of the Overgoat")}),
+    "The Seekers of the Garden" -> Playable(implicit c => {gear.watchful(); c.chooseBranch("Leisurely enquiries")}),                                //3 MODS - 1.5E
+    "A library of your own" -> Playable(_.chooseBranch("Diligent research")),                                                                       //50% 1.5E clues, 50% 1.05E stuff
+    "Rat Melancholy" -> Playable(_.chooseBranch("Let her grieve in dignified silence")),                                                            //50 '82, 3cp rat sympathy
+    "A past benefactor" -> Playable(_.chooseBranch("And what of the secrets of Hell?")),                                                            //sudden insight
+    "The Paronomastic Newshound" -> Playable(_.chooseBranch("Talk to him about the Tomb-Colonies")),  
+    "The little people" -> Playable(_.chooseBranch("Do your best for him")),                                                                        //80 pearls, 5 conn:crim, rare=bribe
     "Riding your Velocipede" -> Playable(_.chooseBranch("The velocipede courier")),
-    "The tomb-colonist's dogs" -> Playable(_.chooseBranch("Could you look after them for a day?")), //61 candle, +10cp colonies
+    "The tomb-colonist's dogs" -> Playable(_.chooseBranch("Could you look after them for a day?")),                                                 //61 candle, +10cp colonies
     "Below the Neath" -> Playable(_.chooseBranch("Go and see what else you can find")),                                                             //70 souls
+    "Investigate Doctor Schlomo" -> Playable(implicit c => {
+      gear.watchful()
+      if (c.qualities("Nightmares") > 2)
+        c.chooseBranch("Pay the Doctor a visit")                                                                                                    //-3cp, rare: scream
+      else
+        c.chooseBranch("Interrogate a patient")                                                                                                     //60 clues
+    }),                                
     "Cheesemonger no more" -> Playable(c => {
       if (c.qualities("Melancholy") < 9) 
         c.chooseBranch("You regret what happened")
@@ -297,9 +307,6 @@ object opportunities extends Opportunist(
         c.chooseBranch("Fall asleep in front of the fire")
       }
     ),
-    "The Seekers of the Garden" -> Playable(implicit c => {gear.watchful(); c.chooseBranch("Leisurely enquiries")}),                                //3 MODS - 1.5E
-    "A library of your own" -> Playable(_.chooseBranch("Diligent research")),                                                                       //50% 1.5E clues, 50% 1.05E stuff
-    "All fear the Overgoat!" -> Playable(implicit c => {gear.watchful(); c.chooseBranch("Learn of the Overgoat")}),
     "A Rubbery Man lopes purposefully in your wake, tentacles dangling like hanged men's fingers" -> Playable(_.chooseBranch("Give it the Amber")), //+100 deep amber and +5 cp rubbery
     "What's in the sack, Jack?" -> Conditional(_.qualities("Wounds") < 7, implicit c=> { gear.dangerous(); c.chooseBranch()}),                      //18 proscribed, 100% at 110
     "Rob a library at the University" -> Conditional(_.qualities("Suspicion") < 7, implicit c => { gear.shadowy(); c.chooseBranch() }),             //conn: rev and 15 proscribed
