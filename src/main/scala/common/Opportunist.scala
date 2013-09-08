@@ -12,13 +12,15 @@ case class DiscardUnless(t: Character => Boolean, a: Character => Unit) extends 
 case class Play(a: Character=>Unit) extends Opportunity(_ => false, _ => true, a)
 object Play extends Play(c => if (!c.branches.isEmpty) c.chooseBranch())
 
-class Opportunist(playlist: Map[String, Opportunity], blacklist: Set[String]) {
+class Opportunist(p: Map[String, Opportunity]) {
+  private val playlist = p withDefaultValue Hold
+  
   //grind through discards as far as possible
   def mill()(implicit c: Character) = do {
     if (c.opportunities.size < c.opportunityCap && c.deck > 0) //avoid sending a useless ajax
       c.drawOpportunities()
       
-    for (opportunity <- c.opportunities if (!playlist(opportunity).actIf(c) && blacklist.contains(opportunity)))
+    for (opportunity <- c.opportunities if (!playlist(opportunity).discardIf(c)))
       c.discardOpportunity(opportunity)
       
   } while(c.opportunities.size < c.opportunityCap && c.deck > 0)

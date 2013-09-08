@@ -340,101 +340,86 @@ object opportunities extends Opportunist(
         c.discardOpportunity("A presumptuous little opportunity")
       }
     ),
-    "1000 Nevercold Brass wanted! Will pay handsomely!" -> HoldUntil(_.items("Nevercold Brass Sliver") >= 1000, _.chooseBranch("Make the exchange")) //+15cp Great Game
-  ) withDefaultValue Hold, Set(
-    //Always useless
-    "Putting the pieces together: something about the Fourth City",  //low-chance luck challenge
-    "Help a spy distract an inconvenient tail",             //36 jade
-    "A meeting of cats",                                    //24 clues, never 100%
-    "The notable citizen",                                  //83 whispered secrets, but i can grind that easily and it can't be made scandal-safe
-    "Shroom-hopping: a quaint sport of the lower classes",  //18 '82
-    "A Sporting Sort",                                      //pure gamble
-    "What profit?",                                         //i don't want to sell my soul! at least not cheaply
-    "The tenor's minder",                                   //reward low, dangerous range too small
-    "A runaway horse!",                                     //reward low, dangerous range too small
-    "Romance and practicality",                             //36 whispered secrets
-    "Stark villainy",                                       //36 rostygold
-    "The marriage of inconvenience",                        //50 whispered secrets
-    "Rob a Brass Embassy courier",                          //15 proscribed material
-    "Academic discipline",                                  //0.6E '79,
-    "A chance encounter with an old friend...",             //quirk gains cap at 6
-    "A libraryette for Mr Pages",                           //req: too much to grind for, for now
-    "Infiltrate a gentlemen's club",                        //0.6E stuff, connections but can't be menace-free
-    "A day in the garden",                                  //0.6E secrets
-    "The ever-present and invisible servantry",             //<0.4E stuff
-    "A limping figure in a top hat beckons",                //amber for too much connection
-    "Work the carnival",                                    //12 4th relics
-    "The young buck",                                       //67 silk or 84 rostygold, never 100%
-    "The marvellous contrivance",                           //69 candles or 84 jade, never 100%
-    "Moonish water",                                        //1.3E secrets, but -0.5E rostygold, never 100%
-    "Ambushed by pirates!",                                 //72 glim, never 100%
-    "An evening's zailing",                                 //bad conn card - always +1 to one, -5 to the other
-    "Rob a Brass Embassy courier",                          //15 proscribed, never 100%
-    "Undertakings",                                         //too-narrow a watchful range
-    "Recapturing a prison escapee",                         //too-narrow a watchful range
-    "Moonish water",                                        //net +.8E secrets, narrow dangerous range
-    "Race across the river",                                //84 glim
-    "The Noted Orchid-Grower consults",                     //requires fate for small payoff
-    "Medical Emergency",                                    //<50 secrets
-    "A simple job from a devil",                            //72 brass
-    "As silent as the grave?",                              //0.75E misc goods
-    "Property most intellectual",                           //<1E correspondence
-    "Lies below the Palace",                                //18 proscribed (<0.8E)
-    "Investigating the Affluent Photographer",              //i have better gear than this gives now
-    "Robbing the Ambassador's ball",                        //34 clues or 84 amber
-    "Publish your scientific work",                         //48 clues or 81 pearls, never 100%
-    "The colour of currency",                               //27 surface currency, never 100%
-    "A consideration for services rendered",                //30 brass & 2 appallings for 1 soul, -conn:hell
-    "A day at the races",                                   //fatelocked sidequests area, i've already done it 
-    "Revolution and Coffee",                                //affluent photographer - completed this storyline both ways
-    "The assassin",                                         //84 rostygold
-    "The simple joys of villainy",                          //21 or 36 beeswax
-    "The Eye and the Camera",                               //80 beeswax
-    "A night at the carnival",                              //60 rats
-    "Spy on the Black Ribbon",                              //caps too low- a recipe for suspicion
-    "Map the new heavens",                                  //small watchful range, <1E rewards
-    "Tea with the Inspector",                               //i have outlevelled this
-    "Memoirs of a butler",                                  //narrow shadowy range, 84 glim
-    "A private detective",                                  //<1E clues
-    "Bounty Hunting",                                       //81 rostygold or 96 jade
-    "The Dean's distress",                                  //60 candles      
-    "Lizardly matters",                                     //50% chance of 4 memories of light, for 25 beeswax - <1E EV
-    "Expedition to Winewound Heath",                        //narrow range, <1E
-    "Ask Madame Shoshana to cast your horoscope",           //recasting sign requires fate
-    "The Northbound Parliamentarian",                       //3 appalling secrets and WTFC
-    "A new piece in the Game",                              //45 clues, narrow shadowy range
-    "Weather at last",                                      //quirks up to a point
-    "Where did that come from?",                            //50 rostygold or start the tournament of lilies
-    "A squire of the Flit",                                 //max shadowy 106, not 100%
-    "Coats and souls",                                      //60 secrets
-    "Bringing the revolution",                              //quirks up to 6 and 1cp shadowy
-    "A street-cart is selling Fourth City Rags",            //i do not rags
-    "They Want to Hear of the Vake",                        //no friends on the bag a legend ambition
-    "Baying for Blood",                                     //no friends on the nemesis
-    "The Ways of the University",
-    "The Ways of the Flit",
-    "The Ways of the Forgotten Quarter",
-    "The Ways of the Labyrinth of Tigers",
-    "The Ways of Wolfstack Docks",
-    "The Ways of the Shuttered Palace",
-    "The Ways of Mahogany Hall",
+    "1000 Nevercold Brass wanted! Will pay handsomely!" -> HoldUntil(_.items("Nevercold Brass Sliver") >= 1000, _.chooseBranch("Make the exchange")), //+15cp Great Game
     
-    
-    
-    //Useless unless they are useful
-    "Pass the Cat: a wriggling delivery",         //the only benefit is -scandal, which i might not need
-    "Wanted: Reminders of Brighter Days",         //it's not worth keeping around on the off-chance of saving an action
-    "The Ambassador's ball",                      //might not be in the range to play it - only gives a confident smile
-    "A consideration for services rendered",      //not worth grinding souls for
-    "An unusual wager",                           //only useful when Counting the Days
-    "Graffiti with a sting",                      //only useful when Counting the Days
-    "A night on the tiles",                       //doesn't pay well without the wine
-    "Altars and alms-houses: the Church",         //i don't always want to spend Connected
-    //"Invited to another revel of the Masters",    //only raises connected from 0 to 1
-    "Mirrors and Clay",                           //Vision and Touched by Fingerwork, but 1 vision is 0.5E and touched doesn't seem useful anymore..
-    "The Alleys of London: the Criminals",
-    "An implausible penance",                     //trades in conn: criminals for rewards, e.g. 500cp for ~30 echoes
-    "Whispers from the Surface: The Great Game",
-    "Swap Incendiary Gossip"
+    "Putting the pieces together: something about the Fourth City" -> Discard,  //low-chance luck challenge
+    "Help a spy distract an inconvenient tail" -> Discard,             //36 jade
+    "A meeting of cats" -> Discard,                                    //24 clues, never 100%
+    "The notable citizen" -> Discard,                                  //83 whispered secrets, but i can grind that easily and it can't be made scandal-safe
+    "Shroom-hopping: a quaint sport of the lower classes" -> Discard,  //18 '82
+    "A Sporting Sort" -> Discard,                                      //pure gamble
+    "What profit?" -> Discard,                                         //i don't want to sell my soul! at least not cheaply
+    "The tenor's minder" -> Discard,                                   //reward low, dangerous range too small
+    "A runaway horse!" -> Discard,                                     //reward low, dangerous range too small
+    "Romance and practicality" -> Discard,                             //36 whispered secrets
+    "Stark villainy" -> Discard,                                       //36 rostygold
+    "The marriage of inconvenience" -> Discard,                        //50 whispered secrets
+    "Rob a Brass Embassy courier" -> Discard,                          //15 proscribed material
+    "Academic discipline" -> Discard,                                  //0.6E '79,
+    "A chance encounter with an old friend..." -> Discard,             //quirk gains cap at 6
+    "A libraryette for Mr Pages" -> Discard,                           //req: too much to grind for, for now
+    "Infiltrate a gentlemen's club" -> Discard,                        //0.6E stuff, connections but can't be menace-free
+    "A day in the garden" -> Discard,                                  //0.6E secrets
+    "The ever-present and invisible servantry" -> Discard,             //<0.4E stuff
+    "A limping figure in a top hat beckons" -> Discard,                //amber for too much connection
+    "Work the carnival" -> Discard,                                    //12 4th relics
+    "The young buck" -> Discard,                                       //67 silk or 84 rostygold, never 100%
+    "The marvellous contrivance" -> Discard,                           //69 candles or 84 jade, never 100%
+    "Moonish water" -> Discard,                                        //1.3E secrets, but -0.5E rostygold, never 100%
+    "Ambushed by pirates!" -> Discard,                                 //72 glim, never 100%
+    "An evening's zailing" -> Discard,                                 //bad conn card - always +1 to one, -5 to the other
+    "Rob a Brass Embassy courier" -> Discard,                          //15 proscribed, never 100%
+    "Undertakings" -> Discard,                                         //too-narrow a watchful range
+    "Recapturing a prison escapee" -> Discard,                         //too-narrow a watchful range
+    "Moonish water" -> Discard,                                        //net +.8E secrets, narrow dangerous range
+    "Race across the river" -> Discard,                                //84 glim
+    "The Noted Orchid-Grower consults" -> Discard,                     //requires fate for small payoff
+    "Medical Emergency" -> Discard,                                    //<50 secrets
+    "A simple job from a devil" -> Discard,                            //72 brass
+    "As silent as the grave?" -> Discard,                              //0.75E misc goods
+    "Property most intellectual" -> Discard,                           //<1E correspondence
+    "Lies below the Palace" -> Discard,                                //18 proscribed (<0.8E)
+    "Investigating the Affluent Photographer" -> Discard,              //i have better gear than this gives now
+    "Robbing the Ambassador's ball" -> Discard,                        //34 clues or 84 amber
+    "Publish your scientific work" -> Discard,                         //48 clues or 81 pearls, never 100%
+    "The colour of currency" -> Discard,                               //27 surface currency, never 100%
+    "A consideration for services rendered" -> Discard,                //30 brass & 2 appallings for 1 soul, -conn:hell
+    "A day at the races" -> Discard,                                   //fatelocked sidequests area, i've already done it 
+    "Revolution and Coffee" -> Discard,                                //affluent photographer - completed this storyline both ways
+    "The assassin" -> Discard,                                         //84 rostygold
+    "The simple joys of villainy" -> Discard,                          //21 or 36 beeswax
+    "The Eye and the Camera" -> Discard,                               //80 beeswax
+    "A night at the carnival" -> Discard,                              //60 rats
+    "Spy on the Black Ribbon" -> Discard,                              //caps too low- a recipe for suspicion
+    "Map the new heavens" -> Discard,                                  //small watchful range, <1E rewards
+    "Tea with the Inspector" -> Discard,                               //i have outlevelled this
+    "Memoirs of a butler" -> Discard,                                  //narrow shadowy range, 84 glim
+    "A private detective" -> Discard,                                  //<1E clues
+    "Bounty Hunting" -> Discard,                                       //81 rostygold or 96 jade
+    "The Dean's distress" -> Discard,                                  //60 candles      
+    "Lizardly matters" -> Discard,                                     //50% chance of 4 memories of light, for 25 beeswax - <1E EV
+    "Expedition to Winewound Heath" -> Discard,                        //narrow range, <1E
+    "Ask Madame Shoshana to cast your horoscope" -> Discard,           //recasting sign requires fate
+    "The Northbound Parliamentarian" -> Discard,                       //3 appalling secrets and WTFC
+    "A new piece in the Game" -> Discard,                              //45 clues, narrow shadowy range
+    "Weather at last" -> Discard,                                      //quirks up to a point
+    "Where did that come from?" -> Discard,                            //50 rostygold or start the tournament of lilies
+    "A squire of the Flit" -> Discard,                                 //max shadowy 106, not 100%
+    "Coats and souls" -> Discard,                                      //60 secrets
+    "Bringing the revolution" -> Discard,                              //quirks up to 6 and 1cp shadowy
+    "A street-cart is selling Fourth City Rags" -> Discard,            //i do not rags
+    "They Want to Hear of the Vake" -> Discard,                        //no friends on the bag a legend ambition
+    "Baying for Blood" -> Discard,                                     //no friends on the nemesis
+    "The Ways of the University" -> Discard,
+    "The Ways of the Flit" -> Discard,
+    "The Ways of the Forgotten Quarter" -> Discard,
+    "The Ways of the Labyrinth of Tigers" -> Discard,
+    "The Ways of Wolfstack Docks" -> Discard,
+    "The Ways of the Shuttered Palace" -> Discard,
+    "The Ways of Mahogany Hall" -> Discard,
+    "A consideration for services rendered" -> Discard,      //not worth grinding souls for
+    "Mirrors and Clay" -> Discard,                           //Vision and Touched by Fingerwork, but 1 vision is 0.5E and touched doesn't seem useful anymore..
+    "An implausible penance" -> Discard,                     //trades in conn: criminals for rewards, e.g. 500cp for ~30 echoes
+    "Whispers from the Surface: The Great Game" -> Discard
   )
 )

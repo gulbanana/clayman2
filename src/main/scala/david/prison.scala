@@ -4,14 +4,14 @@ import common._
 
 object prison { 
   private def blacklist = Set(
-    "Voice from the oubliette",
-    "A Better Class of Villain", //social
-    "Promises of revenge",       //only 1 cp
-    "University of crime",       //+2cp shadowy but costs 2cp criminals and +1 suspicion
-    "Volunteer for bilge duty",  //-persuasive, -shadowy
-    "The talkative gaoler",      //only useful if you lose all criminals
-    "The screaming prisoner",    //only 1 cp
-    "Sent to the treadmill"      //-shadowy
+    "Voice from the oubliette" -> Discard,
+    "A Better Class of Villain" -> Discard, //social
+    "Promises of revenge" -> Discard,       //only 1 cp
+    "University of crime" -> Discard,       //+2cp shadowy but costs 2cp criminals and +1 suspicion
+    "Volunteer for bilge duty" -> Discard,  //-persuasive, -shadowy
+    "The talkative gaoler" -> Discard,      //only useful if you lose all criminals
+    "The screaming prisoner" -> Discard,    //only 1 cp
+    "Sent to the treadmill" -> Discard      //-shadowy
   )
   
   private def playlist = Map(
@@ -19,9 +19,9 @@ object prison {
     "Start a brawl" -> Play,
     "A visit from a priest" -> Play(_.chooseBranch("Admit nothing")),  //+3cp criminals, docks
     "The Stuttering Fence" -> Play(_.chooseBranch("Connections"))      //-criminals, -suspicion
-  ) withDefaultValue Hold
+  )
   
-  val opportunities = new Opportunist(playlist, blacklist)
+  val opportunities = new Opportunist(playlist ++ blacklist)
   
   def reduce_suspicion()(implicit c: Character) = {
     c.equip("Workman's Clothes")

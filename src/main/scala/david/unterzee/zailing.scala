@@ -59,9 +59,11 @@ object zailing {
   private val calmCards = lucrative ++ betterThanBold
   private val troubledCards = lucrative ++ betterThanBold ++ betterThanPrudent
   
-  lazy val opportunities_port = new Opportunist(portCards withDefault(_ => Hold), allCards.keySet -- portCards.keySet)
-  lazy val opportunities_calm = new Opportunist(calmCards withDefault(_ => Hold), allCards.keySet -- calmCards.keySet)
-  lazy val opportunities_troubled = new Opportunist(troubledCards withDefault(_ => Hold), allCards.keySet -- troubledCards.keySet)
+  private def discardOtherThan(chosenCards: Map[String,Opportunity]) = allCards -- chosenCards.keySet
+  
+  lazy val opportunities_port = new Opportunist(portCards ++ discardOtherThan(portCards))
+  lazy val opportunities_calm = new Opportunist(calmCards ++ discardOtherThan(calmCards))
+  lazy val opportunities_troubled = new Opportunist(troubledCards ++ discardOtherThan(troubledCards))
   
   //southern archipelago - +1 journey, +2 troubled
   def archipelago_safe()(implicit c: Character) {
