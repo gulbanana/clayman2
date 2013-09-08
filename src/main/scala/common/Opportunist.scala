@@ -1,7 +1,7 @@
 package common
 import api._
 
-class Opportunity(val discardIf: Character => Boolean, val actIf: Character => Boolean, val act: Character=>Unit = throw new Exception("Unplayable card played"))
+class Opportunity(val discardIf: Character => Boolean, val actIf: Character => Boolean, val act: Character=>Unit = _ => throw new Exception("Unplayable card played"))
 
 object Hold extends Opportunity(_ => false, _ => false)
 case class HoldUntil(t: Character => Boolean, a: Character => Unit) extends Opportunity(_ => false, t, a)
