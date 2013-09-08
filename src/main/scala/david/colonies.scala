@@ -8,12 +8,12 @@ object colonies {
   )
   
   private def playlist = Map[String,Opportunity](
-    "A letter from the Comte" -> Autofire,
-    "'..I have attended a ball...'" -> Autofire,
-    "A friend of sorts" -> Autofire,
-    "Lamentable tastes" -> Autofire,
-    "The construction of the 'Grand Sanatoria'" -> Autofire,
-    "I Met a Curious Creature" -> Autofire                   //Gain a tomb-lion
+    "A letter from the Comte" -> Play,
+    "'..I have attended a ball...'" -> Play,
+    "A friend of sorts" -> Play,
+    "Lamentable tastes" -> Play,
+    "The construction of the 'Grand Sanatoria'" -> Play,
+    "I Met a Curious Creature" -> Play                   //Gain a tomb-lion
   ) withDefaultValue Hold
   
   val opportunities = new Opportunist(playlist, blacklist)

@@ -10,9 +10,7 @@ object Discard extends Opportunity(_ => true, _ => false)
 case class DiscardUnless(t: Character => Boolean, a: Character => Unit) extends Opportunity(c => !t(c), t, a)
 
 case class Play(a: Character=>Unit) extends Opportunity(_ => false, _ => true, a)
-object Play extends Play(_.chooseBranch())
-
-object Autofire extends Play(_ => ())
+object Play extends Play(c => if (!c.branches.isEmpty) c.chooseBranch())
 
 class Opportunist(playlist: Map[String, Opportunity], blacklist: Set[String]) {
   //grind through discards as far as possible

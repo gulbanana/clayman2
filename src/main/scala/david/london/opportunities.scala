@@ -260,7 +260,7 @@ object opportunities extends Opportunist(
     /* OTHER CARDS */
     /***************/
     "A rather decadent evening" -> Play,
-    "A day without laudanum" -> Autofire,
+    "A day without laudanum" -> Play,
     "A parliament of bats" -> Play(_.chooseBranch("Release a bat into the cloud")),
     "Investigate the Topsy King's court" -> Play(_.chooseBranch("Spy on the dealings with revolutionaries")), //conn:const and 64 rostygold
     "The Geology of Winewound" -> Play(implicit c => { gear.watchful(); c.chooseBranch("Go as far as you can") }), //130E of relics, rare for visions
