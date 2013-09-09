@@ -27,7 +27,7 @@ package object london {
     "The Geology of Winewound" -> Play(implicit c => { gear.watchful(); c.chooseBranch("Go as far as you can") }),                                    //130E of relics, rare: visions
     "Investigate Doctor Schlomo" -> Play(implicit c => {
       gear.watchful()
-      if (c.qualities("Nightmares") > 2)
+      if (c.nightmares > 2)
         c.chooseBranch("Pay the Doctor a visit")                                                                                                      //-3cp, rare: scream
       else
         c.chooseBranch("Interrogate a patient")                                                                                                       //60 clues
@@ -319,17 +319,17 @@ package object london {
     "A tournament of weasels!" -> Discard,                                               //50% chance of 2 smiles, 3cp docks, 5 rostygold
     "A parliament of bats" -> Play(_.chooseBranch("Release a bat into the cloud")),      //iirc variable but good rewards
     "Riding your Velocipede" -> Play(_.chooseBranch("The velocipede courier")),
-    "A Pleasant Day for a Ride" -> DiscardUnless(_.qualities("Suspicion") == 2),         //50% conn: soc and -suspicion
+    "A Pleasant Day for a Ride" -> DiscardUnless(_.suspicion == 2),         //50% conn: soc and -suspicion
     "A library of your own" -> Play(_.chooseBranch("Diligent research")),                //50% 1.5E clues, 50% 1.05E stuff
     "All fear the Overgoat!" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Learn of the Overgoat")}), 
     "A Day with God's Editors" -> Play(c => {
-      if (c.qualities("Scandal") > 0 && c.qualities("Nightmares") > 0) 
+      if (c.scandal > 0 && c.nightmares > 0) 
         c.chooseBranch("Work diligently")                                                //-1cp of each and 5cp conn:church
       else 
         c.chooseBranch("Examine the latest revisions")                                   //-nightmares & scandal
     }),                                                                                  
     "A relaxed day at the Club" -> Play(c =>
-      if (c.qualities("Suspicion") > 1) {
+      if (c.suspicion > 1) {
         c.chooseBranch("Have a little word with the Chief Constable")                    //-suspicion
       } else {
         c.chooseBranch("Fall asleep in front of the fire")                               //secrets
@@ -396,7 +396,7 @@ package object london {
   
   private val SMEN = Map(
     "The Northbound Parliamentarian" -> Discard,                                                                               //3 appalling secrets and WTFC
-    "Pass the Cat: a wriggling delivery" -> DiscardUnless(_.qualities("Scandal") > 0, _.chooseBranch("An elaborate strategy")) //-scandal, can get someone a cat box
+    "Pass the Cat: a wriggling delivery" -> DiscardUnless(_.scandal > 0, _.chooseBranch("An elaborate strategy")) //-scandal, can get someone a cat box
   )
   
   val opportunities = new Opportunist(watchful ++ shadowy ++ dangerous ++ persuasive ++

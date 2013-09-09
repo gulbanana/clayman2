@@ -15,7 +15,7 @@ object blackRibbon extends BufferedJob {
     grind.rostygold()
   } 
   
-  def duel(implicit c: Character) = did(c.qualities("Wounds") > 2) {
+  def duel(implicit c: Character) = did(c.wounds > 2) {
     c.beginStorylet("Deal with your wounds")
     c.chooseBranch()
     c.onwards()

@@ -4,12 +4,12 @@ import common._
 import david._
 
 object avertMenaces extends RepeatedJob {
-  def apply(implicit c: Character) = did (c.qualities("Scandal") > 5) { //this depends on luck, so start it ASAP
+  def apply(implicit c: Character) = did (c.scandal > 5) { //this depends on luck, so start it ASAP
     c.travel(Areas.Lodgings)
     c.beginStorylet("Attend a Church Service")
     c.chooseBranch()
     c.onwards()
-  } or (c.qualities("Nightmares") > 6) {  //may increase scandal, so it comes after
+  } or (c.nightmares > 6) {  //may increase scandal, so it comes after
     c.travel(Areas.Carnival)
     if (c.items("Carnival Ticket") < 1) {
       c.beginStorylet("Buy tickets to the Carnival")
@@ -19,7 +19,7 @@ object avertMenaces extends RepeatedJob {
       c.chooseBranch("Try some hot wine")
     }
     c.onwards()
-  } or (c.qualities("Wounds") > 6) {  //reconsider this.. it might be faster just to die
+  } or (c.wounds > 6) {  //reconsider this.. it might be faster just to die
     c.travel(Areas.Lodgings)
     c.beginStorylet("Time in bed")
     val bestSleep = (c.branches - "A remarkable tincture").max(Ordering.by(guestPriorities))

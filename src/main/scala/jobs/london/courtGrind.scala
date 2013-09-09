@@ -26,9 +26,9 @@ object courtGrind extends BufferedJob {
     }
   }
   
-  private def reduceMenaces(implicit c: Character) = did (c.qualities("Scandal") > 0 && c.qualities("Fascinating...") >= 4) {    
+  private def reduceMenaces(implicit c: Character) = did (c.scandal > 0 && c.qualities("Fascinating...") >= 4) {    
     court.fix_scandal()
-  } or (c.qualities("Wounds") > 0 && c.qualities("Fascinating...") >= 5) {
+  } or (c.wounds > 0 && c.qualities("Fascinating...") >= 5) {
     court.fix_wounds()
   }
   
@@ -42,7 +42,7 @@ object courtGrind extends BufferedJob {
     court.grind_honey()     //buy the royal bethlehem
   } or (c.items("Proscribed Material") < 15000) {
     court.grind_rumour() 	  //buy the western tower (by converting to souls)
-  } or (c.qualities("Scandal") < 7) {
+  } or (c.scandal < 7) {
     court.grind_influence() 
   } or {
     court.grind_jade()      //safe money fallback - should never be reached, though

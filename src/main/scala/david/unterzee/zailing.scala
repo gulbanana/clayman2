@@ -47,7 +47,7 @@ object zailing {
   )
   
   private val betterThanPrudent = Map(
-    "A Corvette of Her Majesty's Navy" -> DiscardUnless(_.qualities("Suspicion") < 5, _.chooseBranch("Exchange pleasantries via semaphore")), //+1 journey, -1 troubled 
+    "A Corvette of Her Majesty's Navy" -> DiscardUnless(_.suspicion < 5, _.chooseBranch("Exchange pleasantries via semaphore")), //+1 journey, -1 troubled 
     "A Hazard to Shipping" -> Play(implicit c => {gear.watchful(); c.chooseBranch()}),                                                  //+? journey (1 or 2)
     "Lashing Waves: A Stowaway!" -> Play(_.chooseBranch("Let him off at the next port")),                                               //+1 journey
     "Lashing Waves: A Tiny Coral Island" -> Play(_.chooseBranch("Record it and move on"))                                               //+1 journey, +1 troubled - better with zub

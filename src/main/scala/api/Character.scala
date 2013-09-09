@@ -37,6 +37,11 @@ class Character(username: String, password: String) {
   def dangerous = parser.dangerous
   def persuasive = parser.persuasive
   
+  def nightmares = parser.qualities("Nightmares")
+  def suspicion = parser.qualities("Suspicion")
+  def wounds = parser.qualities("Wounds")
+  def scandal = parser.qualities("Scandal")
+  
   def items = parser.items
   def qualities = parser.qualities
   def opportunities = parser.opportunityIDs.keySet
