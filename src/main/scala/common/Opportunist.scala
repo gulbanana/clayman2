@@ -2,15 +2,18 @@ package common
 import api._
 
 class Opportunity(val discardIf: Character => Boolean, val actIf: Character => Boolean, val act: Character=>Unit = _ => throw new Exception("Unplayable card played"))
+object Opportunity {
+  val defaultAction = (c: Character) => if (!c.branches.isEmpty) c.chooseBranch()
+}
 
 object Hold extends Opportunity(_ => false, _ => false)
-case class HoldUntil(t: Character => Boolean, a: Character => Unit) extends Opportunity(_ => false, t, a)
+case class HoldUntil(t: Character => Boolean, a: Character => Unit = Opportunity.defaultAction) extends Opportunity(_ => false, t, a)
 
 object Discard extends Opportunity(_ => true, _ => false)
-case class DiscardUnless(t: Character => Boolean, a: Character => Unit = _.chooseBranch()) extends Opportunity(c => !t(c), t, a)
+case class DiscardUnless(t: Character => Boolean, a: Character => Unit = Opportunity.defaultAction) extends Opportunity(c => !t(c), t, a)
 
 case class Play(a: Character=>Unit) extends Opportunity(_ => false, _ => true, a)
-object Play extends Play(c => if (!c.branches.isEmpty) c.chooseBranch())
+object Play extends Play(Opportunity.defaultAction)
 
 class Opportunist(p: Map[String, Opportunity]) {
   private val playlist = p withDefaultValue Hold
