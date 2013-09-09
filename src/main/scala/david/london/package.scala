@@ -319,6 +319,7 @@ package object london {
     "A tournament of weasels!" -> Discard,                                               //50% chance of 2 smiles, 3cp docks, 5 rostygold
     "A parliament of bats" -> Play(_.chooseBranch("Release a bat into the cloud")),      //iirc variable but good rewards
     "Riding your Velocipede" -> Play(_.chooseBranch("The velocipede courier")),
+    "A Pleasant Day for a Ride" -> DiscardUnless(_.qualities("Suspicion") == 2),         //50% conn: soc and -suspicion
     "A library of your own" -> Play(_.chooseBranch("Diligent research")),                //50% 1.5E clues, 50% 1.05E stuff
     "All fear the Overgoat!" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Learn of the Overgoat")}), 
     "A Day with God's Editors" -> Play(c => {
