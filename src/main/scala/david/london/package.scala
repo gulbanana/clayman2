@@ -438,6 +438,10 @@ package object london {
         c.perhapsNot()                                                                                                                              //can trade cellars for airag, but there's no reason to do so and it costs 3 actions
         c.discardOpportunity("A presumptuous little opportunity")
       }
-    )
+    ),
+    "Back to the Palace cellars" -> HoldUntil(_.items("Drop of Prisoner's Honey") >= 100, implicit c => {
+      gear.watchful()
+      c.chooseBranch("Return with a gift")  //net 25 clues, 1 appalling, and 1 TOT - 1.15E
+    })
   ))
 }
