@@ -52,6 +52,7 @@ package object london {
     "As silent as the grave?" -> Discard,                                                                           //0.75E misc goods
     "The simple joys of villainy" -> Discard,                                                                       //21 or 36 beeswax  
     "A new piece in the Game" -> Discard,                                                                           //45 clues, narrow shadowy range
+    "Reeducating Lyme" -> Discard,                                                                                  //requires shadowy 180+ for a good chance  
     "The little people" -> Play(_.chooseBranch("Do your best for him")),                                            //80 pearls, 5 conn:crim, rare=bribe
     "Below the Neath" -> Play(implicit c => {gear.shadowy(); c.chooseBranch("Go and see what else you can find")}), //70 souls
     "Rob a library at the University" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()})                     //conn: rev and 15 proscribed
@@ -315,6 +316,7 @@ package object london {
   
   private val items = Map(
     "Lizardly matters" -> Discard,                                                       //50% chance of 4 memories of light, for 25 beeswax - <1E EV
+    "A tournament of weasels!" -> Discard,                                               //50% chance of 2 smiles, 3cp docks, 5 rostygold
     "A parliament of bats" -> Play(_.chooseBranch("Release a bat into the cloud")),      //iirc variable but good rewards
     "Riding your Velocipede" -> Play(_.chooseBranch("The velocipede courier")),
     "A library of your own" -> Play(_.chooseBranch("Diligent research")),                //50% 1.5E clues, 50% 1.05E stuff
