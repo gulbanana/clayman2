@@ -7,7 +7,7 @@ object Hold extends Opportunity(_ => false, _ => false)
 case class HoldUntil(t: Character => Boolean, a: Character => Unit) extends Opportunity(_ => false, t, a)
 
 object Discard extends Opportunity(_ => true, _ => false)
-case class DiscardUnless(t: Character => Boolean, a: Character => Unit) extends Opportunity(c => !t(c), t, a)
+case class DiscardUnless(t: Character => Boolean, a: Character => Unit = _.chooseBranch()) extends Opportunity(c => !t(c), t, a)
 
 case class Play(a: Character=>Unit) extends Opportunity(_ => false, _ => true, a)
 object Play extends Play(c => if (!c.branches.isEmpty) c.chooseBranch())
