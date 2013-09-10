@@ -50,7 +50,15 @@ object zailing {
     "A Corvette of Her Majesty's Navy" -> DiscardUnless(_.suspicion < 5, _.chooseBranch("Exchange pleasantries via semaphore")), //+1 journey, -1 troubled 
     "A Hazard to Shipping" -> Play(implicit c => {gear.watchful(); c.chooseBranch()}),                                                  //+? journey (1 or 2)
     "Lashing Waves: A Stowaway!" -> Play(_.chooseBranch("Let him off at the next port")),                                               //+1 journey
-    "Lashing Waves: A Tiny Coral Island" -> Play(_.chooseBranch("Record it and move on"))                                               //+1 journey, +1 troubled - better with zub
+    "Lashing Waves: A Tiny Coral Island" -> Play(_.chooseBranch("Record it and move on")),                                              //+1 journey, +1 troubled - better with zub
+    "Lashing Waves: A Shape in the Depths" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Take a closer look")})               //+? journey, +? troubled
+  )
+  
+  private val betterThanNothing = Map(
+    "Fury of the Unterzee: The Stone Pigs Cough" -> Discard,
+    "Fury of the Unterzee: A Blank Space on the Charts" -> Discard, //50% lose all progress and waters, 50% lose some waters
+    "Fury of the Unterzee: Hardship and Want" -> Play(_.chooseBranch("Let them eat pies")), //yacht yeah!
+    "Fury of the Unterzee: cold, calm waters" -> Play(implicit c => {gear.dangerous(); c.chooseBranch()}) //plated seal
   )
   
   private val allCards = justBad ++ lucrative ++ betterThanBold ++ betterThanPrudent 
@@ -58,12 +66,14 @@ object zailing {
   private val portCards = lucrative
   private val calmCards = lucrative ++ betterThanBold
   private val troubledCards = lucrative ++ betterThanBold ++ betterThanPrudent
+  private val furyCards = lucrative ++ betterThanBold ++ betterThanPrudent ++ betterThanNothing
   
   private def discardOtherThan(chosenCards: Map[String,Opportunity]) = allCards -- chosenCards.keySet
   
   lazy val opportunities_port = new Opportunist(portCards ++ discardOtherThan(portCards))
   lazy val opportunities_calm = new Opportunist(calmCards ++ discardOtherThan(calmCards))
   lazy val opportunities_troubled = new Opportunist(troubledCards ++ discardOtherThan(troubledCards))
+  lazy val opportunities_fury = new Opportunist(furyCards ++ discardOtherThan(furyCards))
   
   //southern archipelago - +1 journey, +2 troubled
   def archipelago_safe()(implicit c: Character) {
