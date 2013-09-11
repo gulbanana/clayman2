@@ -380,6 +380,7 @@ package object london {
   private val doubtStreet = Map(
     "The Illuminated Gentleman Takes the Stage" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}), //6 Salacious Copy
     "The Food You Eat" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                          //6 Meritorious Copy
+    "Another Day, Another Dreary Salon" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),         //6 Salacious Copy
     "A Gemstone to Shame Rajahs" -> Discard,                                                               //requires friend with Light Fingers
     "They Want to Hear of the Vake" -> Discard,                                                            //requires friend with Bag A Legend
     "Baying for Blood" -> Discard                                                                          //requires friend with Nemesis

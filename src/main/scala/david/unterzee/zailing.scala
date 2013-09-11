@@ -55,8 +55,10 @@ object zailing {
   )
   
   private val betterThanNothing = Map(
-    "Fury of the Unterzee: The Stone Pigs Cough" -> Discard,
+    "Fury of the Unterzee: The Stone Pigs Cough" -> Discard,  //50% lose some progress, 50% ??
+    "Fury of the Unterzee: Lost, Forever Lost" -> Play, //lose all waters, progress to 5
     "Fury of the Unterzee: A Blank Space on the Charts" -> Discard, //50% lose all progress and waters, 50% lose some waters
+    "Fury of the Unterzee: What are Those?" -> Discard, //50% lose all progress and waters, 50% lose some waters
     "Fury of the Unterzee: Hardship and Want" -> Play(_.chooseBranch("Let them eat pies")), //yacht yeah!
     "Fury of the Unterzee: cold, calm waters" -> Play(implicit c => {gear.dangerous(); c.chooseBranch()}) //plated seal
   )
