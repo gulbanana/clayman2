@@ -202,6 +202,7 @@ object keep {
     c.onwards()
   }
   
+  //?x ?, stone tentacle key!
   def DT9_well_fish()(implicit c: Character) {
     gear.dangerous()
     c.beginStorylet("Go to the well")

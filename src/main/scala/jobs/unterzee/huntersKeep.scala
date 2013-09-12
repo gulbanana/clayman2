@@ -24,6 +24,10 @@ object huntersKeep extends RepeatedJob {
       keep.T7_lucy()
     else 
       keep.T7_books()
+  } or (c.qualities("Time Passing in the Southern Archipelago") < 11) {
+    keep.T10_charades_lucy()
+  } or (c.qualities("Time Passing in the Southern Archipelago") == 11) {
+    keep.T11_lucy()
   }
   
   def tension(implicit c: Character) = did (c.qualities("Time Passing in the Southern Archipelago") < 7) {
@@ -36,6 +40,11 @@ object huntersKeep extends RepeatedJob {
       keep.DT7_dinner()
     else
       keep.DT7_cynthia()
+  } or (c.qualities("Time Passing in the Southern Archipelago") < 10) {
+    if (c.items("Stone Tentacle-Key") < 1)
+      keep.DT9_well_falls()
+    else 
+      keep.SDT9_well_net()
   }
   //with DT9 and no key, you can get a key; with DT9 and a key you can lose DT but gain 1000 glim  
 }
