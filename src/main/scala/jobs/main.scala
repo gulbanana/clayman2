@@ -10,6 +10,7 @@ object main extends BufferedJob {
     case Areas.BroadUnterzee => unterzee.southernArchipelago(c)
     case Areas.SeaOfVoices   => unterzee.seaOfVoices(c)
     case Areas.GruntingFen   => unterzee.gruntingFen(c)
+    case Areas.HuntersKeep   => unterzee.huntersKeep(c)
     case x if londonAreas(x) => london.standardGrind(c)
     case _                   => false
   } 
