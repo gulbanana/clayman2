@@ -102,7 +102,7 @@ package object london {
     "The Sleepless Tower" -> Play(_.chooseBranch("Spores and fangs")),                                                                              //dangerous t2 - 1 scrap
     "The Tower of Knives" -> Play(_.chooseBranch("Rough camaraderie")),                                                                             //shadowy t2 - 1 scrap
     "The Tower of Sleeping Giants" -> Play(c => c.chooseBranch(if (c.items("An Infernal Contract") < 100) "The owner" else "Examine the stock")),   //watchful t2 - 1 scrap
-    "The Tower of Eyes" -> HoldUntil(_.qualities("Connected: The Masters of the Bazaar") == 0, _.chooseBranch("Do a little promenading yourself")), //persuasive t2.5
+    "The Tower of Eyes" -> Hold,//HoldUntil(_.qualities("Connected: The Masters of the Bazaar") == 0, _.chooseBranch("Do a little promenading yourself")), //persuasive t2.5
     "The Heron Tower" -> Play(_.chooseBranch("Hunt down a huge lizard")),                                                                           //dangerous t2.5
     "The Listing Tower" -> Hold, //I think I'm too Dangerous to ever get this?                                                                      //dangerous t2.5
     "The Windward Tower" -> Play(_.chooseBranch("The cautious contact")),                                                                           //shadowy t2.5
@@ -320,9 +320,10 @@ package object london {
     "A parliament of bats" -> Play(_.chooseBranch("Release a bat into the cloud")),      //iirc variable but good rewards
     "Riding your Velocipede" -> Play(_.chooseBranch("The velocipede courier")),
     "A Pleasant Day for a Ride" -> DiscardUnless(_.suspicion == 2),         //50% conn: soc and -suspicion
+    "Your Corresponding Ocelot is listless" -> Hold, //"Rub his belly" gives Scholar, not sure about the other branch
+    "Your Dream-Hound" -> Hold, //"Have the beast guard your resting hours" = -nightmares
     "A library of your own" -> Play(_.chooseBranch("Diligent research")),                //50% 1.5E clues, 50% 1.05E stuff
     "All fear the Overgoat!" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Learn of the Overgoat")}),
-    "Your Corresponding Ocelot is listless" -> Hold, //"Rub his belly" gives Scholar, not sure about the other branch
     "A Day with God's Editors" -> Play(c => {
       if (c.scandal > 0 && c.nightmares > 0) 
         c.chooseBranch("Work diligently")                                                //-1cp of each and 5cp conn:church
@@ -401,7 +402,7 @@ package object london {
   private val SMEN = Map(
     "The Northbound Parliamentarian" -> Discard,                                                                   //3 appalling secrets and WTFC
     "Pass the Cat: a wriggling delivery" -> DiscardUnless(_.scandal > 0, _.chooseBranch("An elaborate strategy")), //-scandal, can get someone a cat box
-    "An ivied wall" -> Hold //+SMEN! -shadowy, -persuasive, +wounds
+    "An ivied wall" -> Hold //+SMEN! -dangerous, -shadowy, +wounds, +suspicion
   )
   
   val opportunities = new Opportunist(watchful ++ shadowy ++ dangerous ++ persuasive ++

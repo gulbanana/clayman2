@@ -38,12 +38,13 @@ object gear {
     c.equip("Irresistible Drum")
     c.equip("Masterwork Dancing Slippers")
     c.equip("Appreciation Society")
-    c.equip("The Sixth City Times (Newspaper)")
+    c.equip("A Salon")
   }
   
   def bizarre()(implicit c: Character) {
     c.equip("Fecund Amber Tiara")
     c.equip("Bejewelled Cane")
+    c.equip("A Salon")
   }
   
   def dreaded()(implicit c: Character) {
