@@ -321,7 +321,8 @@ package object london {
     "Riding your Velocipede" -> Play(_.chooseBranch("The velocipede courier")),
     "A Pleasant Day for a Ride" -> DiscardUnless(_.suspicion == 2),         //50% conn: soc and -suspicion
     "A library of your own" -> Play(_.chooseBranch("Diligent research")),                //50% 1.5E clues, 50% 1.05E stuff
-    "All fear the Overgoat!" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Learn of the Overgoat")}), 
+    "All fear the Overgoat!" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Learn of the Overgoat")}),
+    "Your Corresponding Ocelot is listless" -> Hold, //"Rub his belly" gives Scholar, not sure about the other branch
     "A Day with God's Editors" -> Play(c => {
       if (c.scandal > 0 && c.nightmares > 0) 
         c.chooseBranch("Work diligently")                                                //-1cp of each and 5cp conn:church
@@ -374,13 +375,15 @@ package object london {
   )
   
   private val wilmotsEnd = Map(
-    "Less fierce than he looks" -> Play
+    "Less fierce than he looks" -> Play,
+    "A New Move in the Game" -> Discard  //just gives Doing Business, +1cp - it uses watchful instead of shadowy but who cares
   )
   
   private val doubtStreet = Map(
-    "The Illuminated Gentleman Takes the Stage" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}), //6 Salacious Copy
-    "The Food You Eat" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                          //6 Meritorious Copy
-    "Another Day, Another Dreary Salon" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),         //6 Salacious Copy
+    "The Illuminated Gentleman Takes the Stage" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),    //6 Salacious Copy
+    "The Food You Eat" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                             //6 Meritorious Copy
+    "Another Day, Another Dreary Salon" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),            //6 Salacious Copy
+    "An Interview with a 'Foreign Office Insider'" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}), //6 Outlandish Copy
     "A Gemstone to Shame Rajahs" -> Discard,                                                               //requires friend with Light Fingers
     "They Want to Hear of the Vake" -> Discard,                                                            //requires friend with Bag A Legend
     "Baying for Blood" -> Discard                                                                          //requires friend with Nemesis
@@ -396,8 +399,9 @@ package object london {
   )
   
   private val SMEN = Map(
-    "The Northbound Parliamentarian" -> Discard,                                                                               //3 appalling secrets and WTFC
-    "Pass the Cat: a wriggling delivery" -> DiscardUnless(_.scandal > 0, _.chooseBranch("An elaborate strategy")) //-scandal, can get someone a cat box
+    "The Northbound Parliamentarian" -> Discard,                                                                   //3 appalling secrets and WTFC
+    "Pass the Cat: a wriggling delivery" -> DiscardUnless(_.scandal > 0, _.chooseBranch("An elaborate strategy")), //-scandal, can get someone a cat box
+    "An ivied wall" -> Hold //+SMEN! -shadowy, -persuasive, +wounds
   )
   
   val opportunities = new Opportunist(watchful ++ shadowy ++ dangerous ++ persuasive ++
