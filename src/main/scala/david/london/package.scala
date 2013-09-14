@@ -352,6 +352,12 @@ package object london {
     //"Mirrors and Clay" -> Play(implicit c => {gear.persuasive(); c.chooseBranch("Unfinished Men")}) //1 MODS, and Touched by Fingerwork, but 1 vision is 0.5E and touched doesn't seem useful anymore..
   )
   
+  //mostly i want to save up scraps for now - 160 starts getting you otherwise-unobtainable items
+  private val relickers = Map(
+    "The Shivering Relicker and Pinnock are Trundling By" -> Discard,                                                 //Wild Words
+    "A Gift from the Capering Relicker" -> Play(_.chooseBranch("For someone who has it all, or at least most of it")) //12E - the other options are 10E
+  )
+  
   private val affluentPhotographer = Map(
     "Investigating the Affluent Photographer" -> Discard, //i have better gear than this gives now
     "Revolution and Coffee" -> Discard                    //and have completed it both ways
@@ -406,7 +412,7 @@ package object london {
   )
   
   val opportunities = new Opportunist(watchful ++ shadowy ++ dangerous ++ persuasive ++
-                                      routes ++ lodgings ++ connections ++ conflicts ++ acquaintances ++ items ++ dreams ++
+                                      routes ++ lodgings ++ connections ++ conflicts ++ acquaintances ++ items ++ dreams ++ relickers ++
                                       affluentPhotographer ++ countingTheDays ++ wilmotsEnd ++ doubtStreet ++ tournamentOfLilies ++ tradeInSouls ++ SMEN ++ Map(
     "Weather at last" -> Discard,                                                    //quirks up to a point
     "Bringing the revolution" -> Discard,                                            //quirks up to 6 and 1cp shadowy
