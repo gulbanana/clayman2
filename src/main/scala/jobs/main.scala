@@ -27,6 +27,7 @@ object main extends BufferedJob {
     Areas.LadybonesRoad,
     Areas.Lodgings,
     Areas.MahoganyHall,
+    Areas.ShutteredPalace,
     Areas.Spite,
     Areas.TheFlit,
     Areas.University,

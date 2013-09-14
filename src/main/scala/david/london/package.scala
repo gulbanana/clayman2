@@ -454,6 +454,7 @@ package object london {
     "Back to the Palace cellars" -> HoldUntil(_.items("Drop of Prisoner's Honey") >= 100, implicit c => {
       gear.watchful()
       c.chooseBranch("Return with a gift")  //net 25 clues, 1 appalling, and 1 TOT - 1.15E
-    })
+    }),
+    "Miniature mausoleums" -> Hold  //arguably Watchful. probably specific to Palace. "Examine the inscriptions" gives 24 clues, i don't know what "A spot of grave-robbery" does yet 
   ))
 }
