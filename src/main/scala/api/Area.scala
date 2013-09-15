@@ -22,6 +22,7 @@ object Areas {
   val BazaarSideStreets = Area(31, "Bazaar Side-streets")
   val RoadsBeneath = Area(33, "Roads Beneath")
   val HouseOfChimes = Area(34, "The House of Chimes")
+  val FluteStreet = Area(35, "Flute Street")
   val BroadUnterzee = Area(36, "the Broad Unterzee")
   val HuntersKeep = Area(37, "Hunter's Keep")
   val WilmotsEnd = Area(42, "Wilmot's End")
@@ -53,6 +54,7 @@ object Areas {
     31 -> BazaarSideStreets,
     33 -> RoadsBeneath,
     34 -> HouseOfChimes,
+    35 -> FluteStreet,
     36 -> BroadUnterzee,
     37 -> HuntersKeep,
     42 -> WilmotsEnd,
