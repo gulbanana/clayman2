@@ -4,14 +4,15 @@ import common._
 
 object prison { 
   private def blacklist = Set(
-    "Voice from the oubliette" -> Discard,
+    "Voice from the oubliette"  -> Discard,
     "A Better Class of Villain" -> Discard, //social
-    "Promises of revenge" -> Discard,       //only 1 cp
-    "University of crime" -> Discard,       //+2cp shadowy but costs 2cp criminals and +1 suspicion
-    "Volunteer for bilge duty" -> Discard,  //-persuasive, -shadowy
-    "The talkative gaoler" -> Discard,      //only useful if you lose all criminals
-    "The screaming prisoner" -> Discard,    //only 1 cp
-    "Sent to the treadmill" -> Discard      //-shadowy
+    "Promises of revenge"       -> Discard, //only 1 cp
+    "University of crime"       -> Discard, //+2cp shadowy but costs 2cp criminals and +1 suspicion
+    "Volunteer for bilge duty"  -> Discard, //-persuasive, -shadowy
+    "The talkative gaoler"      -> Discard, //only useful if you lose all criminals
+    "The screaming prisoner"    -> Discard, //only 1 cp
+    "Sent to the treadmill"     -> Discard, //-shadowy
+    "Starvation day"            -> Discard  //+crim, +docks, -2 suspicion, -ALL MAIN QUALITIES - maybe use it if stat capped?
   )
   
   private def playlist = Map(

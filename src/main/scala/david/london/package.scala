@@ -391,6 +391,7 @@ package object london {
     "The Food You Eat" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                             //6 Meritorious Copy
     "Another Day, Another Dreary Salon" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),            //6 Salacious Copy
     "An Interview with a 'Foreign Office Insider'" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}), //6 Outlandish Copy
+    "The Cloaked Menace of Cake Street" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),            //6 Outlandish Copy
     "A Gemstone to Shame Rajahs" -> Discard,                                                               //requires friend with Light Fingers
     "They Want to Hear of the Vake" -> Discard,                                                            //requires friend with Bag A Legend
     "Baying for Blood" -> Discard                                                                          //requires friend with Nemesis
