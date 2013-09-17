@@ -264,6 +264,12 @@ package object london {
       else
         c.chooseBranch("Double-cross him")
     ),
+    "The Acacia and the Butterfly" -> Hold, //this is actually +30, -500! rewards might be good enough to play it occasionally
+/*      if (c.qualities("Connected: The Orient") <= c.qualities("Connected: The Docks"))
+        c.chooseBranch("Settle in the Orient’s favour")
+      else
+        c.chooseBranch("Make an agreement favouring the dock-gangs")
+    ),*/
     "A tavern dust-up" -> HoldUntil(_.items("Cryptic Clue") >= 10, c => {
       val faction = Set("Connected: The Constables", "Connected: The Church", "Connected: The Docks").min(Ordering.by(c.qualities))
       c.chooseBranch("Intervene to help the " + Map(
@@ -413,7 +419,7 @@ package object london {
   )
   
   val opportunities = new Opportunist(watchful ++ shadowy ++ dangerous ++ persuasive ++
-                                      routes ++ lodgings ++ connections ++ conflicts ++ acquaintances ++ items ++ dreams ++ relickers ++
+                                      routes ++ lodgings ++ /*connections ++*/ conflicts ++ acquaintances ++ items ++ dreams ++ relickers ++
                                       affluentPhotographer ++ countingTheDays ++ wilmotsEnd ++ doubtStreet ++ tournamentOfLilies ++ tradeInSouls ++ SMEN ++ Map(
     "Weather at last" -> Discard,                                                    //quirks up to a point
     "Bringing the revolution" -> Discard,                                            //quirks up to 6 and 1cp shadowy
