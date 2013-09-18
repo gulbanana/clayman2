@@ -468,6 +468,7 @@ package object london {
       gear.watchful()
       c.chooseBranch("Return with a gift")  //net 25 clues, 1 appalling, and 1 TOT - 1.15E
     }),
-    "Miniature mausoleums" -> Hold  //arguably Watchful. probably specific to Palace. "Examine the inscriptions" gives 24 clues, i don't know what "A spot of grave-robbery" does yet 
+    "Miniature mausoleums" -> Hold,  //arguably Watchful. probably specific to Palace. "Examine the inscriptions" gives 24 clues, i don't know what "A spot of grave-robbery" does yet
+    "Stealth watch repair" -> Play(_.chooseBranch("It's beneath his dignity, but...")) //55 brass, 25 pearls, 1 flawed diamond, 1 sapphire
   ))
 }
