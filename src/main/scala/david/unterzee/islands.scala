@@ -44,4 +44,8 @@ object islands {
     c.onwards()
     c.onwards()
   }
+  
+  def bullbone_T1()(implicit c: Character) {
+    
+  }
 }
