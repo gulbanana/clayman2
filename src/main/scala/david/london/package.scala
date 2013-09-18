@@ -325,8 +325,14 @@ package object london {
     "A tournament of weasels!" -> Discard,                                               //50% chance of 2 smiles, 3cp docks, 5 rostygold
     "A parliament of bats" -> Play(_.chooseBranch("Release a bat into the cloud")),      //iirc variable but good rewards
     "Riding your Velocipede" -> Play(_.chooseBranch("The velocipede courier")),
-    "A Pleasant Day for a Ride" -> DiscardUnless(_.suspicion == 2),         //50% conn: soc and -suspicion
-    "Your Corresponding Ocelot is listless" -> Hold, //"Rub his belly" gives Scholar, not sure about the other branch
+    "A Pleasant Day for a Ride" -> DiscardUnless(_.suspicion == 2),                      //50% conn: soc and -suspicion
+    "Your Corresponding Ocelot is listless" -> Play(c =>
+      if (c.scandal > 1) {
+        c.chooseBranch("Help him write a letter to Mr Huffam")                           //-scandal
+      } else {
+        c.chooseBranch("Rub his belly")                                                  //+scholar
+      }
+    ),
     "Your Dream-Hound" -> Hold, //"Have the beast guard your resting hours" = -nightmares
     "A library of your own" -> Play(_.chooseBranch("Diligent research")),                //50% 1.5E clues, 50% 1.05E stuff
     "All fear the Overgoat!" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Learn of the Overgoat")}),
@@ -419,7 +425,7 @@ package object london {
   )
   
   val opportunities = new Opportunist(watchful ++ shadowy ++ dangerous ++ persuasive ++
-                                      routes ++ lodgings ++ /*connections ++*/ conflicts ++ acquaintances ++ items ++ dreams ++ relickers ++
+                                      routes ++ lodgings ++ connections ++ conflicts ++ acquaintances ++ items ++ dreams ++ relickers ++
                                       affluentPhotographer ++ countingTheDays ++ wilmotsEnd ++ doubtStreet ++ tournamentOfLilies ++ tradeInSouls ++ SMEN ++ Map(
     "Weather at last" -> Discard,                                                    //quirks up to a point
     "Bringing the revolution" -> Discard,                                            //quirks up to 6 and 1cp shadowy
