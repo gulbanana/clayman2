@@ -33,3 +33,7 @@ object getRespectable extends Job {
 object getBDR extends Job {
   def work() = with_character(implicit c => gear.bdr())
 }
+
+object getBalanced extends Job {
+  def work() = with_character(implicit c => gear.balanced())
+}
