@@ -52,7 +52,8 @@ package object london {
     "As silent as the grave?" -> Discard,                                                                           //0.75E misc goods
     "The simple joys of villainy" -> Discard,                                                                       //21 or 36 beeswax  
     "A new piece in the Game" -> Discard,                                                                           //45 clues, narrow shadowy range
-    "Reeducating Lyme" -> Discard,                                                                                  //requires shadowy 180+ for a good chance  
+    "Reeducating Lyme" -> Discard,                                                                                  //requires shadowy 180+ for a good chance
+    "The Phantom of the Antimacassar" -> Play(_.chooseBranch("Become the Phantom!")),                                //5 diamond, 60 moonpearl
     "The little people" -> Play(_.chooseBranch("Do your best for him")),                                            //80 pearls, 5 conn:crim, rare=bribe
     "Below the Neath" -> Play(implicit c => {gear.shadowy(); c.chooseBranch("Go and see what else you can find")}), //70 souls
     "Rob a library at the University" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()})                     //conn: rev and 15 proscribed
@@ -154,7 +155,6 @@ package object london {
       c.chooseBranch("Spar with a Black Ribbon Duellist") 
     }),
     "Whispers from the Surface: The Great Game" -> DiscardUnless(_.qualities("Connected: The Great Game") >= 30, implicit c => {
-      gear.watchful()
       c.chooseBranch("Learn more at the carnival")
     }),
     "The Roof-Tops: Urchins" -> DiscardUnless(c => (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 30) || c.items("Lucky Weasel") >= 1, implicit c => {
@@ -334,6 +334,8 @@ package object london {
       }
     ),
     "Your Dream-Hound" -> Hold, //"Have the beast guard your resting hours" = -nightmares
+    "What Does One Do with a Bifurcated Owl?" -> Hold,                                   //"Send in a bold explorer" costs weasel and candle, 50%
+                                                                                         //success: +scholar, 10x appalling secret (1.5E)
     "A library of your own" -> Play(_.chooseBranch("Diligent research")),                //50% 1.5E clues, 50% 1.05E stuff
     "All fear the Overgoat!" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Learn of the Overgoat")}),
     "A Day with God's Editors" -> Play(c => {
@@ -466,9 +468,10 @@ package object london {
     ),
     "Back to the Palace cellars" -> HoldUntil(_.items("Drop of Prisoner's Honey") >= 100, implicit c => {
       gear.watchful()
-      c.chooseBranch("Return with a gift")  //net 25 clues, 1 appalling, and 1 TOT - 1.15E
+      c.chooseBranch("Return with a gift")                                              //net 25 clues, 1 appalling, and 1 TOT - 1.15E
     }),
-    "Miniature mausoleums" -> Hold,  //arguably Watchful. probably specific to Palace. "Examine the inscriptions" gives 24 clues, i don't know what "A spot of grave-robbery" does yet
-    "Stealth watch repair" -> Play(_.chooseBranch("It's beneath his dignity, but...")) //55 brass, 25 pearls, 1 flawed diamond, 1 sapphire - 1.04E
+    "Miniature mausoleums" -> Hold,                                                     //arguably Watchful. probably specific to Palace. "Examine the inscriptions" gives 24 clues, i don't know what "A spot of grave-robbery" does yet
+    "Stealth watch repair" -> Play(_.chooseBranch("It's beneath his dignity, but...")), //55 brass, 25 pearls, 1 flawed diamond, 1 sapphire - 1.04E
+    "A merry gentleman" -> Play(_.chooseBranch("Ignore the Merry Gentleman"))           //50% to reduce nightmares
   ))
 }
