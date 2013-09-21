@@ -53,7 +53,8 @@ package object london {
     "The simple joys of villainy" -> Discard,                                                                       //21 or 36 beeswax  
     "A new piece in the Game" -> Discard,                                                                           //45 clues, narrow shadowy range
     "Reeducating Lyme" -> Discard,                                                                                  //requires shadowy 180+ for a good chance
-    "The Phantom of the Antimacassar" -> Play(_.chooseBranch("Become the Phantom!")),                                //5 diamond, 60 moonpearl
+    "A fine day in the Flit" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                             //30 proscribed material, 1.2E
+    "The Phantom of the Antimacassar" -> Play(_.chooseBranch("Become the Phantom!")),                               //5 diamond, 60 moonpearl
     "The little people" -> Play(_.chooseBranch("Do your best for him")),                                            //80 pearls, 5 conn:crim, rare=bribe
     "Below the Neath" -> Play(implicit c => {gear.shadowy(); c.chooseBranch("Go and see what else you can find")}), //70 souls
     "Rob a library at the University" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()})                     //conn: rev and 15 proscribed

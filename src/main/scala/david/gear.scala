@@ -28,7 +28,7 @@ object gear {
   
   def dangerous()(implicit c: Character) {
     c.equip("Iron Hat")                         //+5 hat
-    c.equip("Gentleman's Athletic Support")     //+2 clothing
+    c.equip("Far Khanate Lacquered Armour")     //+8 clothing
     c.equip("Spiderchitin Gauntlets")           //+5 gloves
     c.equip("Ravenglass Knife")                 //+6 weapon
     c.equip("Kingscale Boots")                  //+6 boots
@@ -52,7 +52,7 @@ object gear {
   
   def bizarre()(implicit c: Character) {
     c.equip("Fecund Amber Tiara")               //+1 hat
-    //no clothing
+    c.equip("Far Khanate Lacquered Armour")     //+1 clothing
     //no gloves
     c.equip("Bejewelled Cane")                  //+1 weapon
     //no boots
@@ -99,7 +99,7 @@ object gear {
   
   def balanced()(implicit c: Character) {
     c.equip("Fecund Amber Tiara")               //+10 persuasive
-    c.equip("Ratskin Suit")                     //+6 shadowy, -1 persuasive
+    c.equip("Far Khanate Lacquered Armour")     //+8 dangerous, +4 persuasive
     c.equip("Insatiable Glove")                 //+8 watchful, -1 shadowy, +2 dangerous, -1 persuasive
     c.equip("Ravenglass Knife")                 //+6 dangerous
     c.equip("Kingscale Boots")                  //+8 shadowy, +6 dangerous
