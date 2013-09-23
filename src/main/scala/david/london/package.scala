@@ -335,8 +335,10 @@ package object london {
       }
     ),
     "Your Dream-Hound" -> Hold, //"Have the beast guard your resting hours" = -nightmares
-    "What Does One Do with a Bifurcated Owl?" -> Hold,                                   //"Send in a bold explorer" costs weasel and candle, 50%
+    "What Does One Do with a Bifurcated Owl?" -> Hold,                                   //"Send in a bold explorer" requires weasel and candle, 50%
                                                                                          //success: +scholar, 10x appalling secret (1.5E)
+                                                                                         //"Feeding time" requires 1x appalling secret
+                                                                                         //failure: +nightmares, 1x tale of terror
     "A library of your own" -> Play(_.chooseBranch("Diligent research")),                //50% 1.5E clues, 50% 1.05E stuff
     "All fear the Overgoat!" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Learn of the Overgoat")}),
     "A Day with God's Editors" -> Play(c => {
@@ -370,6 +372,8 @@ package object london {
   //mostly i want to save up scraps for now - 160 starts getting you otherwise-unobtainable items
   private val relickers = Map(
     "The Shivering Relicker and Pinnock are Trundling By" -> Discard,                                                 //Wild Words
+    "The Capering Relicker and Gulliver are Outside in the Street" -> Discard,                                        //Infernal
+    "The Coquettish Relicker and Mathilde are Making the Rounds" -> Discard,                                          //Rag Trade
     "A Gift from the Capering Relicker" -> Play(_.chooseBranch("For someone who has it all, or at least most of it")) //12E - the other options are 10E
   )
   
@@ -403,13 +407,14 @@ package object london {
   
   private val doubtStreet = Map(
     "The Illuminated Gentleman Takes the Stage" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),    //6 Salacious Copy
-    "The Food You Eat" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                             //6 Meritorious Copy
     "Another Day, Another Dreary Salon" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),            //6 Salacious Copy
+    "The Food You Eat" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                             //6 Meritorious Copy
+    "A Cancelled Salon" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                            //6 Meritorious Copy - 7 hours
     "An Interview with a 'Foreign Office Insider'" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}), //6 Outlandish Copy
     "The Cloaked Menace of Cake Street" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),            //6 Outlandish Copy
-    "A Gemstone to Shame Rajahs" -> Discard,                                                               //requires friend with Light Fingers
-    "They Want to Hear of the Vake" -> Discard,                                                            //requires friend with Bag A Legend
-    "Baying for Blood" -> Discard                                                                          //requires friend with Nemesis
+    "A Gemstone to Shame Rajahs" -> Discard,                                                                  //requires friend with Light Fingers
+    "They Want to Hear of the Vake" -> Discard,                                                               //requires friend with Bag A Legend
+    "Baying for Blood" -> Discard                                                                             //requires friend with Nemesis
   )
   
   private val tournamentOfLilies = Map(
