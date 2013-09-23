@@ -198,7 +198,7 @@ object convert {
   /* WILD WORDS */
   /**************/
   def shrieks_to_prayers()(implicit c: Character) {
-    c.useItem("Primordial Shrieks")
+    c.useItem("Primordial Shriek")
     c.chooseBranch("Let your shrieks loose on the Square of Lofty Words")
     c.onwards()
   } 
