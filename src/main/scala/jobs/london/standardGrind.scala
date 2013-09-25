@@ -17,7 +17,7 @@ object standardGrind extends OneManJob {
   }
   
   //For efficient convertibility, multiples of 10/50/25/62.5 echoes are required
-  private def stockpile(implicit c: Character) = farmGoods(20) || farmT1(20) || farmT2(50) || farmT3(50) || farmT4(25)
+  private def stockpile(implicit c: Character) = farmGoods(20) || farmT1(20) || farmT2(50) || farmT3(50)
   
   private def farmGoods(echoes: Int)(implicit c: Character) = did (c.items("Rostygold") < (100 * echoes)) {
     grind.rostygold()
@@ -116,6 +116,7 @@ object standardGrind extends OneManJob {
   }
   
   //strategic stockpiling, here - only some of the T4 stuff is regularly useful
+  //right now, none 
   private def farmT4(echoes: Int)(implicit c: Character) = did (c.items("Extraordinary Implication") < echoes / 2.5) {
     convert.journals_to_implications()
   } or (c.items("An Identity Uncovered") < echoes / 2.5) {
