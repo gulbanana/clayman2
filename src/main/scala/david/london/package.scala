@@ -322,6 +322,10 @@ package object london {
   )
   
   private val items = Map(
+    "What will you do with your Partisan Messenger Tortoise" -> Play(implicit c => {
+      gear.respectable()
+      c.chooseBranch("Set her to moonlighting")                                          //3x compromising document - 1.5E
+    }),
     "Lizardly matters" -> Discard,                                                       //50% chance of 4 memories of light, for 25 beeswax - <1E EV
     "A tournament of weasels!" -> Discard,                                               //50% chance of 2 smiles, 3cp docks, 5 rostygold
     "A parliament of bats" -> Play(_.chooseBranch("Release a bat into the cloud")),      //iirc variable but good rewards
@@ -339,8 +343,8 @@ package object london {
                                                                                          //success: +scholar, 10x appalling secret (1.5E)
                                                                                          //"Feeding time" requires 1x appalling secret
                                                                                          //failure: +nightmares, 1x tale of terror
-    "A library of your own" -> Play(_.chooseBranch("Diligent research")),                //50% 1.5E clues, 50% 1.05E stuff
     "All fear the Overgoat!" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Learn of the Overgoat")}),
+    "A library of your own" -> Play(_.chooseBranch("Diligent research")),                //50% 1.5E clues, 50% 1.05E stuff
     "A Day with God's Editors" -> Play(c => {
       if (c.scandal > 0 && c.nightmares > 0) 
         c.chooseBranch("Work diligently")                                                //-1cp of each and 5cp conn:church

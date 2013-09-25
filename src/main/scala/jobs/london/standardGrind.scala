@@ -115,6 +115,7 @@ object standardGrind extends OneManJob {
     convert.prayers_to_plaques()
   }
   
+  //strategic stockpiling, here - only some of the T4 stuff is regularly useful
   private def farmT4(echoes: Int)(implicit c: Character) = did (c.items("Extraordinary Implication") < echoes / 2.5) {
     convert.journals_to_implications()
   } or (c.items("An Identity Uncovered") < echoes / 2.5) {

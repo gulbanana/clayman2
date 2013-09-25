@@ -58,7 +58,7 @@ object gear {
     //no boots
     c.equip("Bifurcated Owl")                   //+2 pet
     c.equip("A Salon")                          //+1 affiliation
-    //no transport
+    c.equip("Clay Sedan Chair")                 //+2 transport
     //no home comfort
   }
   
