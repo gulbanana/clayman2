@@ -412,6 +412,7 @@ package object london {
   private val doubtStreet = Map(
     "The Illuminated Gentleman Takes the Stage" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),    //6 Salacious Copy
     "Another Day, Another Dreary Salon" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),            //6 Salacious Copy
+    "Fog Like a Velvet Curtain" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                    //6 Salacious Copy - 6 hours (hard!)
     "The Food You Eat" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                             //6 Meritorious Copy
     "A Cancelled Salon" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                            //6 Meritorious Copy - 7 hours
     "An Interview with a 'Foreign Office Insider'" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}), //6 Outlandish Copy
@@ -433,6 +434,7 @@ package object london {
   private val SMEN = Map(
     "The Northbound Parliamentarian" -> Discard,                                                                   //3 appalling secrets and WTFC
     "Pass the Cat: a wriggling delivery" -> DiscardUnless(_.scandal > 0, _.chooseBranch("An elaborate strategy")), //-scandal, can get someone a cat box
+    "A voice from a well" -> Discard,                           //5+cp of nightmares, 2 appalling secrets
     "An ivied wall" -> Hold //+SMEN! -dangerous, -shadowy, +wounds, +suspicion
   )
   
