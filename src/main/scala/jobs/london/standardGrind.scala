@@ -117,6 +117,7 @@ object standardGrind extends OneManJob {
   
   //strategic stockpiling, here - only some of the T4 stuff is regularly useful
   //right now, none 
+  //collated research: 10 for 50 MODS, or ?? at the side streets
   private def farmT4(echoes: Int)(implicit c: Character) = did (c.items("Extraordinary Implication") < echoes / 2.5) {
     convert.journals_to_implications()
   } or (c.items("An Identity Uncovered") < echoes / 2.5) {

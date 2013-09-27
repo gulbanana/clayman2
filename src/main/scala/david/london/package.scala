@@ -321,6 +321,19 @@ package object london {
     })
   )
   
+  private val dreams = Map(
+    //Walking the Falling Cities
+    "The Cities that Fell" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Ancient stories")}),          //with POSI, 3 visions
+    //Seeing Through the Eyes of Icarus
+    "Devices and desires" -> Play(implicit c => {gear.watchful(); c.chooseBranch("The trade in clocks")}),       //with POSI, 10 notions
+    "Rat Melancholy" -> Play(_.chooseBranch("Let her grieve in dignified silence")),                             //50 '82, 3cp rat sympathy
+    //Approaching the Gates of the Garden
+    "The Seekers of the Garden" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Leisurely enquiries")}), //3 MODS - 1.5E
+    //Touched by Fingerwork
+    "Mirrors and Clay" -> Discard
+    //"Mirrors and Clay" -> Play(implicit c => {gear.persuasive(); c.chooseBranch("Unfinished Men")}) //1 MODS, and Touched by Fingerwork, but 1 vision is 0.5E and touched doesn't seem useful anymore..
+  )
+  
   private val items = Map(
     "What will you do with your Partisan Messenger Tortoise" -> Play(implicit c => {
       gear.respectable()
@@ -329,8 +342,6 @@ package object london {
     "Lizardly matters" -> Discard,                                                       //50% chance of 4 memories of light, for 25 beeswax - <1E EV
     "A tournament of weasels!" -> Discard,                                               //50% chance of 2 smiles, 3cp docks, 5 rostygold
     "A parliament of bats" -> Play(_.chooseBranch("Release a bat into the cloud")),      //iirc variable but good rewards
-    "Riding your Velocipede" -> Play(_.chooseBranch("The velocipede courier")),
-    "A Pleasant Day for a Ride" -> DiscardUnless(_.suspicion == 2),                      //50% conn: soc and -suspicion
     "Your Corresponding Ocelot is listless" -> Play(c =>
       if (c.scandal > 1) {
         c.chooseBranch("Help him write a letter to Mr Huffam")                           //-scandal
@@ -357,21 +368,14 @@ package object london {
       } else {
         c.chooseBranch("Fall asleep in front of the fire")                               //secrets
       }
-    )
+    ),
+    "Riding your Velocipede" -> Play(_.chooseBranch("The velocipede courier")),
+    "A Pleasant Day for a Ride" -> DiscardUnless(_.suspicion == 2),                      //50% conn: soc and -suspicion
+    "A day out in your Clay Sedan Chair " -> Hold      
+    //"For a little sport": 200 foxfire candles, +ruthless, -magnanimous
+    //"To follow Jack's trail": 50% fail -Nightmares
   )
   
-  private val dreams = Map(
-    //Walking the Falling Cities
-    "The Cities that Fell" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Ancient stories")}),          //with POSI, 3 visions
-    //Seeing Through the Eyes of Icarus
-    "Devices and desires" -> Play(implicit c => {gear.watchful(); c.chooseBranch("The trade in clocks")}),       //with POSI, 10 notions
-    "Rat Melancholy" -> Play(_.chooseBranch("Let her grieve in dignified silence")),                             //50 '82, 3cp rat sympathy
-    //Approaching the Gates of the Garden
-    "The Seekers of the Garden" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Leisurely enquiries")}), //3 MODS - 1.5E
-    //Touched by Fingerwork
-    "Mirrors and Clay" -> Discard
-    //"Mirrors and Clay" -> Play(implicit c => {gear.persuasive(); c.chooseBranch("Unfinished Men")}) //1 MODS, and Touched by Fingerwork, but 1 vision is 0.5E and touched doesn't seem useful anymore..
-  )
   
   //mostly i want to save up scraps for now - 160 starts getting you otherwise-unobtainable items
   private val relickers = Map(
@@ -412,11 +416,13 @@ package object london {
   private val doubtStreet = Map(
     "The Illuminated Gentleman Takes the Stage" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),    //6 Salacious Copy
     "Another Day, Another Dreary Salon" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),            //6 Salacious Copy
-    "Fog Like a Velvet Curtain" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                    //6 Salacious Copy - 6 hours (hard!)
+    "Fog Like a Velvet Curtain" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                    //6 Salacious Copy - 6 hours 
     "The Food You Eat" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                             //6 Meritorious Copy
     "A Cancelled Salon" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                            //6 Meritorious Copy - 7 hours
+    "Your Day on Court Duty" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                       //6 Meritorious Copy - 4 hours
     "An Interview with a 'Foreign Office Insider'" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}), //6 Outlandish Copy
     "The Cloaked Menace of Cake Street" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),            //6 Outlandish Copy
+    "Why, it's Mr Clathermont" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                     //6 Outlandish Copy - 4 hours
     "A Gemstone to Shame Rajahs" -> Discard,                                                                  //requires friend with Light Fingers
     "They Want to Hear of the Vake" -> Discard,                                                               //requires friend with Bag A Legend
     "Baying for Blood" -> Discard                                                                             //requires friend with Nemesis
@@ -484,6 +490,7 @@ package object london {
     }),
     "Miniature mausoleums" -> Hold,                                                     //arguably Watchful. probably specific to Palace. "Examine the inscriptions" gives 24 clues, i don't know what "A spot of grave-robbery" does yet
     "Stealth watch repair" -> Play(_.chooseBranch("It's beneath his dignity, but...")), //55 brass, 25 pearls, 1 flawed diamond, 1 sapphire - 1.04E
-    "A merry gentleman" -> Play(_.chooseBranch("Ignore the Merry Gentleman"))           //50% to reduce nightmares
+    "A merry gentleman" -> Play(_.chooseBranch("Ignore the Merry Gentleman")),          //50% to reduce nightmares
+    "Give a Gift! A commotion in the Square of Lofty Words" -> DiscardUnless(_.qualities("Hedonist") >= 5, _.chooseBranch("'I myself am my only true friend!'"))  //second chances
   ))
 }
