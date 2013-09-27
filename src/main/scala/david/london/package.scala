@@ -350,10 +350,7 @@ package object london {
       }
     ),
     "Your Dream-Hound" -> Hold, //"Have the beast guard your resting hours" = -nightmares
-    "What Does One Do with a Bifurcated Owl?" -> Hold,                                   //"Send in a bold explorer" requires weasel and candle, 50%
-                                                                                         //success: +scholar, 10x appalling secret (1.5E)
-                                                                                         //"Feeding time" requires 1x appalling secret
-                                                                                         //failure: +nightmares, 1x tale of terror
+    "What Does One Do with a Bifurcated Owl?" -> Play(_.chooseBranch("Feeding Time")),   //+nightmares, tot, 50% of aeolian scream
     "All fear the Overgoat!" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Learn of the Overgoat")}),
     "A library of your own" -> Play(_.chooseBranch("Diligent research")),                //50% 1.5E clues, 50% 1.05E stuff
     "A Day with God's Editors" -> Play(c => {
