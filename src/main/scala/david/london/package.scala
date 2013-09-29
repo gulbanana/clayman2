@@ -494,6 +494,7 @@ package object london {
     "Miniature mausoleums" -> Hold,                                                     //arguably Watchful. probably specific to Palace. "Examine the inscriptions" gives 24 clues, i don't know what "A spot of grave-robbery" does yet
     "Stealth watch repair" -> Play(_.chooseBranch("It's beneath his dignity, but...")), //55 brass, 25 pearls, 1 flawed diamond, 1 sapphire - 1.04E
     "A merry gentleman" -> Play(_.chooseBranch("Ignore the Merry Gentleman")),          //50% to reduce nightmares
-    "Give a Gift! A commotion in the Square of Lofty Words" -> DiscardUnless(_.qualities("Hedonist") >= 5, _.chooseBranch("'I myself am my only true friend!'"))  //second chances
+    "Give a Gift! A commotion in the Square of Lofty Words" -> DiscardUnless(_.qualities("Hedonist") >= 5, _.chooseBranch("'I myself am my only true friend!'")), //second chances
+    "2000 Foxfire Candles wanted! Will pay handsomely!" -> Discard                      //no net loss but costly to grind 
   ))
 }
