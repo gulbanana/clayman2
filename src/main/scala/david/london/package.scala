@@ -115,7 +115,12 @@ package object london {
   )
   
   private val connections = Map(
-    "Gunpowder and Zeal: the Revolutionaries" -> Play(_.chooseBranch("Taking a walk down gin lane")),        //counting the days
+    "Gunpowder and Zeal: the Revolutionaries" -> DiscardUnless(c => c.qualities("Counting the Days") < 14 || c.dangerous < 175, c => {
+      if (c.qualities("Counting the Days") < 14)
+        c.chooseBranch("Taking a walk down gin lane")
+      else
+        c.chooseBranch("And now... bombs!")
+    }),        
     "Altars and alms-houses: the Church" -> DiscardUnless(c => c.qualities("Connected: The Church") >= 30 || c.items("Rostygold") >= 10, c =>
       if (c.qualities("Connected: The Church") >= 30)
         c.chooseBranch("Attend a private lecture given by the Bishop of Southwark")
