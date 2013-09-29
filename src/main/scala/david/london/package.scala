@@ -36,14 +36,13 @@ package object london {
   
   private val shadowy = Map(
     "Help a spy distract an inconvenient tail" -> Discard,                                                          //36 jade
-    "A meeting of cats" -> Discard,                                                                                 //24 clues, never 100%
     "Stark villainy" -> Discard,                                                                                    //36 rostygold
     "The ever-present and invisible servantry" -> Discard,                                                          //<0.4E stuff
-    "Rob a Brass Embassy courier" -> Discard,                                                                       //15 proscribed material
-    "Rob a Brass Embassy courier" -> Discard,                                                                       //15 proscribed, never 100%
+    "A meeting of cats" -> Discard,                                                                                 //24 clues, never 100%
+    "Rob a Brass Embassy courier" -> Discard,                                                                       //15 proscribed material (0.6E)
     "Robbing the Ambassador's ball" -> Discard,                                                                     //34 clues or 84 amber
-    "A squire of the Flit" -> Discard,                                                                              //max shadowy 106, not 100%
     "Memoirs of a butler" -> Discard,                                                                               //narrow shadowy range, 84 glim
+    "A squire of the Flit" -> Discard,                                                                              //max shadowy 106, not 100%
     "Spy on the Black Ribbon" -> Discard,                                                                           //caps too low- a recipe for suspicion
     "Work the carnival" -> Discard,                                                                                 //12 4th relics
     "The marvellous contrivance" -> Discard,                                                                        //69 candles or 84 jade, never 100%
@@ -53,6 +52,7 @@ package object london {
     "The simple joys of villainy" -> Discard,                                                                       //21 or 36 beeswax  
     "A new piece in the Game" -> Discard,                                                                           //45 clues, narrow shadowy range
     "Reeducating Lyme" -> Discard,                                                                                  //requires shadowy 180+ for a good chance
+    "Revisit the Theosophisticals" -> Discard,                                                                      //"Make your own" is 1.3E but too low a success chance for now
     "A fine day in the Flit" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                             //30 proscribed material, 1.2E
     "The Phantom of the Antimacassar" -> Play(_.chooseBranch("Become the Phantom!")),                               //5 diamond, 60 moonpearl
     "The little people" -> Play(_.chooseBranch("Do your best for him")),                                            //80 pearls, 5 conn:crim, rare=bribe
@@ -326,7 +326,7 @@ package object london {
     "The Cities that Fell" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Ancient stories")}),          //with POSI, 3 visions
     //Seeing Through the Eyes of Icarus
     "Devices and desires" -> Play(implicit c => {gear.watchful(); c.chooseBranch("The trade in clocks")}),       //with POSI, 10 notions
-    "Rat Melancholy" -> Play(_.chooseBranch("Let her grieve in dignified silence")),                             //50 '82, 3cp rat sympathy
+    "Rat Melancholy" -> Discard,//Play(_.chooseBranch("Let her grieve in dignified silence")),                   //50 '82, 3cp rat sympathy
     //Approaching the Gates of the Garden
     "The Seekers of the Garden" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Leisurely enquiries")}), //3 MODS - 1.5E
     //Touched by Fingerwork
@@ -370,6 +370,7 @@ package object london {
     "A Pleasant Day for a Ride" -> DiscardUnless(_.suspicion == 2),                      //50% conn: soc and -suspicion
     "A day out in your Clay Sedan Chair " -> Hold      
     //"For a little sport": 200 foxfire candles, +ruthless, -magnanimous
+    //"To make a point of treating them well": +steadfast and +magnanimous if <= 5, +small conn: soc
     //"To follow Jack's trail": 50% fail -Nightmares
   )
   

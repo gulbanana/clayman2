@@ -6,12 +6,12 @@ object grind {
   /*********/
   /* GOODS */
   /*********/
-  //+100 amber
+  //+112 amber
   def deep_amber()(implicit c: Character) {
-    gear.persuasive()
-    c.travel(Areas.Veilgarden)
-    c.beginStorylet("Unfinished Business in Veilgarden")
-    c.chooseBranch("Get in on a card game")
+    gear.shadowy()
+    c.travel(Areas.MahoganyHall)
+    c.beginStorylet("Work for Jasper and Frank")
+    c.chooseBranch("Fire-raising")
     c.onwards()
   }
   
@@ -24,16 +24,17 @@ object grind {
     c.onwards()
   }
   
-  //+100 pearls 
+  //+108 pearls 
   def moon_pearls()(implicit c: Character) {
-    gear.dangerous()
-    c.travel(Areas.WatchmakersHill)
-    c.beginStorylet("Unfinished Business in Watchmaker's Hill")
-    c.chooseBranch("A spot of footpadry")
+    gear.shadowy()
+    c.travel(Areas.MahoganyHall)
+    c.beginStorylet("Box Office Burglary")
+    c.chooseBranch("Be daring!")
     c.onwards()
   }
   
   //+550 brass for 5 actions 
+  //mahogany hall gives 1.16 instead of 1.1, but at the cost of 5cp connected:criminals
   def nevercold_brass_slivers()(implicit c: Character) {
     gear.watchful()
     c.travel(Areas.LadybonesRoad)
@@ -96,12 +97,12 @@ object grind {
   /***************/
   /* CARTOGRAPHY */
   /***************/
-  //+100 glim
+  //+108 glim
   def glim()(implicit c: Character) {
     gear.shadowy()
-    c.travel(Areas.Spite)
-    c.beginStorylet("Unfinished Business in Spite")
-    c.chooseBranch("Rob a glim shipment")
+    c.travel(Areas.MahoganyHall)
+    c.beginStorylet("The cutthroat world of advertising")
+    c.chooseBranch("Sabotage the Imperial Opera's bills")
     c.onwards()
   }
 
