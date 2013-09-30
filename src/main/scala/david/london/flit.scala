@@ -180,7 +180,7 @@ object flit {
   def steal_journals_of_infamy()(implicit c: Character) {
     c.travel(Areas.TheFlit)
     c.beginStorylet("Thefts of Particular Character")
-    c.chooseBranch("Steal Journals of Infamy from an Iniquitous Solicitor ")
+    c.chooseBranch("Steal Journals of Infamy from an Iniquitous Solicitor")
     c.onwards()    
   }
   //XXX probably 5 brandy
