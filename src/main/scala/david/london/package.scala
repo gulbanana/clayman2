@@ -270,12 +270,6 @@ package object london {
       else
         c.chooseBranch("Double-cross him")
     ),
-    "The Acacia and the Butterfly" -> Hold, //this is actually +30, -500! rewards might be good enough to play it occasionally
-/*      if (c.qualities("Connected: The Orient") <= c.qualities("Connected: The Docks"))
-        c.chooseBranch("Settle in the Orient’s favour")
-      else
-        c.chooseBranch("Make an agreement favouring the dock-gangs")
-    ),*/
     "A tavern dust-up" -> HoldUntil(_.items("Cryptic Clue") >= 10, c => {
       val faction = Set("Connected: The Constables", "Connected: The Church", "Connected: The Docks").min(Ordering.by(c.qualities))
       c.chooseBranch("Intervene to help the " + Map(
@@ -300,6 +294,7 @@ package object london {
         "Connected: Urchins" -> "Assist the Urchin"
       )(faction))
     })
+    //"The Acacia and the Butterfly" - this is actually +30, -500! rewards are good, but safer is to use it for the Affair of the Box
   )
   
   private val acquaintances = Map(
@@ -431,6 +426,12 @@ package object london {
     "Baying for Blood" -> Discard                                                                             //requires friend with Nemesis
   )
   
+  private val affairOfTheBox = Map(
+    "The Acacia and the Butterfly" -> DiscardUnless(c => c.qualities("A Boxful of Intrigue") < 13, c => {
+      c.chooseBranch("Bring in the neddy men")
+    })
+  )
+  
   private val tournamentOfLilies = Map(
     "Where did that come from?" -> Discard,       //50 rostygold or start the tournament
     "The Noted Orchid-Grower consults" -> Discard //requires fate for small payoff
@@ -449,7 +450,7 @@ package object london {
   
   val opportunities = new Opportunist(watchful ++ shadowy ++ dangerous ++ persuasive ++
                                       routes ++ lodgings ++ connections ++ conflicts ++ acquaintances ++ items ++ dreams ++ relickers ++
-                                      affluentPhotographer ++ countingTheDays ++ wilmotsEnd ++ doubtStreet ++ tournamentOfLilies ++ tradeInSouls ++ SMEN ++ Map(
+                                      affluentPhotographer ++ countingTheDays ++ wilmotsEnd ++ doubtStreet ++ affairOfTheBox ++ tournamentOfLilies ++ tradeInSouls ++ SMEN ++ Map(
     "Weather at last" -> Discard,                                                    //quirks up to a point
     "Bringing the revolution" -> Discard,                                            //quirks up to 6 and 1cp shadowy
     "A street-cart is selling Fourth City Rags" -> Discard,                          //i do not rags
