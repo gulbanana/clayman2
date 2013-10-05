@@ -70,4 +70,26 @@ object Areas {
   ) withDefault(i => { println("WARNING: unknown areaid %d".format(i)); Area(i, "Unknown Area")})
   
   def apply(id: Int) = byID(id)
+  
+  val london = Set(
+    BazaarSideStreets,
+    Carnival,
+    DoubtStreet,
+    ForeignOffice,
+    ForgottenQuarter,
+    GamekeepersCottage,
+    HouseOfChimes,
+    LabyrinthOfTigers,
+    LadybonesRoad,
+    Lodgings,
+    MahoganyHall,
+    ShutteredPalace,
+    Spite,
+    TheFlit,
+    University,
+    Veilgarden,
+    WatchmakersHill,
+    WilmotsEnd,
+    WolfstackDocks
+  ) 
 }

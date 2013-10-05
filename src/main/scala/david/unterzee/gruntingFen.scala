@@ -1,7 +1,7 @@
-package jobs.unterzee
+package david.unterzee
 import api._
 import common._
-import david.unterzee._
+import david._
 
 object gruntingFen extends RepeatedJob {
   def apply(implicit c: Character) = did (c.qualities("Orthos is Coming!") < 4) {

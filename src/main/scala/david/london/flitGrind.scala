@@ -1,7 +1,7 @@
-package jobs.london
+package david.london
 import api._
 import common._
-import david._, london._
+import david._
 
 object flitGrind extends BufferedJob {
   def apply(implicit c: Character) = avertMenaces.apply || playCards.apply || prep || stealContracts || stealMysteries || stealSouls or stealTales

@@ -1,7 +1,7 @@
-package jobs.london
+package david.london
 import api._
 import common._
-import david._, london._
+import david._
 
 //hang around the court grinding
 object courtGrind extends BufferedJob {

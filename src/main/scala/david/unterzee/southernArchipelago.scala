@@ -1,15 +1,17 @@
-package jobs.unterzee
+package david.unterzee
 import api._
 import common._
-import david.unterzee._
+import david._
 
-object seaOfVoices extends RepeatedJob {
+object southernArchipelago extends RepeatedJob {
   def apply(implicit c: Character) = {
     if (c.qualities("Approaching Journey's End") < 9) {
       if (c.qualities("Troubled Waters") < 9) {
-        zailing.opportunities_calm.played() or zailing.voices_fast()
+        zailing.opportunities_calm.played() or zailing.archipelago_fast()
+      } else if (c.qualities("Troubled Waters") < 11) {
+        zailing.opportunities_troubled.played() or zailing.archipelago_safe()
       } else {
-        zailing.opportunities_troubled.played() or zailing.voices_safe()
+        zailing.opportunities_fury.played()
       }
     } else {
       zailing.opportunities_port.played() or (c.items("Tale of Terror!!") > 0) {

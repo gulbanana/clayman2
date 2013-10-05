@@ -1,8 +1,7 @@
-package jobs.unterzee
+package david.unterzee
 import api._
 import common._
-import david.gear
-import david.unterzee._
+import david._
 
 object bullboneIsland extends OneManJob {
   def apply(implicit c: Character) = {

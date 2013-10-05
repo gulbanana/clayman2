@@ -1,4 +1,4 @@
-package jobs
+package david
 import api._
 import common._
 import david._
@@ -13,29 +13,7 @@ object main extends BufferedJob {
     case Areas.BullboneIsland => unterzee.bullboneIsland(c)
     case Areas.GruntingFen    => unterzee.gruntingFen(c)
     case Areas.HuntersKeep    => unterzee.huntersKeep(c)
-    case x if londonAreas(x)  => london.standardGrind(c)
+    case x if Areas.london(x) => london.standardGrind(c)
     case _                    => false
   } 
-  
-  private val londonAreas = Set(
-    Areas.BazaarSideStreets,
-    Areas.Carnival,
-    Areas.DoubtStreet,
-    Areas.ForeignOffice,
-    Areas.ForgottenQuarter,
-    Areas.GamekeepersCottage,
-    Areas.HouseOfChimes,
-    Areas.LabyrinthOfTigers,
-    Areas.LadybonesRoad,
-    Areas.Lodgings,
-    Areas.MahoganyHall,
-    Areas.ShutteredPalace,
-    Areas.Spite,
-    Areas.TheFlit,
-    Areas.University,
-    Areas.Veilgarden,
-    Areas.WatchmakersHill,
-    Areas.WilmotsEnd,
-    Areas.WolfstackDocks
-  )
 }

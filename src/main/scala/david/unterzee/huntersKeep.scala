@@ -1,7 +1,7 @@
-package jobs.unterzee
+package david.unterzee
 import api._
 import common._
-import david.unterzee._
+import david._
 
 //all actions give +2cp time passing 
 //at most stages you can choose from a selection of >1E worth of lower-tier items, or 1E of higher-tier - sometimes more
