@@ -1,4 +1,5 @@
 package common
+import scala.language.implicitConversions
 import api.Character
 
 trait CharacterProvider {
