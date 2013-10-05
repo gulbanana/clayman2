@@ -7,17 +7,32 @@ object raiseStats extends RepeatedJob {
     val stats = Set(c.watchful, c.shadowy, c.dangerous, c.persuasive)
 
     if (c.watchful == stats.min)
-      raiseWatchful
+      raiseWatchful(c)
     else if (c.shadowy == stats.min)
-      raiseShadowy
+      raiseShadowy(c)
     else if (c.dangerous == stats.min)
-      raiseDangerous
+      raiseDangerous(c)
     else
-      raisePersuasive
+      raisePersuasive(c)
   }
 
-  private def raiseWatchful = false
-  private def raiseShadowy = false
-  private def raiseDangerous = false
-  private def raisePersuasive = false
+  private def raiseWatchful(c: Character) = {
+    c.travel(Areas.LadybonesRoad)
+    false
+  }
+  
+  private def raiseShadowy(c: Character) = {
+    c.travel(Areas.Spite)
+    false
+  }
+  
+  private def raiseDangerous(c: Character) = {
+    c.travel(Areas.WatchmakersHill)
+    false
+  }
+  
+  private def raisePersuasive(c: Character) = {
+    c.travel(Areas.Veilgarden)
+    false
+  }
 }
