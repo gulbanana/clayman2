@@ -312,12 +312,22 @@ package object london {
     }),
     "A Visit" -> Play(c => {
       val friend = Set("Acquaintance: a Repentant Forger", "Acquaintance: Regretful Soldier", "Acquaintance: Sardonic Music-Hall Singer", "Acquaintance: Wry Functionary").min(Ordering.by(c.qualities))
-      c.chooseBranch(Map(
-        "Acquaintance: a Repentant Forger" -> "The Repentant Forger",
-        "Acquaintance: Regretful Soldier" -> "Visit the Regretful Soldier",
-        "Acquaintance: Sardonic Music-Hall Singer" -> "Visit the Sardonic Music-Hall Singer",
-        "Acquaintance: Wry Functionary" -> "Visit the Wry Functionary"
-      )(friend))
+      (Map(
+        "Acquaintance: a Repentant Forger" -> (() => {
+          c.chooseBranch("The Repentant Forger")
+          if (c.branches.contains("Take him to the theatre"))
+            c.chooseBranch("Take him to the theatre")
+          else
+            c.chooseBranch("Visit him in his lodgings")
+        }),
+        "Acquaintance: Regretful Soldier" -> (() => {
+          c.chooseBranch("Visit the Regretful Soldier")
+        }),
+        "Acquaintance: Sardonic Music-Hall Singer" -> (() => {
+          c.chooseBranch("Visit the Sardonic Music-Hall Singer")
+        }),
+        "Acquaintance: Wry Functionary" -> (() => c.chooseBranch("Visit the Wry Functionary"))
+      )(friend))()
     })
   )
   
