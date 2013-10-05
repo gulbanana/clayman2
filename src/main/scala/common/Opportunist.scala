@@ -15,8 +15,8 @@ case class DiscardUnless(t: Character => Boolean, a: Character => Unit = Opportu
 case class Play(a: Character=>Unit) extends Opportunity(_ => false, _ => true, a)
 object Play extends Play(Opportunity.defaultAction)
 
-class Opportunist(p: Map[String, Opportunity]) {
-  private val playlist = p withDefaultValue Hold
+class Opportunist(p: Map[String, Opportunity], default: Opportunity = Hold) {
+  private val playlist = p withDefaultValue default
   
   //grind through discards as far as possible
   def mill()(implicit c: Character) = do {

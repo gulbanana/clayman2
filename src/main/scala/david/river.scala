@@ -12,13 +12,13 @@ object river {
   
   //-1cp - not worthwhile compared to chess
   private def m1 = Map(
-    "Stare at the shore of the living world" -> Discard,
-    "Recall scenes from Ladybones Road" -> Discard,
-    "Recall the noise and life of Spite" -> Discard,
-    "Recall the rough camaraderie of Watchmaker's Hill" -> Discard, 
-    "Recall the glitter of the Shuttered Palace" -> Discard, 
-    "Remember the Flit" -> Discard,
-    "Remember where you fell" -> Discard 
+    "Stare at the shore of the living world" -> Play,
+    "Recall scenes from Ladybones Road" -> Play,
+    "Recall the noise and life of Spite" -> Play,
+    "Recall the rough camaraderie of Watchmaker's Hill" -> Play, 
+    "Recall the glitter of the Shuttered Palace" -> Play, 
+    "Remember the Flit" -> Play,
+    "Remember where you fell" -> Play 
   )
   
   //play these sometimes to avoid raising boatman's opponent too high
@@ -28,7 +28,7 @@ object river {
     "Pilfer a few breaths from another passenger" -> Play  //-2cp 
   )
   
-  val opportunities = new Opportunist(m2.withDefault(_ => Discard))
+  val opportunities = new Opportunist(m2, default = Discard)
   
   def reduce_wounds()(implicit c: Character) = {
     gear.watchful()
