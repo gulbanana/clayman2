@@ -378,10 +378,10 @@ package object london {
     ),
     "Riding your Velocipede" -> Play(_.chooseBranch("The velocipede courier")),
     "A Pleasant Day for a Ride" -> DiscardUnless(_.suspicion == 2),                      //50% conn: soc and -suspicion
-    "A day out in your Clay Sedan Chair " -> Hold      
+    "A day out in your Clay Sedan Chair " -> Play(_.chooseBranch("To follow Jack's trail"))      
     //"For a little sport": 200 foxfire candles, +ruthless, -magnanimous
     //"To make a point of treating them well": +steadfast and +magnanimous if <= 5, +small conn: soc
-    //"To follow Jack's trail": 50% fail -Nightmares
+    //"To follow Jack's trail": 50% -Nightmares; 50% +nightmares and 1.95E secrets; rare for 25E!
   )
   
   
@@ -418,6 +418,7 @@ package object london {
   
   private val wilmotsEnd = Map(
     "Less fierce than he looks" -> Play,
+    "A Dream about a Missing Woman" -> Play, //1cp or 2cp Missing Woman, 50%
     "A New Move in the Game" -> Discard  //just gives Doing Business, +1cp - it uses watchful instead of shadowy but who cares
   )
   
@@ -452,10 +453,13 @@ package object london {
   )
   
   private val SMEN = Map(
-    "The Northbound Parliamentarian" -> Discard,                                                                   //3 appalling secrets and WTFC
-    "Pass the Cat: a wriggling delivery" -> DiscardUnless(_.scandal > 0, _.chooseBranch("An elaborate strategy")), //-scandal, can get someone a cat box
-    "A voice from a well" -> Discard,                           //5+cp of nightmares, 2 appalling secrets
-    "An ivied wall" -> Hold //+SMEN! -dangerous, -shadowy, +wounds, +suspicion
+      "Pass the Cat: a wriggling delivery" -> DiscardUnless(_.scandal > 0, _.chooseBranch("An elaborate strategy")), //-scandal, can get someone a cat box
+    "The Northbound Parliamentarian" -> Discard, //3 appalling secrets and WTFC
+    "A voice from a well" -> Discard,            //5+cp of nightmares, 2 appalling secrets
+    "An ivied wall" -> Hold,                     //+SMEN! -dangerous, -shadowy, +wounds, +suspicion
+    "The Body and the Number" -> Hold,
+    "The Mind and the Number" -> Hold,
+    "The Soul and the Number" -> Hold
   )
   
   val opportunities = new Opportunist(watchful ++ shadowy ++ dangerous ++ persuasive ++
@@ -507,6 +511,7 @@ package object london {
     "A merry gentleman" -> Play(_.chooseBranch("Ignore the Merry Gentleman")),          //50% to reduce nightmares
     "Give a Gift! A commotion in the Square of Lofty Words" -> DiscardUnless(_.qualities("Hedonist") >= 5, _.chooseBranch("'I myself am my only true friend!'")), //second chances
     "2000 Foxfire Candles wanted! Will pay handsomely!" -> Discard,                     //no net loss but costly to grind
-    "A Polite Invitation" -> Discard                                                    //party is fun but been there done that
+    "A Polite Invitation" -> Discard,                                                   //party is fun but been there done that
+    "A visit from Slowcake's Amanuensis" -> Discard                                     //not trying to grind notability
   ))
 }
