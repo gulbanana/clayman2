@@ -75,7 +75,16 @@ object flit {
     c.onwards()    
   }
   
-  def casing_optimal()(implicit c: Character) = casing7()
+  //5 actions, 18cp, requires GoH - also 167 shadowy for 100%
+  def casing8()(implicit c: Character) {
+    david.gear.shadowy()
+    c.travel(Areas.TheFlit)
+    c.beginStorylet("Preparing for a Big Score")
+    c.chooseBranch("Set your gang of hoodlums to business")
+    c.onwards()
+  }
+  
+  def casing_optimal()(implicit c: Character) = casing8()
 
   //casing 3, 100%
   //+10cp criminals, +10cp shadowy

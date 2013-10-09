@@ -21,7 +21,7 @@ object gear {
     c.equip("Poison-tipped Umbrella")           //+8 weapon
     c.equip("Kingscale Boots")                  //+8 boots
     c.equip("Devious Raven Advisor")            //+7 pet
-    //no affiliation
+    c.equip("Gang of Hoodlums")                 //+1 affiliation
     //no transport
     //no home comfort
   }
@@ -68,7 +68,7 @@ object gear {
     //no gloves
     c.equip("Kingscale Boots")                  //+1 boots
     c.equip("Bifurcated Owl")                   //+2 pet
-    //no affiliation
+    c.equip("Gang of Hoodlums")                 //+2 affiliation
     c.equip("Obdurate Stallion")                //+2 transport
     //no home comfort
   }
