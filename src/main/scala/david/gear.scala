@@ -18,7 +18,7 @@ object gear {
     c.equip("Sneak-Thief's Mask")               //+5 hat
     c.equip("Ratskin Suit")                     //+6 clothing
     c.equip("Cracksman's Mittens")              //+5 gloves
-    c.equip("Kifers")                           //+3 weapon
+    c.equip("Poison-tipped Umbrella")           //+8 weapon
     c.equip("Kingscale Boots")                  //+8 boots
     c.equip("Devious Raven Advisor")            //+7 pet
     //no affiliation
@@ -30,7 +30,7 @@ object gear {
     c.equip("Iron Hat")                         //+5 hat
     c.equip("Far Khanate Lacquered Armour")     //+8 clothing
     c.equip("Spiderchitin Gauntlets")           //+5 gloves
-    c.equip("Ravenglass Knife")                 //+6 weapon
+    c.equip("Infernal Sharpshooter's Rifle")    //+10 weapon
     c.equip("Kingscale Boots")                  //+6 boots
     c.equip("Rattus Faber Bandit-Chief")        //+8 pet
     //no affiliation
