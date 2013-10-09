@@ -7,7 +7,7 @@ object cards {
     "Cleaning up the neighbourhood" -> Discard,                                             //watchful 9
     "An unsolved riddle" -> Discard,                                                        //watchful 9
     "Divining the dirigibles" -> Discard,                                                   //watchful 21
-    "The devil's parrot" -> Discard,                                                        //watchful 21
+    "The devil’s parrot" -> Discard,                                                        //watchful 21
     "Panning the Unterzee" -> Discard,                                                      //watchful 21
     "Night duty at Concord Square" -> Discard,                                              //watchful 21
     "The secrets of rats" -> Discard,                                                       //watchful 21
@@ -15,6 +15,8 @@ object cards {
     "As silent as the grave?" -> Discard,                                                   //shadowy 45
     "Rob a Brass Embassy courier" -> Discard,                                               //shadowy 45
     "Rob a library at the University" -> Discard,                                           //shadowy 45
+    "Robbing the Ambassador's ball" -> Discard,                                             //shadowy 69
+    "For the people!" -> Discard,                                                           //dangerous 33
     "Academic discipline" -> Discard,                                                       //dangerous 45
     "A night at the carnival" -> Discard,                                                   //dangerous 45
     "Minding the detective" -> Discard,                                                     //dangerous 45
@@ -30,6 +32,8 @@ object cards {
     "Moving in rarefied circles" -> Discard,                                                //persuasive 21
     "After dinner speaking" -> Discard,                                                     //persuasive 33
     "Our forthright reporter" -> Discard,                                                   //persuasive 33
+    "Address the university" -> Discard,                                                    //persuasive 45
+    "Bricks and knives" -> Discard,                                                         //persuasive 45
     "Weather at last" -> Discard,                                                           //free of surface ties
     "The Northbound Parliamentarian" -> Discard,                                            //free of surface ties
     "Eavesdropping in the gardens" -> Discard,                                              //Cobblestone Rogues and Back-Alley Saints
@@ -37,6 +41,7 @@ object cards {
     "The Tower of Sparrows" -> DiscardUnless(_.items("Incendiary Gossip") >= 10),           //lodgings
     "The Sleepless Tower" -> DiscardUnless(_.items("Mystery of the Elder Continent") >= 8), //lodgings
     "The Heron Tower" -> Play(_.chooseBranch("Hunt down a huge lizard")),                   //lodgings
+    "The High Castle" -> DiscardUnless(_.items("Romantic Notion") >= 40),                   //lodgings
     "A visit" -> Discard,                                                                   //acq
     "Mr Wines is holding a sale!" -> Discard,
     "The Curt Relicker and Montgomery are Moving Quietly Past" -> Discard,  
@@ -56,7 +61,9 @@ object cards {
     "The Roof-Tops: Urchins" -> Discard,
     "Whispers from the Surface: The Great Game" -> Discard,
     "An implausible penance" -> Discard,
-    "An opportunity for profit" -> Discard
+    "An opportunity for profit" -> Discard,
+    "A tournament of weasels!" -> Discard,
+    "A merry gentleman" -> Play(_.chooseBranch("Ignore the Merry Gentleman"))
   )
   
   val dreams = Map(
@@ -73,20 +80,23 @@ object cards {
     "A dream about a familiar face" -> Play(_.chooseBranch("A familiar, paint-splattered figure")),
     "A dream about a cave" -> Play,
     //burial of the dead
+    "A dream about a market-place crowded with dead men" -> Play, 
     "A dream about a town square" -> Play
   )
   
   val story = Map(
+    "Devices and desires" -> Discard,
     "The Cities that Fell" -> Discard,
     "The Seekers of the Garden" -> Discard,
     "Investigating the Affluent Photographer" -> Discard,
     "A past benefactor" -> Discard,
     "A day at the races" -> Discard,
     "A Sporting Sort" -> Discard,                                                           //random chance
-    "An afternoon of good deeds?" -> Play(_.chooseBranch("Quite a moral afternoon.")),      //counting the days
-    "The Numismatrix" -> Discard,                                                           //counting the days
+    "The Numismatrix" -> Discard,                                                           //spending secrets
+    "Choosing a Side" -> Hold,                                                              //spending secrets
     "Graffiti with a sting" -> Discard,                                                     //counting the days
     "An unusual wager" -> Discard,                                                          //counting the days
+    "An afternoon of good deeds?" -> Play(_.chooseBranch("Quite a moral afternoon.")),      //counting the days
     "A Moment's Peace" -> Play(_.chooseBranch("Relax and enjoy")),                          //counting the days
     "The independence of young ladies" -> Play,                                             //clathermont 1
     "A burglary of tattoos" -> Play,                                                        //clathermont 1
@@ -94,11 +104,13 @@ object cards {
     "Early closing" -> Play,                                                                //clathermont 5
     "Something going on at Clathermont's" -> Play,                                          //clathermont 5
     "Aunt amok!" -> Play,                                                                   //aunt 1
+    "The sins of the aunts" -> Play,
     "Who knows the Cheesemonger?" -> Discard,                                               //cheesemonger 2
     "What do the urchins know?" -> Discard,                                                 //cheesemonger 2
     "The Cheesemonger?" -> Discard,                                                         //cheesemonger 2
     "A commission from anarchists" -> Discard,                                              //plotting 0
     "A stranded shipment" -> Hold,                                                          //broken toys 3
+    "A new toy" -> Hold,                                                                    //broken toys 4
     "The wine cellars of the Palace" -> Discard,                                            //needs route
     "Where did that come from?" -> Discard,                                                 //tournament of lilies 0
     "The shipment arrives tomorrow!" -> Hold,                                               //in search of a stiff drink 4

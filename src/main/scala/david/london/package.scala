@@ -185,6 +185,7 @@ package object london {
     "A consideration for services rendered" -> Discard,                //trades in conn: hell, not worth grinding souls for
     "A limping figure in a top hat beckons" -> Discard,                //trades in conn: rubbery, just gives amber
     "An implausible penance" -> Discard,                               //trades in conn: criminals for interesting but complex rewards, e.g. 500cp for ~30 echoes
+    "A merry sort of crime" -> Play(_.chooseBranch("Dirigible theft")),//+15cp conn: criminals
     "A rather decadent evening" -> Play,                               //trades in conn: bohemian for good rewards
     "A Rubbery Man lopes purposefully in your wake, tentacles dangling like hanged men's fingers" -> Play(_.chooseBranch("Give it the Amber")), //-1 warm for +100 deep amber and +5 cp rubbery
     "1000 Nevercold Brass wanted! Will pay handsomely!" -> DiscardUnless(
@@ -369,6 +370,7 @@ package object london {
       else 
         c.chooseBranch("Examine the latest revisions")                                   //-nightmares & scandal
     }),                                                                                  
+    "The Life of Crime" -> Hold,  //"Remind them who's boss" -> +crim, +susp
     "A relaxed day at the Club" -> Play(c =>
       if (c.suspicion > 1) {
         c.chooseBranch("Have a little word with the Chief Constable")                    //-suspicion
@@ -378,7 +380,7 @@ package object london {
     ),
     "Riding your Velocipede" -> Play(_.chooseBranch("The velocipede courier")),
     "A Pleasant Day for a Ride" -> DiscardUnless(_.suspicion == 2),                      //50% conn: soc and -suspicion
-    "A day out in your Clay Sedan Chair " -> Play(_.chooseBranch("To follow Jack's trail"))      
+    "A day out in your Clay Sedan Chair " -> Play(_.chooseBranch("To follow Jack's trail"))    
     //"For a little sport": 200 foxfire candles, +ruthless, -magnanimous
     //"To make a point of treating them well": +steadfast and +magnanimous if <= 5, +small conn: soc
     //"To follow Jack's trail": 50% -Nightmares; 50% +nightmares and 1.95E secrets; rare for 25E!
@@ -390,6 +392,7 @@ package object london {
     "The Shivering Relicker and Pinnock are Trundling By" -> Discard,                                                 //Wild Words
     "The Capering Relicker and Gulliver are Outside in the Street" -> Discard,                                        //Infernal
     "The Coquettish Relicker and Mathilde are Making the Rounds" -> Discard,                                          //Rag Trade
+    "The Curt Relicker and Montgomery are Moving Quietly Past" -> Discard,                                            //Rumour
     "A Gift from the Capering Relicker" -> Play(_.chooseBranch("For someone who has it all, or at least most of it")) //12E - the other options are 10E
   )
   
@@ -425,7 +428,8 @@ package object london {
   private val doubtStreet = Map(
     "The Illuminated Gentleman Takes the Stage" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),    //6 Salacious Copy
     "Another Day, Another Dreary Salon" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),            //6 Salacious Copy
-    "Fog Like a Velvet Curtain" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                    //6 Salacious Copy - 6 hours 
+    "Fog Like a Velvet Curtain" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                    //6 Salacious Copy - 6 hours
+    "A Letter to the Editor" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                       //6 Salacious Copy - 2 hours
     "The Food You Eat" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                             //6 Meritorious Copy
     "A Cancelled Salon" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                            //6 Meritorious Copy - 7 hours
     "Your Day on Court Duty" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                       //6 Meritorious Copy - 4 hours
