@@ -17,6 +17,7 @@ object cards {
     "Rob a library at the University" -> Discard,                                           //shadowy 45
     "Academic discipline" -> Discard,                                                       //dangerous 45
     "A night at the carnival" -> Discard,                                                   //dangerous 45
+    "Minding the detective" -> Discard,                                                     //dangerous 45
     "Moonish water" -> Discard,                                                             //dangerous 57
     "His Young Lordship seized by tentacles" -> Discard,                                    //dangerous 57
     "What's in the sack, Jack?" -> Discard,                                                 //dangerous 57
