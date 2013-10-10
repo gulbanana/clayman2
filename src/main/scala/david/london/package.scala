@@ -425,20 +425,22 @@ package object london {
     "A New Move in the Game" -> Discard  //just gives Doing Business, +1cp - it uses watchful instead of shadowy but who cares
   )
   
+  object Publish extends Play(implicit c => {gear.shadowy(); c.chooseBranch()})
   private val doubtStreet = Map(
-    "The Illuminated Gentleman Takes the Stage" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),    //6 Salacious Copy
-    "Another Day, Another Dreary Salon" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),            //6 Salacious Copy
-    "Fog Like a Velvet Curtain" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                    //6 Salacious Copy - 6 hours
-    "A Letter to the Editor" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                       //6 Salacious Copy - 2 hours
-    "The Food You Eat" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                             //6 Meritorious Copy
-    "A Cancelled Salon" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                            //6 Meritorious Copy - 7 hours
-    "Your Day on Court Duty" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                       //6 Meritorious Copy - 4 hours
-    "An Interview with a 'Foreign Office Insider'" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}), //6 Outlandish Copy
-    "The Cloaked Menace of Cake Street" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),            //6 Outlandish Copy
-    "Why, it's Mr Clathermont" -> Play(implicit c => {gear.shadowy(); c.chooseBranch()}),                     //6 Outlandish Copy - 4 hours
-    "A Gemstone to Shame Rajahs" -> Discard,                                                                  //requires friend with Light Fingers
-    "They Want to Hear of the Vake" -> Discard,                                                               //requires friend with Bag A Legend
-    "Baying for Blood" -> Discard                                                                             //requires friend with Nemesis
+    "The Illuminated Gentleman Takes the Stage" -> Discard,                 //6 Salacious Copy
+    "Another Day, Another Dreary Salon" -> Discard,                         //6 Salacious Copy
+    "Fog Like a Velvet Curtain" -> Discard,                                 //6 Salacious Copy - 6 hours
+    "A Letter to the Editor" -> Discard,                                    //6 Salacious Copy - 2 hours
+    "The Food You Eat" -> Publish,                                          //6 Meritorious Copy - 10 hours
+    "A Cancelled Salon" -> Publish,                                         //6 Meritorious Copy - 7 hours
+    "Your Day on Court Duty" -> Publish,                                    //6 Meritorious Copy - 4 hours
+    "Reports of your Circulation have been Greatly Exagerrated" -> Publish, //6 Meritorious Copy - 2 hours
+    "An Interview with a 'Foreign Office Insider'" -> Discard,              //6 Outlandish Copy
+    "The Cloaked Menace of Cake Street" -> Discard,                         //6 Outlandish Copy
+    "Why, it's Mr Clathermont" -> Discard,                                  //6 Outlandish Copy - 4 hours
+    "A Gemstone to Shame Rajahs" -> Discard,                                //3 of each - requires friend with Light Fingers
+    "They Want to Hear of the Vake" -> Discard,                             //3 of each - requires friend with Bag A Legend
+    "Baying for Blood" -> Discard                                           //3 of each - requires friend with Nemesis
   )
   
   private val affairOfTheBox = Map(
