@@ -187,7 +187,7 @@ package object london {
     "An implausible penance" -> Discard,                               //trades in conn: criminals for interesting but complex rewards, e.g. 500cp for ~30 echoes
     "A merry sort of crime" -> Play(_.chooseBranch("Dirigible theft")),//+15cp conn: criminals
     "A rather decadent evening" -> Play,                               //trades in conn: bohemian for good rewards
-    "A Rubbery Man lopes purposefully in your wake, tentacles dangling like hanged men's fingers" -> Play(_.chooseBranch("Give it the Amber")), //-1 warm for +100 deep amber and +5 cp rubbery
+    "A Rubbery Man lopes purposefully in your wake, tentacles dangling like hanged men's fingers" -> Discard, //-1 warm for +100 deep amber and +5 cp rubbery
     "1000 Nevercold Brass wanted! Will pay handsomely!" -> DiscardUnless(
         c => c.items("Nevercold Brass Sliver") >= 1000 && c.qualities("Connected: The Great Game") < 15, 
         _.chooseBranch("Make the exchange")                            //+15cp Great Game, but it can get me trapped in a cycle!
@@ -332,7 +332,7 @@ package object london {
     })
   )
   
-  private val dreams = Map(
+  private val mysteries = Map(
     //Walking the Falling Cities
     "The Cities that Fell" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Ancient stories")}),          //with POSI, 3 visions
     //Seeing Through the Eyes of Icarus
@@ -370,7 +370,7 @@ package object london {
       else 
         c.chooseBranch("Examine the latest revisions")                                   //-nightmares & scandal
     }),                                                                                  
-    "The Life of Crime" -> Hold,  //"Remind them who's boss" -> +crim, +susp
+    "The Life of Crime" -> Play(_.chooseBranch("Your cut of the take")),  //+150 rostygold. or: "Remind them who's boss" -> +crim, +susp
     "A relaxed day at the Club" -> Play(c =>
       if (c.suspicion > 1) {
         c.chooseBranch("Have a little word with the Chief Constable")                    //-suspicion
@@ -380,7 +380,7 @@ package object london {
     ),
     "Riding your Velocipede" -> Play(_.chooseBranch("The velocipede courier")),
     "A Pleasant Day for a Ride" -> DiscardUnless(_.suspicion == 2),                      //50% conn: soc and -suspicion
-    "A day out in your Clay Sedan Chair " -> Play(_.chooseBranch("To follow Jack's trail"))    
+    "A day out in your Clay Sedan Chair" -> Play(_.chooseBranch("To follow Jack's trail"))    
     //"For a little sport": 200 foxfire candles, +ruthless, -magnanimous
     //"To make a point of treating them well": +steadfast and +magnanimous if <= 5, +small conn: soc
     //"To follow Jack's trail": 50% -Nightmares; 50% +nightmares and 1.95E secrets; rare for 25E!
@@ -438,6 +438,7 @@ package object london {
     "An Interview with a 'Foreign Office Insider'" -> Discard,              //6 Outlandish Copy
     "The Cloaked Menace of Cake Street" -> Discard,                         //6 Outlandish Copy
     "Why, it's Mr Clathermont" -> Discard,                                  //6 Outlandish Copy - 4 hours
+    "An Undignified Ruckus" -> Discard,                                     //6 Outlandish Copy - 2 hours
     "A Gemstone to Shame Rajahs" -> Discard,                                //3 of each - requires friend with Light Fingers
     "They Want to Hear of the Vake" -> Discard,                             //3 of each - requires friend with Bag A Legend
     "Baying for Blood" -> Discard                                           //3 of each - requires friend with Nemesis
@@ -459,7 +460,7 @@ package object london {
   )
   
   private val SMEN = Map(
-      "Pass the Cat: a wriggling delivery" -> DiscardUnless(_.scandal > 0, _.chooseBranch("An elaborate strategy")), //-scandal, can get someone a cat box
+    "Pass the Cat: a wriggling delivery" -> HoldUntil(_.scandal > 0, _.chooseBranch("An elaborate strategy")), //-scandal, can get someone a cat box
     "The Northbound Parliamentarian" -> Discard, //3 appalling secrets and WTFC
     "A voice from a well" -> Discard,            //5+cp of nightmares, 2 appalling secrets
     "An ivied wall" -> Hold,                     //+SMEN! -dangerous, -shadowy, +wounds, +suspicion
@@ -468,8 +469,12 @@ package object london {
     "The Soul and the Number" -> Hold
   )
   
+  private val dreams = Map(
+    "A dream about the mist" -> Play
+  )
+  
   val opportunities = new Opportunist(watchful ++ shadowy ++ dangerous ++ persuasive ++
-                                      routes ++ lodgings ++ connections ++ conflicts ++ acquaintances ++ items ++ dreams ++ relickers ++
+                                      routes ++ lodgings ++ connections ++ conflicts ++ acquaintances ++ items ++ mysteries ++ relickers ++ dreams ++
                                       affluentPhotographer ++ countingTheDays ++ wilmotsEnd ++ doubtStreet ++ affairOfTheBox ++ tournamentOfLilies ++ tradeInSouls ++ SMEN ++ Map(
     "Weather at last" -> Discard,                                                    //quirks up to a point
     "Bringing the revolution" -> Discard,                                            //quirks up to 6 and 1cp shadowy
@@ -494,7 +499,7 @@ package object london {
     "Mr Wines is holding a sale!" -> HoldUntil(_.items("Romantic Notion") >= 80, _.chooseBranch("A discount for purchase in bulk")),
     "A night on the tiles" -> DiscardUnless(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")),                     //1E of influence
     "Swap Incendiary Gossip" -> DiscardUnless(c => c.items("Incendiary Gossip") > 0 && c.qualities("Connected: Society") >= 50, _.chooseBranch()),
-    "The Soft-Hearted Widow" -> DiscardUnless(_.items("Glim") >= 500, _.chooseBranch("Give a significant donation to her charity for the homeless")), //upgrades to 2x stolen kiss, +making waves
+    "The Soft-Hearted Widow" -> DiscardUnless(_.items("Glim") >= 2500, _.chooseBranch("Give a significant donation to her charity for the homeless")), //upgrades to 2x stolen kiss, +making waves
     "A presumptuous little opportunity" -> HoldUntil(
       c => c.items("Greyfields 1882") >= 1000 || c.items("Morelways 1872") >= 400 || c.items("Greyfields 1879") >= 5000 || c.items("Cellar of Wine") >= 5,
       c => if (c.items("Greyfields 1879") >= 5000) {
@@ -513,8 +518,8 @@ package object london {
       c.chooseBranch("Return with a gift")                                              //net 25 clues, 1 appalling, and 1 TOT - 1.15E
     }),
     "Miniature mausoleums" -> Hold,                                                     //arguably Watchful. probably specific to Palace. "Examine the inscriptions" gives 24 clues, i don't know what "A spot of grave-robbery" does yet
-    "Stealth watch repair" -> Play(_.chooseBranch("It's beneath his dignity, but...")), //55 brass, 25 pearls, 1 flawed diamond, 1 sapphire - 1.04E
-    "A merry gentleman" -> Play(_.chooseBranch("Ignore the Merry Gentleman")),          //50% to reduce nightmares
+    "Stealth watch repair" -> Play("It's beneath his dignity, but..."),                 //55 brass, 25 pearls, 1 flawed diamond, 1 sapphire - 1.04E
+    "A merry gentleman" -> Play("Ignore the Merry Gentleman"),                          //50% to reduce nightmares
     "Give a Gift! A commotion in the Square of Lofty Words" -> DiscardUnless(_.qualities("Hedonist") >= 5, _.chooseBranch("'I myself am my only true friend!'")), //second chances
     "2000 Foxfire Candles wanted! Will pay handsomely!" -> Discard,                     //no net loss but costly to grind
     "A Polite Invitation" -> Discard,                                                   //party is fun but been there done that

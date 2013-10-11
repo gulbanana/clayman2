@@ -13,7 +13,9 @@ object Discard extends Opportunity(_ => true, _ => false)
 case class DiscardUnless(t: Character => Boolean, a: Character => Unit = Opportunity.defaultAction) extends Opportunity(c => !t(c), t, a)
 
 case class Play(a: Character=>Unit) extends Opportunity(_ => false, _ => true, a)
-object Play extends Play(Opportunity.defaultAction)
+object Play extends Play(Opportunity.defaultAction) {
+  def apply(branch: String): Play = new Play(_.chooseBranch(branch))
+}
 
 class Opportunist(p: Map[String, Opportunity], default: Opportunity = Hold) {
   private val playlist = p withDefaultValue default
