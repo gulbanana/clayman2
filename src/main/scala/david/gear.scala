@@ -31,7 +31,7 @@ object gear {
     c.equip("Far Khanate Lacquered Armour")     //+8 clothing
     c.equip("Spiderchitin Gauntlets")           //+5 gloves
     c.equip("Infernal Sharpshooter's Rifle")    //+10 weapon
-    c.equip("Kingscale Boots")                  //+6 boots
+    c.equip("Vakeskin Boots")                   //+8 boots
     c.equip("Rattus Faber Bandit-Chief")        //+8 pet
     //no affiliation
     //no transport
