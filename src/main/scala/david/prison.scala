@@ -3,7 +3,7 @@ import api._
 import common._
 
 object prison { 
-  private def blacklist = Set(
+  private val blacklist = Map(
     "Voice from the oubliette"  -> Discard,
     "A Better Class of Villain" -> Discard, //social
     "Promises of revenge"       -> Discard, //only 1 cp
@@ -15,14 +15,21 @@ object prison {
     "Starvation day"            -> Discard  //+crim, +docks, -2 suspicion, -ALL MAIN QUALITIES - maybe use it if stat capped?
   )
   
-  private def playlist = Map(
+  private val playlist = Map(
     "The Warden" -> Play,
-    "Start a brawl" -> Play,
-    "A visit from a priest" -> Play(_.chooseBranch("Admit nothing")),  //+3cp criminals, docks
-    "The Stuttering Fence" -> Play(_.chooseBranch("Connections"))      //-criminals, -suspicion
+    "The Governor" -> Play,                            //-3 susp, +3 crim, +3 docks
+    "Start a brawl" -> Play,                           //+criminals, -suspicion
+    "A visit from a priest" -> Play("Admit nothing"),  //+3cp criminals, docks
+    "The Stuttering Fence" -> Play("Connections")      //-criminals, -suspicion
   )
   
-  val opportunities = new Opportunist(playlist ++ blacklist)
+  private val escape = Map(
+    "The Troubled Undertaker" -> Play, //gain shiv
+    "The passing dirigible" -> Play,   //gain rope
+    "The new cell" -> Play             //gain dirigible schedule
+  )
+  
+  val opportunities = new Opportunist(blacklist ++ playlist ++ escape)
   
   def reduce_suspicion()(implicit c: Character) = {
     c.equip("Workman's Clothes")

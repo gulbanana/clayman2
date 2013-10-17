@@ -14,6 +14,7 @@ object cards {
     "The secrets of rats" -> Discard,                                                       //watchful 21
     "Unravelling arson" -> Discard,                                                         //watchful 33
     "The mechanics of progress" -> Discard,                                                 //watchful 57
+    "Lies below the Palace" -> Discard,                                                     //watchful 57
     "Work the carnival" -> Discard,                                                         //shadowy 45
     "As silent as the grave?" -> Discard,                                                   //shadowy 45
     "Rob a Brass Embassy courier" -> Discard,                                               //shadowy 45
@@ -53,13 +54,16 @@ object cards {
     "The High Castle" -> DiscardUnless(_.items("Romantic Notion") >= 40),                   //lodgings
     "The Tower of Knives" -> Play("Rough camaraderie"),                                     //lodgings
     "A visit" -> Discard,                                                                   //acq
+    "A merry gentleman" -> Play("Ignore the Merry Gentleman"),
     "Mr Wines is holding a sale!" -> Discard,
     "The Curt Relicker and Montgomery are Moving Quietly Past" -> Discard,  
     "The Coquettish Relicker and Mathilde are Making the Rounds" -> Discard,
     "The Shivering Relicker and Pinnock are Trundling By" -> Discard,
     "The Capering Relicker and Gulliver are Outside in the Street" -> Discard,
     "The Ways of Wolfstack Docks" -> Discard,
+    "The Ways of Mahogany Hall" -> Discard,
     "The Ways of the Flit" -> Discard,
+    "The Ways of the University" -> Discard,
     "The Ways of the Shuttered Palace" -> Discard,
     "The Ways of the Labyrinth of Tigers" -> Discard,
     "What will you do with your Bandaged Raven?" -> Discard,
@@ -79,8 +83,7 @@ object cards {
     "A tournament of weasels!" -> Discard,
     "A parliament of bats" -> Discard,
     "Rats next door" -> Discard,
-    "A Visit" -> Discard,
-    "A merry gentleman" -> Play("Ignore the Merry Gentleman")
+    "A Visit" -> Discard 
   )
   
   val dreams = Map(
@@ -93,6 +96,7 @@ object cards {
     "A dream about a window at night" -> Play,
     "A dream about a brass mirror" -> Play,
     "A dream about a corridor lined with brass mirrors." -> Play,
+    "A dream about the end of a corridor" -> Play("Go through the door"),
     //what the thunder said
     "A dream about the mist" -> Play,
     "A dream about stormy weather" -> Play,
