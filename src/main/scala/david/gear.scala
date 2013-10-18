@@ -77,7 +77,7 @@ object gear {
     //no hat
     c.equip("Academic Gown")                    //+1 clothing
     //no gloves
-    //no weapon
+    c.equip("Consonant Violin")                 //+1 weapon
     //no boots
     c.equip("Appreciation Society")             //+1 pet
     c.equip("Membership of God's Editors")      //+4 affiliation
