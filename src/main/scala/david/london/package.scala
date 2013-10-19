@@ -380,6 +380,7 @@ package object london {
       }
     ),
     "Riding your Velocipede" -> Play(_.chooseBranch("The velocipede courier")),
+    "Out and About on your Ratwork Velocipede" -> Hold,                                  //race colonel: +150 secrets; bathe in admiration: confident smile
     "A Pleasant Day for a Ride" -> DiscardUnless(_.suspicion == 2),                      //50% conn: soc and -suspicion
     "A day out in your Clay Sedan Chair" -> Play(_.chooseBranch("To follow Jack's trail"))    
     //"For a little sport": 200 foxfire candles, +ruthless, -magnanimous

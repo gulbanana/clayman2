@@ -22,7 +22,7 @@ object gear {
     c.equip("Kingscale Boots")                  //+8 boots
     c.equip("Devious Raven Advisor")            //+7 pet
     c.equip("Gang of Hoodlums")                 //+1 affiliation
-    //no transport
+    c.equip("Ratwork Velocipede")               //+1 transport
     //no home comfort
   }
   
@@ -81,7 +81,7 @@ object gear {
     //no boots
     c.equip("Appreciation Society")             //+1 pet
     c.equip("Membership of God's Editors")      //+4 affiliation
-    //no transport
+    c.equip("Ratwork Velocipede")               //+2 transport
     //no home comfort
   }
   
@@ -93,7 +93,7 @@ object gear {
     c.equip("Kingscale Boots")                  //+1 boots
     c.equip("Bifurcated Owl")                   //+4 pet
     c.equip("Membership of God's Editors")      //+4 affiliation
-    c.equip("Obdurate Stallion")                //+2 transport
+    c.equip("Ratwork Velocipede")               //+4 transport
     //no home comfort
   }
   
