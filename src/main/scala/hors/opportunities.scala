@@ -14,6 +14,7 @@ object cards {
     "The secrets of rats" -> Discard,                                                       //watchful 21
     "Unravelling arson" -> Discard,                                                         //watchful 33
     "Tracking the thief" -> Discard,                                                        //watchful 33
+    "Digging in the city" -> Discard,                                                       //watchful 33
     "The mechanics of progress" -> Discard,                                                 //watchful 57
     "Lies below the Palace" -> Discard,                                                     //watchful 57
     "Work the carnival" -> Discard,                                                         //shadowy 45
@@ -44,6 +45,7 @@ object cards {
     "An invitation to High Table!" -> Discard,                                              //persuasive 45
     "Bricks and knives" -> Discard,                                                         //persuasive 45
     "Time for a little relaxation" -> Discard,                                              //persuasive 45
+    "Dealing with the colonel" -> Discard,                                                  //persuasive 57
     "Weather at last" -> Discard,                                                           //free of surface ties
     "The Northbound Parliamentarian" -> Discard,                                            //free of surface ties
     "Eavesdropping in the gardens" -> Discard,                                              //Cobblestone Rogues and Back-Alley Saints
@@ -111,8 +113,11 @@ object cards {
     "A dream about a town square" -> Play,
     "A dream about a row of tombs" -> Play,
     "A dream about a garden of stones" -> Play,
+    "A dream about a candle flame" -> Play("Look away"),
     //the fire sermon
-    "A dream about something expensive happening" -> Play
+    "A dream about something expensive happening" -> Play,
+    //a game of chess
+    "A dream about a clock" -> Play
   )
   
   val story = Map(
@@ -155,7 +160,9 @@ object cards {
     "Plumb the Firebrand's secrets" -> Play("Volunteer for a part in his plans"),                        //revolutionary firebrand 9
     "Another note from Mr Iron" -> Play,                                                                 //umpire 1
     "A drink with the Cheery Man" -> Hold,                                                               //family & law 3
-    "The Keen-Eyed Lapidary returns" -> Discard                                                          //lapidary 1 - spend 400 glim
+    "The Keen-Eyed Lapidary returns" -> Discard,                                                         //lapidary 1 - spend 400 glim
+    "Invited to a revel of the Masters" -> Play("Could you assist us in a tiny matter?"),                //revels 0
+    "The Charming of F. F. Gebrandt" -> Hold                                                             //revels 1
   )
     
   val social = Map(
