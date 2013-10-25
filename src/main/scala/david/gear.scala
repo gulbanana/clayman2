@@ -35,7 +35,7 @@ object gear {
     c.equip("Rattus Faber Bandit-Chief")        //+8 pet
     //no affiliation
     //no transport
-    //no home comfort
+    c.equip("Formidable Basalt Gymnasium")      //+1 home comfort
   }
   
   def persuasive()(implicit c: Character) {
@@ -105,7 +105,7 @@ object gear {
     c.equip("Kingscale Boots")                  //+8 shadowy, +6 dangerous
     c.equip("Bifurcated Owl")                   //+5 watchful, +5 shadowy, +5 dangerous, +5 persuasive
     c.equip("The Sixth City Times (Newspaper)") //+1 watchful, +1 persuasive
-    //no transport
+    c.equip("Ratwork Velocipede")               //+1 shadowy
     c.equip("Voluminous Library")               //+1 watchful
   }
 }
