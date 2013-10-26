@@ -2,7 +2,7 @@ package david
 import api._
 import common._
 
-object colonies { 
+object colonies extends MenaceArea { 
   private def blacklist = Map(
     "Musings on the Causes of Exile" -> Discard  //social
   )
@@ -18,14 +18,16 @@ object colonies {
   
   val opportunities = new Opportunist(playlist ++ blacklist)
   
-  val usefulConnections = Map(
+  private val usefulConnections = Map(
     "Connected: The Church" -> "'...I have written to the Bishop of St Fiacre's...'",
     "Connected: Society" -> "'....I have a few friends yet in Society...",
     "Connected: the Duchess" -> "'...I flatter myself the Duchess was fond of me...'"
   )
   
-  def reduce_scandal()(implicit c: Character) = {
+  def reduce_menace()(implicit c: Character) = {
     c.beginStorylet("A letter to an old flame")
     c.chooseBranch(usefulConnections(usefulConnections.keySet.max(Ordering.by(c.qualities))))
   }
+  
+  val exitStorylets = Set("Home. At last.")
 }

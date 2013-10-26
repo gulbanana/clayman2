@@ -2,7 +2,7 @@ package david
 import api._
 import common._
 
-object prison { 
+object prison extends MenaceArea { 
   private val blacklist = Map(
     "Voice from the oubliette"  -> Discard,
     "A Better Class of Villain" -> Discard, //social
@@ -31,7 +31,7 @@ object prison {
   
   val opportunities = new Opportunist(blacklist ++ playlist ++ escape)
   
-  def reduce_suspicion()(implicit c: Character) = {
+  def reduce_menace()(implicit c: Character) = {
     c.equip("Workman's Clothes")
     if (c.items("Greyfields 1879") > 5000) {
       c.beginStorylet("Bribery")
@@ -44,4 +44,6 @@ object prison {
       c.chooseBranch("Observing New Newgate")
     }
   }
+  
+  val exitStorylets = Set("The misty air of freedom!", "The even more daring escape!")
 }

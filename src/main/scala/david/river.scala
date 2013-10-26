@@ -2,7 +2,7 @@ package david
 import api._
 import common._
 
-object river { 
+object river extends MenaceArea { 
   //never good
   private def blacklist = Map(
     "How much can you see of the far bank?"  -> Discard, //+wounds, +nightmares, 3 appalling secrets
@@ -30,10 +30,12 @@ object river {
   
   val opportunities = new Opportunist(m2, default = Discard)
   
-  def reduce_wounds()(implicit c: Character) = {
+  def reduce_menace()(implicit c: Character) = {
     gear.watchful()
     c.beginStorylet("Play chess with the Boatman")
     c.chooseBranch() //lv5+, "A smile of recognition": -3cp, +watchful, 100%
     c.onwards()
   }
+  
+  val exitStorylets = Set("A sudden light!")
 }

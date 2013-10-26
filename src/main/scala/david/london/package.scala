@@ -130,7 +130,6 @@ package object london {
     ),
     "Court and Cell: the Constables" -> DiscardUnless(c => c.qualities("Connected: Constables") >= 30 || c.items("Rostygold") >= 10, implicit c =>
       if (c.qualities("Connected: Constables") >= 30) {
-        gear.watchful()
         c.chooseBranch("Attend a class given by the Implacable Detective")
       } else {
         c.chooseBranch("A small donation")
@@ -138,7 +137,6 @@ package object london {
     ),
     "By the River's Side: the Docks" -> DiscardUnless(c => c.qualities("Connected: The Docks") >= 30 || c.items("Rostygold") >= 10, implicit c =>
       if (c.qualities("Connected: The Docks") >= 30) {
-        gear.dangerous()
         c.chooseBranch("Fencing lessons with a Dashing Captain")
       } else {
         c.chooseBranch("Buy a round at the Rusty Tramp")
@@ -146,7 +144,6 @@ package object london {
     ),
     "Burning Shadows: the Devils of London" -> Play(implicit c => 
       if (c.qualities("Connected: Hell") >= 30) {
-        gear.watchful()
         c.chooseBranch("Speak with a senior deviless")
       } else {
         c.chooseBranch("Attend a lecture at the Brass Embassy")
@@ -165,7 +162,6 @@ package object london {
       c.chooseBranch("Learn more at the carnival")
     }),
     "The Roof-Tops: Urchins" -> DiscardUnless(c => (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 30) || c.items("Lucky Weasel") >= 1, implicit c => {
-      gear.shadowy()
       if (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 30)
         c.chooseBranch("Out you go, longshanks")
       else

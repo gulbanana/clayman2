@@ -113,6 +113,8 @@ class Character(username: String, password: String) {
   }
   
   // IN STORYLETS: choose a branch, onwards, or back
+  def currentStorylet = parser.title
+  
   def chooseBranch(branch: String, useSecondChance: Boolean = false) {
     if (!parser.branchIDs.keySet.contains(branch))
       parser updateBranches http.query(site / "Storylet" / "In")
