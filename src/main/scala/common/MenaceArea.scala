@@ -1,14 +1,14 @@
 package common
 import api._
 
-trait MenaceArea extends Duty {
+trait MenaceArea extends OneManJob {
   def opportunities: Opportunist
   def exitStorylets: Set[String]
   def reduce_menace()(implicit c: Character): Unit
   
-  def apply(implicit c: Character): Boolean = if (exitStorylets(c.currentStorylet)) {
-    c.onwards(); false
-  } else {
-    opportunities.played() or reduce_menace()
+  def apply(implicit c: Character): Boolean = {
+    if (!opportunities.played()) reduce_menace()
+    if (exitStorylets(c.currentStorylet)) c.onwards()
+    true
   }
 }
