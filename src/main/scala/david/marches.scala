@@ -10,15 +10,22 @@ object marches extends MenaceArea {
   )
   
   //"Heavenly fruits" plum +nightmares, peckish
+  //"A green vine" 50% nothing
   
   private val playlist = Map(
+    "Night is falling" -> Play,                                      //-2+ nightmares (4?)
     "A striped cat" -> Play,                                         //-3 nightmares, +1 persuasive
-    "A black cat" -> Play,                                           //-? nightmares (2+?), +1 shadowy
-    "A spotted cat" -> Play,                                         //-? nightmares (2+?), +? shadowy
-    "A glimpse of debauchery" -> Play,                               //-2+ nightmares, conn: bohemian
-    "A glimpse of a church" -> Play,                                 //-2+ nightmares, conn: church
+    "A black cat" -> Play,                                           //-? nightmares (3?), +1 shadowy
+    "A spotted cat" -> Play,                                         //-3 nightmares (?), +shadowy
+    "A golden cat" -> Play,                                          //-3 nightmares, +watchful
+    "A glimpse of debauchery" -> Play,                               //-3 nightmares, conn: bohemian
+    "A glimpse of a church" -> Play,                                 //-3 nightmares, conn: church
     "A glimpse of a cat" -> Play,                                    //-3 nightmares
     "A glimpse of a clock" -> Play,                                  //-2 nightmares, +dangerous
+    "A glimpse of amber" -> Play,                                    //-2 nightmares, conn: rubbery
+    "A glimpse of a kiss" -> Play,                                   //-3 nightmares, +hedonist
+    "A glimpse of silver" -> Play,                                   //-2+ nightmares
+    "A glimpse of a tavern" -> Play,                                 //-3+ nightmares
     "A tree of scars" -> Play("Read the markings, if you know how"), //-5 nightmares, stteoi
     "A bird-of-paradise" -> Play("Follow it")                        //-2 nightmares, tbf
   )
@@ -41,5 +48,5 @@ object marches extends MenaceArea {
     c.onwards()
   }
   
-  val exitStorylets = Set[String]()
+  val exitStorylets = Set("A familiar darkness")
 }
