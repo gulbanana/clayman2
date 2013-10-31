@@ -3,10 +3,10 @@ import api._
 
 object gear {
   def watchful()(implicit c: Character) {
-    c.equip("Luminous Neathglass Goggles")      //+5 hat
+    c.equip("Gloam-Foam")                       //+8 hat
     c.equip("Academic Gown")                    //+5 clothing
     c.equip("Insatiable Glove")                 //+8 gloves
-    c.equip("Dilmun Club Lapel Badge")          //+5 weapon
+    c.equip("Ratwork Watch")                    //+8 weapon
     c.equip("Mirror-polished Shoes")            //+2 boots
     c.equip("Appreciation Society")             //+9 pet
     c.equip("The Sixth City Times (Newspaper)") //+1 affiliation
@@ -63,7 +63,7 @@ object gear {
   }
   
   def dreaded()(implicit c: Character) {
-    //no hat
+    c.equip("Gloam-Foam")                       //+1 hat
     c.equip("Ratskin Suit")                     //+1 clothing
     //no gloves
     c.equip("Kingscale Boots")                  //+1 boots
@@ -106,6 +106,6 @@ object gear {
     c.equip("Bifurcated Owl")                   //+5 watchful, +5 shadowy, +5 dangerous, +5 persuasive
     c.equip("The Sixth City Times (Newspaper)") //+1 watchful, +1 persuasive
     c.equip("Ratwork Velocipede")               //+1 shadowy
-    c.equip("Voluminous Library")               //+1 watchful
+    c.equip("Formidable Basalt Gymnasium")      //+1 dangerous
   }
 }
