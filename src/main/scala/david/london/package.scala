@@ -122,20 +122,20 @@ package object london {
       else
         c.chooseBranch("And now... bombs!")
     }),        
-    "Altars and alms-houses: the Church" -> DiscardUnless(c => c.qualities("Connected: The Church") >= 30 || c.items("Rostygold") >= 10, c =>
+    "Altars and alms-houses: the Church" -> DiscardUnless(c => c.qualities("Connected: The Church") >= 50 || c.items("Rostygold") >= 10, c =>
       if (c.qualities("Connected: The Church") >= 30)
         c.chooseBranch("Attend a private lecture given by the Bishop of Southwark")
       else 
         c.chooseBranch("Attend a church fête on the south bank of the River")
     ),
-    "Court and Cell: the Constables" -> DiscardUnless(c => c.qualities("Connected: Constables") >= 30 || c.items("Rostygold") >= 10, implicit c =>
+    "Court and Cell: the Constables" -> DiscardUnless(c => c.qualities("Connected: Constables") >= 50 || c.items("Rostygold") >= 10, implicit c =>
       if (c.qualities("Connected: Constables") >= 30) {
         c.chooseBranch("Attend a class given by the Implacable Detective")
       } else {
         c.chooseBranch("A small donation")
       }
     ),
-    "By the River's Side: the Docks" -> DiscardUnless(c => c.qualities("Connected: The Docks") >= 30 || c.items("Rostygold") >= 10, implicit c =>
+    "By the River's Side: the Docks" -> DiscardUnless(c => c.qualities("Connected: The Docks") >= 50 || c.items("Rostygold") >= 10, implicit c =>
       if (c.qualities("Connected: The Docks") >= 30) {
         c.chooseBranch("Fencing lessons with a Dashing Captain")
       } else {
@@ -155,14 +155,14 @@ package object london {
       else
         c.chooseBranch("Buy drinks for writers")
     ),
-    "Bandages and Dust: The Tomb-Colonies" -> DiscardUnless(_.qualities("Connected: The Tomb-Colonies") >= 30, implicit c => {
+    "Bandages and Dust: The Tomb-Colonies" -> DiscardUnless(_.qualities("Connected: The Tomb-Colonies") >= 50, implicit c => {
       c.chooseBranch("Spar with a Black Ribbon Duellist") 
     }),
-    "Whispers from the Surface: The Great Game" -> DiscardUnless(_.qualities("Connected: The Great Game") >= 30, implicit c => {
+    "Whispers from the Surface: The Great Game" -> DiscardUnless(_.qualities("Connected: The Great Game") >= 50, implicit c => {
       c.chooseBranch("Learn more at the carnival")
     }),
-    "The Roof-Tops: Urchins" -> DiscardUnless(c => (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 30) || c.items("Lucky Weasel") >= 1, implicit c => {
-      if (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 30)
+    "The Roof-Tops: Urchins" -> DiscardUnless(c => (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 50) || c.items("Lucky Weasel") >= 1, implicit c => {
+      if (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 50)
         c.chooseBranch("Out you go, longshanks")
       else
         c.chooseBranch("In the shadow of All Christs Spire")
@@ -349,7 +349,7 @@ package object london {
     }),
     "Lizardly matters" -> Discard,                                                       //50% chance of 4 memories of light, for 25 beeswax - <1E EV
     "A tournament of weasels!" -> Discard,                                               //50% chance of 2 smiles, 3cp docks, 5 rostygold
-    "A parliament of bats" -> Play(_.chooseBranch("Release a bat into the cloud")),      //iirc variable but good rewards
+    "A parliament of bats" -> Play("Release a bat into the cloud"),      //iirc variable but good rewards
     "Your Corresponding Ocelot is listless" -> Play(c =>
       if (c.scandal > 1) {
         c.chooseBranch("Help him write a letter to Mr Huffam")                           //-scandal
@@ -357,17 +357,17 @@ package object london {
         c.chooseBranch("Rub his belly")                                                  //+scholar
       }
     ),
-    "Your Dream-Hound" -> Hold, //"Have the beast guard your resting hours" = -nightmares
-    "What Does One Do with a Bifurcated Owl?" -> Play(_.chooseBranch("Feeding time")),   //+nightmares, tot, 50% of aeolian scream
+    "Your Dream-Hound" -> Hold,                                                          //"Have the beast guard your resting hours" = -nightmares
+    "What Does One Do with a Bifurcated Owl?" -> Play("Feeding time"),   //+nightmares, tot, 50% of aeolian scream
     "All fear the Overgoat!" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Learn of the Overgoat")}),
-    "A library of your own" -> Play(_.chooseBranch("Diligent research")),                //50% 1.5E clues, 50% 1.05E stuff
+    "A library of your own" -> Play("Diligent research"),                //50% 1.5E clues, 50% 1.05E stuff
     "A Day with God's Editors" -> Play(c => {
       if (c.scandal > 0 && c.nightmares > 0) 
         c.chooseBranch("Work diligently")                                                //-1cp of each and 5cp conn:church
       else 
         c.chooseBranch("Examine the latest revisions")                                   //-nightmares & scandal
     }),                                                                                  
-    "The Life of Crime" -> Play(_.chooseBranch("Your cut of the take")),  //+150 rostygold. or: "Remind them who's boss" -> +crim, +susp
+    "The Life of Crime" -> Play("Your cut of the take"),  //+150 rostygold. or: "Remind them who's boss" -> +crim, +susp
     "A relaxed day at the Club" -> Play(c =>
       if (c.suspicion > 1) {
         c.chooseBranch("Have a little word with the Chief Constable")                    //-suspicion
@@ -375,16 +375,15 @@ package object london {
         c.chooseBranch("Fall asleep in front of the fire")                               //secrets
       }
     ),
-    "Riding your Velocipede" -> Play(_.chooseBranch("The velocipede courier")),
+    "Riding your Velocipede" -> Play("The velocipede courier"),
     "Out and About on your Ratwork Velocipede" -> Play(implicit c => {                   //race colonel: +150 secrets; bathe in admiration: confident smile
       gear.dangerous()
       c.chooseBranch("Race a lieutenant-colonel of lancers")
     }),
     "A Pleasant Day for a Ride" -> DiscardUnless(_.suspicion == 2),                      //50% conn: soc and -suspicion
-    "A day out in your Clay Sedan Chair" -> Play(_.chooseBranch("To follow Jack's trail"))    
-    //"For a little sport": 200 foxfire candles, +ruthless, -magnanimous
-    //"To make a point of treating them well": +steadfast and +magnanimous if <= 5, +small conn: soc
-    //"To follow Jack's trail": 50% -Nightmares; 50% +nightmares and 1.95E secrets; rare for 25E!
+    "Your Edifice of Black Stone" -> Play("Rent out your gymnasium to ring-fighters"),   //+150 rostygold
+    "A day out in your Clay Sedan Chair" -> Play("To follow Jack's trail"),              //50% -Nightmares; 50% +nightmares and 1.95E secrets; rare for 25E!        
+    "Once upon a time in a carriage" -> Play("Offer her a lift")                         //150 whispered, 1 appalling, +conn: soc
   )
   
   
