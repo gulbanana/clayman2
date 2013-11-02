@@ -13,6 +13,7 @@ object cards {
     "Night duty at Concord Square" -> Discard,                                              //watchful 21
     "The secrets of rats" -> Discard,                                                       //watchful 21
     "Unravelling arson" -> Discard,                                                         //watchful 33
+    "Tracking the thief" -> Discard,                                                        //watchful 33
     "The mechanics of progress" -> Discard,                                                 //watchful 57
     "Lies below the Palace" -> Discard,                                                     //watchful 57
     "Work the carnival" -> Discard,                                                         //shadowy 45
@@ -52,6 +53,7 @@ object cards {
     "The Sleepless Tower" -> DiscardUnless(_.items("Mystery of the Elder Continent") >= 8), //lodgings
     "The Heron Tower" -> Play(_.chooseBranch("Hunt down a huge lizard")),                   //lodgings
     "The High Castle" -> DiscardUnless(_.items("Romantic Notion") >= 40),                   //lodgings
+    "The Tower of Sleeping Giants" -> DiscardUnless(_.items("Tale of Terror!!") >= 10),     //lodgings
     "The Tower of Knives" -> Play("Rough camaraderie"),                                     //lodgings
     "A visit" -> Discard,                                                                   //acq
     "A merry gentleman" -> Play("Ignore the Merry Gentleman"),
@@ -83,7 +85,8 @@ object cards {
     "A tournament of weasels!" -> Discard,
     "A parliament of bats" -> Discard,
     "Rats next door" -> Discard,
-    "A Visit" -> Discard 
+    "A Visit" -> Discard,
+    "1000 Nevercold Brass wanted! Will pay handsomely!" -> Discard
   )
   
   val dreams = Map(
@@ -107,7 +110,9 @@ object cards {
     "A dream about a market-place crowded with dead men" -> Play, 
     "A dream about a town square" -> Play,
     "A dream about a row of tombs" -> Play,
-    "A dream about a garden of stones" -> Play
+    "A dream about a garden of stones" -> Play,
+    //the fire sermon
+    "A dream about something expensive happening" -> Play
   )
   
   val story = Map(
@@ -149,7 +154,8 @@ object cards {
     "Break through the Revolutionary Firebrand's reserve" -> Play("Suggest a walk in Tyrant's Gardens"), //revolutionary firebrand 6
     "Plumb the Firebrand's secrets" -> Play("Volunteer for a part in his plans"),                        //revolutionary firebrand 9
     "Another note from Mr Iron" -> Play,                                                                 //umpire 1
-    "A drink with the Cheery Man" -> Hold                                                                //family & law 3
+    "A drink with the Cheery Man" -> Hold,                                                               //family & law 3
+    "The Keen-Eyed Lapidary returns" -> Discard                                                          //lapidary 1 - spend 400 glim
   )
     
   val social = Map(

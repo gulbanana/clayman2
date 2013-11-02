@@ -81,6 +81,7 @@ package object london {
   )
           
   private val persuasive = Map(
+    "A deviless' serenade" -> Discard, //60 amber
     "Romance and practicality" -> Discard,                                                                      //36 whispered secrets
     "The marriage of inconvenience" -> Discard,                                                                 //50 whispered secrets
     "The notable citizen" -> Discard,                                                                           //83 whispered secrets
@@ -361,7 +362,7 @@ package object london {
       }
     ),
     "Your Dream-Hound" -> Hold, //"Have the beast guard your resting hours" = -nightmares
-    "What Does One Do with a Bifurcated Owl?" -> Play(_.chooseBranch("Feeding Time")),   //+nightmares, tot, 50% of aeolian scream
+    "What Does One Do with a Bifurcated Owl?" -> Play(_.chooseBranch("Feeding time")),   //+nightmares, tot, 50% of aeolian scream
     "All fear the Overgoat!" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Learn of the Overgoat")}),
     "A library of your own" -> Play(_.chooseBranch("Diligent research")),                //50% 1.5E clues, 50% 1.05E stuff
     "A Day with God's Editors" -> Play(c => {
@@ -486,7 +487,7 @@ package object london {
     "A chance encounter with an old friend..." -> Discard,                           //quirk gains cap at 6
     "A libraryette for Mr Pages" -> Discard,                                         //req: too much to grind for, for now
     "A day without laudanum" -> Play,                                                //reduces addiction
-    "A past benefactor" -> Play(_.chooseBranch("And what of the secrets of Hell?")), //sudden insight
+    "A past benefactor" -> Discard,                                                  //sudden insight
     "Cheesemonger no more" -> DiscardUnless(c => c.qualities("Melancholy") < 9 || c.qualities("Steadfast") < 9 || c.qualities("Ruthless") < 9, c => {                                             
       if (c.qualities("Melancholy") < 9) 
         c.chooseBranch("You regret what happened")
