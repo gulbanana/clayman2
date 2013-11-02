@@ -1,6 +1,8 @@
 package hors
 import common._
 
+object opportunities extends Opportunist(cards.standard ++ cards.story ++ cards.social ++ cards.dreams)
+
 object cards {
   val standard = Map(
     "Just who is Blue Jack?" -> Discard,                                                    //watchful 0
@@ -170,7 +172,4 @@ object cards {
     "Pass the Cat: a wriggling delivery" -> Hold,
     "Give a Gift! A commotion in the Square of Lofty Words" -> Hold
   )
-}
-
-object opportunities extends Opportunist(cards.standard ++ cards.story ++ cards.social ++ cards.dreams) {
 }

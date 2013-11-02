@@ -35,6 +35,7 @@ object Areas {
   val CorpsecageIsland = Area(49, "Corpsecage Island")
   val GruntingFen = Area(50, "Grunting Fen")
   val SeaOfVoices = Area(51, "The Sea of Voices")
+  val Polythreme = Area(53, "Polythreme Streets")
   val GamekeepersCottage = Area(5821, "The Gamekeeper's Cottage")
   
   private val byID = Map(
@@ -70,6 +71,7 @@ object Areas {
     49 -> CorpsecageIsland,
     50 -> GruntingFen,
     51 -> SeaOfVoices,
+    53 -> Polythreme,
     5821 -> GamekeepersCottage
   ) withDefault(i => { println("WARNING: unknown areaid %d".format(i)); Area(i, "Unknown Area")})
   
