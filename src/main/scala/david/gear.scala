@@ -52,7 +52,7 @@ object gear {
   
   def bizarre()(implicit c: Character) {
     c.equip("Fecund Amber Tiara")               //+1 hat
-    c.equip("Far Khanate Lacquered Armour")     //+1 clothing
+    c.equip("Moderately Co-operative Clothes Colony") //+1 clothing
     //no gloves
     c.equip("Bejewelled Cane")                  //+1 weapon
     //no boots

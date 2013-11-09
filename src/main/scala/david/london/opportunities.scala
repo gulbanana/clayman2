@@ -382,7 +382,7 @@ package object london {
     }),
     "A Pleasant Day for a Ride" -> DiscardUnless(_.suspicion == 2),                      //50% conn: soc and -suspicion
     "Your Edifice of Black Stone" -> Play("Rent out your gymnasium to ring-fighters"),   //+150 rostygold
-    "A day out in your Clay Sedan Chair" -> Play("To follow Jack's trail"),              //50% -Nightmares; 50% +nightmares and 1.95E secrets; rare for 25E!        
+    "A day out in your Clay Sedan Chair" -> Play("To make a point of treating them well"), //conn: soc        
     "Once upon a time in a carriage" -> Play("Offer her a lift")                         //150 whispered, 1 appalling, +conn: soc
   )
   
