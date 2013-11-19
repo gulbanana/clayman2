@@ -17,7 +17,7 @@ object gear {
   def shadowy()(implicit c: Character) {
     c.equip("Sneak-Thief's Mask")               //+5 hat
     c.equip("Ratskin Suit")                     //+6 clothing
-    c.equip("Cracksman's Mittens")              //+5 gloves
+    c.equip("Lenguals")                         //+10 gloves
     c.equip("Poison-tipped Umbrella")           //+8 weapon
     c.equip("Kingscale Boots")                  //+8 boots
     c.equip("Devious Raven Advisor")            //+7 pet
@@ -53,7 +53,7 @@ object gear {
   def bizarre()(implicit c: Character) {
     c.equip("Fecund Amber Tiara")               //+1 hat
     c.equip("Moderately Co-operative Clothes Colony") //+1 clothing
-    //no gloves
+    c.equip("Lenguals")                         //+1 gloves
     c.equip("Bejewelled Cane")                  //+1 weapon
     //no boots
     c.equip("Bifurcated Owl")                   //+2 pet
@@ -88,7 +88,7 @@ object gear {
   def bdr()(implicit c: Character) {
     c.equip("Fecund Amber Tiara")               //+1 hat
     c.equip("Academic Gown")                    //+1 clothing
-    //no gloves                                 
+    c.equip("Lenguals")                         //+1 gloves
     c.equip("Bejewelled Cane")                  //+1 weapon
     c.equip("Kingscale Boots")                  //+1 boots
     c.equip("Bifurcated Owl")                   //+4 pet

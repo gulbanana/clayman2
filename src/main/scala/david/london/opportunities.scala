@@ -21,6 +21,7 @@ package object london {
     "The Dean's distress" -> Discard,                                                                                                                 //60 candles
     "A private detective" -> Discard,                                                                                                                 //<1E clues
     "Coals and souls" -> Discard,                                                                                                                     //60 secrets
+    "The mechanics of progress" -> Play,                                                                                                              //115+ secrets (Watchful dependent?)
     "Investigate the Topsy King's court" -> Play(_.chooseBranch("Spy on the dealings with revolutionaries")),                                         //conn:const and 64 rostygold
     "The Correspondence Savages Your Dreams" -> Play(implicit c => { gear.watchful(); c.chooseBranch("Perhaps you can remember something useful") }), //eventually, use "Call on the services of a great mind of the Surface" for 4 scraps - requires high scholar
     "Consulting detective required for government work" -> Play(implicit c => { gear.watchful(); c.chooseBranch("Accept the case, but...") }),        //21 proscribed and +subtle
@@ -313,10 +314,10 @@ package object london {
       (Map(
         "Acquaintance: a Repentant Forger" -> (() => {
           c.chooseBranch("The Repentant Forger")
-          if (c.branches.contains("Take him to the theatre"))
-            c.chooseBranch("Take him to the theatre")
+          if (c.branches.contains("Old habits"))
+            c.chooseBranch("Old habits")
           else
-            c.chooseBranch("Visit him in his lodgings")
+            c.chooseBranch("Drop by for a chat")
         }),
         "Acquaintance: Regretful Soldier" -> (() => {
           c.chooseBranch("Visit the Regretful Soldier")

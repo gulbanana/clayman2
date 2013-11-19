@@ -17,6 +17,12 @@ object convert {
     c.onwards()    
   }
   
+  def memories_to_research()(implicit c: Character) {
+    c.useItem("Memory of Distant Shores")
+    c.chooseBranch("Dealing with the deviless")
+    c.onwards()    
+  }
+  
   /***************/
   /* CARTOGRAPHY */
   /***************/
@@ -29,6 +35,12 @@ object convert {
   def scraps_to_ztories()(implicit c: Character) {
     c.useItem("Map Scrap")
     c.chooseBranch("Show your map scraps to a gathering of zee-captains")
+    c.onwards()
+  } 
+  
+  def ztories_to_maps()(implicit c: Character) {
+    c.useItem("Zee-Ztory")
+    c.chooseBranch("Tell tall tales with the Salty Fabulist")
     c.onwards()
   } 
   
@@ -95,6 +107,18 @@ object convert {
     c.onwards()    
   }
   
+  def documents_to_kisses()(implicit c: Character) {
+    c.useItem("Compromising Document")
+    c.chooseBranch("A romantic sort of compromise")
+    c.onwards()    
+  }
+  
+  def kisses_to_favours()(implicit c: Character) {
+    c.useItem("Stolen Kiss")
+    c.chooseBranch("Ask the Muffled Intriguer to broker your Stolen Kisses")
+    c.onwards()    
+  }
+  
   /**************/
   /* LUMINOSITY */
   /**************/
@@ -106,7 +130,13 @@ object convert {
   
   def scarabs_to_memories()(implicit c: Character) {
     c.useItem("Phosphorescent Scarab")
-    ???
+    c.chooseBranch("The Radical Factotum will be pleased to take them from you")
+    c.onwards()    
+  }
+  
+  def memories_to_candles()(implicit c: Character) {
+    c.useItem("Memory of Light")
+    c.chooseBranch("Trying to remember")
     c.onwards()    
   }
   
