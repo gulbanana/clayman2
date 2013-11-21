@@ -106,7 +106,7 @@ package object london {
     "The Sleepless Tower" -> Play(_.chooseBranch("Spores and fangs")),                                                                              //dangerous t2 - 1 scrap
     "The Tower of Knives" -> Play(_.chooseBranch("Rough camaraderie")),                                                                             //shadowy t2 - 1 scrap
     "The Tower of Sleeping Giants" -> Play(c => c.chooseBranch(if (c.items("An Infernal Contract") < 100) "The owner" else "Examine the stock")),   //watchful t2 - 1 scrap
-    "The Tower of Eyes" -> HoldUntil(_.items("Favours in High Places") == 0, _.chooseBranch("Do a little promenading yourself")),                   //persuasive t2.5
+    "The Tower of Eyes" -> Hold,                                                                                                                    //persuasive t2.5
     "The Heron Tower" -> Play(_.chooseBranch("Hunt down a huge lizard")),                                                                           //dangerous t2.5
     "The Listing Tower" -> Hold, //I think I'm too Dangerous to ever get this?                                                                      //dangerous t2.5
     "The Windward Tower" -> Play(_.chooseBranch("The cautious contact")),                                                                           //shadowy t2.5
