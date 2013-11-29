@@ -103,7 +103,7 @@ package object london {
   
   private val lodgings = Map(
     "The Tower of Sparrows: a Gambling Den" -> Play(_.chooseBranch("Settle down to a game of cards")), //persuasive t2 - 1 scrap
-    "The Sleepless Tower" -> Play(_.chooseBranch("Spores and fangs")),                                 //dangerous t2 - 1 scrap
+    "The Sleepless Tower: a Cottage by the Observatory" -> Play(_.chooseBranch("Spores and fangs")),   //dangerous t2 - 1 scrap
     "The Tower of Knives" -> Play(_.chooseBranch("Rough camaraderie")),                                //shadowy t2 - 1 scrap
     "The Tower of Sleeping Giants: Rooms above a Bookshop" -> Play("Examine the stock"),               //watchful t2 - 1 scrap
     "The Tower of Eyes" -> Hold,                                                                       //persuasive t2.5
@@ -111,9 +111,9 @@ package object london {
     "The Listing Tower" -> Hold, //I think I'm too Dangerous to ever get this?                         //dangerous t2.5
     "The Windward Tower" -> Play(_.chooseBranch("The cautious contact")),                              //shadowy t2.5
     "The High Castle" -> Play(_.chooseBranch("A stroll with a sack")),                                 //shadowy t2.5
-    "The Lofty Tower" -> Play(_.chooseBranch("Engage in commerce")),                                   //persuasive t3 - 4 scraps
-    "The Western Tower" -> Discard,                                                                    //watchful t3
-    "The Tower of Sun and Moon: a Reservation at the Royal Bethlehem Hotel" -> Discard                                                             //watchful t3
+    "The Lofty Tower: Premises at the Bazaar" -> Play(_.chooseBranch("Engage in commerce")),           //persuasive t3 - 4 scraps
+    "The Western Tower: a Guest Room at the Brass Embassy" -> Discard,                                 //watchful t3
+    "The Tower of Sun and Moon: a Reservation at the Royal Bethlehem Hotel" -> Discard                 //watchful t3
   )
   
   private val connections = Map(
