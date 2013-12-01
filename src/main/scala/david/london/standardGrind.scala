@@ -127,7 +127,7 @@ object standardGrind extends OneManJob {
     convert.memories_to_research()
   } or (c.items("Mourning Candle") < echoes / 2.5) {
     convert.memories_to_candles()
-  } or (c.items("An Identity Uncovered") < echoes / 2.5) {
+  } or (c.items("An Identity Uncovered!") < echoes / 2.5) {
     convert.gossip_to_identities()
   } or (c.items("Partial Map") < echoes / 2.5) {
     convert.ztories_to_maps()
