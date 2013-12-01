@@ -134,6 +134,6 @@ object standardGrind extends OneManJob {
   } //XXX elder, wines, nostalgia, rag trade, wild words
   
   private def money(implicit c: Character) {
-    grind.tales_of_terror()	//for later use with the Fidgeting Writer
+    fidgetingWriter.apply(c)
   }
 }
