@@ -169,9 +169,9 @@ package object london {
         c.chooseBranch("In the shadow of All Christs Spire")
     }),
     "Park and Palace: Society" -> Play(c => 
-      if (c.qualities("Connected: Society") >= 60)
-        c.chooseBranch("Take port with the Veteran Privy Counsellor")  //+10cp persuasive, -400cp connected
-      else
+      //if (c.qualities("Connected: Society") >= 60)
+      //  c.chooseBranch("Take port with the Veteran Privy Counsellor")  //+10cp persuasive, -400cp connected
+      //else
         c.chooseBranch("An invitation to dinner")                      //+connected, -wounds
     ),
     "The Alleys of London: the Criminals" -> DiscardUnless(_.qualities("Connected: Criminals") >= 30, implicit c => {
