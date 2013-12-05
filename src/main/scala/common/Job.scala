@@ -24,7 +24,7 @@ abstract class RepeatedJob(implicit c: CharacterProvider) extends Job with Duty 
 
 abstract class BufferedJob(implicit c: CharacterProvider) extends Job with Duty {
   override def work() {
-    val buffer = 0//c.actionCap - 4 
+    val buffer = c.actionCap - 4 
     while (c.actions > buffer && apply(c)) {}
   }
 }
