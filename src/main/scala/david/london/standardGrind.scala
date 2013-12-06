@@ -8,9 +8,7 @@ object standardGrind extends OneManJob {
     avertMenaces.apply || playCards.apply || stockpile || achieveGoals or money
   }
 
-  private def achieveGoals(implicit c: Character) = did (c.items("Antique Mystery") < 50) {
-    grind.antique_mysteries()
-  } or (c.items("Muscaria Brandy") < 120) {
+  private def achieveGoals(implicit c: Character) = did (c.items("Muscaria Brandy") < 120) {
     grind.muscaria_brandy()
   } or (c.items("Brilliant Soul") < 600) {
     grind.brilliant_souls()

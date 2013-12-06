@@ -113,9 +113,10 @@ package object london {
     "The Listing Tower" -> Hold, //I think I'm too Dangerous to ever get this?                         //dangerous t2.5
     "The Windward Tower" -> Play(_.chooseBranch("The cautious contact")),                              //shadowy t2.5
     "The High Castle: a Rooftop Shack" -> Play(_.chooseBranch("A stroll with a sack")),                //shadowy t2.5
-    "The Lofty Tower: Premises at the Bazaar" -> Play(_.chooseBranch("Engage in commerce")),           //persuasive t3 - 4 scraps
-    "The Western Tower: a Guest Room at the Brass Embassy" -> Discard,                                 //watchful t3
-    "The Tower of Sun and Moon: a Reservation at the Royal Bethlehem Hotel" -> Hold                   //watchful t3
+    
+    "The Lofty Tower: Premises at the Bazaar" -> Play(_.chooseBranch("Engage in commerce")),                  //persuasive t3 - 4 scraps
+    "The Western Tower: a Guest Room at the Brass Embassy" -> Hold,                                           //watchful t3
+    "The Tower of Sun and Moon: a Reservation at the Royal Bethlehem Hotel" -> Play("Investigate the guests") //watchful t3 - 3 scraps
   )
   
   private val connections = Map(
@@ -181,12 +182,11 @@ package object london {
       c.chooseBranch("Consult with a master thief")
     }),
     
-    "A consideration for services rendered" -> Discard,                //30 brass & 2 appallings for 1 soul, -conn:hell
     "A consideration for services rendered" -> Discard,                //trades in conn: hell, not worth grinding souls for
     "A limping figure in a top hat beckons" -> Discard,                //trades in conn: rubbery, just gives amber
     "An implausible penance" -> Discard,                               //trades in conn: criminals for interesting but complex rewards, e.g. 500cp for ~30 echoes
     "A merry sort of crime" -> Play(_.chooseBranch("Dirigible theft")),//+15cp conn: criminals
-    "A rather decadent evening" -> Play,                               //trades in conn: bohemian for good rewards
+    "A rather decadent evening" -> Discard,                            //trades in conn: bohemian for good rewards
     "A Rubbery Man lopes purposefully in your wake, tentacles dangling like hanged men's fingers" -> Discard, //-1 warm for +100 deep amber and +5 cp rubbery
     "1000 Nevercold Brass wanted! Will pay handsomely!" -> DiscardUnless(
         c => c.items("Nevercold Brass Sliver") >= 1000 && c.qualities("Connected: The Great Game") < 15, 
