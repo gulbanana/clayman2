@@ -469,7 +469,10 @@ package object london {
     "An ivied wall" -> Hold,                     //+SMEN! -dangerous, -shadowy, +wounds, +suspicion
     "The Body and the Number" -> Hold,
     "The Mind and the Number" -> Hold,
-    "The Soul and the Number" -> Hold
+    "The Soul and the Number" -> Hold,
+    "A contretemps in a restaurant" -> Hold,     //cannot discard, all options costly or bad
+    "Restitution?" -> Hold,                      //cannot discard, "Give to the poor" -50 rostygold +urchins +docks
+    "St Arthur's Candle" -> DiscardUnless(_.items("Midnight Matriarch") > 0)
   )
   
   private val dreams = Map(
