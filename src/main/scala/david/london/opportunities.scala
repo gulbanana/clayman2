@@ -108,10 +108,10 @@ package object london {
     "The Tower of Sleeping Giants: Rooms above a Bookshop" -> Play("Examine the stock"),               //watchful t2 - 1 scrap
     "The Tower of Eyes: a Handsome Townhouse" -> Hold/*Until(
       c => c.qualities("Connected: Bohemian") < 50 && c.qualities("Connected: Society") < 50, 
-      c => c.chooseBranch("Do a little promenading yourself")),
-    "The Heron Tower: a Lair in the Marshes" -> Play(_.chooseBranch("Hunt down a huge lizard"))*/,       //dangerous t2.5
+      c => c.chooseBranch("Do a little promenading yourself"))*/,
+    "The Heron Tower: a Lair in the Marshes" -> Play(_.chooseBranch("Hunt down a huge lizard")),       //dangerous t2.5
     "The Listing Tower" -> Hold, //I think I'm too Dangerous to ever get this?                         //dangerous t2.5
-    "The Windward Tower" -> Play(_.chooseBranch("The cautious contact")),                              //shadowy t2.5
+    "The Windward Tower: a Decommissioned Steamer" -> Play(_.chooseBranch("The cautious contact")),                              //shadowy t2.5
     "The High Castle: a Rooftop Shack" -> Play(_.chooseBranch("A stroll with a sack")),                //shadowy t2.5
     
     "The Lofty Tower: Premises at the Bazaar" -> Play(_.chooseBranch("Engage in commerce")),                  //persuasive t3 - 4 scraps
