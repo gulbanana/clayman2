@@ -3,15 +3,37 @@ import api._
 import common._
 import david._
 
+/* Notability
+MW requirement for 60%: 20 - B+D+R + 6N
+B+D+R = 23
+N   MW60  MW100
+0   1     1
+1   3     5
+2   9     15
+3   15    25
+4   21    35
+5   27    45
+6   33    55
+7   39    65
+ */
+
 object standardGrind extends OneManJob {
   def apply(implicit c: Character) = {
-    avertMenaces.apply || playCards.apply || stockpile || achieveGoals or money
+    avertMenaces.apply || playCards.apply || stockpile || connections || achieveGoals or money
   }
 
+  //transient goals, specific acquisitions
   private def achieveGoals(implicit c: Character) = did (c.items("Muscaria Brandy") < 120) {
     grind.muscaria_brandy()
   } or (c.items("Brilliant Soul") < 600) {
     grind.brilliant_souls()
+  }
+  
+  //I want to keep certain connections up
+  private def connections(implicit c: Character) = did (c.qualities("Connected: Society") < 77) {
+    connected.society()
+  } or (c.qualities("Connected: Bohemians") < 50) {
+    connected.bohemian()
   }
   
   //For efficient convertibility, multiples of 10/50/25/62.5 echoes are required

@@ -10,6 +10,13 @@ object connected {
     c.chooseBranch("Publish poetry in praise of the Duchess")
     c.onwards()
   }
+
+  def society()(implicit c: Character) {
+    c.travel(Areas.ShutteredPalace)
+    c.beginStorylet("An evening at the Duchess' salon")
+    c.chooseBranch("Attend: and be erudite")
+    c.onwards()
+  }
   
   def the_duchess()(implicit c: Character) = bohemian
 
@@ -21,28 +28,6 @@ def hell(character):
     character.travel(areas.LADYBONES_ROAD)
     character.begin_story('Scrutinise infernal contracts')
     character.choose_default_branch()
-    character.onwards()
-
-def society_and_clues(character):
-    """8 cp and 28 cryptic clues(0.56E)"""
-    character.travel(areas.VEILGARDEN)
-    character.begin_story('Charm an influential young rake')
-    character.choose_default_branch()
-    character.onwards()
-
-def society(character):
-    """35 cp
-    scandal on failure, but it's 100% at 100"""
-    character.travel(areas.SHUTTERED_PALACE)
-    character.begin_story('An evening at the Duchess\' salon')
-    character.choose_branch('Attend: and be erudite')
-    character.onwards()
-
-def society_no_scandal(character):
-    """31 cp"""
-    character.travel(areas.SHUTTERED_PALACE)
-    character.begin_story('An evening at the Duchess\' salon')
-    character.choose_branch('Attend: and be entertaining')
     character.onwards()
 
 def the_constables(character):
