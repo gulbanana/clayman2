@@ -104,7 +104,7 @@ package object london {
   private val lodgings = Map(
     "The Tower of Sparrows: a Gambling Den" -> Play(_.chooseBranch("Settle down to a game of cards")), //persuasive t2 - 1 scrap
     "The Sleepless Tower: a Cottage by the Observatory" -> Play(_.chooseBranch("Spores and fangs")),   //dangerous t2 - 1 scrap
-    "The Tower of Knives" -> Play(_.chooseBranch("Rough camaraderie")),                                //shadowy t2 - 1 scrap
+    "The Tower of Knives: a Smoky Flophouse" -> Play(_.chooseBranch("Rough camaraderie")),             //shadowy t2 - 1 scrap
     "The Tower of Sleeping Giants: Rooms above a Bookshop" -> Play("Examine the stock"),               //watchful t2 - 1 scrap
     "The Tower of Eyes: a Handsome Townhouse" -> Hold/*Until(
       c => c.qualities("Connected: Bohemian") < 50 && c.qualities("Connected: Society") < 50, 
