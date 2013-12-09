@@ -6,9 +6,9 @@ object gear {
     c.equip("Gloam-Foam")                       //+8 hat
     c.equip("Academic Gown")                    //+5 clothing
     c.equip("Insatiable Glove")                 //+8 gloves
-    c.equip("Ratwork Watch")                    //+8 weapon
+    c.equip("A Pot of Violant Ink")             //+12 weapon
     c.equip("Mirror-polished Shoes")            //+2 boots
-    c.equip("Appreciation Society")             //+9 pet
+    c.equip("Mystic Raven Advisor")             //+7 pet
     c.equip("The Sixth City Times (Newspaper)") //+1 affiliation
     //no transport
     c.equip("Voluminous Library")               //+1 home comfort
@@ -42,9 +42,9 @@ object gear {
     c.equip("Fecund Amber Tiara")               //+10 hat
     c.equip("Dignified Tailcoat")               //+5 clothing
     c.equip("Dancemaster's Dabs")               //+5 gloves
-    c.equip("Irresistible Drum")                //+6 weapon
+    c.equip("A Pot of Violant Ink")             //+12 weapon
     c.equip("Masterwork Dancing Slippers")      //+5 boots
-    c.equip("Appreciation Society")             //+9 pet
+    c.equip("Blemmigan Secretary")              //+6 pet
     c.equip("A Salon")                          //+2 affiliation
     //no transport
     //no home comfort
@@ -79,7 +79,7 @@ object gear {
     //no gloves
     c.equip("Consonant Violin")                 //+1 weapon
     //no boots
-    c.equip("Appreciation Society")             //+1 pet
+    c.equip("Partisan Messenger Tortoise")      //+1 pet
     c.equip("Membership of God's Editors")      //+4 affiliation
     c.equip("Ratwork Velocipede")               //+2 transport
     //no home comfort
@@ -101,7 +101,7 @@ object gear {
     c.equip("Fecund Amber Tiara")               //+10 persuasive
     c.equip("Far Khanate Lacquered Armour")     //+8 dangerous, +4 persuasive
     c.equip("Insatiable Glove")                 //+8 watchful, -1 shadowy, +2 dangerous, -1 persuasive
-    c.equip("Ravenglass Knife")                 //+6 dangerous
+    c.equip("A Pot of Violant Ink")             //+12 watchful, +12 persuasive, +1 bizarre
     c.equip("Kingscale Boots")                  //+8 shadowy, +6 dangerous
     c.equip("Bifurcated Owl")                   //+5 watchful, +5 shadowy, +5 dangerous, +5 persuasive
     c.equip("The Sixth City Times (Newspaper)") //+1 watchful, +1 persuasive
