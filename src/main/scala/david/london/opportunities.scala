@@ -523,12 +523,13 @@ package object london {
       gear.watchful()
       c.chooseBranch("Return with a gift")                                              //net 25 clues, 1 appalling, and 1 TOT - 1.15E
     }),
-    "Miniature mausoleums" -> Hold,                                                     //arguably Watchful. probably specific to Palace. "Examine the inscriptions" gives 24 clues, i don't know what "A spot of grave-robbery" does yet
+    "Miniature mausoleums" -> Discard,                                                  //arguably Watchful. probably specific to Palace. "Examine the inscriptions" gives 24 clues, "A spot of grave-robbery" 4 Relics (0.6E)
     "Stealth watch repair" -> Play("It's beneath his dignity, but..."),                 //55 brass, 25 pearls, 1 flawed diamond, 1 sapphire - 1.04E
     "A merry gentleman" -> Play("Ignore the Merry Gentleman"),                          //50% to reduce nightmares
     "Give a Gift! A commotion in the Square of Lofty Words" -> DiscardUnless(_.qualities("Hedonist") >= 5, _.chooseBranch("'I myself am my only true friend!'")), //second chances
     "2000 Foxfire Candles wanted! Will pay handsomely!" -> Discard,                     //no net loss but costly to grind
     "A Polite Invitation" -> Discard,                                                   //party is fun but been there done that
-    "A visit from Slowcake's Amanuensis" -> Discard                                     //not trying to grind notability
+    "Invited to another revel of the Masters" -> Discard,                               //for conn:masters
+    "A visit from Slowcake's Amanuensis" -> Hold                                        //for Notability
   ))
 }
