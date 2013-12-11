@@ -4,7 +4,7 @@ import api._
 object gear {
   def watchful()(implicit c: Character) {
     c.equip("Gloam-Foam")                       //+8 hat
-    c.equip("Academic Gown")                    //+5 clothing
+    c.equip("Smock of Four Thousand Three Hundred and Eight Pockets") //+10 clothing
     c.equip("Insatiable Glove")                 //+8 gloves
     c.equip("A Pot of Violant Ink")             //+12 weapon
     c.equip("Mirror-polished Shoes")            //+2 boots
@@ -41,7 +41,7 @@ object gear {
   def persuasive()(implicit c: Character) {
     c.equip("Fecund Amber Tiara")               //+10 hat
     c.equip("Dignified Tailcoat")               //+5 clothing
-    c.equip("Dancemaster's Dabs")               //+5 gloves
+    c.equip("Twelve-carat Diamond Ring")        //+8 gloves
     c.equip("A Pot of Violant Ink")             //+12 weapon
     c.equip("Masterwork Dancing Slippers")      //+5 boots
     c.equip("Blemmigan Secretary")              //+6 pet
