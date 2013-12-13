@@ -120,12 +120,12 @@ package object london {
   )
   
   private val connections = Map(
-    "Gunpowder and Zeal: the Revolutionaries" -> Hold/*DiscardUnless(c => c.qualities("Counting the Days") < 14 || c.dangerous < 175, c => {
+    "Gunpowder and Zeal: the Revolutionaries" -> DiscardUnless(c => c.qualities("Counting the Days") < 14 || c.dangerous < 175, c => {
       if (c.qualities("Counting the Days") < 14)
         c.chooseBranch("Taking a walk down gin lane")
       else
         c.chooseBranch("And now... bombs!")
-    })*/,        
+    }),        
     "Altars and alms-houses: the Church" -> DiscardUnless(c => c.qualities("Connected: The Church") >= 50 || c.items("Rostygold") >= 10, c =>
       if (c.qualities("Connected: The Church") >= 30)
         c.chooseBranch("Attend a private lecture given by the Bishop of Southwark")
@@ -147,7 +147,7 @@ package object london {
       }
     ),
     "Burning Shadows: the Devils of London" -> Play(implicit c => 
-      if (c.qualities("Connected: Hell") >= 30) {
+      if (c.qualities("Connected: Hell") >= 50) {
         c.chooseBranch("Speak with a senior deviless")
       } else {
         c.chooseBranch("Attend a lecture at the Brass Embassy")
@@ -177,7 +177,7 @@ package object london {
       //else
         c.chooseBranch("An invitation to dinner")                      //+connected, -wounds
     ),
-    "The Alleys of London: the Criminals" -> DiscardUnless(_.qualities("Connected: Criminals") >= 30, implicit c => {
+    "The Alleys of London: the Criminals" -> DiscardUnless(_.qualities("Connected: Criminals") >= 50, implicit c => {
       gear.shadowy()
       c.chooseBranch("Consult with a master thief")
     }),

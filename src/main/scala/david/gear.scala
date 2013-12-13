@@ -8,7 +8,7 @@ object gear {
     c.equip("Insatiable Glove")                 //+8 gloves
     c.equip("A Pot of Violant Ink")             //+12 weapon
     c.equip("Mirror-polished Shoes")            //+2 boots
-    c.equip("Mystic Raven Advisor")             //+7 pet
+    c.equip("Scuttering Squad")                 //+8 pet
     c.equip("The Sixth City Times (Newspaper)") //+1 affiliation
     //no transport
     c.equip("Voluminous Library")               //+1 home comfort
@@ -20,7 +20,7 @@ object gear {
     c.equip("Lenguals")                         //+10 gloves
     c.equip("Poison-tipped Umbrella")           //+8 weapon
     c.equip("Kingscale Boots")                  //+8 boots
-    c.equip("Devious Raven Advisor")            //+7 pet
+    c.equip("Scuttering Squad")                 //+8 pet
     c.equip("Gang of Hoodlums")                 //+1 affiliation
     c.equip("Ratwork Velocipede")               //+1 transport
     //no home comfort
@@ -32,7 +32,7 @@ object gear {
     c.equip("Spiderchitin Gauntlets")           //+5 gloves
     c.equip("Infernal Sharpshooter's Rifle")    //+10 weapon
     c.equip("Vakeskin Boots")                   //+8 boots
-    c.equip("Rattus Faber Bandit-Chief")        //+8 pet
+    c.equip("Scuttering Squad")                 //+8 pet
     //no affiliation
     //no transport
     c.equip("Formidable Basalt Gymnasium")      //+1 home comfort
@@ -40,7 +40,7 @@ object gear {
   
   def persuasive()(implicit c: Character) {
     c.equip("Fecund Amber Tiara")               //+10 hat
-    c.equip("Dignified Tailcoat")               //+5 clothing
+    c.equip("Parabola-Linen Suit")               //+8 clothing
     c.equip("Twelve-carat Diamond Ring")        //+8 gloves
     c.equip("A Pot of Violant Ink")             //+12 weapon
     c.equip("Masterwork Dancing Slippers")      //+5 boots
