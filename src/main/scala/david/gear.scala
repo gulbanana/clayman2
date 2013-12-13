@@ -47,7 +47,7 @@ object gear {
     c.equip("Blemmigan Secretary")              //+6 pet
     c.equip("A Salon")                          //+2 affiliation
     //no transport
-    //no home comfort
+    c.equip("Extraordinary Drinks Cabinet")     //+2 home comfort
   }
   
   def bizarre()(implicit c: Character) {
