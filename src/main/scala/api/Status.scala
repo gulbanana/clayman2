@@ -1,5 +1,6 @@
 package api
 import collection.JavaConversions._
+import collection.mutable
 import org.jsoup.Jsoup, org.jsoup.nodes._
 
 case class Item(id: Int, name: String, quantity: Int)
@@ -153,18 +154,15 @@ class Status {
     items = possessions.map(i => i.name -> i.quantity).toMap.withDefaultValue(0)
   }
   
-  private var stdInventory: Option[Document] = None 
-  private var expInventory: Option[Document] = None
+  private val inventory = mutable.Map[String,Element]()
   def updateEquipment(soup: Document) {
-    soup.select("a.standard_btn").last.text match {
-      case "EXPANDED INVENTORY" => stdInventory = Some(soup)  
-      case "STANDARD INVENTORY" => expInventory = Some(soup)
+    for (inner <- soup.select("div.me-profile-inventory-slot")) {      
+      val slot = inner.select("h5").first.text
+      inventory(slot) = inner
     }
     
-    for (std <- stdInventory; exp <- expInventory) {
-      unequipped = extractItems(Seq(std,exp).flatMap(_.select("div.you_mid_rhs li > a.tooltip")))
-      equipped = extractItems(Seq(std,exp).flatMap(_.select("div.you_mid_mid li > a.tooltip")))
-    }
+    unequipped = extractItems(inventory.values.toSeq.flatMap(_.select("ul.me-profile-slot-items a.tooltip")))
+    equipped = extractItems(inventory.values.toSeq.flatMap(_.select("div.me-profile-slot a.tooltip")))
   }
   
   def updateLocation(area: Area) =  if (location != area) {
