@@ -77,7 +77,7 @@ object Areas {
   
   def apply(id: Int) = byID(id)
   
-  val london = Set(
+  val London = Set(
     BazaarSideStreets,
     Carnival,
     DoubtStreet,

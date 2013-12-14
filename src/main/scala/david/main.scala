@@ -23,7 +23,7 @@ object main extends BufferedJob {
     case Areas.GruntingFen    => unterzee.gruntingFen(c)
     case Areas.HuntersKeep    => unterzee.huntersKeep(c)
     case Areas.Polythreme     => polythreme.grind(c)
-    case x if Areas.london(x) => london.standardGrind(c)
+    case x if Areas.London(x) => london.standardGrind(c)
     case _                    => false
   } 
 }
