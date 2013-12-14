@@ -65,6 +65,7 @@ object gear {
   def dreaded()(implicit c: Character) {
     c.equip("Gloam-Foam")                       //+1 hat
     c.equip("Ratskin Suit")                     //+1 clothing
+    c.equip("Iron Republic Journal")            //+1 weapon
     //no gloves
     c.equip("Kingscale Boots")                  //+1 boots
     c.equip("Bifurcated Owl")                   //+2 pet
@@ -89,7 +90,7 @@ object gear {
     c.equip("Fecund Amber Tiara")               //+1 hat
     c.equip("Academic Gown")                    //+1 clothing
     c.equip("Lenguals")                         //+1 gloves
-    c.equip("Bejewelled Cane")                  //+1 weapon
+    c.equip("Iron Republic Journal")            //+2 weapon
     c.equip("Kingscale Boots")                  //+1 boots
     c.equip("Bifurcated Owl")                   //+4 pet
     c.equip("Membership of God's Editors")      //+4 affiliation
