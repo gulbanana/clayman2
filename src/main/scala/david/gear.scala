@@ -12,7 +12,7 @@ object gear {
     c.equip("The Sixth City Times (Newspaper)") //+1 affiliation
     //no transport
     c.equip("Voluminous Library")               //+1 home comfort
-  }
+ }
   
   def shadowy()(implicit c: Character) {
     c.equip("Sneak-Thief's Mask")               //+5 hat
@@ -87,7 +87,7 @@ object gear {
   }
   
   def bdr()(implicit c: Character) {
-    c.equip("Fecund Amber Tiara")               //+1 hat
+    c.equip("Gloam-Foam")                       //+1 hat
     c.equip("Academic Gown")                    //+1 clothing
     c.equip("Lenguals")                         //+1 gloves
     c.equip("Iron Republic Journal")            //+2 weapon
