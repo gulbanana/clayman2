@@ -116,7 +116,7 @@ package object london {
     
     "The Lofty Tower: Premises at the Bazaar" -> Hold/*Play(_.chooseBranch("Engage in commerce"))*/,                  //persuasive t3 - 4 scraps
     "The Western Tower: a Guest Room at the Brass Embassy" -> Hold,                                           //watchful t3
-    "The Tower of Sun and Moon: a Reservation at the Royal Bethlehem Hotel" -> Hold/*Play("Investigate the guests")*/ //watchful t3 - 3 scraps
+    "The Tower of Sun and Moon: a Reservation at the Royal Bethlehem Hotel" -> Play("Investigate the guests") //watchful t3 - 3 scraps
   )
   
   private val connections = Map(
