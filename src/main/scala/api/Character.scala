@@ -14,12 +14,23 @@ class Character(username: String, password: String) {
     newLogin = true
     loginSoup = http.query(site / "Gap" / "Load" <<? Map("content" -> "/Me"))
   }
-  private val selfSoup = http.query(site / "Me")
   
   parser updateStatus loginSoup
-  parser updateEquipment selfSoup
+  
   parser updateEquipment http.query(site / "Me" / "InventoryExpanded")
-  parser updateQualities selfSoup
+  
+  private val meSoup = http.query(site / "Me")
+  parser updateEquipment meSoup
+  parser updateItems meSoup
+  
+  //XXX change this to dynamically read the quality categories?
+  parser updateQualities("Acquaintance", http.query(site / "Me" / "StatusesForCategory" <<? Map("category" -> "Acquaintance")))
+  parser updateQualities("Contacts", http.query(site / "Me" / "StatusesForCategory" <<? Map("category" -> "Contacts")))
+  parser updateQualities("Menace", http.query(site / "Me" / "StatusesForCategory" <<? Map("category" -> "Menace")))
+  parser updateQualities("Progress", http.query(site / "Me" / "StatusesForCategory" <<? Map("category" -> "Progress")))
+  parser updateQualities("Quirk", http.query(site / "Me" / "StatusesForCategory" <<? Map("category" -> "Quirk")))
+  parser updateQualities("Story", http.query(site / "Me" / "StatusesForCategory" <<? Map("category" -> "Story")))
+  
   parser updateBranches http.query(site / "Storylet" / "In")
   
   if (newLogin)
@@ -98,7 +109,7 @@ class Character(username: String, password: String) {
   
   def useItem(item: String) {
     if (!parser.itemIDs.keySet.contains(item))
-      parser updateQualities http.query(site / "Me")
+      parser updateItems http.query(site / "Me")
     
     parser updateBranches http.query(site / "Storylet" / "UseQuality" << Map("qualityId" -> parser.itemIDs(item).toString))
     println("\"%s\"".format(parser.title))
