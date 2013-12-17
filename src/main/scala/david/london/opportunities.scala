@@ -105,18 +105,24 @@ package object london {
     "The Tower of Sparrows: a Gambling Den" -> Play(_.chooseBranch("Settle down to a game of cards")), //persuasive t2 - 1 scrap
     "The Sleepless Tower: a Cottage by the Observatory" -> Play(_.chooseBranch("Spores and fangs")),   //dangerous t2 - 1 scrap
     "The Tower of Knives: a Smoky Flophouse" -> Play(_.chooseBranch("Rough camaraderie")),             //shadowy t2 - 1 scrap
-    "The Tower of Sleeping Giants: Rooms above a Bookshop" -> Play("Examine the stock"),               //watchful t2 - 1 scrap
-    "The Tower of Eyes: a Handsome Townhouse" -> Hold/*Until(
-      c => c.qualities("Connected: Bohemian") < 50 && c.qualities("Connected: Society") < 50, 
-      c => c.chooseBranch("Do a little promenading yourself"))*/,
+    "The Tower of Sleeping Giants: The Secrets of the Rooms above a Bookshop" -> Play("Examine the stock"),               //watchful t2 - 1 scrap
+    
     "The Heron Tower: Events at a Lair in the Marshes" -> Play(_.chooseBranch("Hunt down a huge lizard")),       //dangerous t2.5
-    "The Listing Tower" -> Hold, //I think I'm too Dangerous to ever get this?                         //dangerous t2.5
     "The Windward Tower: a Decommissioned Steamer" -> Play(_.chooseBranch("The cautious contact")),    //shadowy t2.5
     "The High Castle: a Rooftop Shack" -> Play(_.chooseBranch("A stroll with a sack")),                //shadowy t2.5
+    "The Tower of Eyes: a Handsome Townhouse" -> Hold/*Until(
+      c => c.qualities("Connected: Bohemian") < 50 && c.qualities("Connected: Society") < 50, 
+      c => c.chooseBranch("Do a little promenading yourself"))*/,    //salon
+    "The Listing Tower" -> Hold,                                     //requires knife and candle stuff
     
-    "The Lofty Tower: Premises at the Bazaar" -> Hold/*Play(_.chooseBranch("Engage in commerce"))*/,                  //persuasive t3 - 4 scraps
+    "The Lofty Tower: The Lofty Tower: the Potential of Premises at the Bazaar" -> Play(implicit c => {
+      gear.persuasive()
+      c.chooseBranch("Engage in commerce")                           //4 scraps, money
+    }),
+    
     "The Western Tower: a Guest Room at the Brass Embassy" -> Hold,                                           //watchful t3
-    "The Tower of Sun and Moon: a Reservation at the Royal Bethlehem Hotel" -> Play("Investigate the guests") //watchful t3 - 3 scraps
+    
+    "The Tower of Sun and Moon: a Reservation at the Royal Bethlehem Hotel" -> Play("Investigate the guests") //3 scraps
   )
   
   private val connections = Map(
