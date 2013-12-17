@@ -323,6 +323,10 @@ package object london {
         }),
         "Acquaintance: Regretful Soldier" -> (() => {
           c.chooseBranch("Visit the Regretful Soldier")
+          if (c.branches.contains("Take him to the theatre"))
+            c.chooseBranch("Take him to the theatre")
+          else
+            c.chooseBranch("Visit him in his lodgings")
         }),
         "Acquaintance: Sardonic Music-Hall Singer" -> (() => {
           c.chooseBranch("Visit the Sardonic Music-Hall Singer")
