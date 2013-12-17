@@ -59,6 +59,12 @@ object convert {
     c.onwards()
   } 
   
+  def mysteries_to_passphrases()(implicit c: Character) {
+    c.useItem("Mystery of the Elder Continent")
+    c.chooseBranch("Distressing bird")
+    c.onwards()
+  } 
+  
   /************/
   /* INFERNAL */
   /************/
@@ -187,6 +193,12 @@ object convert {
     c.chooseBranch("Hold a salon dedicated to nostalgia for the Surface")
     c.onwards()
   } 
+  
+  def visions_to_stories()(implicit c: Character) {
+    c.useItem("Vision of the Surface")
+    c.chooseBranch("Speak with bohemians about lost loves and the Surface")
+    c.onwards()
+  } 
 
   /*************/
   /* RAG TRADE */
@@ -200,6 +212,12 @@ object convert {
   def surface_silk_to_whisper_satin()(implicit c: Character) {
     c.useItem("Surface-Silk Scrap")
     c.chooseBranch("Take an armful of bolts to the Marred Mercer")
+    c.onwards()
+  } 
+  
+  def whisper_satin_to_thirsty_bombazine()(implicit c: Character) {
+    c.useItem("Whisper-Satin Scrap")
+    c.chooseBranch("Trade them to the Marred Mercer")
     c.onwards()
   } 
   
@@ -239,6 +257,12 @@ object convert {
     c.onwards()
   } 
   
+  def plaques_to_screams()(implicit c: Character) {
+    c.useItem("Correspondence Plaque")
+    c.chooseBranch("Unlikely customers")
+    c.onwards()
+  } 
+  
   /*********/
   /* WINES */
   /*********/
@@ -248,9 +272,15 @@ object convert {
     c.onwards()
   } 
   
-  def morelways_to_absinthe()(implicit c: Character) {
+  def morelways_to_strangling_willow()(implicit c: Character) {
     c.useItem("Morelways 1872")
     c.chooseBranch("Trade them off to the Portly Sommelier")
     c.onwards()
-  } 
+  }
+  
+  def strangling_willow_to_broken_giant()(implicit c: Character) {
+    c.useItem("Strangling Willow Absinthe")
+    c.chooseBranch("Interrupt the Affable Monsignor's reading")
+    c.onwards()
+  }
 }

@@ -151,7 +151,17 @@ object standardGrind extends OneManJob {
     convert.gossip_to_identities()
   } or (c.items("Partial Map") < echoes / 2.5) {
     convert.ztories_to_maps()
-  } //XXX elder, wines, nostalgia, rag trade, wild words
+  } or (c.items("Presbyterate Passphrase") < echoes / 2.5) {
+    convert.mysteries_to_passphrases()
+  } or (c.items("Broken Giant 1844") < echoes / 2.5) {
+    convert.strangling_willow_to_broken_giant()
+  } or (c.items("Touching Love Story") < echoes / 2.5) {
+    convert.visions_to_stories()
+  } or (c.items("Thirsty Bombazine Scrap") < echoes / 2.5) {
+    convert.whisper_satin_to_thirsty_bombazine()
+  } or (c.items("Aeolian Scream") < echoes / 2.5) {
+    convert.plaques_to_screams()
+  }
   
   private def money(implicit c: Character) {
     fidgetingWriter.apply(c)
