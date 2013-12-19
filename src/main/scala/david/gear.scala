@@ -19,7 +19,7 @@ object gear {
     c.equip("Ratskin Suit")                     //+6 clothing
     c.equip("Lenguals")                         //+10 gloves
     c.equip("Poison-tipped Umbrella")           //+8 weapon
-    c.equip("Kingscale Boots")                  //+8 boots
+    c.equip("Forgotten Spidersilk Slippers")    //+9 boots
     c.equip("Scuttering Squad")                 //+8 pet
     c.equip("Gang of Hoodlums")                 //+1 affiliation
     c.equip("Ratwork Velocipede")               //+1 transport
@@ -40,7 +40,7 @@ object gear {
   
   def persuasive()(implicit c: Character) {
     c.equip("Fecund Amber Tiara")               //+10 hat
-    c.equip("Parabola-Linen Suit")               //+8 clothing
+    c.equip("Parabola-Linen Suit")              //+8 clothing
     c.equip("Twelve-carat Diamond Ring")        //+8 gloves
     c.equip("A Pot of Violant Ink")             //+12 weapon
     c.equip("Masterwork Dancing Slippers")      //+5 boots
