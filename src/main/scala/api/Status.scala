@@ -189,7 +189,7 @@ class Status {
       key -> id
     }).toMap
     
-    soup.select("li.card_deck").text match {
+    soup.select(".deck-contents-description").text match {
       case deckPattern(cards) => deck = cards.toInt
       case _ => deck = 0
     }
