@@ -102,15 +102,15 @@ package object london {
   )
   
   private val lodgings = Map(
-    "The Tower of Sparrows: a Gambling Den" -> Play(_.chooseBranch("Settle down to a game of cards")), //persuasive t2 - 1 scrap
-    "The Sleepless Tower: a Cottage by the Observatory" -> Play(_.chooseBranch("Spores and fangs")),   //dangerous t2 - 1 scrap
-    "The Tower of Knives: a Smoky Flophouse" -> Play(_.chooseBranch("Rough camaraderie")),             //shadowy t2 - 1 scrap
+    "The Tower of Sparrows: Vice and Virtue in a Gambling Den" -> Play(_.chooseBranch("Settle down to a game of cards")), //persuasive t2 - 1 scrap
+    "The Sleepless Tower: Disturbances at a Cottage by the Observatory" -> Play(_.chooseBranch("Spores and fangs")),   //dangerous t2 - 1 scrap
+    "The Tower of Knives: Difficulties at a Smoky Flophouse" -> Play(_.chooseBranch("Rough camaraderie")),             //shadowy t2 - 1 scrap
     "The Tower of Sleeping Giants: The Secrets of the Rooms above a Bookshop" -> Play("Examine the stock"),               //watchful t2 - 1 scrap
     
     "The Heron Tower: Events at a Lair in the Marshes" -> Play(_.chooseBranch("Hunt down a huge lizard")),       //dangerous t2.5
     "The Windward Tower: a Decommissioned Steamer" -> Play(_.chooseBranch("The cautious contact")),    //shadowy t2.5
     "The High Castle: a Rooftop Shack" -> Play(_.chooseBranch("A stroll with a sack")),                //shadowy t2.5
-    "The Tower of Eyes: a Handsome Townhouse" -> Hold/*Until(
+    "The Tower of Eyes: Behind Closed Doors at a Handsome Townhouse" -> Hold/*Until(
       c => c.qualities("Connected: Bohemian") < 50 && c.qualities("Connected: Society") < 50, 
       c => c.chooseBranch("Do a little promenading yourself"))*/,    //salon
     "The Listing Tower" -> Hold,                                     //requires knife and candle stuff

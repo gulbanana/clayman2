@@ -32,7 +32,7 @@ object standardGrind extends OneManJob {
   //I want to keep certain connections up
   private def connections(implicit c: Character) = did (c.qualities("Connected: Society") < 77) {
     connected.society()
-  } or (c.qualities("Connected: Bohemians") < 50) {
+  } or (c.qualities("Connected: Bohemian") < 50) {
     connected.bohemian()
   }
   
