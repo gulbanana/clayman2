@@ -108,7 +108,7 @@ package object london {
     "The Tower of Sleeping Giants: The Secrets of the Rooms above a Bookshop" -> Play("Examine the stock"),               //watchful t2 - 1 scrap
     
     "The Heron Tower: Events at a Lair in the Marshes" -> Play(_.chooseBranch("Hunt down a huge lizard")),       //dangerous t2.5
-    "The Windward Tower: a Decommissioned Steamer" -> Play(_.chooseBranch("The cautious contact")),    //shadowy t2.5
+    "The Windward Tower: the Matter of the Decommissioned Steamer" -> Play(_.chooseBranch("The cautious contact")),    //shadowy t2.5
     "The High Castle: a Rooftop Shack" -> Play(_.chooseBranch("A stroll with a sack")),                //shadowy t2.5
     "The Tower of Eyes: Behind Closed Doors at a Handsome Townhouse" -> Hold/*Until(
       c => c.qualities("Connected: Bohemian") < 50 && c.qualities("Connected: Society") < 50, 
@@ -152,13 +152,13 @@ package object london {
         c.chooseBranch("Buy a round at the Rusty Tramp")
       }
     ),
-    "Burning Shadows: the Devils of London" -> Hold/*Play(implicit c => 
+    "Burning Shadows: the Devils of London" -> Play(implicit c => 
       if (c.qualities("Connected: Hell") >= 50) {
         c.chooseBranch("Speak with a senior deviless")
       } else {
         c.chooseBranch("Attend a lecture at the Brass Embassy")
       }
-    )*/,
+    ),
     "The Demi-Monde: Bohemians" -> DiscardUnless(c => c.qualities("Connected: Bohemian") >= 60 || c.items("Greyfields 1882") >= 2, c => 
       if (c.qualities("Connected: Bohemian") >= 60)
         c.chooseBranch("Take tea with a Reclusive Novelist")

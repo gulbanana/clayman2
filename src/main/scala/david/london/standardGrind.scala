@@ -23,11 +23,7 @@ object standardGrind extends OneManJob {
   }
 
   //transient goals, specific acquisitions
-  private def achieveGoals(implicit c: Character) = did (c.items("Muscaria Brandy") < 120) {
-    grind.muscaria_brandy()
-  } or (c.items("Brilliant Soul") < 600) {
-    grind.brilliant_souls()
-  }
+  private def achieveGoals(implicit c: Character) = false
   
   //I want to keep certain connections up
   private def connections(implicit c: Character) = did (c.qualities("Connected: Society") < 77) {
