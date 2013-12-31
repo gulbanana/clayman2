@@ -7,8 +7,7 @@ object fidgetingWriter extends OneManJob with Stats {
   def apply(implicit c: Character) = {
     gear.watchful()
     
-    //going any higher requires watchful 90
-    gamble4 || gamble3 || gamble2 || gamble1
+    gamble6 || gamble5 || gamble4 || gamble3 || gamble2 || gamble1
   }
   
   //Tale of Terror!! -> Sense of Déjà Vu
@@ -65,7 +64,31 @@ object fidgetingWriter extends OneManJob with Stats {
   //Room Number at the Royal Beth -> Last Hope of a Fidgeting Writer
   private def gamble5(implicit c: Character) = did (c.items("Room Number at the Royal Beth") > 0 && c.items("An Identity Uncovered!") > 0) {
     c.useItem("Room Number at the Royal Beth")
-    c.chooseBranch("Visit him regularly and ask the Manager about his stay")	//could go either way
+    c.chooseBranch("Visit him regularly and ask the Manager about his stay")	//"could go either way"
+  }
+  
+  //Last Hope of a Fidgeting Writer -> Night-Whisper
+  private def cashout5(implicit c: Character) = did(c.items("Last Hope of a Fidgeting Writer") > 0) {
+    c.useItem("Last Hope of a Fidgeting Writer")
+    c.chooseBranch("Burn his works. Break his pen. Escort him to the Royal Beth")
+  }
+  
+  //Last Hope of a Fidgeting Writer -> Lens of Black Glass 
+  private def gamble6(implicit c: Character) = did(c.items("Last Hope of a Fidgeting Writer") > 0 && c.items("Extraordinary Implication") > 0) {
+    c.useItem("Last Hope of a Fidgeting Writer")
+    c.chooseBranch("Make him dream and see what he sees") //"could go either way"
+  }
+  
+  //Lens of Black Glass -> 
+  private def cashout6(implicit c: Character) = did(c.items("Lens of Black Glass") > 0) {
+    c.useItem("Lens of Black Glass")
+    c.chooseBranch("Smash it")
+  }
+  
+  //Lens of Black Glass -> 
+  private def gamble7(implicit c: Character) = did(c.items("Lens of Black Glass") > 0 && c.items("Mourning Candle") > 0) {
+    c.useItem("Lens of Black Glass")
+    c.chooseBranch("Look through the Lens")
   }
 }
 
