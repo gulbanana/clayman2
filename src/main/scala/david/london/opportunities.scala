@@ -120,7 +120,7 @@ package object london {
       c.chooseBranch("Engage in commerce")                           //4 scraps, money
     }),
     
-    "The Western Tower: a Guest Room at the Brass Embassy" -> Hold,                                           //watchful t3
+    "The Western Tower: a Guest Room at the Brass Embassy" -> Play("Find out more about the soulless"),       //3 scraps
     
     "The Tower of Sun and Moon: a Reservation at the Royal Bethlehem Hotel" -> Play("Investigate the guests") //3 scraps
   )
