@@ -109,7 +109,7 @@ package object london {
     
     "The Heron Tower: Events at a Lair in the Marshes" -> Play(_.chooseBranch("Hunt down a huge lizard")),       //dangerous t2.5
     "The Windward Tower: the Matter of the Decommissioned Steamer" -> Play(_.chooseBranch("The cautious contact")),    //shadowy t2.5
-    "The High Castle: a Rooftop Shack" -> Play(_.chooseBranch("A stroll with a sack")),                //shadowy t2.5
+    "The High Castle: What Occurs in a Rooftop Shack" -> Play(_.chooseBranch("A stroll with a sack")),                //shadowy t2.5
     "The Tower of Eyes: Behind Closed Doors at a Handsome Townhouse" -> Hold/*Until(
       c => c.qualities("Connected: Bohemian") < 50 && c.qualities("Connected: Society") < 50, 
       c => c.chooseBranch("Do a little promenading yourself"))*/,    //salon
