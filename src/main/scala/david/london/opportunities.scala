@@ -540,6 +540,7 @@ package object london {
     "2000 Foxfire Candles wanted! Will pay handsomely!" -> Discard,                     //no net loss but costly to grind
     "A Polite Invitation" -> Discard,                                                   //party is fun but been there done that
     "Invited to another revel of the Masters" -> Discard,                               //for conn:masters
-    "A visit from Slowcake's Amanuensis" -> Hold                                        //for Notability
+    "A visit from Slowcake's Amanuensis" -> Hold,                                       //for Notability
+    "I've brought something for you to try, dear" -> Discard                            //statistically costs actions and wounds, occasional action boost
   ))
 }
