@@ -7,7 +7,7 @@ object gear {
     c.equip("Smock of Four Thousand Three Hundred and Eight Pockets") //+10 clothing
     c.equip("Insatiable Glove")                 //+8 gloves
     c.equip("A Pot of Violant Ink")             //+12 weapon
-    c.equip("Mirror-polished Shoes")            //+2 boots
+    c.equip("A Meticulously Altered Stocking")  //+3 boots
     c.equip("Scuttering Squad")                 //+8 pet
     c.equip("The Sixth City Times (Newspaper)") //+1 affiliation
     //no transport

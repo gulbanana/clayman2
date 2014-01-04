@@ -435,7 +435,8 @@ package object london {
   private val wilmotsEnd = Map(
     "Less fierce than he looks" -> Play,
     "A Dream about a Missing Woman" -> Play, //1cp or 2cp Missing Woman, 50%
-    "A New Move in the Game" -> Discard  //just gives Doing Business, +1cp - it uses watchful instead of shadowy but who cares
+    "A New Move in the Game" -> Discard,     //just gives Doing Business, +1cp - it uses watchful instead of shadowy but who cares
+    "The Sights of Wilmot's End" -> Discard  //luck checks for Doing Business
   )
   
   object Publish extends Play(implicit c => {gear.shadowy(); c.chooseBranch()})
