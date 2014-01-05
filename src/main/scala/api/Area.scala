@@ -21,6 +21,7 @@ object Areas {
   val University = Area(23, "The University")
   val Court = Area(26, "The Empress' Court")
   val LabyrinthOfTigers = Area(28, "The Labyrinth of Tigers")
+  val ShadowsOfTheOrphanage = Area(29, "the shadows of the Orphanage")
   val MahoganyHall = Area(30, "Mahogany Hall")
   val BazaarSideStreets = Area(31, "Bazaar Side-streets")
   val RoadsBeneath = Area(33, "Roads Beneath")
@@ -57,6 +58,7 @@ object Areas {
     23 -> University,
     26 -> Court,
     28 -> LabyrinthOfTigers,
+    29 -> ShadowsOfTheOrphanage,
     30 -> MahoganyHall,
     31 -> BazaarSideStreets,
     33 -> RoadsBeneath,
