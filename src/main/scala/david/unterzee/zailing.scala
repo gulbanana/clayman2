@@ -33,7 +33,7 @@ object zailing {
   )
   
   private val betterThanBold = Map(
-    "A Wily Zailor" -> Play,                                                                                                                      //XXX gets better with exzperience, so change this after more voyagez
+    "A Wily Zailor" -> Play("Skirt the Howling Shoals"),                                                                                         //XXX gets better with exzperience, so change this after more voyagez
     "The Clinging Coral Mass" -> Play(implicit c => {gear.persuasive(); c.chooseBranch("'Put your backs into it, lads!'")}),                     //+2 journey
     "A Light in the Fog" -> Play(_.chooseBranch("Keep away from the lighthouse")),                                                               //+2 journey
     "Listen to the Wind" -> Play(_.chooseBranch("Steam the way the voices tell you")),                                                           //+3 journey, +3 troubled
