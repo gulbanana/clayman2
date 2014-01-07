@@ -171,12 +171,12 @@ package object london {
     "Whispers from the Surface: The Great Game" -> DiscardUnless(_.qualities("Connected: The Great Game") >= 50, implicit c => {
       c.chooseBranch("Learn more at the carnival")
     }),
-    "The Roof-Tops: Urchins" -> DiscardUnless(c => (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 50) || c.items("Lucky Weasel") >= 1, implicit c => {
+    "The Roof-Tops: Urchins" -> Hold/*DiscardUnless(c => (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 50) || c.items("Lucky Weasel") >= 1, implicit c => {
       if (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 50)
         c.chooseBranch("Out you go, longshanks")
       else
         c.chooseBranch("In the shadow of All Christs Spire")
-    }),
+    })*/,
     "Park and Palace: Society" -> Play(c => 
       //if (c.qualities("Connected: Society") >= 60)
       //  c.chooseBranch("Take port with the Veteran Privy Counsellor")  //+10cp persuasive, -400cp connected
