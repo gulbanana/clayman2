@@ -7,7 +7,7 @@ object fidgetingWriter extends OneManJob with Stats {
   def apply(implicit c: Character) = {
     gear.watchful()
     
-    gamble6 || gamble5 || gamble4 || gamble3 || gamble2 || gamble1
+    cashout5 || gamble5 || gamble4 || gamble3 || gamble2 || gamble1
   }
   
   //Tale of Terror!! -> Sense of Déjà Vu
