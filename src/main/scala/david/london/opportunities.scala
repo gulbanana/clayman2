@@ -500,7 +500,7 @@ package object london {
     "Putting the pieces together: something about the Fourth City" -> Discard,       //low-chance luck challenge, and social
     "A Sporting Sort" -> Discard,                                                    //pure gamble
     "A day at the races" -> Discard,                                                 //fatelocked sidequests area, i've already done it
-    "A chance encounter with an old friend..." -> Discard,                           //quirk gains cap at 6
+    "City Vices: an Entanglement with an Old Friend" -> Discard,                           //quirk gains cap at 6
     "A libraryette for Mr Pages" -> Discard,                                         //req: too much to grind for, for now
     "A day without laudanum" -> Play,                                                //reduces addiction
     "A past benefactor" -> Discard,                                                  //sudden insight
