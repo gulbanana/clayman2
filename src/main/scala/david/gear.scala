@@ -71,7 +71,7 @@ object gear {
     c.equip("Bifurcated Owl")                   //+2 pet
     c.equip("Gang of Hoodlums")                 //+2 affiliation
     c.equip("Obdurate Stallion")                //+2 transport
-    //no home comfort
+    c.equip("Probably A Coincidence")           //+1 home comfort
   }
   
   def respectable()(implicit c: Character) {
@@ -95,7 +95,7 @@ object gear {
     c.equip("Bifurcated Owl")                   //+4 pet
     c.equip("Membership of God's Editors")      //+4 affiliation
     c.equip("Ratwork Velocipede")               //+4 transport
-    //no home comfort
+    c.equip("Probably A Coincidence")           //+1 home comfort
   }
   
   def balanced()(implicit c: Character) {
