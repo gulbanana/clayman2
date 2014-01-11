@@ -468,7 +468,7 @@ package object london {
       gear.persuasive()
       c.chooseBranch("Help her negotiate")  //?
     }),
-    "City Vices: ask the Sardonic Music-Hall Singer to help you" -> Play(implicit c => {
+    "City Vices: Ask the Sardonic Music-Hall Singer to help you" -> Play(implicit c => {
       gear.persuasive()
       c.chooseBranch("An invitation to a rather exclusive soirée")  //1.2E of gossip, or rare Aeolian Scream
     })
