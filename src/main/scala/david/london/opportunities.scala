@@ -309,14 +309,6 @@ package object london {
       gear.persuasive()
       c.chooseBranch("Call on her")  //1.1E of stuff and connections 
     }), 
-    "City Vices: help the Sardonic Music-Hall Singer" -> Play(implicit c => {
-      gear.persuasive()
-      c.chooseBranch("Help her negotiate")  //?
-    }),
-    "City Vices: ask the Sardonic Music-Hall Singer to help you" -> Play(implicit c => {
-      gear.persuasive()
-      c.chooseBranch("An invitation to a rather exclusive soirée")  //1.2E of gossip, or rare Aeolian Scream
-    }),
     "A Visit" -> Play(c => {
       val friend = Set("Acquaintance: a Repentant Forger", "Acquaintance: Regretful Soldier", "Acquaintance: Sardonic Music-Hall Singer", "Acquaintance: Wry Functionary").min(Ordering.by(c.qualities))
       (Map(
@@ -469,8 +461,17 @@ package object london {
     "The Noted Orchid-Grower consults" -> Discard //requires fate for small payoff
   )
   
-  private val tradeInSouls = Map(
-    "What profit?" -> Discard      //i don't want to sell my soul! at least not cheaply
+  private val cityVices = Map(
+    "City Vices: what profit?" -> Discard,      //i don't want to sell my soul! at least not cheaply
+    "City Vices: an Entanglement with an Old Friend" -> Discard,                           //quirk gains cap at 6
+    "City Vices: help the Sardonic Music-Hall Singer" -> Play(implicit c => {
+      gear.persuasive()
+      c.chooseBranch("Help her negotiate")  //?
+    }),
+    "City Vices: ask the Sardonic Music-Hall Singer to help you" -> Play(implicit c => {
+      gear.persuasive()
+      c.chooseBranch("An invitation to a rather exclusive soirée")  //1.2E of gossip, or rare Aeolian Scream
+    })
   )
   
   private val SMEN = Map(
@@ -483,7 +484,7 @@ package object london {
     "The Soul and the Number" -> Hold,
     "A contretemps in a restaurant" -> Hold,     //cannot discard, all options costly or bad
     "Restitution?" -> Hold,                      //cannot discard, "Give to the poor" -50 rostygold +urchins +docks
-    "St Arthur's Candle" -> DiscardUnless(_.items("Midnight Matriarch") > 0)
+    "St Arthur's Candle" -> Hold
   )
   
   private val dreams = Map(
@@ -491,8 +492,8 @@ package object london {
   )
   
   val opportunities = new Opportunist(watchful ++ shadowy ++ dangerous ++ persuasive ++
-                                      routes ++ lodgings ++ connections ++ conflicts ++ acquaintances ++ items ++ mysteries ++ relickers ++ dreams ++
-                                      affluentPhotographer ++ countingTheDays ++ wilmotsEnd ++ doubtStreet ++ affairOfTheBox ++ tournamentOfLilies ++ tradeInSouls ++ SMEN ++ Map(
+                                      routes ++ lodgings ++ connections ++ conflicts ++ acquaintances ++ items ++ mysteries ++ relickers ++ dreams ++ cityVices ++
+                                      affluentPhotographer ++ countingTheDays ++ wilmotsEnd ++ doubtStreet ++ affairOfTheBox ++ tournamentOfLilies ++ SMEN ++ Map(
     "Weather at last" -> Discard,                                                    //quirks up to a point
     "Bringing the revolution" -> Discard,                                            //quirks up to 6 and 1cp shadowy
     "A street-cart is selling Fourth City Rags" -> Discard,                          //i do not rags
@@ -500,7 +501,6 @@ package object london {
     "Putting the pieces together: something about the Fourth City" -> Discard,       //low-chance luck challenge, and social
     "A Sporting Sort" -> Discard,                                                    //pure gamble
     "A day at the races" -> Discard,                                                 //fatelocked sidequests area, i've already done it
-    "City Vices: an Entanglement with an Old Friend" -> Discard,                           //quirk gains cap at 6
     "A libraryette for Mr Pages" -> Discard,                                         //req: too much to grind for, for now
     "A day without laudanum" -> Play,                                                //reduces addiction
     "A past benefactor" -> Discard,                                                  //sudden insight
@@ -517,7 +517,7 @@ package object london {
     "A night on the tiles" -> DiscardUnless(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")),                     //1E of influence
     "Swap Incendiary Gossip" -> DiscardUnless(c => c.items("Incendiary Gossip") > 0 && c.qualities("Connected: Society") >= 50, _.chooseBranch()),
     "The Soft-Hearted Widow" -> DiscardUnless(_.items("Glim") >= 2500, _.chooseBranch("Give a significant donation to her charity for the homeless")), //upgrades to 2x stolen kiss, +making waves
-    "A presumptuous little opportunity" -> HoldUntil(
+    "A presumptuous little opportunity" -> Hold/*Until(
       c => c.items("Greyfields 1882") >= 1000 || c.items("Morelways 1872") >= 400 || c.items("Greyfields 1879") >= 5000 || c.items("Cellar of Wine") >= 5,
       c => if (c.items("Greyfields 1879") >= 5000) {
         c.chooseBranch("Perhaps you're interested in an exceptional vintage?")
@@ -529,7 +529,7 @@ package object london {
         c.perhapsNot()                                                                                                                              //can trade cellars for airag, but there's no reason to do so and it costs 3 actions
         c.discardOpportunity("A presumptuous little opportunity")
       }
-    ),
+    )*/,
     "Back to the Palace cellars" -> HoldUntil(_.items("Drop of Prisoner's Honey") >= 100, implicit c => {
       gear.watchful()
       c.chooseBranch("Return with a gift")                                              //net 25 clues, 1 appalling, and 1 TOT - 1.15E
