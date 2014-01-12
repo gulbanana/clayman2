@@ -192,7 +192,6 @@ package object london {
     "A limping figure in a top hat beckons" -> Discard,                //trades in conn: rubbery, just gives amber
     "An implausible penance" -> Discard,                               //trades in conn: criminals for interesting but complex rewards, e.g. 500cp for ~30 echoes
     "A merry sort of crime" -> Play(_.chooseBranch("Dirigible theft")),//+15cp conn: criminals
-    "A rather decadent evening" -> Discard,                            //trades in conn: bohemian for good rewards
     "A Rubbery Man lopes purposefully in your wake, tentacles dangling like hanged men's fingers" -> Discard, //-1 warm for +100 deep amber and +5 cp rubbery
     "1000 Nevercold Brass wanted! Will pay handsomely!" -> DiscardUnless(
         c => c.items("Nevercold Brass Sliver") >= 1000 && c.qualities("Connected: The Great Game") < 15, 
@@ -462,8 +461,9 @@ package object london {
   )
   
   private val cityVices = Map(
-    "City Vices: what profit?" -> Discard,      //i don't want to sell my soul! at least not cheaply
-    "City Vices: an Entanglement with an Old Friend" -> Discard,                           //quirk gains cap at 6
+    "City Vices: what profit?" -> Discard,                        //i don't want to sell my soul! at least not cheaply
+    "City Vices: an Entanglement with an Old Friend" -> Discard,  //quirk gains cap at 6
+    "City Vices: a rather decadent evening" -> DiscardUnless(_.qualities("Connected: Bohemian") > 50), //trades in conn: bohemian for Making Waves based on Scandal
     "City Vices: help the Sardonic Music-Hall Singer" -> Play(implicit c => {
       gear.persuasive()
       c.chooseBranch("Help her negotiate")  //?
