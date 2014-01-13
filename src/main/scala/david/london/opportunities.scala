@@ -120,7 +120,7 @@ package object london {
       c.chooseBranch("Engage in commerce")                           //4 scraps, money
     }),
     
-    "The Western Tower: a Guest Room at the Brass Embassy" -> Hold/*Play("Find out more about the soulless")*/,       //3 scraps
+    "The Western Tower: a Guest Room at the Brass Embassy" -> Play("Find out more about the soulless"),       //3 scraps
     
     "The Tower of Sun and Moon: a Reservation at the Royal Bethlehem Hotel" -> Play("Investigate the guests") //3 scraps
   )
@@ -406,7 +406,7 @@ package object london {
   )
   
   private val countingTheDays = Map(
-    "The Awful Temptation of Money" -> Play,
+    "The Awful Temptation of Money" -> Discard, //got enough Spending Secrets for now
     "Graffiti with a sting" -> DiscardUnless(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw")),
     "An unusual wager" -> DiscardUnless(c => c.qualities("Counting the Days") < 10, _.chooseBranch("Look at those coins")),
     "The Law's Long Arm" -> Play(c => {
