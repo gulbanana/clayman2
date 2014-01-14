@@ -463,7 +463,7 @@ package object london {
   private val cityVices = Map(
     "City Vices: what profit?" -> Discard,                        //i don't want to sell my soul! at least not cheaply
     "City Vices: an Entanglement with an Old Friend" -> Discard,  //quirk gains cap at 6
-    "City Vices: a rather decadent evening" -> DiscardUnless(_.qualities("Connected: Bohemian") > 50), //trades in conn: bohemian for Making Waves based on Scandal
+    "City Vices: a Rather Decadent Evening" -> DiscardUnless(_.qualities("Connected: Bohemian") > 50), //trades in conn: bohemian for Making Waves based on Scandal
     "City Vices: help the Sardonic Music-Hall Singer" -> Play(implicit c => {
       gear.persuasive()
       c.chooseBranch("Help her negotiate")  //?
@@ -517,9 +517,17 @@ package object london {
     "A night on the tiles" -> DiscardUnless(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")),                     //1E of influence
     "Swap Incendiary Gossip" -> DiscardUnless(c => c.items("Incendiary Gossip") > 0 && c.qualities("Connected: Society") >= 50, _.chooseBranch()),
     "The Soft-Hearted Widow" -> DiscardUnless(_.items("Glim") >= 2500, _.chooseBranch("Give a significant donation to her charity for the homeless")), //upgrades to 2x stolen kiss, +making waves
-    "A presumptuous little opportunity" -> Hold/*Until(
-      c => c.items("Greyfields 1882") >= 1000 || c.items("Morelways 1872") >= 400 || c.items("Greyfields 1879") >= 5000 || c.items("Cellar of Wine") >= 5,
-      c => if (c.items("Greyfields 1879") >= 5000) {
+    "A presumptuous little opportunity" -> HoldUntil(
+      c => c.items("Greyfields 1882") >= 1000 || 
+      c.items("Morelways 1872") >= 400 || 
+      c.items("Greyfields 1879") >= 5000 || 
+      c.items("Cellar of Wine") >= 5 ||
+      c.items("Fourth City Airag: Year of the Tortoise") >= 7,
+      c => if (c.items("Fourth City Airag: Year of the Tortoise") >= 7) {
+        c.chooseBranch("A potent possibility")
+      } else if (c.items("Cellar of Wine") >= 5) {
+        c.chooseBranch("An improbable exchange")
+      } else if (c.items("Greyfields 1879") >= 5000) {
         c.chooseBranch("Perhaps you're interested in an exceptional vintage?")
       } else if (c.items("Morelways 1872") >= 400) {
         c.chooseBranch("An alarming amount of Strangling Willow Absinthe")
@@ -529,7 +537,7 @@ package object london {
         c.perhapsNot()                                                                                                                              //can trade cellars for airag, but there's no reason to do so and it costs 3 actions
         c.discardOpportunity("A presumptuous little opportunity")
       }
-    )*/,
+    ),
     "Back to the Palace cellars" -> HoldUntil(_.items("Drop of Prisoner's Honey") >= 100, implicit c => {
       gear.watchful()
       c.chooseBranch("Return with a gift")                                              //net 25 clues, 1 appalling, and 1 TOT - 1.15E
