@@ -407,7 +407,7 @@ package object london {
   
   private val countingTheDays = Map(
     "The Awful Temptation of Money" -> Discard, //got enough Spending Secrets for now
-    "Graffiti with a sting" -> DiscardUnless(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw")),
+    "City Vices: Orthographic Infection" -> DiscardUnless(_.qualities("Counting the Days") >= 10, _.chooseBranch("Ask someone else what they saw")),
     "An unusual wager" -> DiscardUnless(c => c.qualities("Counting the Days") < 10, _.chooseBranch("Look at those coins")),
     "The Law's Long Arm" -> Play(c => {
       c.chooseBranch(deprioritise(c.branches, "Official incompetence"))
