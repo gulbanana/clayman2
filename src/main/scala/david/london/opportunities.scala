@@ -139,36 +139,36 @@ package object london {
         c.chooseBranch("Attend a church fête on the south bank of the River")
     ),
     "Court and Cell: the Constables" -> DiscardUnless(c => c.qualities("Connected: Constables") >= 50 || c.items("Rostygold") >= 10, implicit c =>
-      if (c.qualities("Connected: Constables") >= 30) {
+      if (c.qualities("Connected: Constables") >= 50) {
         c.chooseBranch("Attend a class given by the Implacable Detective")
       } else {
         c.chooseBranch("A small donation")
       }
     ),
-    "By the River's Side: the Docks" -> DiscardUnless(c => c.qualities("Connected: The Docks") >= 50 || c.items("Rostygold") >= 10, implicit c =>
-      if (c.qualities("Connected: The Docks") >= 30) {
+    "By the River's Side: the Docks" -> DiscardUnless(c => c.qualities("Connected: The Docks") >= 100 || c.items("Rostygold") >= 10, implicit c =>
+      if (c.qualities("Connected: The Docks") >= 100) {
         c.chooseBranch("Fencing lessons with a Dashing Captain")
       } else {
         c.chooseBranch("Buy a round at the Rusty Tramp")
       }
     ),
-    "Burning Shadows: the Devils of London" -> Hold/*Play(implicit c => 
-      if (c.qualities("Connected: Hell") >= 50) {
+    "Burning Shadows: the Devils of London" -> Play(implicit c => 
+      if (c.qualities("Connected: Hell") >= 100) {
         c.chooseBranch("Speak with a senior deviless")
       } else {
         c.chooseBranch("Attend a lecture at the Brass Embassy")
       }
-    )*/,
+    ),
     "The Demi-Monde: Bohemians" -> DiscardUnless(c => c.qualities("Connected: Bohemian") >= 60 || c.items("Greyfields 1882") >= 2, c => 
-      if (c.qualities("Connected: Bohemian") >= 60)
+      if (c.qualities("Connected: Bohemian") >= 100)
         c.chooseBranch("Take tea with a Reclusive Novelist")
       else
         c.chooseBranch("Buy drinks for writers")
     ),
-    "Bandages and Dust: The Tomb-Colonies" -> DiscardUnless(_.qualities("Connected: The Tomb-Colonies") >= 50, implicit c => {
+    "Bandages and Dust: The Tomb-Colonies" -> DiscardUnless(_.qualities("Connected: The Tomb-Colonies") >= 100, implicit c => {
       c.chooseBranch("Spar with a Black Ribbon Duellist") 
     }),
-    "Whispers from the Surface: The Great Game" -> DiscardUnless(_.qualities("Connected: The Great Game") >= 50, implicit c => {
+    "Whispers from the Surface: The Great Game" -> DiscardUnless(_.qualities("Connected: The Great Game") >= 100, implicit c => {
       c.chooseBranch("Learn more at the carnival")
     }),
     "The Roof-Tops: Urchins" -> Hold/*DiscardUnless(c => (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 50) || c.items("Lucky Weasel") >= 1, implicit c => {
@@ -183,7 +183,7 @@ package object london {
       //else
         c.chooseBranch("An invitation to dinner")                      //+connected, -wounds
     ),
-    "The Alleys of London: the Criminals" -> DiscardUnless(_.qualities("Connected: Criminals") >= 50, implicit c => {
+    "The Alleys of London: the Criminals" -> DiscardUnless(_.qualities("Connected: Criminals") >= 100, implicit c => {
       gear.shadowy()
       c.chooseBranch("Consult with a master thief")
     }),
