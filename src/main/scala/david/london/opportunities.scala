@@ -352,8 +352,7 @@ package object london {
       c.chooseBranch("Set her to moonlighting")                                          //3x compromising document - 1.5E
     }),
     "Lizardly matters" -> Discard,                                                       //50% chance of 4 memories of light, for 25 beeswax - <1E EV
-    "A tournament of weasels!" -> Discard,                                               //50% chance of 2 smiles, 3cp docks, 5 rostygold
-    "A parliament of bats" -> Play("Release a bat into the cloud"),      //iirc variable but good rewards
+    "A parliament of bats" -> Play("Release a bat into the cloud"),                      //iirc variable but good rewards
     "Your Corresponding Ocelot is listless" -> Play(c =>
       if (c.scandal > 1) {
         c.chooseBranch("Help him write a letter to Mr Huffam")                           //-scandal
@@ -464,6 +463,7 @@ package object london {
     "City Vices: what profit?" -> Discard,                        //i don't want to sell my soul! at least not cheaply
     "City Vices: an Entanglement with an Old Friend" -> Discard,  //quirk gains cap at 6
     "City Vices: a Rather Decadent Evening" -> DiscardUnless(_.qualities("Connected: Bohemian") > 50), //trades in conn: bohemian for Making Waves based on Scandal
+    "City Vices: a tournament of weasels!" -> Discard,                                   //50% chance of 2 smiles, 3cp docks, 5 rostygold
     "City Vices: help the Sardonic Music-Hall Singer" -> Play(implicit c => {
       gear.persuasive()
       c.chooseBranch("Help her negotiate")  //?
