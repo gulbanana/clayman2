@@ -7,7 +7,7 @@ object fidgetingWriter extends OneManJob with Stats {
   def apply(implicit c: Character) = {
     gear.watchful()
     
-    gamble6 || gamble5 || gamble4 || gamble3 || gamble2 || gamble1
+    gamble7 || gamble6 || gamble5 || gamble4 || gamble3 || gamble2 || gamble1
   }
   
   //Tale of Terror!! -> Sense of Déjà Vu
@@ -79,13 +79,13 @@ object fidgetingWriter extends OneManJob with Stats {
     c.chooseBranch("Make him dream and see what he sees") //"could go either way"
   }
   
-  //Lens of Black Glass -> 
+  //Lens of Black Glass -> Enigma, Hint, Permit, Bribe
   private def cashout6(implicit c: Character) = did(c.items("Lens of Black Glass") > 0) {
     c.useItem("Lens of Black Glass")
     c.chooseBranch("Smash it")
   }
   
-  //Lens of Black Glass -> 
+  //Lens of Black Glass -> Coruscating Soul
   private def gamble7(implicit c: Character) = did(c.items("Lens of Black Glass") > 0 && c.items("Mourning Candle") > 0) {
     c.useItem("Lens of Black Glass")
     c.chooseBranch("Look through the Lens")
