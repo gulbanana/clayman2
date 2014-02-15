@@ -551,6 +551,7 @@ package object london {
     "A Polite Invitation" -> Discard,                                                   //party is fun but been there done that
     "Invited to another revel of the Masters" -> Discard,                               //for conn:masters
     "A visit from Slowcake's Amanuensis" -> Hold,                                       //for Notability
-    "I've brought something for you to try, dear" -> Discard                            //statistically costs actions and wounds, occasional action boost
+    "I've brought something for you to try, dear" -> Discard,                           //statistically costs actions and wounds, occasional action boost
+    "The Departed" -> Discard                                                           //rats
   ))
 }
