@@ -39,15 +39,15 @@ object gear {
   }
   
   def persuasive()(implicit c: Character) {
-    c.equip("Fecund Amber Tiara")               //+10 hat
-    c.equip("Parabola-Linen Suit")              //+8 clothing
-    c.equip("Twelve-carat Diamond Ring")        //+8 gloves
-    c.equip("A Pot of Violant Ink")             //+12 weapon
-    c.equip("Masterwork Dancing Slippers")      //+5 boots
-    c.equip("Blemmigan Secretary")              //+6 pet
-    c.equip("A Salon")                          //+2 affiliation
+    c.equip("Fecund Amber Tiara")                    //+10 hat
+    c.equip("Parabola-Linen Suit")                   //+8 clothing
+    c.equip("Twelve-carat Diamond Ring")             //+8 gloves
+    c.equip("A Pot of Violant Ink")                  //+12 weapon
+    c.equip("Masterwork Dancing Slippers")           //+5 boots
+    c.equip("The Revolutionary Firebrand, Reforged") //+9 pet
+    c.equip("A Salon")                               //+2 affiliation
     //no transport
-    c.equip("Extraordinary Drinks Cabinet")     //+2 home comfort
+    c.equip("Extraordinary Drinks Cabinet")          //+2 home comfort
   }
   
   def bizarre()(implicit c: Character) {
