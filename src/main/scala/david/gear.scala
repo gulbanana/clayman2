@@ -15,7 +15,7 @@ object gear {
  }
   
   def shadowy()(implicit c: Character) {
-    c.equip("Sneak-Thief's Mask")               //+5 hat
+    c.equip("Tanned Mask")                      //+7 hat
     c.equip("Ratskin Suit")                     //+6 clothing
     c.equip("Lenguals")                         //+10 gloves
     c.equip("Poison-tipped Umbrella")           //+8 weapon
@@ -63,7 +63,7 @@ object gear {
   }
   
   def dreaded()(implicit c: Character) {
-    c.equip("Gloam-Foam")                       //+1 hat
+    c.equip("Tanned Mask")                      //+2 hat
     c.equip("Ratskin Suit")                     //+1 clothing
     c.equip("Iron Republic Journal")            //+1 weapon
     //no gloves
@@ -87,7 +87,7 @@ object gear {
   }
   
   def bdr()(implicit c: Character) {
-    c.equip("Mouthless Amber Mask")             //+2 hat
+    c.equip("Tanned Mask")                      //+2 hat
     c.equip("Academic Gown")                    //+1 clothing
     c.equip("Lenguals")                         //+1 gloves
     c.equip("Iron Republic Journal")            //+2 weapon
