@@ -87,7 +87,7 @@ object gear {
   }
   
   def bdr()(implicit c: Character) {
-    c.equip("Gloam-Foam")                       //+1 hat
+    c.equip("Mouthless Amber Mask")             //+2 hat
     c.equip("Academic Gown")                    //+1 clothing
     c.equip("Lenguals")                         //+1 gloves
     c.equip("Iron Republic Journal")            //+2 weapon
