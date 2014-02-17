@@ -95,7 +95,7 @@ object gear {
     c.equip("Bifurcated Owl")                   //+4 pet
     c.equip("Membership of God's Editors")      //+4 affiliation
     c.equip("Ratwork Velocipede")               //+4 transport
-    c.equip("Probably A Coincidence")           //+1 home comfort
+    c.equip("Probably a Coincidence")           //+1 home comfort
   }
   
   def balanced()(implicit c: Character) {
