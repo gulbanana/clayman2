@@ -226,8 +226,12 @@ class Status {
   
   val tooltipPattern = """(?s)(\d+) x (.*?)""".r
   val imagePattern = """infoBarQImage(\d*)""".r
-  private def extractItems(elements: Seq[Element]) = for (item <- elements) yield {
-    val tooltipPattern(quantity, name) = item.select("span.tt > strong").head.text
+  private def extractItems(elements: Seq[Element]) = for {
+    item <- elements
+    tooltip = item.select("span.tt > strong")
+    if !tooltip.isEmpty
+  } yield {    
+    val tooltipPattern(quantity, name) = tooltip.head.text
     val imagePattern(id) = item.select("div").last.attr("id")
     Item(id.toInt, name, quantity.toInt)
   }
