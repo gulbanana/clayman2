@@ -545,7 +545,7 @@ package object london {
     }),
     "Miniature mausoleums" -> Discard,                                                  //arguably Watchful. probably specific to Palace. "Examine the inscriptions" gives 24 clues, "A spot of grave-robbery" 4 Relics (0.6E)
     "Stealth watch repair" -> Play("It's beneath his dignity, but..."),                 //55 brass, 25 pearls, 1 flawed diamond, 1 sapphire - 1.04E
-    "A merry gentleman" -> Hold,/*Play("Ignore the Merry Gentleman"),*/                          //50% to reduce nightmares
+    "A merry gentleman" -> Play("Ignore the Merry Gentleman"),                          //50% to reduce nightmares
     "Give a Gift! A commotion in the Square of Lofty Words" -> DiscardUnless(_.qualities("Hedonist") >= 5, _.chooseBranch("'I myself am my only true friend!'")), //second chances
     "2000 Foxfire Candles wanted! Will pay handsomely!" -> Discard,                     //no net loss but costly to grind
     "A Polite Invitation" -> Discard,                                                   //party is fun but been there done that
