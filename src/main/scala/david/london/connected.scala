@@ -20,6 +20,13 @@ object connected {
   
   def the_duchess()(implicit c: Character) = bohemian
 
+  def university()(implicit c: Character) {
+    c.travel(Areas.University)
+    c.beginStorylet("A colleague with a problem")
+    c.chooseBranch("Help her out")
+    c.onwards()
+  }
+
 /*
 from london import *
 

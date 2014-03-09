@@ -178,6 +178,12 @@ object convert {
     c.chooseBranch("Study your journals with a learned colleague")
     c.onwards()
   } 
+
+  def implications_to_incunabula()(implicit c: Character) {
+    c.useItem("Extraordinary Implication")
+    c.chooseBranch("Benthic's Press")
+    c.onwards()
+  } 
   
   /*************/
   /* NOSTALGIA */

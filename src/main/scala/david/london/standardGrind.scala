@@ -23,13 +23,17 @@ object standardGrind extends OneManJob {
   }
 
   //transient goals, specific acquisitions
-  private def achieveGoals(implicit c: Character) = false
+  private def achieveGoals(implicit c: Character) = did (c.items("Uncanny Incunabulum") < 25) {
+    convert.implications_to_incunabula()
+  }
   
   //I want to keep certain connections up
   private def connections(implicit c: Character) = did (c.qualities("Connected: Society") < 77) {
     connected.society()
   } or (c.qualities("Connected: Bohemian") < 50) {
     connected.bohemian()
+  } or (c.qualities("Connected: Benthic") < 10) {
+    connected.university()
   }
   
   //For efficient convertibility, multiples of 10/50/25/62.5 echoes are required
