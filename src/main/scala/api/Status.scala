@@ -171,6 +171,14 @@ class Status {
     unequipped = extractItems(inventory.values.toSeq.flatMap(_.select("ul.me-profile-slot-items a.tooltip")))
     equipped = extractItems(inventory.values.toSeq.flatMap(_.select("div.me-profile-slot a.tooltip")))
   }
+
+  def updateSingleSlot(soup: Document) {
+    val slot = soup.select("h5").first.text
+    inventory(slot) = soup 
+    
+    unequipped = extractItems(inventory.values.toSeq.flatMap(_.select("ul.me-profile-slot-items a.tooltip")))
+    equipped = extractItems(inventory.values.toSeq.flatMap(_.select("div.me-profile-slot a.tooltip")))
+  }
   
   def updateLocation(area: Area) =  if (location != area) {
     location = area
