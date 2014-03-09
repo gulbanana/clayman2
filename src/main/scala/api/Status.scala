@@ -1,6 +1,7 @@
 package api
 import collection.JavaConversions._
 import collection.mutable
+import scala.util.control.Exception._
 import org.jsoup.Jsoup, org.jsoup.nodes._
 
 case class Item(id: Int, name: String, quantity: Int)
@@ -220,20 +221,29 @@ class Status {
     
     //disabled: <input type="button" onclick="return false;" class="standard_btn greyed" style="float: right; min-width: 80px!important;" value="Locked"> 
     //enabled: <input name="" type="button" value="GO" class="standard_btn " onclick="beginEvent(14648);" style="min-width:80px!important;">
-    eventIDs = (for (
+    eventIDs = (for {
       storylet <- soup.select("div.storylet") 
       if storylet.children.size > 1 
-      && !storylet.select("input[value]").isEmpty
-      && storylet.select("input").attr("value") != "Locked"
-    ) yield {
+      if !storylet.select("input[value]").isEmpty 
+      if storylet.select("input").attr("value") != "Locked"
+        
+      idStr = storylet.select("input").attr("onclick").drop(11).dropRight(2)
+      if catching(classOf[NumberFormatException]).opt{idStr.toInt}.isDefined
+    } yield {
       val key = storylet.select(".storylet_rhs > h2").text
-      val id = storylet.select("input").attr("onclick").drop(11).dropRight(2).toInt
+      val id = idStr.toInt
+      
       key -> id
     }).toMap
     
-    branchIDs = (for (branch <- soup.select("div.storylet > form")) yield {
+    branchIDs = (for {
+      branch <- soup.select("div.storylet > form")
+      idStr = branch.attr("onsubmit").drop(64).split(',').head
+      if catching(classOf[NumberFormatException]).opt{idStr.toInt}.isDefined
+    } yield {
       val key = branch.select(".storylet_rhs > h5").text
-      val id = branch.attr("onsubmit").drop(64).split(',').head.toInt
+      val id = idStr.toInt
+      
       key -> id
     }).toMap    
     
