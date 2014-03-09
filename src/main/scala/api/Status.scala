@@ -55,6 +55,7 @@ class Status {
   private val qualityClearPattern2 = """Your '(.+)' Quality has gone!""".r
   private val qualityChangingPattern = """(.+) is (increasing|dropping)...""".r
   private val qualityNoChangePattern = """(.+) hasn't changed, because it's higher than (\d+)""".r
+  private val qualityNoChangePattern2 = """(.+) has not increased: this quality cannot currently increase past (\d+).""".r
   
   private val beginStoryPattern = """A twist in your tale! You are now (.+).""".r
   private val beginStoryPattern2 = """(.+) shows your progress in the venture.""".r
@@ -66,12 +67,6 @@ class Status {
   private val goodLuckPattern = """You were fortunate!""".r
   private val badLuckPattern = """You were unlucky. Better luck next time...""".r
   
-  //    ways of the neath:
-  //A bat zips past, not far overhead.
-  //Today, something in the air makes the gas-lamps slink low, burn marsh-green.
-  //Someone speaks your name. But when you turn, there is only a mirror.
-  //A barouche passes, drawn by a pair of perfectly matched greys. One passenger, a bearded chap in a top hat, throws his head back in laughter at something his bright-eyed female companion says.
-  
   def updateEffects(soup: Document) = {
     val updateScript = soup.select("script")(1).data
     val areaPattern(newArea) = updateScript 
@@ -79,11 +74,11 @@ class Status {
     location = Areas(newArea.toInt)
     actions = newActions.toInt
 
-    for (effect <- soup.select("div.quality_update_box p").map(_.text)) {
-      println("    %s".format(effect))
-        
+    for (effect <- soup.select("div.quality_update_box p").map(_.text)) {   
+      var suppress = false
+      
       effect match {
-        case successPattern(qname) => ()
+        case successPattern(qname) => suppress = true
         case failurePattern(qname, qval) => ()
         
         case itemModPattern(idir, imod, iname, ival) => items = items.updated(iname, ival.toInt)
@@ -100,6 +95,7 @@ class Status {
         case qualityClearPattern2(qname) => qualities = qualities.updated(qname, 0)
         case qualityChangingPattern(qname, qdir) => ()
         case qualityNoChangePattern(qname, qmax) => ()
+        case qualityNoChangePattern2(qname, qmax) => suppress = true
         
         case beginStoryPattern(qname) => qualities = qualities.updated(qname, 1)
         case beginStoryPattern2(qname) => qualities = qualities.updated(qname, 1)
@@ -110,8 +106,24 @@ class Status {
         case goodLuckPattern() => () //XXX add stats tracking
         case badLuckPattern() => () //XXX add stats tracking
         
-        case unknown:String => println("UNKNOWN EFFECT: " + unknown)
+        //the airs of london
+        case "A bat zips past, not far overhead." => suppress = true
+        case "In the street outside, fly-drivers squabble in a half-dozen different tongues: English, French, German...wait, is that Latin?" => suppress = true
+        case "Today, something in the air makes the gas-lamps slink low, burn marsh-green." => suppress = true
+        case "Someone speaks your name. But when you turn, there is only a mirror." => suppress = true
+        case "A barouche passes, drawn by a pair of perfectly matched greys. One passenger, a bearded chap in a top hat, throws his head back in laughter at something his bright-eyed female companion says." => suppress = true
+        case "All shall be well, and all manner of thing shall be well." => suppress = true
+        case "Shadows lie still, here where there is no sun to move them. Sometimes they shiver in candle-light." => suppress = true
+        case "Passers-by watch you with narrow eyes. What do they see?" => suppress = true
+        case "A glove-maker passes, holding his bag at arm's-length. The contents squirm." => suppress = true
+        case "A shuttered black coach passes. The horses' hooves are muffled with sacking. The crowd falls silent. \"The Empress,\" someone whispers." => suppress = true
+        case "Oof! That reek is a tannery. Hold your breath a moment." => suppress = true
+        case "The softest of rains falls in the street: the cobbles glisten like fish-skin." => suppress = true
+        
+        case unknown:String => {suppress = true; println("UNKNOWN EFFECT: " + unknown)}
       }
+      
+      if (!suppress) println("    %s".format(effect))
     }
   }
   
