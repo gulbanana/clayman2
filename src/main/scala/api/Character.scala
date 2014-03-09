@@ -119,6 +119,9 @@ class Character(username: String, password: String) {
     if (!parser.eventIDs.keySet.contains(storylet))
       parser updateBranches http.query(site / "Storylet" / "Available")
     	
+    if (!parser.eventIDs.keySet.contains(storylet))
+      throw new DisobedientException("No such storylet \"" + storylet + "\"")
+      
     parser updateBranches http.query(site / "Storylet" / "Begin" << Map("eventid" -> parser.eventIDs(storylet).toString))
     println("\"%s\"".format(parser.title))
   }
@@ -130,6 +133,11 @@ class Character(username: String, password: String) {
     if (!parser.branchIDs.keySet.contains(branch))
       parser updateBranches http.query(site / "Storylet" / "In")
     
+    if (!parser.branchIDs.keySet.contains(branch)) {
+      perhapsNot()
+      throw new DisobedientException("No such branch \"" + branch + "\"")
+    }
+      
     var soup = http.query(site / "Storylet" / "ChooseBranch" << Map("branchid"      -> parser.branchIDs(branch).toString,
                                                                     "secondChances" -> useSecondChance.toString))
     println("--> %s".format(branch))
@@ -143,7 +151,7 @@ class Character(username: String, password: String) {
   }
   
   def chooseBranch() {
-    if (parser.branchIDs.size != 1) throw new Exception("Requires exactly one branch. There are %d branches available.".format(parser.branchIDs.size))
+    if (parser.branchIDs.size != 1) throw new DisobedientException("Requires exactly one branch. There are %d branches available.".format(parser.branchIDs.size))
     chooseBranch(parser.branchIDs.head._1)
   }
   

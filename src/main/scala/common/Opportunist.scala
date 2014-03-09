@@ -1,7 +1,7 @@
 package common
 import api._
 
-class Opportunity(val discardIf: Character => Boolean, val actIf: Character => Boolean, val act: Character=>Unit = _ => throw new Exception("Unplayable card played"))
+class Opportunity(val discardIf: Character => Boolean, val actIf: Character => Boolean, val act: Character=>Unit = _ => throw new DisobedientException("Unplayable card played"))
 object Opportunity {
   val defaultAction = (c: Character) => if (!c.branches.isEmpty) c.chooseBranch()
 }
