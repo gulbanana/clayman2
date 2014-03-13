@@ -328,7 +328,10 @@ package object london {
         "Acquaintance: Sardonic Music-Hall Singer" -> (() => {
           c.chooseBranch("Visit the Sardonic Music-Hall Singer")
         }),
-        "Acquaintance: Wry Functionary" -> (() => c.chooseBranch("Visit the Wry Functionary"))
+        "Acquaintance: Wry Functionary" -> (() => {
+          c.chooseBranch("Visit the Wry Functionary")
+          c.chooseBranch("Go for a glass of wine and a chat")
+        })
       )(friend))()
     })
   )
