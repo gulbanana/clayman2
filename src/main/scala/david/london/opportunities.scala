@@ -396,10 +396,10 @@ package object london {
   
   //mostly i want to save up scraps for now - 160 starts getting you otherwise-unobtainable items
   private val relickers = Map(
-    "The Shivering Relicker and Pinnock are Trundling By" -> Discard,                                                 //Wild Words
-    "The Capering Relicker and Gulliver are Outside in the Street" -> Discard,                                        //Infernal
-    "The Coquettish Relicker and Mathilde are Making the Rounds" -> Discard,                                          //Rag Trade
-    "The Curt Relicker and Montgomery are Moving Quietly Past" -> Discard,                                            //Rumour
+    "The Shivering Relicker and Pinnock are Trundling By" -> Play("Recertify a double-armful of scraps"),             //Wild Words
+    "The Capering Relicker and Gulliver are Outside in the Street" -> Play("Recertify a double-armful of scraps"),    //Infernal
+    "The Coquettish Relicker and Mathilde are Making the Rounds" -> Play("Recertify a double-armful of scraps"),      //Rag Trade
+    "The Curt Relicker and Montgomery are Moving Quietly Past" -> Play("Recertify a double-armful of scraps"),        //Rumour
     "A Gift from the Capering Relicker" -> Play(_.chooseBranch("For someone who has it all, or at least most of it")) //12E - the other options are 10E
   )
   
