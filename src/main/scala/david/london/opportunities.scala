@@ -397,10 +397,10 @@ package object london {
   //mostly i want to save up scraps for now - 160 starts getting you otherwise-unobtainable items
   //recertify armful and double-armful both have EV +1 scrap; armful has less variance
   private val relickers = Map(
-    "The Shivering Relicker and Pinnock are Trundling By" -> Play("Ask the Shivering Relicker to recertify an armful of scraps"), //Wild Words
-    "The Capering Relicker and Gulliver are Outside in the Street" -> Play("Recertify an armful of scraps"),                      //Infernal
-    "The Coquettish Relicker and Mathilde are Making the Rounds" -> Play("Recertify an armful of scraps"),                        //Rag Trade
-    "The Curt Relicker and Montgomery are Moving Quietly Past" -> Play("Ask the Curt Relicker to recertify an armful of scraps"), //Rumour
+    "The Shivering Relicker and Pinnock are Trundling By" -> Play("Ask the Shivering Relicker to recertify an armful of scraps"),      //Wild Words
+    "The Capering Relicker and Gulliver are Outside in the Street" -> Play("Recertify an armful of scraps"),                           //Infernal
+    "The Coquettish Relicker and Mathilde are Making the Rounds" -> Play("Recertify an armful of scraps"),                             //Rag Trade
+    "The Curt Relicker and Montgomery are Moving Quietly Past" -> Play("Ask the Curt Relicker to recertify a whole armful of scraps"), //Rumour
     "A Gift from the Capering Relicker" -> Play(_.chooseBranch("For someone who has it all, or at least most of it")) //12E - the other options are 10E
   )
   
