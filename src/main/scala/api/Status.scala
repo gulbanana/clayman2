@@ -119,6 +119,7 @@ class Status {
         case "A shuttered black coach passes. The horses' hooves are muffled with sacking. The crowd falls silent. \"The Empress,\" someone whispers." => suppress = true
         case "Oof! That reek is a tannery. Hold your breath a moment." => suppress = true
         case "The softest of rains falls in the street: the cobbles glisten like fish-skin." => suppress = true
+        case "A raven caws, coughs, and breaks into song. Something eighteenth-century? Is that a snatch of a Purcell sonata?" => suppress = true
 
         case unknown: String => { suppress = true; println("UNKNOWN EFFECT: " + unknown) }
       }
