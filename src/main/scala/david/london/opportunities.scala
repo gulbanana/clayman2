@@ -133,7 +133,7 @@ package object london {
         c.chooseBranch("And now... bombs!")
     }),        
     "Altars and alms-houses: the Church" -> DiscardUnless(c => c.qualities("Connected: The Church") >= 50 || c.items("Rostygold") >= 10, c =>
-      if (c.qualities("Connected: The Church") >= 30)
+      if (c.qualities("Connected: The Church") >= 30 && c.persuasive < Character.StatCap)
         c.chooseBranch("Attend a private lecture given by the Bishop of Southwark")
       else 
         c.chooseBranch("Attend a church fête on the south bank of the River")
@@ -160,15 +160,15 @@ package object london {
       }
     ),
     "The Demi-Monde: Bohemians" -> DiscardUnless(c => c.qualities("Connected: Bohemian") >= 60 || c.items("Greyfields 1882") >= 2, c => 
-      if (c.qualities("Connected: Bohemian") >= 100)
+      if (c.qualities("Connected: Bohemian") >= 100 && c.persuasive < Character.StatCap)
         c.chooseBranch("Take tea with a Reclusive Novelist")
       else
         c.chooseBranch("Buy drinks for writers")
     ),
-    "Bandages and Dust: The Tomb-Colonies" -> DiscardUnless(_.qualities("Connected: The Tomb-Colonies") >= 100, implicit c => {
+    "Bandages and Dust: The Tomb-Colonies" -> DiscardUnless(c => c.qualities("Connected: The Tomb-Colonies") >= 100 && c.dangerous < Character.StatCap, implicit c => {
       c.chooseBranch("Spar with a Black Ribbon Duellist") 
     }),
-    "Whispers from the Surface: The Great Game" -> DiscardUnless(_.qualities("Connected: The Great Game") >= 100, implicit c => {
+    "Whispers from the Surface: The Great Game" -> DiscardUnless(c => c.qualities("Connected: The Great Game") >= 100 && c.watchful < Character.StatCap, implicit c => {
       c.chooseBranch("Learn more at the carnival")
     }),
     "The Roof-Tops: Urchins" -> DiscardUnless(c => (c.items("Glim") >= 20 && c.qualities("Connected: Urchins") >= 50) || c.items("Lucky Weasel") >= 1, implicit c => {
@@ -519,7 +519,7 @@ package object london {
         c.chooseBranch("It's all in the game")
     }),                                                                                                                                             
     "Wanted: Reminders of Brighter Days" -> DiscardUnless(_.items("Incendiary Gossip") >= 25, _.chooseBranch("The tiniest of classified advertisements")),
-    "Mr Wines is holding a sale!" -> HoldUntil(_.items("Romantic Notion") >= 80, _.chooseBranch("A discount for purchase in bulk")),
+    "Mr Wines is holding a sale!" -> DiscardUnless(c => c.items("Romantic Notion") >= 80 && c.items("Greyfields 1879") < 5000, _.chooseBranch("A discount for purchase in bulk")),
     "A night on the tiles" -> DiscardUnless(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")),                     //1E of influence
     "Swap Incendiary Gossip" -> DiscardUnless(c => c.items("Incendiary Gossip") > 0 && c.qualities("Connected: Society") >= 50, _.chooseBranch()),
     "The Soft-Hearted Widow" -> DiscardUnless(_.items("Glim") >= 2500, _.chooseBranch("Give a significant donation to her charity for the homeless")), //upgrades to 2x stolen kiss, +making waves
@@ -549,7 +549,7 @@ package object london {
       c.chooseBranch("Return with a gift")                                              //net 25 clues, 1 appalling, and 1 TOT - 1.15E
     }),
     "Miniature mausoleums" -> Discard,                                                  //arguably Watchful. probably specific to Palace. "Examine the inscriptions" gives 24 clues, "A spot of grave-robbery" 4 Relics (0.6E)
-    "Stealth watch repair" -> Play("It's beneath his dignity, but..."),                 //55 brass, 25 pearls, 1 flawed diamond, 1 sapphire - 1.04E
+    "Stealth watch repair" -> Discard,//Play("It's beneath his dignity, but..."),       //55 brass, 25 pearls, 1 flawed diamond, 1 sapphire - 1.04E
     "A merry gentleman" -> Play("Ignore the Merry Gentleman"),                          //50% to reduce nightmares
     "Give a Gift! A commotion in the Square of Lofty Words" -> DiscardUnless(_.qualities("Hedonist") >= 5, _.chooseBranch("'I myself am my only true friend!'")), //second chances
     "2000 Foxfire Candles wanted! Will pay handsomely!" -> Discard,                     //no net loss but costly to grind

@@ -1,6 +1,10 @@
 package api
 import dispatch._, Defaults._
 
+object Character {
+  val StatCap = 200 
+}
+
 class Character(username: String, password: String) {
   private def site = url("http://fallenlondon.storynexus.com")
   private val http = new Session(username)
