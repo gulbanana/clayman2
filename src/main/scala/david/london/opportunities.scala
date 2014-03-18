@@ -470,10 +470,10 @@ package object london {
     "City Vices: an Entanglement with an Old Friend" -> Discard,  //quirk gains cap at 6
     "City Vices: a Rather Decadent Evening" -> DiscardUnless(_.qualities("Connected: Bohemian") > 50), //trades in conn: bohemian for Making Waves based on Scandal
     "City Vices: a tournament of weasels!" -> Discard,                                   //50% chance of 2 smiles, 3cp docks, 5 rostygold
-    "City Vices: help the Sardonic Music-Hall Singer" -> Play(implicit c => {
+    "City Vices: help the Sardonic Music-Hall Singer" -> /*Play(implicit c => {
       gear.persuasive()
-      c.chooseBranch("Help her negotiate")  //?
-    }),
+      c.chooseBranch("Help her negotiate")  //5 intriguing gossip, 5 cryptic clues
+    }),*/Discard,
     "City Vices: Ask the Sardonic Music-Hall Singer to help you" -> Play(implicit c => {
       gear.persuasive()
       c.chooseBranch("An invitation to a rather exclusive soirée")  //1.2E of gossip, or rare Aeolian Scream
