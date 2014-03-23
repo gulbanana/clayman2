@@ -37,7 +37,7 @@ object standardGrind extends OneManJob {
   }
   
   //For efficient convertibility, multiples of 10/50/25/62.5 echoes are required
-  private def stockpile(implicit c: Character) = farmGoods(20) || farmT1(20) || farmT2(50) || farmT3(50) || farmT4(62.5)
+  private def stockpile(implicit c: Character) = farmGoods(20) || farmT1(20) || farmT2(50) || farmT3(50) || farmT4(62.5) || farmT5(62.5)
   
   private def farmGoods(echoes: Double)(implicit c: Character) = did (c.items("Rostygold") < (100 * echoes)) {
     grind.rostygold()
@@ -135,8 +135,6 @@ object standardGrind extends OneManJob {
     convert.prayers_to_plaques()
   }
   
-  //strategic stockpiling, here - only some of the T4 stuff is regularly useful
-  //collated research: 10 for 50 MODS, or ?? at the side streets
   private def farmT4(echoes: Double)(implicit c: Character) = did (c.items("Extraordinary Implication") < echoes / 2.5) {
     convert.journals_to_implications()
   }  or (c.items("Muscaria Brandy") < echoes / 2.5) {
@@ -161,6 +159,16 @@ object standardGrind extends OneManJob {
     convert.whisper_satin_to_thirsty_bombazine()
   } or (c.items("Aeolian Scream") < echoes / 2.5) {
     convert.plaques_to_screams()
+  }
+  
+  private def farmT5(echoes: Double)(implicit c: Character) = did (c.items("Uncanny Incunabulum") < echoes / 12.5) {
+    convert.implications_to_incunabula()
+  } or (c.items("Brass Ring") < echoes / 12.5) { 
+    convert.brandy_to_brass()                               
+  } or (c.items("Favours in High Places") < echoes / 12.5) { 
+    convert.kisses_to_favours()                               
+  } or (c.items("Cellar of Wine") < echoes / 12.5) {
+    convert.broken_giant_to_cellars()
   }
   
   private def money(implicit c: Character) {

@@ -523,13 +523,8 @@ package object london {
     "A night on the tiles" -> DiscardUnless(_.items("Greyfields 1868 First Sporing") > 0, _.chooseBranch("A bottle of the '68")),                     //1E of influence
     "Swap Incendiary Gossip" -> DiscardUnless(c => c.items("Incendiary Gossip") > 0 && c.qualities("Connected: Society") >= 50, _.chooseBranch()),
     "The Soft-Hearted Widow" -> DiscardUnless(_.items("Glim") >= 2500, _.chooseBranch("Give a significant donation to her charity for the homeless")), //upgrades to 2x stolen kiss, +making waves
-    "A presumptuous little opportunity" -> HoldUntil(
-      c => c.items("Greyfields 1882") >= 1000 || 
-      c.items("Morelways 1872") >= 400 || 
-      c.items("Greyfields 1879") >= 5000 || 
-      c.items("Cellar of Wine") >= 5 ||
-      c.items("Fourth City Airag: Year of the Tortoise") >= 7,
-      c => if (c.items("Fourth City Airag: Year of the Tortoise") >= 7) {
+    "A presumptuous little opportunity" -> Play(c => 
+      if (c.items("Fourth City Airag: Year of the Tortoise") >= 7) {
         c.chooseBranch("A potent possibility")
       } else if (c.items("Cellar of Wine") >= 5) {
         c.chooseBranch("An improbable exchange")

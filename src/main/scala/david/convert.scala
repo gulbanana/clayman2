@@ -289,4 +289,10 @@ object convert {
     c.chooseBranch("Interrupt the Affable Monsignor's reading")
     c.onwards()
   }
+  
+  def broken_giant_to_cellars()(implicit c: Character) {
+    c.useItem("Broken Giant 1844")
+    c.chooseBranch("The Affable Monsignor has a particular taste for the '44")
+    c.onwards()
+  }
 }
