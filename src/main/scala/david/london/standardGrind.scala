@@ -166,10 +166,18 @@ object standardGrind extends OneManJob {
   } or (c.items("Brass Ring") < echoes / 12.5) { 
     convert.brandy_to_brass()                               
   } or (c.items("Favours in High Places") < echoes / 12.5) { 
-    convert.kisses_to_favours()                               
+    convert.kisses_to_favours()               
+  //Academic - Collated Research -> ???
+  //Luminosity - Mourning Candle -> Patent Scrutinizer
+  //Rumour - An Identity Uncovered! -> Blackmail Material
+  //Cartography - Partial Map -> Puzzling Map
+  //Elder - Presbyterate Passphrase -> Antique Mystery
   } or (c.items("Cellar of Wine") < echoes / 12.5) {
     convert.broken_giant_to_cellars()
   }
+  //Nostalgia - Touching Love Story -> Bazaar Permit
+  //Thirsty Bombazine Scrap -> Puzzle-Damask
+  //Wild Words - Aeolian Scream -> Storm-Threnody
   
   private def money(implicit c: Character) {
     fidgetingWriter.apply(c)
