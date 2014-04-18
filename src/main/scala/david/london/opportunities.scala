@@ -345,8 +345,9 @@ package object london {
     //Approaching the Gates of the Garden
     "The Seekers of the Garden" -> Play(implicit c => {gear.watchful(); c.chooseBranch("Leisurely enquiries")}), //3 MODS - 1.5E
     //Touched by Fingerwork
-    "Mirrors and Clay" -> Discard
+    "Mirrors and Clay" -> Discard,
     //"Mirrors and Clay" -> Play(implicit c => {gear.persuasive(); c.chooseBranch("Unfinished Men")}) //1 MODS, and Touched by Fingerwork, but 1 vision is 0.5E and touched doesn't seem useful anymore..
+    "The Neath's Mysteries" -> Discard //consolidated card - social actions
   )
   
   private val items = Map(
