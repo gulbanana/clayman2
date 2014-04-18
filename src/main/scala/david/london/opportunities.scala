@@ -365,7 +365,7 @@ package object london {
     ),
     "Your Dream-Hound" -> Hold,                                                          //"Have the beast guard your resting hours" = -nightmares
     "What Does One Do with a Bifurcated Owl?" -> Play("Feeding time"),                   //+nightmares, tot, 50% of aeolian scream
-    "All fear the Overgoat!" -> Discard,                                                 //1x TOT and 4x appalling, also it causes problems when run on server
+    "All fear the Overgoat!" -> Hold,                                                 //1x TOT and 4x appalling, also it causes problems when run on server
     "A library of your own" -> Play("Diligent research"),                                //50% 1.5E clues, 50% 1.05E stuff
     "A Day with God's Editors" -> Play(c => {
       if (c.scandal > 0 && c.nightmares > 0) 
