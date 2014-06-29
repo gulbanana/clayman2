@@ -41,7 +41,7 @@ object standardGrind extends OneManJob {
   
   private def farmGoods(echoes: Double)(implicit c: Character) = did (c.items("Rostygold") < (100 * echoes)) {
     grind.rostygold()
-  } or (c.items("Moon-pearl") < (100 * echoes)) {
+  } or (c.items("Moon-Pearl") < (100 * echoes)) {
     grind.moon_pearls()
   } or (c.items("Nevercold Brass Sliver") < (100 * echoes)) {
     grind.nevercold_brass_slivers()
