@@ -366,7 +366,13 @@ package object london {
     ),
     "Your Dream-Hound" -> Hold,                                                          //"Have the beast guard your resting hours" = -nightmares
     "What Does One Do with a Bifurcated Owl?" -> Play("Feeding time"),                   //+nightmares, tot, 50% of aeolian scream
-    "All fear the Overgoat!" -> Hold,                                                 //1x TOT and 4x appalling, also it causes problems when run on server
+    "All fear the Overgoat!" -> Play(implicit c => {
+      c.perhapsNot()
+      gear.watchful()
+      c.playOpportunity("All fear the Overgoat!")
+      c.chooseBranch("Use the Goat's... unique talents")                                 //8 actions; 50% of 25E; fail = 2.5E; EV = 3.4E
+      //c.chooseBranch("Ask the Goat's opinion")                                         //80% of 2.5 E; fail = 1E; EV = 2.5E
+    }),
     "A library of your own" -> Play("Diligent research"),                                //50% 1.5E clues, 50% 1.05E stuff
     "A Day with God's Editors" -> Play(c => {
       if (c.scandal > 0 && c.nightmares > 0) 
