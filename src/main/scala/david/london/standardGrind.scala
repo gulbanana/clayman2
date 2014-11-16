@@ -23,23 +23,23 @@ object standardGrind extends OneManJob {
   }
 
   //transient goals, specific acquisitions
-  private def achieveGoals(implicit c: Character) = did (c.items("Uncanny Incunabulum") < 25) {
+  private def achieveGoals(implicit c: Character) = did(c.items("Uncanny Incunabulum") < 25) {
     convert.implications_to_incunabula()
   }
-  
+
   //I want to keep certain connections up
-  private def connections(implicit c: Character) = did (c.qualities("Connected: Society") < 77) {
+  private def connections(implicit c: Character) = did(c.qualities("Connected: Society") < 77) {
     connected.society()
   } or (c.qualities("Connected: Bohemian") < 50) {
     connected.bohemian()
   } or (c.qualities("Connected: Benthic") < 10) {
     connected.university()
   }
-  
+
   //For efficient convertibility, multiples of 10/50/25/62.5 echoes are required
   private def stockpile(implicit c: Character) = farmGoods(20) || farmT1(20) || farmT2(50) || farmT3(50) || farmT4(62.5) || farmT5(62.5)
-  
-  private def farmGoods(echoes: Double)(implicit c: Character) = did (c.items("Rostygold") < (100 * echoes)) {
+
+  private def farmGoods(echoes: Double)(implicit c: Character) = did(c.items("Rostygold") < (100 * echoes)) {
     grind.rostygold()
   } or (c.items("Moon-Pearl") < (100 * echoes)) {
     grind.moon_pearls()
@@ -54,8 +54,8 @@ object standardGrind extends OneManJob {
   } or (c.items("Surface Currency") < (100 * echoes / 3)) {
     grind.surface_currency()
   }
-  
-  private def farmT1(echoes: Double)(implicit c: Character) = did (c.items("Cryptic Clue") < (50 * echoes)) {
+
+  private def farmT1(echoes: Double)(implicit c: Character) = did(c.items("Cryptic Clue") < (50 * echoes)) {
     grind.cryptic_clues()
   } or (c.items("Soul") < (50 * echoes)) {
     grind.souls()
@@ -80,8 +80,8 @@ object standardGrind extends OneManJob {
   } or (c.items("Primordial Shriek") < (50 * echoes)) {
     grind.primordial_shrieks()
   }
-  
-  private def farmT2(echoes: Double)(implicit c: Character) = did (c.items("Appalling Secret") < ((1.0/0.15) * echoes)) {
+
+  private def farmT2(echoes: Double)(implicit c: Character) = did(c.items("Appalling Secret") < ((1.0 / 0.15) * echoes)) {
     convert.cryptic_to_appalling()
   } or (c.items("Amanita Sherry") < (10 * echoes)) {
     convert.souls_to_sherry()
@@ -106,8 +106,8 @@ object standardGrind extends OneManJob {
   } or (c.items("Maniac's Prayer") < (10 * echoes)) {
     convert.shrieks_to_prayers()
   }
-  
-  private def farmT3(echoes: Double)(implicit c: Character) = did (c.items("A Journal of Infamy") < (2 * echoes)) {
+
+  private def farmT3(echoes: Double)(implicit c: Character) = did(c.items("A Journal of Infamy") < (2 * echoes)) {
     grind.journals_of_infamy()
   } or (c.items("Tale of Terror!!") < (2 * echoes)) {
     grind.tales_of_terror()
@@ -134,10 +134,10 @@ object standardGrind extends OneManJob {
   } or (c.items("Correspondence Plaque") < (2 * echoes)) {
     convert.prayers_to_plaques()
   }
-  
-  private def farmT4(echoes: Double)(implicit c: Character) = did (c.items("Extraordinary Implication") < echoes / 2.5) {
+
+  private def farmT4(echoes: Double)(implicit c: Character) = did(c.items("Extraordinary Implication") < echoes / 2.5) {
     convert.journals_to_implications()
-  }  or (c.items("Muscaria Brandy") < echoes / 2.5) {
+  } or (c.items("Muscaria Brandy") < echoes / 2.5) {
     convert.brilliant_to_brandy()
   } or (c.items("Stolen Kiss") < echoes / 2.5) {
     convert.documents_to_kisses()
@@ -160,25 +160,25 @@ object standardGrind extends OneManJob {
   } or (c.items("Aeolian Scream") < echoes / 2.5) {
     convert.plaques_to_screams()
   }
-  
-  private def farmT5(echoes: Double)(implicit c: Character) = did (c.items("Uncanny Incunabulum") < echoes / 12.5) {
+
+  private def farmT5(echoes: Double)(implicit c: Character) = did(c.items("Uncanny Incunabulum") < echoes / 12.5) {
     convert.implications_to_incunabula()
-  } or (c.items("Brass Ring") < echoes / 12.5) { 
-    convert.brandy_to_brass()                               
-  } or (c.items("Favours in High Places") < echoes / 12.5) { 
-    convert.kisses_to_favours()               
-  //Academic - Collated Research -> ???
-  //Luminosity - Mourning Candle -> Patent Scrutinizer
-  //Rumour - An Identity Uncovered! -> Blackmail Material
-  //Cartography - Partial Map -> Puzzling Map
-  //Elder - Presbyterate Passphrase -> Antique Mystery
+  } or (c.items("Brass Ring") < echoes / 12.5) {
+    convert.brandy_to_brass()
+  } or (c.items("Favours in High Places") < echoes / 12.5) {
+    convert.kisses_to_favours()
+    //Academic - Collated Research -> ???
+    //Luminosity - Mourning Candle -> Patent Scrutinizer
+    //Rumour - An Identity Uncovered! -> Blackmail Material
+    //Cartography - Partial Map -> Puzzling Map
+    //Elder - Presbyterate Passphrase -> Antique Mystery
   } or (c.items("Cellar of Wine") < echoes / 12.5) {
     convert.broken_giant_to_cellars()
   }
   //Nostalgia - Touching Love Story -> Bazaar Permit
   //Thirsty Bombazine Scrap -> Puzzle-Damask
   //Wild Words - Aeolian Scream -> Storm-Threnody
-  
+
   private def money(implicit c: Character) {
     fidgetingWriter.apply(c)
   }
