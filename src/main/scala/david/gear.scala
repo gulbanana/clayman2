@@ -8,7 +8,7 @@ object gear {
     c.equip("Insatiable Glove")                 //+8 gloves
     c.equip("A Pot of Violant Ink")             //+12 weapon
     c.equip("A Meticulously Altered Stocking")  //+3 boots
-    c.equip("Overgoat")                         //+20 pet
+    c.equip("Übergoat")                         //+30 pet
     c.equip("The Sixth City Times (Newspaper)") //+1 affiliation
     //no transport
     c.equip("Voluminous Library")               //+1 home comfort
@@ -92,7 +92,7 @@ object gear {
     c.equip("Lenguals")                         //+1 gloves
     c.equip("Golden Spiked Rosary")             //+3 weapon
     c.equip("Kingscale Boots")                  //+1 boots
-    c.equip("Bifurcated Owl")                   //+4 pet
+    c.equip("Übergoat")                         //+4 pet
     c.equip("Membership of God's Editors")      //+4 affiliation
     c.equip("Ratwork Velocipede")               //+4 transport
     c.equip("Probably a Coincidence")           //+1 home comfort
