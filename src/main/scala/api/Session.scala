@@ -5,8 +5,19 @@ import java.io._
 import java.nio.file._
 import dispatch._, Defaults._
 import com.ning.http.client._
+import com.ning.http.client.cookie._
 
-case class SerializableCookie(domain: String, name: String, value: String, path: String, maxAge: Int, secure: Boolean)
+case class SerializableCookie(
+    domain: String, 
+    name: String, 
+    value: String, 
+    path: String, 
+    maxAge: Int, 
+    secure: Boolean, 
+    rawValue: String,
+    expires: Long,
+    httpOnly: Boolean
+)
 
 //synchronous - sadly, clay men have no Future[T]
 class Session(cookieTin: String) {
@@ -25,7 +36,7 @@ class Session(cookieTin: String) {
     
     val writer = new ObjectOutputStream(new FileOutputStream(tin.toFile()))
     writer.writeObject(cookies.map { c => 
-      SerializableCookie(c.getDomain(), c.getName(), c.getValue(), c.getPath(), c.getMaxAge(), c.isSecure())
+      SerializableCookie(c.getDomain(), c.getName(), c.getValue(), c.getPath(), c.getMaxAge(), c.isSecure(), c.getRawValue(), c.getExpires(), c.isHttpOnly())
     })
     writer.close()
   }
@@ -33,7 +44,7 @@ class Session(cookieTin: String) {
   private def loadCookies() = if (Files.exists(tin)) {
     val reader = new ObjectInputStream(new FileInputStream(tin.toFile()))
     val jar = reader.readObject().asInstanceOf[mutable.Set[SerializableCookie]].map{ c =>
-      new Cookie(c.domain, c.name, c.value, c.path, c.maxAge, c.secure)
+      new Cookie(c.name, c.value, c.domain, c.rawValue, c.path, c.expires, c.maxAge, c.secure, c.httpOnly)
     }
     reader.close()
     Some(jar)
@@ -41,7 +52,7 @@ class Session(cookieTin: String) {
     None
   }
   
-  def command(builder: RequestBuilder) {
+  def command(builder: Req) {
     val request = Http(builder) //don't follow redirects here, because we need the cookie    
     val response = request()
     
@@ -52,7 +63,7 @@ class Session(cookieTin: String) {
     saveCookies(cookies)    
   } 
   
-  def query(builder: RequestBuilder) = {
+  def query(builder: Req) = {
     for(cookie <- cookies)
       builder.addCookie(cookie)
     val request = client(builder > as.jsoup.Document)

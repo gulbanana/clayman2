@@ -25,6 +25,7 @@ out/
 .settings
 .target/
 *.launch
+/bin/
 
 # NetBeans
 nbproject/
