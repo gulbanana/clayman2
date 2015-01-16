@@ -24,6 +24,7 @@ class Character(username: String, password: String) {
   parser updateEquipment http.query(site / "Me" / "InventoryExpanded")
   
   private val meSoup = http.query(site / "Me")
+  parser updateDescription meSoup
   parser updateEquipment meSoup
   parser updateItems meSoup
   
