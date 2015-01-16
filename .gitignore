@@ -78,5 +78,5 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # Config files
-settings.scala
+config.properties
 *.tin
