@@ -18,6 +18,10 @@ class HardcodedCharacterProvider(username: String, password: String) extends Cha
 
 class PropsCharacterProvider(key: String) extends CharacterProvider {
   val props = new Properties
+  val propStream = getClass().getResourceAsStream("/config.properties")
+  if (propStream == null)
+    throw new Error("Missing config file. Create a config.properties file in src/main/resources containing " + key + ".username and " + key + ".password properties.")
+  
   props.load(getClass().getResourceAsStream("/config.properties"))
   
   val user = props.getProperty(key + ".username")
