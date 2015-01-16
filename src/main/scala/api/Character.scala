@@ -14,7 +14,7 @@ class Character(username: String, password: String) {
   private var loginSoup = http.query(site / "Gap" / "Load" <<? Map("content" -> "/Me"))
   private var newLogin = false
   if (loginSoup.select("div#mainContentViaAjax").isEmpty) {
-    http.command(site / "Auth" / "EmailLogin" << Map("emailAddress" -> username, "password" -> password))
+    http.command(site / "Auth" / "EmailLogin" << Map("emailAddress" -> username, "password" -> password, "rememberMe" -> "true"))
     newLogin = true
     loginSoup = http.query(site / "Gap" / "Load" <<? Map("content" -> "/Me"))
   }
